@@ -9,7 +9,7 @@ CODE_ORGANIZATION: code-sena
 <h1 align="center">Juan Miguel Muñoz Castañeda</h1>
 
 <p align="center">
-  <img src="https://komarev.com/ghpvc/?username=miguel18100dev&label=Profile%20views&style=flat-square&color=brightgreen" alt="Profile views">
+  <img src="https://avatars.githubusercontent.com/u/186105710?v=4" alt="Profile views">
 </p>
 
 ---
