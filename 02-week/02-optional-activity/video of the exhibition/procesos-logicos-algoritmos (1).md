@@ -15,4 +15,4 @@
 
 **Video de referencia**
 
-[https://youtu.be/R-9-U3scUqs?si=a4KJ8StD74MUyVO8](https://youtu.be/R-9-U3scUqs?si=a4KJ8StD74MUyVO8)
+https://www.youtube.com/watch?v=x3Hf1SQqmrY
