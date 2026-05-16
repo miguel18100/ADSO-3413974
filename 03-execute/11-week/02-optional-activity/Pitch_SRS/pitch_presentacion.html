@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Sistema La Esquina — Pitch</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;0,9..144,900;1,9..144,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --ink:#0d0d0d;
+  --paper:#f5f1eb;
+  --cream:#ede8e0;
+  --gold:#c9922a;
+  --gold-light:#e8c96a;
+  --rust:#b94b2b;
+  --green:#2d7a50;
+  --muted:#8a8278;
+  --border:#ddd8d0;
+}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:'DM Sans',sans-serif;
+  overflow-x:hidden;
+}
+
+/* ── PROGRESS BAR ── */
+.progress{
+  position:fixed;top:0;left:0;right:0;height:3px;z-index:999;
+  background:var(--border);
+}
+.progress-fill{
+  height:100%;background:var(--gold);
+  width:0%;transition:width .1s;
+}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:12px;right:1.5rem;z-index:998;
+  display:flex;gap:.4rem;
+}
+.nav-dot{
+  width:6px;height:6px;border-radius:50%;
+  background:var(--border);cursor:pointer;
+  transition:background .3s,transform .3s;border:none;
+}
+.nav-dot.on{background:var(--gold);transform:scale(1.5);}
+
+/* ── SECTIONS ── */
+section{
+  min-height:100vh;
+  display:flex;flex-direction:column;justify-content:center;
+  padding:6rem 4rem;
+  position:relative;
+  overflow:hidden;
+}
+
+/* ── SECTION 1 — PORTADA ── */
+.s-cover{
+  background:var(--ink);
+  color:var(--paper);
+}
+.s-cover .grid-bg{
+  position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);
+  background-size:60px 60px;
+}
+.s-cover .glow{
+  position:absolute;
+  width:500px;height:500px;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(201,146,42,.12) 0%,transparent 70%);
+  top:50%;left:50%;transform:translate(-50%,-50%);
+}
+.cover-tag{
+  display:inline-flex;align-items:center;gap:.5rem;
+  font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--gold-light);border:1px solid rgba(232,201,106,.3);
+  border-radius:100px;padding:.4rem 1rem;margin-bottom:2rem;width:fit-content;
+}
+.cover-tag::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--gold-light);}
+.cover-h1{
+  font-family:'Fraunces',serif;
+  font-size:clamp(3.5rem,8vw,7rem);
+  font-weight:900;line-height:.95;
+  margin-bottom:1.5rem;
+}
+.cover-h1 em{color:var(--gold-light);font-style:italic;font-weight:300;}
+.cover-sub{
+  font-size:1.05rem;color:rgba(245,241,235,.5);
+  font-weight:300;max-width:480px;line-height:1.7;
+  margin-bottom:3rem;
+}
+.cover-meta{
+  display:flex;gap:2.5rem;flex-wrap:wrap;
+  border-top:1px solid rgba(255,255,255,.08);
+  padding-top:1.5rem;
+}
+.cover-meta-item{}
+.cmi-label{font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(245,241,235,.35);margin-bottom:.25rem;}
+.cmi-val{font-size:.85rem;color:rgba(245,241,235,.7);font-weight:500;}
+.cover-number{
+  position:absolute;right:4rem;bottom:4rem;
+  font-family:'Fraunces',serif;font-size:14rem;font-weight:900;
+  color:rgba(255,255,255,.03);line-height:1;pointer-events:none;
+  user-select:none;
+}
+
+/* ── SECTION 2 — PROBLEMA ── */
+.s-problem{background:var(--paper);}
+.s-problem .accent-line{
+  position:absolute;left:0;top:0;bottom:0;width:3px;
+  background:linear-gradient(to bottom,transparent,var(--rust),transparent);
+}
+.section-tag{
+  font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--rust);font-weight:500;margin-bottom:.75rem;
+}
+.section-tag.g{color:var(--green);}
+.section-tag.gold{color:var(--gold);}
+.section-h{
+  font-family:'Fraunces',serif;
+  font-size:clamp(2.2rem,5vw,4rem);
+  font-weight:700;line-height:1.05;
+  margin-bottom:2.5rem;
+}
+.prob-list{display:flex;flex-direction:column;gap:.6rem;max-width:750px;}
+.prob-item{
+  display:grid;grid-template-columns:2rem 1fr auto;
+  align-items:center;gap:1rem;
+  background:#fff;border:1px solid var(--border);
+  border-radius:10px;padding:.9rem 1.2rem;
+  border-left:3px solid var(--rust);
+}
+.prob-item-n{
+  font-family:'Fraunces',serif;font-size:1.4rem;font-weight:700;
+  color:rgba(185,75,43,.2);line-height:1;
+}
+.prob-item-body{}
+.prob-item-title{font-size:.88rem;font-weight:500;margin-bottom:.15rem;}
+.prob-item-sub{font-size:.75rem;color:var(--muted);line-height:1.4;}
+.prob-item-badge{
+  font-size:.65rem;color:var(--muted);background:var(--cream);
+  border-radius:100px;padding:.2rem .7rem;white-space:nowrap;
+  border:1px solid var(--border);
+}
+.cita{
+  margin-top:2rem;max-width:600px;
+  border-left:3px solid var(--gold);padding-left:1.2rem;
+}
+.cita-q{
+  font-family:'Fraunces',serif;font-size:1.1rem;
+  font-style:italic;font-weight:400;line-height:1.5;
+  margin-bottom:.4rem;
+}
+.cita-c{font-size:.72rem;color:var(--muted);}
+
+/* ── SECTION 3 — TIEMPOS ── */
+.s-times{background:var(--ink);color:var(--paper);}
+.s-times .noise{
+  position:absolute;inset:0;opacity:.03;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size:200px;
+}
+.s-times .section-tag{color:var(--gold-light);}
+.s-times .section-h{color:var(--paper);}
+.times-grid{display:flex;flex-direction:column;gap:.5rem;max-width:800px;}
+.t-head{
+  display:grid;grid-template-columns:1fr 110px 110px 80px;
+  gap:1rem;padding:.3rem 1.2rem;
+  font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(245,241,235,.3);
+}
+.t-head span:not(:first-child){text-align:center;}
+.t-row{
+  display:grid;grid-template-columns:1fr 110px 110px 80px;
+  gap:1rem;align-items:center;
+  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);
+  border-radius:10px;padding:.85rem 1.2rem;
+  transition:background .2s;
+}
+.t-row:hover{background:rgba(255,255,255,.07);}
+.t-label{font-size:.83rem;color:rgba(245,241,235,.8);}
+.t-manual{font-size:.82rem;color:#e07060;font-weight:500;text-align:center;}
+.t-sys{font-size:.82rem;color:#6dbf8a;font-weight:500;text-align:center;}
+.t-pct{
+  text-align:center;
+  display:flex;justify-content:center;
+}
+.t-pill{
+  background:rgba(45,122,80,.25);color:#6dbf8a;
+  border:1px solid rgba(45,122,80,.4);
+  border-radius:100px;padding:.15rem .6rem;
+  font-size:.72rem;font-weight:600;
+}
+
+/* ── SECTION 4 — SOLUCIÓN ── */
+.s-solution{background:var(--cream);}
+.modules{
+  display:grid;grid-template-columns:repeat(5,1fr);
+  gap:.75rem;margin-bottom:2rem;max-width:800px;
+}
+.mod{
+  background:#fff;border:1px solid var(--border);
+  border-radius:12px;padding:1.1rem .9rem;
+  transition:border-color .2s,transform .2s;
+}
+.mod:hover{border-color:var(--gold);transform:translateY(-2px);}
+.mod-ico{font-size:1.5rem;margin-bottom:.5rem;}
+.mod-name{font-size:.8rem;font-weight:500;margin-bottom:.25rem;}
+.mod-desc{font-size:.7rem;color:var(--muted);line-height:1.4;}
+.roles-row{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;max-width:800px;}
+.role{
+  background:#fff;border:1px solid var(--border);
+  border-radius:12px;padding:1.1rem 1.2rem;
+  display:flex;align-items:center;gap:1rem;
+}
+.role-ico{
+  width:44px;height:44px;border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:.7rem;font-weight:600;letter-spacing:.05em;flex-shrink:0;
+}
+.adm{background:rgba(201,146,42,.12);color:var(--gold);border:1px solid rgba(201,146,42,.3);}
+.caj{background:rgba(45,122,80,.08);color:var(--green);border:1px solid rgba(45,122,80,.2);}
+.role-name{font-size:.88rem;font-weight:500;margin-bottom:.2rem;}
+.role-desc{font-size:.72rem;color:var(--muted);}
+
+/* ── SECTION 5 — REQUISITOS ── */
+.s-req{background:var(--paper);}
+.req-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:.6rem;max-width:800px;margin-bottom:2rem;
+}
+.req{
+  background:#fff;border:1px solid var(--border);border-radius:10px;
+  padding:.9rem 1rem;
+}
+.req-id{
+  font-size:.62rem;letter-spacing:.1em;color:var(--gold);
+  font-weight:500;margin-bottom:.3rem;
+}
+.req-text{font-size:.78rem;color:#444;line-height:1.5;}
+.req-badge{
+  margin-top:.4rem;display:inline-block;
+  font-size:.62rem;background:#fffbf0;color:var(--gold);
+  border:1px solid rgba(201,146,42,.3);border-radius:100px;
+  padding:.1rem .45rem;
+}
+.req-badge.r{background:#fff5f5;color:var(--rust);border-color:rgba(185,75,43,.3);}
+
+/* ── SECTION 6 — INVERSIÓN ── */
+.s-inv{background:var(--ink);color:var(--paper);}
+.s-inv .section-tag{color:var(--gold-light);}
+.s-inv .section-h{color:var(--paper);}
+.inv-layout{
+  display:grid;grid-template-columns:1.2fr 1fr;
+  gap:1.5rem;max-width:800px;align-items:start;
+}
+.cost-box{
+  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);
+  border-radius:12px;overflow:hidden;
+}
+.cost-row{
+  display:flex;justify-content:space-between;
+  padding:.6rem 1.1rem;border-bottom:1px solid rgba(255,255,255,.06);
+  font-size:.8rem;
+}
+.cost-row:last-child{
+  border-bottom:none;
+  background:rgba(201,146,42,.1);
+  font-weight:500;font-size:.88rem;
+}
+.cost-c{color:rgba(245,241,235,.45);}
+.cost-c.total{color:rgba(245,241,235,.8);}
+.cost-n{color:rgba(245,241,235,.8);font-weight:500;}
+.cost-n.total{color:var(--gold-light);font-size:.95rem;}
+.stat-col{display:flex;flex-direction:column;gap:.75rem;}
+.sbox{
+  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);
+  border-radius:12px;padding:1.1rem 1.2rem;
+}
+.sbox-label{font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(245,241,235,.35);margin-bottom:.3rem;}
+.sbox-val{
+  font-family:'Fraunces',serif;font-size:2.8rem;
+  font-weight:900;color:var(--gold-light);line-height:1;
+}
+.sbox-sub{font-size:.72rem;color:rgba(245,241,235,.4);margin-top:.3rem;}
+.fases{
+  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);
+  border-radius:12px;padding:1rem 1.2rem;
+}
+.fases-title{font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(245,241,235,.35);margin-bottom:.75rem;}
+.fase{display:flex;justify-content:space-between;font-size:.75rem;padding:.25rem 0;border-bottom:1px solid rgba(255,255,255,.05);}
+.fase:last-child{border-bottom:none;}
+.fase-n{color:rgba(245,241,235,.45);}
+.fase-d{color:rgba(245,241,235,.75);font-weight:500;}
+
+/* ── SECTION 7 — CIERRE ── */
+.s-close{
+  background:var(--paper);
+  justify-content:center;align-items:center;text-align:center;
+}
+.close-badge{
+  display:inline-flex;align-items:center;gap:.5rem;
+  font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--gold);border:1px solid rgba(201,146,42,.3);
+  border-radius:100px;padding:.4rem 1rem;margin-bottom:2rem;
+}
+.close-h{
+  font-family:'Fraunces',serif;
+  font-size:clamp(3rem,7vw,6rem);
+  font-weight:900;line-height:1;
+  margin-bottom:1.5rem;max-width:700px;
+}
+.close-h em{color:var(--gold);font-style:italic;font-weight:300;}
+.close-nums{
+  display:flex;gap:3rem;justify-content:center;flex-wrap:wrap;
+  margin-bottom:2.5rem;
+  padding:2rem 0;
+  border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+  width:100%;max-width:700px;
+}
+.cn{text-align:center;}
+.cn-val{
+  font-family:'Fraunces',serif;font-size:2.5rem;
+  font-weight:900;color:var(--ink);line-height:1;
+}
+.cn-label{font-size:.7rem;color:var(--muted);margin-top:.3rem;}
+.chips{display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap;}
+.chip{
+  background:var(--ink);color:var(--paper);
+  font-size:.82rem;font-weight:500;
+  border-radius:100px;padding:.6rem 1.5rem;
+}
+.chip.ghost{background:transparent;color:var(--muted);border:1px solid var(--border);}
+
+/* ── SCROLL ANIM ── */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease;}
+.reveal.show{opacity:1;transform:none;}
+
+@media(max-width:680px){
+  section{padding:5rem 1.5rem;}
+  .modules,.req-grid{grid-template-columns:1fr 1fr;}
+  .roles-row,.inv-layout{grid-template-columns:1fr;}
+  .cover-number{display:none;}
+  .prob-item{grid-template-columns:1.5rem 1fr;}
+  .prob-item-badge{display:none;}
+  .t-head,.t-row{grid-template-columns:1fr 80px 80px 60px;}
+}
+</style>
+</head>
+<body>
+
+<div class="progress"><div class="progress-fill" id="pf"></div></div>
+<nav id="navdots"></nav>
+
+<!-- ══ 1 PORTADA ══ -->
+<section class="s-cover" id="s1">
+  <div class="grid-bg"></div>
+  <div class="glow"></div>
+  <div class="cover-tag reveal">SRS v1.0 · Sistema de Información</div>
+  <h1 class="cover-h1 reveal">Sistema<br/><em>La Esquina</em></h1>
+  <p class="cover-sub reveal">Una solución de escritorio que digitaliza las ventas, controla el inventario y genera reportes automáticos para el Supermercado "La Esquina" de Neiva, Huila.</p>
+  <div class="cover-meta reveal">
+    <div class="cover-meta-item">
+      <div class="cmi-label">Desarrollador</div>
+      <div class="cmi-val">Juan Miguel Muñoz</div>
+    </div>
+    <div class="cover-meta-item">
+      <div class="cmi-label">Programa</div>
+      <div class="cmi-val">ADSI — Ficha 3413974</div>
+    </div>
+    <div class="cover-meta-item">
+      <div class="cmi-label">Institución</div>
+      <div class="cmi-val">SENA</div>
+    </div>
+    <div class="cover-meta-item">
+      <div class="cmi-label">Fecha</div>
+      <div class="cmi-val">11 de abril de 2026</div>
+    </div>
+  </div>
+  <div class="cover-number">01</div>
+</section>
+
+<!-- ══ 2 PROBLEMA ══ -->
+<section class="s-problem" id="s2">
+  <div class="accent-line"></div>
+  <div class="section-tag reveal">El problema</div>
+  <h2 class="section-h reveal">5 fallas que le cuestan<br/>plata todos los días</h2>
+  <div class="prob-list">
+    <div class="prob-item reveal">
+      <div class="prob-item-n">1</div>
+      <div class="prob-item-body">
+        <div class="prob-item-title">Sumas manuales con calculadora</div>
+        <div class="prob-item-sub">Errores frecuentes y descuadres de caja al cierre del día.</div>
+      </div>
+      <div class="prob-item-badge">Entrevista + Observación</div>
+    </div>
+    <div class="prob-item reveal">
+      <div class="prob-item-n">2</div>
+      <div class="prob-item-body">
+        <div class="prob-item-title">Sin control de inventario en tiempo real</div>
+        <div class="prob-item-sub">Productos agotados sin aviso previo. Venta perdida sin posibilidad de recuperarla.</div>
+      </div>
+      <div class="prob-item-badge">Entrevista Don Carlos</div>
+    </div>
+    <div class="prob-item reveal">
+      <div class="prob-item-n">3</div>
+      <div class="prob-item-body">
+        <div class="prob-item-title">Lista de precios en papel desactualizada</div>
+        <div class="prob-item-sub">Tiempo perdido buscando precios. Errores en cobros al cliente.</div>
+      </div>
+      <div class="prob-item-badge">Revisión documental</div>
+    </div>
+    <div class="prob-item reveal">
+      <div class="prob-item-n">4</div>
+      <div class="prob-item-body">
+        <div class="prob-item-title">Sin identificación del vendedor</div>
+        <div class="prob-item-sub">Imposible auditar quién vendió qué. Sin trazabilidad ni control.</div>
+      </div>
+      <div class="prob-item-badge">Revisión del cuaderno</div>
+    </div>
+    <div class="prob-item reveal">
+      <div class="prob-item-n">5</div>
+      <div class="prob-item-body">
+        <div class="prob-item-title">Pedidos a proveedores en papeles sueltos</div>
+        <div class="prob-item-sub">Pérdida de información. Compras duplicadas u olvidadas.</div>
+      </div>
+      <div class="prob-item-badge">Observación directa</div>
+    </div>
+  </div>
+  <div class="cita reveal">
+    <div class="cita-q">"No sé cuándo se va a acabar un producto hasta que ya no hay."</div>
+    <div class="cita-c">— Don Carlos Rodríguez, Propietario · Entrevista abril 2026</div>
+  </div>
+</section>
+
+<!-- ══ 3 TIEMPOS ══ -->
+<section class="s-times" id="s3">
+  <div class="noise"></div>
+  <div class="section-tag reveal">Impacto medido — observación directa</div>
+  <h2 class="section-h reveal">Lo que el sistema<br/>le devuelve al negocio</h2>
+  <div class="times-grid">
+    <div class="t-head reveal">
+      <span>Proceso</span><span>Hoy (manual)</span><span>Con el sistema</span><span>Reducción</span>
+    </div>
+    <div class="t-row reveal"><span class="t-label">Registro de una venta (5 productos)</span><span class="t-manual">4 – 6 min</span><span class="t-sys">1 – 2 min</span><span class="t-pct"><span class="t-pill">~70%</span></span></div>
+    <div class="t-row reveal"><span class="t-label">Búsqueda del precio de un producto</span><span class="t-manual">2 – 4 min</span><span class="t-sys">&lt; 10 seg</span><span class="t-pct"><span class="t-pill">~95%</span></span></div>
+    <div class="t-row reveal"><span class="t-label">Verificación de stock de un producto</span><span class="t-manual">5 – 10 min</span><span class="t-sys">&lt; 5 seg</span><span class="t-pct"><span class="t-pill">~98%</span></span></div>
+    <div class="t-row reveal"><span class="t-label">Cierre de caja diario</span><span class="t-manual">30 – 50 min</span><span class="t-sys">2 – 5 min</span><span class="t-pct"><span class="t-pill">~90%</span></span></div>
+    <div class="t-row reveal"><span class="t-label">Elaboración de pedido a proveedor</span><span class="t-manual">20 – 40 min</span><span class="t-sys">5 – 10 min</span><span class="t-pct"><span class="t-pill">~75%</span></span></div>
+    <div class="t-row reveal"><span class="t-label">Reporte de ventas del día</span><span class="t-manual" style="opacity:.4">No disponible</span><span class="t-sys">&lt; 1 min</span><span class="t-pct"><span class="t-pill">100%</span></span></div>
+  </div>
+  <p class="reveal" style="margin-top:1.2rem;font-size:.7rem;color:rgba(245,241,235,.25);">* Tiempos basados en observación directa y entrevistas al personal del supermercado, abril 2026.</p>
+</section>
+
+<!-- ══ 4 SOLUCIÓN ══ -->
+<section class="s-solution" id="s4">
+  <div class="section-tag g reveal">La solución</div>
+  <h2 class="section-h reveal">5 módulos. 2 roles.<br/>Todo cubierto.</h2>
+  <div class="modules">
+    <div class="mod reveal"><div class="mod-ico">🛒</div><div class="mod-name">Ventas</div><div class="mod-desc">Registro automático, cálculo de IVA, recibo impreso, asociación por cajero.</div></div>
+    <div class="mod reveal"><div class="mod-ico">📦</div><div class="mod-name">Inventario</div><div class="mod-desc">Stock en tiempo real, alertas de mínimo, actualización automática.</div></div>
+    <div class="mod reveal"><div class="mod-ico">🏷️</div><div class="mod-name">Productos</div><div class="mod-desc">CRUD completo: nombre, precio, categoría y stock de los 90+ productos.</div></div>
+    <div class="mod reveal"><div class="mod-ico">👤</div><div class="mod-name">Usuarios</div><div class="mod-desc">Autenticación segura con roles diferenciados y control de accesos.</div></div>
+    <div class="mod reveal"><div class="mod-ico">📊</div><div class="mod-name">Reportes</div><div class="mod-desc">Cierre de caja diario, reportes por fecha y cajero. Exportable a PDF.</div></div>
+  </div>
+  <div class="roles-row">
+    <div class="role reveal">
+      <div class="role-ico adm">ADM</div>
+      <div>
+        <div class="role-name">Don Carlos Rodríguez — Administrador</div>
+        <div class="role-desc">Acceso total: ventas, inventario, productos, usuarios, reportes y cierre de caja.</div>
+      </div>
+    </div>
+    <div class="role reveal">
+      <div class="role-ico caj">CAJ</div>
+      <div>
+        <div class="role-name">Martha Rodríguez / Julián Pérez — Cajero</div>
+        <div class="role-desc">Registrar ventas, buscar productos y consultar precios en tiempo real.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 5 REQUISITOS ══ -->
+<section class="s-req" id="s5">
+  <div class="section-tag gold reveal">Catálogo de requisitos</div>
+  <h2 class="section-h reveal">Lo que el sistema<br/>garantiza — prioridad alta</h2>
+  <div class="req-grid">
+    <div class="req reveal"><div class="req-id">RF-001</div><div class="req-text">Registrar ventas con cálculo automático de subtotal, IVA y total de cada transacción.</div><span class="req-badge">Funcional · Alta</span></div>
+    <div class="req reveal"><div class="req-id">RF-003</div><div class="req-text">Alertas automáticas cuando el stock de un producto alcance el mínimo configurado.</div><span class="req-badge">Funcional · Alta</span></div>
+    <div class="req reveal"><div class="req-id">RF-005</div><div class="req-text">Autenticación por usuario y contraseña con gestión de roles diferenciados.</div><span class="req-badge">Funcional · Alta</span></div>
+    <div class="req reveal"><div class="req-id">RF-007</div><div class="req-text">Reportes de ventas por fecha, por cajero y cierre de caja exportables en PDF.</div><span class="req-badge">Funcional · Alta</span></div>
+    <div class="req reveal"><div class="req-id">RNF-001</div><div class="req-text">Respuesta en menos de 2 segundos por operación con hasta 3 usuarios simultáneos.</div><span class="req-badge r">No funcional · Alta</span></div>
+    <div class="req reveal"><div class="req-id">RN-001</div><div class="req-text">Reducir a cero los errores de cálculo en caja. Descuadres eliminados por completo.</div><span class="req-badge r">Negocio · Alta</span></div>
+  </div>
+</section>
+
+<!-- ══ 6 INVERSIÓN ══ -->
+<section class="s-inv" id="s6">
+  <div class="section-tag reveal">Inversión del proyecto</div>
+  <h2 class="section-h reveal">Pago único.<br/>Sin sorpresas.</h2>
+  <div class="inv-layout">
+    <div class="cost-box reveal">
+      <div class="cost-row"><span class="cost-c">Análisis del sistema</span><span class="cost-n">$1.000.000</span></div>
+      <div class="cost-row"><span class="cost-c">Diseño del software</span><span class="cost-n">$1.200.000</span></div>
+      <div class="cost-row"><span class="cost-c">Desarrollo del sistema</span><span class="cost-n">$3.000.000</span></div>
+      <div class="cost-row"><span class="cost-c">Configuración base de datos MySQL</span><span class="cost-n">$700.000</span></div>
+      <div class="cost-row"><span class="cost-c">Pruebas del sistema</span><span class="cost-n">$500.000</span></div>
+      <div class="cost-row"><span class="cost-c">Capacitación al personal</span><span class="cost-n">$400.000</span></div>
+      <div class="cost-row"><span class="cost-c">Implementación</span><span class="cost-n">$700.000</span></div>
+      <div class="cost-row"><span class="cost-c">Documentación</span><span class="cost-n">$300.000</span></div>
+      <div class="cost-row"><span class="cost-c">Mantenimiento inicial</span><span class="cost-n">$800.000</span></div>
+      <div class="cost-row"><span class="cost-c total">Total aproximado</span><span class="cost-n total">$8.600.000</span></div>
+    </div>
+    <div class="stat-col">
+      <div class="sbox reveal">
+        <div class="sbox-label">Duración total</div>
+        <div class="sbox-val">17</div>
+        <div class="sbox-sub">semanas · desde análisis hasta implementación y capacitación</div>
+      </div>
+      <div class="sbox reveal">
+        <div class="sbox-label">Usuarios simultáneos</div>
+        <div class="sbox-val">3</div>
+        <div class="sbox-sub">Don Carlos · Martha · Julián — en red LAN local</div>
+      </div>
+      <div class="fases reveal">
+        <div class="fases-title">Cronograma</div>
+        <div class="fase"><span class="fase-n">Recolección de requisitos</span><span class="fase-d">2 sem.</span></div>
+        <div class="fase"><span class="fase-n">Análisis del sistema</span><span class="fase-d">2 sem.</span></div>
+        <div class="fase"><span class="fase-n">Diseño del sistema</span><span class="fase-d">3 sem.</span></div>
+        <div class="fase"><span class="fase-n">Desarrollo</span><span class="fase-d">6 sem.</span></div>
+        <div class="fase"><span class="fase-n">Pruebas</span><span class="fase-d">2 sem.</span></div>
+        <div class="fase"><span class="fase-n">Implementación y capacitación</span><span class="fase-d">2 sem.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 7 CIERRE ══ -->
+<section class="s-close" id="s7">
+  <div class="close-badge reveal">Conclusión</div>
+  <h2 class="close-h reveal">El negocio ya funciona.<br/>El sistema lo hace<br/><em>funcionar mejor.</em></h2>
+  <div class="close-nums reveal">
+    <div class="cn"><div class="cn-val">~50</div><div class="cn-label">ventas diarias protegidas</div></div>
+    <div class="cn"><div class="cn-val">90</div><div class="cn-label">productos bajo control</div></div>
+    <div class="cn"><div class="cn-val">98%</div><div class="cn-label">menos tiempo en inventario</div></div>
+    <div class="cn"><div class="cn-val">$0</div><div class="cn-label">errores de caja</div></div>
+  </div>
+  <div class="chips reveal">
+    <span class="chip">$8.600.000 · Pago único</span>
+    <span class="chip ghost">17 semanas · con capacitación incluida</span>
+    <span class="chip ghost">Windows 10/11 · Red LAN · MySQL 8.0</span>
+  </div>
+</section>
+
+<script>
+const sections = document.querySelectorAll('section');
+const nav = document.getElementById('navdots');
+const pf = document.getElementById('pf');
+const TOTAL = sections.length;
+
+sections.forEach((_,i)=>{
+  const b = document.createElement('button');
+  b.className='nav-dot'+(i===0?' on':'');
+  b.setAttribute('aria-label','Ir a sección '+(i+1));
+  b.onclick=()=>sections[i].scrollIntoView({behavior:'smooth'});
+  nav.appendChild(b);
+});
+
+const dots = nav.querySelectorAll('.nav-dot');
+
+const revealEls = document.querySelectorAll('.reveal');
+const revObs = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show');});
+},{threshold:.12});
+revealEls.forEach(el=>revObs.observe(el));
+
+const secObs = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      const i = Array.from(sections).indexOf(e.target);
+      dots.forEach((d,j)=>d.classList.toggle('on',j===i));
+    }
+  });
+},{threshold:.4});
+sections.forEach(s=>secObs.observe(s));
+
+window.addEventListener('scroll',()=>{
+  const max = document.body.scrollHeight - window.innerHeight;
+  pf.style.width = (window.scrollY/max*100)+'%';
+},{passive:true});
+</script>
+</body>
+</html>
