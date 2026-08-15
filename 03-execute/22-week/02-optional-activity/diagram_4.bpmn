@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_GestionHorariosSENA" targetNamespace="http://sena.edu.co/gestion-horarios" exporter="Camunda Modeler" exporterVersion="5.50.1">
+  <bpmn:process id="Process_GestionHorariosSENA" name="Gestión de Horarios SENA" isExecutable="false">
+    <bpmn:laneSet id="LaneSet_GestionHorarios">
+      <bpmn:lane id="Lane_Aprendiz" name="Aprendiz">
+        <bpmn:flowNodeRef>Task_ConsultarPublicados</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>EndEvent_Consulta</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_Instructor" name="Instructor">
+        <bpmn:flowNodeRef>Task_ConsultarAsignados</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_Sistema" name="Sistema">
+        <bpmn:flowNodeRef>Task_GuardarHorario</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_ValidarCredenciales</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_VerificarPermisos</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_ValidarDisponibilidad</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_GenerarConflictos</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_RevisarAjustar</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_CambiarEstadoPublicado</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_ExistenConflictos</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_Coordinador" name="Coordinador Académico">
+        <bpmn:flowNodeRef>Task_IniciarSesion</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_EntrarHorarios</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_CrearHorario</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_SeleccionarDatos</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_AgregarSesiones</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_GuardarBorrador</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_ValidarHorario</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_PublicarHorario</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>StartEvent_Inicio</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>EndEvent_Publicacion</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_HayConflictos</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:startEvent id="StartEvent_Inicio" name="Inicio" />
+    <bpmn:userTask id="Task_IniciarSesion" name="1. Iniciar sesión en el sistema" />
+    <bpmn:serviceTask id="Task_ValidarCredenciales" name="Validar credenciales de usuario" />
+    <bpmn:userTask id="Task_EntrarHorarios" name="2. Ingresar al módulo de Horarios" />
+    <bpmn:serviceTask id="Task_VerificarPermisos" name="Verificar permisos del coordinador" />
+    <bpmn:userTask id="Task_CrearHorario" name="3. Crear nuevo horario" />
+    <bpmn:serviceTask id="Task_ValidarDisponibilidad" name="Validar disponibilidad de instructores, ambientes y fichas" />
+    <bpmn:exclusiveGateway id="Gateway_ExistenConflictos" name="¿Existen conflictos?" />
+    <bpmn:serviceTask id="Task_GenerarConflictos" name="Generar listado de conflictos detectados" />
+    <bpmn:userTask id="Task_SeleccionarDatos" name="4. Seleccionar ficha, periodo y nombre" />
+    <bpmn:userTask id="Task_AgregarSesiones" name="5. Agregar sesiones al horario" />
+    <bpmn:userTask id="Task_GuardarBorrador" name="6. Guardar borrador">
+      <bpmn:outgoing>Flow_1qxj146</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:serviceTask id="Task_GuardarHorario" name="Guardar horario en estado borrador" />
+    <bpmn:userTask id="Task_ValidarHorario" name="7. Validar horario">
+      <bpmn:incoming>Flow_1qxj146</bpmn:incoming>
+    </bpmn:userTask>
+    <bpmn:exclusiveGateway id="Gateway_HayConflictos" name="¿Hay conflictos?" />
+    <bpmn:userTask id="Task_RevisarAjustar" name="8. Revisar y ajustar conflictos" />
+    <bpmn:userTask id="Task_PublicarHorario" name="9. Publicar horario" />
+    <bpmn:serviceTask id="Task_CambiarEstadoPublicado" name="Cambiar estado a publicado" />
+    <bpmn:endEvent id="EndEvent_Publicacion" name="Fin (Publicación exitosa)" />
+    <bpmn:userTask id="Task_ConsultarAsignados" name="Consultar horarios asignados" />
+    <bpmn:userTask id="Task_ConsultarPublicados" name="Consultar horarios publicados" />
+    <bpmn:endEvent id="EndEvent_Consulta" name="Fin (Consulta)" />
+    <bpmn:sequenceFlow id="Flow_01" sourceRef="StartEvent_Inicio" targetRef="Task_IniciarSesion" />
+    <bpmn:sequenceFlow id="Flow_02" sourceRef="Task_IniciarSesion" targetRef="Task_ValidarCredenciales" />
+    <bpmn:sequenceFlow id="Flow_03" sourceRef="Task_ValidarCredenciales" targetRef="Task_EntrarHorarios" />
+    <bpmn:sequenceFlow id="Flow_04" sourceRef="Task_EntrarHorarios" targetRef="Task_VerificarPermisos" />
+    <bpmn:sequenceFlow id="Flow_05" sourceRef="Task_VerificarPermisos" targetRef="Task_CrearHorario" />
+    <bpmn:sequenceFlow id="Flow_06" sourceRef="Task_CrearHorario" targetRef="Task_ValidarDisponibilidad" />
+    <bpmn:sequenceFlow id="Flow_07" sourceRef="Task_ValidarDisponibilidad" targetRef="Gateway_ExistenConflictos" />
+    <bpmn:sequenceFlow id="Flow_08_Si" name="Sí" sourceRef="Gateway_ExistenConflictos" targetRef="Task_GenerarConflictos" />
+    <bpmn:sequenceFlow id="Flow_09_No" name="No" sourceRef="Gateway_ExistenConflictos" targetRef="Task_SeleccionarDatos" />
+    <bpmn:sequenceFlow id="Flow_10" sourceRef="Task_GenerarConflictos" targetRef="Task_RevisarAjustar" />
+    <bpmn:sequenceFlow id="Flow_11" sourceRef="Task_SeleccionarDatos" targetRef="Task_AgregarSesiones" />
+    <bpmn:sequenceFlow id="Flow_12" sourceRef="Task_AgregarSesiones" targetRef="Task_GuardarBorrador" />
+    <bpmn:sequenceFlow id="Flow_13" sourceRef="Task_GuardarBorrador" targetRef="Task_GuardarHorario" />
+    <bpmn:sequenceFlow id="Flow_14" sourceRef="Task_GuardarHorario" targetRef="Task_ValidarHorario" />
+    <bpmn:sequenceFlow id="Flow_15" sourceRef="Task_ValidarHorario" targetRef="Gateway_HayConflictos" />
+    <bpmn:sequenceFlow id="Flow_16_Si" name="Sí" sourceRef="Gateway_HayConflictos" targetRef="Task_RevisarAjustar" />
+    <bpmn:sequenceFlow id="Flow_17_No" name="No" sourceRef="Gateway_HayConflictos" targetRef="Task_PublicarHorario" />
+    <bpmn:sequenceFlow id="Flow_18" sourceRef="Task_RevisarAjustar" targetRef="Task_AgregarSesiones" />
+    <bpmn:sequenceFlow id="Flow_19" sourceRef="Task_PublicarHorario" targetRef="Task_CambiarEstadoPublicado" />
+    <bpmn:sequenceFlow id="Flow_20" sourceRef="Task_CambiarEstadoPublicado" targetRef="EndEvent_Publicacion" />
+    <bpmn:sequenceFlow id="Flow_21" sourceRef="Task_CambiarEstadoPublicado" targetRef="Task_ConsultarAsignados" />
+    <bpmn:sequenceFlow id="Flow_22" sourceRef="Task_ConsultarAsignados" targetRef="Task_ConsultarPublicados" />
+    <bpmn:sequenceFlow id="Flow_23" sourceRef="Task_ConsultarPublicados" targetRef="EndEvent_Consulta" />
+    <bpmn:sequenceFlow id="Flow_1qxj146" sourceRef="Task_GuardarBorrador" targetRef="Task_ValidarHorario" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_GestionHorarios">
+    <bpmndi:BPMNPlane id="BPMNPlane_GestionHorarios" bpmnElement="Process_GestionHorariosSENA">
+      <bpmndi:BPMNShape id="Lane_Aprendiz_di" bpmnElement="Lane_Aprendiz" isHorizontal="true">
+        <dc:Bounds x="160" y="780" width="1700" height="180" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_Instructor_di" bpmnElement="Lane_Instructor" isHorizontal="true">
+        <dc:Bounds x="160" y="600" width="1700" height="180" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_Sistema_di" bpmnElement="Lane_Sistema" isHorizontal="true">
+        <dc:Bounds x="160" y="340" width="1700" height="260" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_Coordinador_di" bpmnElement="Lane_Coordinador" isHorizontal="true">
+        <dc:Bounds x="160" y="80" width="1700" height="260" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="StartEvent_Inicio_di" bpmnElement="StartEvent_Inicio">
+        <dc:Bounds x="190" y="192" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="195" y="228" width="26" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_IniciarSesion_di" bpmnElement="Task_IniciarSesion">
+        <dc:Bounds x="250" y="170" width="130" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_ValidarCredenciales_di" bpmnElement="Task_ValidarCredenciales">
+        <dc:Bounds x="250" y="430" width="150" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_EntrarHorarios_di" bpmnElement="Task_EntrarHorarios">
+        <dc:Bounds x="410" y="170" width="140" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_VerificarPermisos_di" bpmnElement="Task_VerificarPermisos">
+        <dc:Bounds x="430" y="430" width="150" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_CrearHorario_di" bpmnElement="Task_CrearHorario">
+        <dc:Bounds x="580" y="170" width="140" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_ValidarDisponibilidad_di" bpmnElement="Task_ValidarDisponibilidad">
+        <dc:Bounds x="610" y="430" width="180" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_ExistenConflictos_di" bpmnElement="Gateway_ExistenConflictos" isMarkerVisible="true">
+        <dc:Bounds x="830" y="445" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="829" y="495" width="52" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_GenerarConflictos_di" bpmnElement="Task_GenerarConflictos">
+        <dc:Bounds x="910" y="430" width="180" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_SeleccionarDatos_di" bpmnElement="Task_SeleccionarDatos">
+        <dc:Bounds x="750" y="170" width="150" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_AgregarSesiones_di" bpmnElement="Task_AgregarSesiones">
+        <dc:Bounds x="930" y="170" width="150" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_GuardarBorrador_di" bpmnElement="Task_GuardarBorrador">
+        <dc:Bounds x="1110" y="170" width="150" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_ValidarHorario_di" bpmnElement="Task_ValidarHorario">
+        <dc:Bounds x="1290" y="170" width="150" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_HayConflictos_di" bpmnElement="Gateway_HayConflictos" isMarkerVisible="true">
+        <dc:Bounds x="1470" y="185" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1479" y="273" width="82" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_RevisarAjustar_di" bpmnElement="Task_RevisarAjustar">
+        <dc:Bounds x="1310" y="430" width="180" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_PublicarHorario_di" bpmnElement="Task_PublicarHorario">
+        <dc:Bounds x="1550" y="170" width="140" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_CambiarEstadoPublicado_di" bpmnElement="Task_CambiarEstadoPublicado">
+        <dc:Bounds x="1550" y="430" width="180" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_ConsultarAsignados_di" bpmnElement="Task_ConsultarAsignados">
+        <dc:Bounds x="1360" y="650" width="180" height="70" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_ConsultarPublicados_di" bpmnElement="Task_ConsultarPublicados">
+        <dc:Bounds x="1560" y="830" width="180" height="70" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="EndEvent_Consulta_di" bpmnElement="EndEvent_Consulta">
+        <dc:Bounds x="1770" y="847" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1765" y="893" width="70" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="EndEvent_Publicacion_di" bpmnElement="EndEvent_Publicacion">
+        <dc:Bounds x="1770" y="172" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1760" y="221" width="79" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_01_di" bpmnElement="Flow_01">
+        <di:waypoint x="226" y="210" />
+        <di:waypoint x="250" y="210" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_02_di" bpmnElement="Flow_02">
+        <di:waypoint x="315" y="250" />
+        <di:waypoint x="315" y="430" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_03_di" bpmnElement="Flow_03">
+        <di:waypoint x="400" y="470" />
+        <di:waypoint x="480" y="250" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_04_di" bpmnElement="Flow_04">
+        <di:waypoint x="480" y="250" />
+        <di:waypoint x="505" y="430" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_05_di" bpmnElement="Flow_05">
+        <di:waypoint x="580" y="470" />
+        <di:waypoint x="650" y="250" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_06_di" bpmnElement="Flow_06">
+        <di:waypoint x="650" y="250" />
+        <di:waypoint x="700" y="430" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_07_di" bpmnElement="Flow_07">
+        <di:waypoint x="790" y="470" />
+        <di:waypoint x="830" y="470" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_08_Si_di" bpmnElement="Flow_08_Si">
+        <di:waypoint x="880" y="470" />
+        <di:waypoint x="910" y="470" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="890" y="445" width="11" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_09_No_di" bpmnElement="Flow_09_No">
+        <di:waypoint x="855" y="445" />
+        <di:waypoint x="825" y="250" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="833" y="323" width="15" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_10_di" bpmnElement="Flow_10">
+        <di:waypoint x="1090" y="470" />
+        <di:waypoint x="1310" y="470" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_11_di" bpmnElement="Flow_11">
+        <di:waypoint x="900" y="210" />
+        <di:waypoint x="930" y="210" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_12_di" bpmnElement="Flow_12">
+        <di:waypoint x="1080" y="210" />
+        <di:waypoint x="1110" y="210" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_15_di" bpmnElement="Flow_15">
+        <di:waypoint x="1440" y="210" />
+        <di:waypoint x="1470" y="210" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_16_Si_di" bpmnElement="Flow_16_Si">
+        <di:waypoint x="1495" y="235" />
+        <di:waypoint x="1400" y="430" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1442" y="308" width="11" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_17_No_di" bpmnElement="Flow_17_No">
+        <di:waypoint x="1520" y="210" />
+        <di:waypoint x="1550" y="210" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1528" y="185" width="15" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_18_di" bpmnElement="Flow_18">
+        <di:waypoint x="1310" y="470" />
+        <di:waypoint x="1005" y="380" />
+        <di:waypoint x="1005" y="250" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_19_di" bpmnElement="Flow_19">
+        <di:waypoint x="1620" y="250" />
+        <di:waypoint x="1640" y="430" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_20_di" bpmnElement="Flow_20">
+        <di:waypoint x="1730" y="470" />
+        <di:waypoint x="1750" y="470" />
+        <di:waypoint x="1750" y="190" />
+        <di:waypoint x="1770" y="190" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_21_di" bpmnElement="Flow_21">
+        <di:waypoint x="1640" y="510" />
+        <di:waypoint x="1450" y="650" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_22_di" bpmnElement="Flow_22">
+        <di:waypoint x="1540" y="685" />
+        <di:waypoint x="1650" y="830" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_23_di" bpmnElement="Flow_23">
+        <di:waypoint x="1740" y="865" />
+        <di:waypoint x="1770" y="865" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1qxj146_di" bpmnElement="Flow_1qxj146">
+        <di:waypoint x="1260" y="210" />
+        <di:waypoint x="1290" y="210" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

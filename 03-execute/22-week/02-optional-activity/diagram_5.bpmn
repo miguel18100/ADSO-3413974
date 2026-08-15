@@ -1,0 +1,786 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL"
+  xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+  xmlns:dc="http://www.omg.org/spec/DD/20100524/DC"
+  xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
+  xmlns:camunda="http://camunda.org/schema/1.0/bpmn"
+  id="Definitions_Instructor"
+  targetNamespace="http://sena.edu.co/bpmn/instructor">
+
+  <bpmn:process
+    id="Process_GestionInstructor"
+    name="Gestión de Horarios y Seguimiento - Instructor"
+    isExecutable="true">
+
+    <!-- ========================= -->
+    <!-- EVENTO DE INICIO -->
+    <!-- ========================= -->
+
+    <bpmn:startEvent
+      id="StartEvent_Inicio"
+      name="Inicio">
+      <bpmn:outgoing>Flow_Start_Login</bpmn:outgoing>
+    </bpmn:startEvent>
+
+    <!-- ========================= -->
+    <!-- INICIO DE SESIÓN -->
+    <!-- ========================= -->
+
+    <bpmn:userTask
+      id="Task_IniciarSesion"
+      name="Iniciar sesión">
+      <bpmn:incoming>Flow_Start_Login</bpmn:incoming>
+      <bpmn:outgoing>Flow_Login_Validar</bpmn:outgoing>
+    </bpmn:userTask>
+
+    <bpmn:serviceTask
+      id="Task_ValidarCredenciales"
+      name="Validar credenciales">
+      <bpmn:incoming>Flow_Login_Validar</bpmn:incoming>
+      <bpmn:outgoing>Flow_Validar_Gateway</bpmn:outgoing>
+    </bpmn:serviceTask>
+
+    <bpmn:exclusiveGateway
+      id="Gateway_Credenciales"
+      name="¿Credenciales válidas?">
+      <bpmn:incoming>Flow_Validar_Gateway</bpmn:incoming>
+      <bpmn:outgoing>Flow_Credenciales_Si</bpmn:outgoing>
+      <bpmn:outgoing>Flow_Credenciales_No</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+
+    <bpmn:serviceTask
+      id="Task_MostrarErrorLogin"
+      name="Mostrar error de acceso">
+      <bpmn:incoming>Flow_Credenciales_No</bpmn:incoming>
+      <bpmn:outgoing>Flow_Error_Login</bpmn:outgoing>
+    </bpmn:serviceTask>
+
+    <bpmn:endEvent
+      id="EndEvent_AccesoFallido"
+      name="Fin - Acceso no autorizado">
+      <bpmn:incoming>Flow_Error_Login</bpmn:incoming>
+    </bpmn:endEvent>
+
+    <!-- ========================= -->
+    <!-- MENÚ PRINCIPAL -->
+    <!-- ========================= -->
+
+    <bpmn:userTask
+      id="Task_ConsultarMenu"
+      name="Ingresar al módulo del instructor">
+      <bpmn:incoming>Flow_Credenciales_Si</bpmn:incoming>
+      <bpmn:outgoing>Flow_Menu_Opcion</bpmn:outgoing>
+    </bpmn:userTask>
+
+    <bpmn:exclusiveGateway
+      id="Gateway_Opcion"
+      name="¿Qué desea gestionar?">
+      <bpmn:incoming>Flow_Menu_Opcion</bpmn:incoming>
+      <bpmn:outgoing>Flow_Opcion_Horario</bpmn:outgoing>
+      <bpmn:outgoing>Flow_Opcion_Disponibilidad</bpmn:outgoing>
+      <bpmn:outgoing>Flow_Opcion_Seguimiento</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+
+    <!-- ========================= -->
+    <!-- MI HORARIO -->
+    <!-- ========================= -->
+
+    <bpmn:userTask
+      id="Task_ConsultarHorario"
+      name="Consultar mi horario">
+      <bpmn:incoming>Flow_Opcion_Horario</bpmn:incoming>
+      <bpmn:outgoing>Flow_Horario_Sistema</bpmn:outgoing>
+    </bpmn:userTask>
+
+    <bpmn:serviceTask
+      id="Task_MostrarHorario"
+      name="Mostrar horario asignado">
+      <bpmn:incoming>Flow_Horario_Sistema</bpmn:incoming>
+      <bpmn:outgoing>Flow_Horario_Fin</bpmn:outgoing>
+    </bpmn:serviceTask>
+
+    <bpmn:endEvent
+      id="EndEvent_Horario"
+      name="Fin - Consulta de horario">
+      <bpmn:incoming>Flow_Horario_Fin</bpmn:incoming>
+    </bpmn:endEvent>
+
+    <!-- ========================= -->
+    <!-- MI DISPONIBILIDAD -->
+    <!-- ========================= -->
+
+    <bpmn:userTask
+      id="Task_ConsultarDisponibilidad"
+      name="Consultar disponibilidad">
+      <bpmn:incoming>Flow_Opcion_Disponibilidad</bpmn:incoming>
+      <bpmn:outgoing>Flow_Disponibilidad_Nueva</bpmn:outgoing>
+    </bpmn:userTask>
+
+    <bpmn:userTask
+      id="Task_NuevaExcepcion"
+      name="Registrar nueva excepción">
+      <bpmn:incoming>Flow_Disponibilidad_Nueva</bpmn:incoming>
+      <bpmn:outgoing>Flow_Excepcion_Validar</bpmn:outgoing>
+    </bpmn:userTask>
+
+    <bpmn:serviceTask
+      id="Task_ValidarExcepcion"
+      name="Validar fechas y disponibilidad">
+      <bpmn:incoming>Flow_Excepcion_Validar</bpmn:incoming>
+      <bpmn:outgoing>Flow_Excepcion_Gateway</bpmn:outgoing>
+    </bpmn:serviceTask>
+
+    <bpmn:exclusiveGateway
+      id="Gateway_Excepcion"
+      name="¿Datos válidos?">
+      <bpmn:incoming>Flow_Excepcion_Gateway</bpmn:incoming>
+      <bpmn:outgoing>Flow_Excepcion_Si</bpmn:outgoing>
+      <bpmn:outgoing>Flow_Excepcion_No</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+
+    <bpmn:serviceTask
+      id="Task_MostrarErrorExcepcion"
+      name="Mostrar error de validación">
+      <bpmn:incoming>Flow_Excepcion_No</bpmn:incoming>
+      <bpmn:outgoing>Flow_ErrorExcepcion_Nueva</bpmn:outgoing>
+    </bpmn:serviceTask>
+
+    <bpmn:userTask
+      id="Task_CorregirExcepcion"
+      name="Corregir información">
+      <bpmn:incoming>Flow_ErrorExcepcion_Nueva</bpmn:incoming>
+      <bpmn:outgoing>Flow_Corregir_Validar</bpmn:outgoing>
+    </bpmn:userTask>
+
+    <bpmn:serviceTask
+      id="Task_GuardarExcepcion"
+      name="Guardar excepción">
+      <bpmn:incoming>Flow_Excepcion_Si</bpmn:incoming>
+      <bpmn:incoming>Flow_Corregir_Validar</bpmn:incoming>
+      <bpmn:outgoing>Flow_GuardarExcepcion_Confirmar</bpmn:outgoing>
+    </bpmn:serviceTask>
+
+    <bpmn:serviceTask
+      id="Task_ConfirmarExcepcion"
+      name="Confirmar disponibilidad actualizada">
+      <bpmn:incoming>Flow_GuardarExcepcion_Confirmar</bpmn:incoming>
+      <bpmn:outgoing>Flow_Disponibilidad_Fin</bpmn:outgoing>
+    </bpmn:serviceTask>
+
+    <bpmn:endEvent
+      id="EndEvent_Disponibilidad"
+      name="Fin - Disponibilidad actualizada">
+      <bpmn:incoming>Flow_Disponibilidad_Fin</bpmn:incoming>
+    </bpmn:endEvent>
+
+    <!-- ========================= -->
+    <!-- SEGUIMIENTO DE FICHA -->
+    <!-- ========================= -->
+
+    <bpmn:userTask
+      id="Task_SeleccionarFicha"
+      name="Seleccionar ficha">
+      <bpmn:incoming>Flow_Opcion_Seguimiento</bpmn:incoming>
+      <bpmn:outgoing>Flow_Ficha_Consultar</bpmn:outgoing>
+    </bpmn:userTask>
+
+    <bpmn:serviceTask
+      id="Task_ConsultarSeguimientos"
+      name="Consultar seguimientos anteriores">
+      <bpmn:incoming>Flow_Ficha_Consultar</bpmn:incoming>
+      <bpmn:outgoing>Flow_Consultar_Nuevo</bpmn:outgoing>
+    </bpmn:serviceTask>
+
+    <bpmn:userTask
+      id="Task_RegistrarSeguimiento"
+      name="Registrar seguimiento">
+      <bpmn:incoming>Flow_Consultar_Nuevo</bpmn:incoming>
+      <bpmn:outgoing>Flow_Seguimiento_Validar</bpmn:outgoing>
+    </bpmn:userTask>
+
+    <bpmn:serviceTask
+      id="Task_ValidarSeguimiento"
+      name="Validar asistencia y avance curricular">
+      <bpmn:incoming>Flow_Seguimiento_Validar</bpmn:incoming>
+      <bpmn:outgoing>Flow_Seguimiento_Gateway</bpmn:outgoing>
+    </bpmn:serviceTask>
+
+    <bpmn:exclusiveGateway
+      id="Gateway_RequiereSeguimiento"
+      name="¿Requiere seguimiento adicional?">
+      <bpmn:incoming>Flow_Seguimiento_Gateway</bpmn:incoming>
+      <bpmn:outgoing>Flow_Seguimiento_Si</bpmn:outgoing>
+      <bpmn:outgoing>Flow_Seguimiento_No</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+
+    <bpmn:userTask
+      id="Task_MarcarSeguimiento"
+      name="Marcar seguimiento adicional">
+      <bpmn:incoming>Flow_Seguimiento_Si</bpmn:incoming>
+      <bpmn:outgoing>Flow_Marcar_Guardar</bpmn:outgoing>
+    </bpmn:userTask>
+
+    <bpmn:serviceTask
+      id="Task_GuardarSeguimiento"
+      name="Guardar seguimiento">
+      <bpmn:incoming>Flow_Marcar_Guardar</bpmn:incoming>
+      <bpmn:incoming>Flow_Seguimiento_No</bpmn:incoming>
+      <bpmn:outgoing>Flow_GuardarSeguimiento_Confirmar</bpmn:outgoing>
+    </bpmn:serviceTask>
+
+    <bpmn:serviceTask
+      id="Task_ConfirmarSeguimiento"
+      name="Confirmar registro">
+      <bpmn:incoming>Flow_GuardarSeguimiento_Confirmar</bpmn:incoming>
+      <bpmn:outgoing>Flow_Seguimiento_Fin</bpmn:outgoing>
+    </bpmn:serviceTask>
+
+    <bpmn:endEvent
+      id="EndEvent_Seguimiento"
+      name="Fin - Seguimiento registrado">
+      <bpmn:incoming>Flow_Seguimiento_Fin</bpmn:incoming>
+    </bpmn:endEvent>
+
+    <!-- ========================= -->
+    <!-- FLUJOS -->
+    <!-- ========================= -->
+
+    <bpmn:sequenceFlow
+      id="Flow_Start_Login"
+      sourceRef="StartEvent_Inicio"
+      targetRef="Task_IniciarSesion"/>
+
+    <bpmn:sequenceFlow
+      id="Flow_Login_Validar"
+      sourceRef="Task_IniciarSesion"
+      targetRef="Task_ValidarCredenciales"/>
+
+    <bpmn:sequenceFlow
+      id="Flow_Validar_Gateway"
+      sourceRef="Task_ValidarCredenciales"
+      targetRef="Gateway_Credenciales"/>
+
+    <bpmn:sequenceFlow
+      id="Flow_Credenciales_Si"
+      name="Sí"
+      sourceRef="Gateway_Credenciales"
+      targetRef="Task_ConsultarMenu"/>
+
+    <bpmn:sequenceFlow
+      id="Flow_Credenciales_No"
+      name="No"
+      sourceRef="Gateway_Credenciales"
+      targetRef="Task_MostrarErrorLogin"/>
+
+    <bpmn:sequenceFlow
+      id="Flow_Error_Login"
+      sourceRef="Task_MostrarErrorLogin"
+      targetRef="EndEvent_AccesoFallido"/>
+
+    <bpmn:sequenceFlow
+      id="Flow_Menu_Opcion"
+      sourceRef="Task_ConsultarMenu"
+      targetRef="Gateway_Opcion"/>
+
+    <!-- HORARIO -->
+
+    <bpmn:sequenceFlow
+      id="Flow_Opcion_Horario"
+      name="Mi horario"
+      sourceRef="Gateway_Opcion"
+      targetRef="Task_ConsultarHorario"/>
+
+    <bpmn:sequenceFlow
+      id="Flow_Horario_Sistema"
+      sourceRef="Task_ConsultarHorario"
+      targetRef="Task_MostrarHorario"/>
+
+    <bpmn:sequenceFlow
+      id="Flow_Horario_Fin"
+      sourceRef="Task_MostrarHorario"
+      targetRef="EndEvent_Horario"/>
+
+    <!-- DISPONIBILIDAD -->
+
+    <bpmn:sequenceFlow
+      id="Flow_Opcion_Disponibilidad"
+      name="Mi disponibilidad"
+      sourceRef="Gateway_Opcion"
+      targetRef="Task_ConsultarDisponibilidad"/>
+
+    <bpmn:sequenceFlow
+      id="Flow_Disponibilidad_Nueva"
+      sourceRef="Task_ConsultarDisponibilidad"
+      targetRef="Task_NuevaExcepcion"/>
+
+    <bpmn:sequenceFlow
+      id="Flow_Excepcion_Validar"
+      sourceRef="Task_NuevaExcepcion"
+      targetRef="Task_ValidarExcepcion"/>
+
+    <bpmn:sequenceFlow
+      id="Flow_Excepcion_Gateway"
+      sourceRef="Task_ValidarExcepcion"
+      targetRef="Gateway_Excepcion"/>
+
+    <bpmn:sequenceFlow
+      id="Flow_Excepcion_Si"
+      name="Sí"
+      sourceRef="Gateway_Excepcion"
+      targetRef="Task_GuardarExcepcion"/>
+
+    <bpmn:sequenceFlow
+      id="Flow_Excepcion_No"
+      name="No"
+      sourceRef="Gateway_Excepcion"
+      targetRef="Task_MostrarErrorExcepcion"/>
+
+    <bpmn:sequenceFlow
+      id="Flow_ErrorExcepcion_Nueva"
+      sourceRef="Task_MostrarErrorExcepcion"
+      targetRef="Task_CorregirExcepcion"/>
+
+    <bpmn:sequenceFlow
+      id="Flow_Corregir_Validar"
+      sourceRef="Task_CorregirExcepcion"
+      targetRef="Task_ValidarExcepcion"/>
+
+    <bpmn:sequenceFlow
+      id="Flow_GuardarExcepcion_Confirmar"
+      sourceRef="Task_GuardarExcepcion"
+      targetRef="Task_ConfirmarExcepcion"/>
+
+    <bpmn:sequenceFlow
+      id="Flow_Disponibilidad_Fin"
+      sourceRef="Task_ConfirmarExcepcion"
+      targetRef="EndEvent_Disponibilidad"/>
+
+    <!-- SEGUIMIENTO -->
+
+    <bpmn:sequenceFlow
+      id="Flow_Opcion_Seguimiento"
+      name="Seguimiento"
+      sourceRef="Gateway_Opcion"
+      targetRef="Task_SeleccionarFicha"/>
+
+    <bpmn:sequenceFlow
+      id="Flow_Ficha_Consultar"
+      sourceRef="Task_SeleccionarFicha"
+      targetRef="Task_ConsultarSeguimientos"/>
+
+    <bpmn:sequenceFlow
+      id="Flow_Consultar_Nuevo"
+      sourceRef="Task_ConsultarSeguimientos"
+      targetRef="Task_RegistrarSeguimiento"/>
+
+    <bpmn:sequenceFlow
+      id="Flow_Seguimiento_Validar"
+      sourceRef="Task_RegistrarSeguimiento"
+      targetRef="Task_ValidarSeguimiento"/>
+
+    <bpmn:sequenceFlow
+      id="Flow_Seguimiento_Gateway"
+      sourceRef="Task_ValidarSeguimiento"
+      targetRef="Gateway_RequiereSeguimiento"/>
+
+    <bpmn:sequenceFlow
+      id="Flow_Seguimiento_Si"
+      name="Sí"
+      sourceRef="Gateway_RequiereSeguimiento"
+      targetRef="Task_MarcarSeguimiento"/>
+
+    <bpmn:sequenceFlow
+      id="Flow_Seguimiento_No"
+      name="No"
+      sourceRef="Gateway_RequiereSeguimiento"
+      targetRef="Task_GuardarSeguimiento"/>
+
+    <bpmn:sequenceFlow
+      id="Flow_Marcar_Guardar"
+      sourceRef="Task_MarcarSeguimiento"
+      targetRef="Task_GuardarSeguimiento"/>
+
+    <bpmn:sequenceFlow
+      id="Flow_GuardarSeguimiento_Confirmar"
+      sourceRef="Task_GuardarSeguimiento"
+      targetRef="Task_ConfirmarSeguimiento"/>
+
+    <bpmn:sequenceFlow
+      id="Flow_Seguimiento_Fin"
+      sourceRef="Task_ConfirmarSeguimiento"
+      targetRef="EndEvent_Seguimiento"/>
+
+  </bpmn:process>
+
+  <!-- ===================================================== -->
+  <!-- BPMN DIAGRAM INTERCHANGE -->
+  <!-- ===================================================== -->
+
+  <bpmndi:BPMNDiagram
+    id="BPMNDiagram_Instructor">
+
+    <bpmndi:BPMNPlane
+      id="BPMNPlane_Instructor"
+      bpmnElement="Process_GestionInstructor">
+
+      <!-- START -->
+
+      <bpmndi:BPMNShape
+        id="StartEvent_Inicio_di"
+        bpmnElement="StartEvent_Inicio">
+        <dc:Bounds x="100" y="300" width="36" height="36"/>
+      </bpmndi:BPMNShape>
+
+      <!-- LOGIN -->
+
+      <bpmndi:BPMNShape
+        id="Task_IniciarSesion_di"
+        bpmnElement="Task_IniciarSesion">
+        <dc:Bounds x="180" y="278" width="120" height="80"/>
+      </bpmndi:BPMNShape>
+
+      <bpmndi:BPMNShape
+        id="Task_ValidarCredenciales_di"
+        bpmnElement="Task_ValidarCredenciales">
+        <dc:Bounds x="350" y="278" width="140" height="80"/>
+      </bpmndi:BPMNShape>
+
+      <bpmndi:BPMNShape
+        id="Gateway_Credenciales_di"
+        bpmnElement="Gateway_Credenciales"
+        isMarkerVisible="true">
+        <dc:Bounds x="540" y="293" width="50" height="50"/>
+      </bpmndi:BPMNShape>
+
+      <bpmndi:BPMNShape
+        id="Task_MostrarErrorLogin_di"
+        bpmnElement="Task_MostrarErrorLogin">
+        <dc:Bounds x="520" y="410" width="150" height="70"/>
+      </bpmndi:BPMNShape>
+
+      <bpmndi:BPMNShape
+        id="EndEvent_AccesoFallido_di"
+        bpmnElement="EndEvent_AccesoFallido">
+        <dc:Bounds x="730" y="427" width="36" height="36"/>
+      </bpmndi:BPMNShape>
+
+      <!-- MENU -->
+
+      <bpmndi:BPMNShape
+        id="Task_ConsultarMenu_di"
+        bpmnElement="Task_ConsultarMenu">
+        <dc:Bounds x="640" y="278" width="150" height="80"/>
+      </bpmndi:BPMNShape>
+
+      <bpmndi:BPMNShape
+        id="Gateway_Opcion_di"
+        bpmnElement="Gateway_Opcion"
+        isMarkerVisible="true">
+        <dc:Bounds x="850" y="293" width="50" height="50"/>
+      </bpmndi:BPMNShape>
+
+      <!-- HORARIO -->
+
+      <bpmndi:BPMNShape
+        id="Task_ConsultarHorario_di"
+        bpmnElement="Task_ConsultarHorario">
+        <dc:Bounds x="950" y="120" width="150" height="70"/>
+      </bpmndi:BPMNShape>
+
+      <bpmndi:BPMNShape
+        id="Task_MostrarHorario_di"
+        bpmnElement="Task_MostrarHorario">
+        <dc:Bounds x="1150" y="120" width="150" height="70"/>
+      </bpmndi:BPMNShape>
+
+      <bpmndi:BPMNShape
+        id="EndEvent_Horario_di"
+        bpmnElement="EndEvent_Horario">
+        <dc:Bounds x="1360" y="137" width="36" height="36"/>
+      </bpmndi:BPMNShape>
+
+      <!-- DISPONIBILIDAD -->
+
+      <bpmndi:BPMNShape
+        id="Task_ConsultarDisponibilidad_di"
+        bpmnElement="Task_ConsultarDisponibilidad">
+        <dc:Bounds x="950" y="270" width="150" height="70"/>
+      </bpmndi:BPMNShape>
+
+      <bpmndi:BPMNShape
+        id="Task_NuevaExcepcion_di"
+        bpmnElement="Task_NuevaExcepcion">
+        <dc:Bounds x="1150" y="270" width="150" height="70"/>
+      </bpmndi:BPMNShape>
+
+      <bpmndi:BPMNShape
+        id="Task_ValidarExcepcion_di"
+        bpmnElement="Task_ValidarExcepcion">
+        <dc:Bounds x="1350" y="270" width="160" height="70"/>
+      </bpmndi:BPMNShape>
+
+      <bpmndi:BPMNShape
+        id="Gateway_Excepcion_di"
+        bpmnElement="Gateway_Excepcion"
+        isMarkerVisible="true">
+        <dc:Bounds x="1560" y="285" width="50" height="50"/>
+      </bpmndi:BPMNShape>
+
+      <bpmndi:BPMNShape
+        id="Task_MostrarErrorExcepcion_di"
+        bpmnElement="Task_MostrarErrorExcepcion">
+        <dc:Bounds x="1540" y="400" width="160" height="70"/>
+      </bpmndi:BPMNShape>
+
+      <bpmndi:BPMNShape
+        id="Task_CorregirExcepcion_di"
+        bpmnElement="Task_CorregirExcepcion">
+        <dc:Bounds x="1750" y="400" width="150" height="70"/>
+      </bpmndi:BPMNShape>
+
+      <bpmndi:BPMNShape
+        id="Task_GuardarExcepcion_di"
+        bpmnElement="Task_GuardarExcepcion">
+        <dc:Bounds x="1750" y="270" width="150" height="70"/>
+      </bpmndi:BPMNShape>
+
+      <bpmndi:BPMNShape
+        id="Task_ConfirmarExcepcion_di"
+        bpmnElement="Task_ConfirmarExcepcion">
+        <dc:Bounds x="1950" y="270" width="170" height="70"/>
+      </bpmndi:BPMNShape>
+
+      <bpmndi:BPMNShape
+        id="EndEvent_Disponibilidad_di"
+        bpmnElement="EndEvent_Disponibilidad">
+        <dc:Bounds x="2180" y="287" width="36" height="36"/>
+      </bpmndi:BPMNShape>
+
+      <!-- SEGUIMIENTO -->
+
+      <bpmndi:BPMNShape
+        id="Task_SeleccionarFicha_di"
+        bpmnElement="Task_SeleccionarFicha">
+        <dc:Bounds x="950" y="520" width="150" height="70"/>
+      </bpmndi:BPMNShape>
+
+      <bpmndi:BPMNShape
+        id="Task_ConsultarSeguimientos_di"
+        bpmnElement="Task_ConsultarSeguimientos">
+        <dc:Bounds x="1150" y="520" width="170" height="70"/>
+      </bpmndi:BPMNShape>
+
+      <bpmndi:BPMNShape
+        id="Task_RegistrarSeguimiento_di"
+        bpmnElement="Task_RegistrarSeguimiento">
+        <dc:Bounds x="1370" y="520" width="160" height="70"/>
+      </bpmndi:BPMNShape>
+
+      <bpmndi:BPMNShape
+        id="Task_ValidarSeguimiento_di"
+        bpmnElement="Task_ValidarSeguimiento">
+        <dc:Bounds x="1580" y="520" width="180" height="70"/>
+      </bpmndi:BPMNShape>
+
+      <bpmndi:BPMNShape
+        id="Gateway_RequiereSeguimiento_di"
+        bpmnElement="Gateway_RequiereSeguimiento"
+        isMarkerVisible="true">
+        <dc:Bounds x="1820" y="535" width="50" height="50"/>
+      </bpmndi:BPMNShape>
+
+      <bpmndi:BPMNShape
+        id="Task_MarcarSeguimiento_di"
+        bpmnElement="Task_MarcarSeguimiento">
+        <dc:Bounds x="1920" y="440" width="170" height="70"/>
+      </bpmndi:BPMNShape>
+
+      <bpmndi:BPMNShape
+        id="Task_GuardarSeguimiento_di"
+        bpmnElement="Task_GuardarSeguimiento">
+        <dc:Bounds x="1920" y="520" width="170" height="70"/>
+      </bpmndi:BPMNShape>
+
+      <bpmndi:BPMNShape
+        id="Task_ConfirmarSeguimiento_di"
+        bpmnElement="Task_ConfirmarSeguimiento">
+        <dc:Bounds x="2140" y="520" width="150" height="70"/>
+      </bpmndi:BPMNShape>
+
+      <bpmndi:BPMNShape
+        id="EndEvent_Seguimiento_di"
+        bpmnElement="EndEvent_Seguimiento">
+        <dc:Bounds x="2350" y="537" width="36" height="36"/>
+      </bpmndi:BPMNShape>
+
+      <!-- ========================= -->
+      <!-- SEQUENCE FLOWS DI -->
+      <!-- ========================= -->
+
+      <bpmndi:BPMNEdge id="Flow_Start_Login_di" bpmnElement="Flow_Start_Login">
+        <di:waypoint x="136" y="318"/>
+        <di:waypoint x="180" y="318"/>
+      </bpmndi:BPMNEdge>
+
+      <bpmndi:BPMNEdge id="Flow_Login_Validar_di" bpmnElement="Flow_Login_Validar">
+        <di:waypoint x="300" y="318"/>
+        <di:waypoint x="350" y="318"/>
+      </bpmndi:BPMNEdge>
+
+      <bpmndi:BPMNEdge id="Flow_Validar_Gateway_di" bpmnElement="Flow_Validar_Gateway">
+        <di:waypoint x="490" y="318"/>
+        <di:waypoint x="540" y="318"/>
+      </bpmndi:BPMNEdge>
+
+      <bpmndi:BPMNEdge id="Flow_Credenciales_Si_di" bpmnElement="Flow_Credenciales_Si">
+        <di:waypoint x="590" y="318"/>
+        <di:waypoint x="640" y="318"/>
+      </bpmndi:BPMNEdge>
+
+      <bpmndi:BPMNEdge id="Flow_Credenciales_No_di" bpmnElement="Flow_Credenciales_No">
+        <di:waypoint x="565" y="343"/>
+        <di:waypoint x="565" y="410"/>
+      </bpmndi:BPMNEdge>
+
+      <bpmndi:BPMNEdge id="Flow_Error_Login_di" bpmnElement="Flow_Error_Login">
+        <di:waypoint x="670" y="445"/>
+        <di:waypoint x="730" y="445"/>
+      </bpmndi:BPMNEdge>
+
+      <bpmndi:BPMNEdge id="Flow_Menu_Opcion_di" bpmnElement="Flow_Menu_Opcion">
+        <di:waypoint x="790" y="318"/>
+        <di:waypoint x="850" y="318"/>
+      </bpmndi:BPMNEdge>
+
+      <!-- HORARIO -->
+
+      <bpmndi:BPMNEdge id="Flow_Opcion_Horario_di" bpmnElement="Flow_Opcion_Horario">
+        <di:waypoint x="875" y="293"/>
+        <di:waypoint x="875" y="155"/>
+        <di:waypoint x="950" y="155"/>
+      </bpmndi:BPMNEdge>
+
+      <bpmndi:BPMNEdge id="Flow_Horario_Sistema_di" bpmnElement="Flow_Horario_Sistema">
+        <di:waypoint x="1100" y="155"/>
+        <di:waypoint x="1150" y="155"/>
+      </bpmndi:BPMNEdge>
+
+      <bpmndi:BPMNEdge id="Flow_Horario_Fin_di" bpmnElement="Flow_Horario_Fin">
+        <di:waypoint x="1300" y="155"/>
+        <di:waypoint x="1360" y="155"/>
+      </bpmndi:BPMNEdge>
+
+      <!-- DISPONIBILIDAD -->
+
+      <bpmndi:BPMNEdge id="Flow_Opcion_Disponibilidad_di" bpmnElement="Flow_Opcion_Disponibilidad">
+        <di:waypoint x="900" y="318"/>
+        <di:waypoint x="950" y="305"/>
+      </bpmndi:BPMNEdge>
+
+      <bpmndi:BPMNEdge id="Flow_Disponibilidad_Nueva_di" bpmnElement="Flow_Disponibilidad_Nueva">
+        <di:waypoint x="1100" y="305"/>
+        <di:waypoint x="1150" y="305"/>
+      </bpmndi:BPMNEdge>
+
+      <bpmndi:BPMNEdge id="Flow_Excepcion_Validar_di" bpmnElement="Flow_Excepcion_Validar">
+        <di:waypoint x="1300" y="305"/>
+        <di:waypoint x="1350" y="305"/>
+      </bpmndi:BPMNEdge>
+
+      <bpmndi:BPMNEdge id="Flow_Excepcion_Gateway_di" bpmnElement="Flow_Excepcion_Gateway">
+        <di:waypoint x="1510" y="305"/>
+        <di:waypoint x="1560" y="310"/>
+      </bpmndi:BPMNEdge>
+
+      <bpmndi:BPMNEdge id="Flow_Excepcion_Si_di" bpmnElement="Flow_Excepcion_Si">
+        <di:waypoint x="1610" y="310"/>
+        <di:waypoint x="1750" y="305"/>
+      </bpmndi:BPMNEdge>
+
+      <bpmndi:BPMNEdge id="Flow_Excepcion_No_di" bpmnElement="Flow_Excepcion_No">
+        <di:waypoint x="1585" y="335"/>
+        <di:waypoint x="1585" y="400"/>
+      </bpmndi:BPMNEdge>
+
+      <bpmndi:BPMNEdge id="Flow_ErrorExcepcion_Nueva_di" bpmnElement="Flow_ErrorExcepcion_Nueva">
+        <di:waypoint x="1700" y="435"/>
+        <di:waypoint x="1750" y="435"/>
+      </bpmndi:BPMNEdge>
+
+      <bpmndi:BPMNEdge id="Flow_Corregir_Validar_di" bpmnElement="Flow_Corregir_Validar">
+        <di:waypoint x="1825" y="400"/>
+        <di:waypoint x="1825" y="370"/>
+        <di:waypoint x="1430" y="370"/>
+        <di:waypoint x="1430" y="340"/>
+      </bpmndi:BPMNEdge>
+
+      <bpmndi:BPMNEdge id="Flow_GuardarExcepcion_Confirmar_di" bpmnElement="Flow_GuardarExcepcion_Confirmar">
+        <di:waypoint x="1900" y="305"/>
+        <di:waypoint x="1950" y="305"/>
+      </bpmndi:BPMNEdge>
+
+      <bpmndi:BPMNEdge id="Flow_Disponibilidad_Fin_di" bpmnElement="Flow_Disponibilidad_Fin">
+        <di:waypoint x="2120" y="305"/>
+        <di:waypoint x="2180" y="305"/>
+      </bpmndi:BPMNEdge>
+
+      <!-- SEGUIMIENTO -->
+
+      <bpmndi:BPMNEdge id="Flow_Opcion_Seguimiento_di" bpmnElement="Flow_Opcion_Seguimiento">
+        <di:waypoint x="875" y="343"/>
+        <di:waypoint x="875" y="555"/>
+        <di:waypoint x="950" y="555"/>
+      </bpmndi:BPMNEdge>
+
+      <bpmndi:BPMNEdge id="Flow_Ficha_Consultar_di" bpmnElement="Flow_Ficha_Consultar">
+        <di:waypoint x="1100" y="555"/>
+        <di:waypoint x="1150" y="555"/>
+      </bpmndi:BPMNEdge>
+
+      <bpmndi:BPMNEdge id="Flow_Consultar_Nuevo_di" bpmnElement="Flow_Consultar_Nuevo">
+        <di:waypoint x="1320" y="555"/>
+        <di:waypoint x="1370" y="555"/>
+      </bpmndi:BPMNEdge>
+
+      <bpmndi:BPMNEdge id="Flow_Seguimiento_Validar_di" bpmnElement="Flow_Seguimiento_Validar">
+        <di:waypoint x="1530" y="555"/>
+        <di:waypoint x="1580" y="555"/>
+      </bpmndi:BPMNEdge>
+
+      <bpmndi:BPMNEdge id="Flow_Seguimiento_Gateway_di" bpmnElement="Flow_Seguimiento_Gateway">
+        <di:waypoint x="1760" y="555"/>
+        <di:waypoint x="1820" y="560"/>
+      </bpmndi:BPMNEdge>
+
+      <bpmndi:BPMNEdge id="Flow_Seguimiento_Si_di" bpmnElement="Flow_Seguimiento_Si">
+        <di:waypoint x="1845" y="535"/>
+        <di:waypoint x="1845" y="475"/>
+        <di:waypoint x="1920" y="475"/>
+      </bpmndi:BPMNEdge>
+
+      <bpmndi:BPMNEdge id="Flow_Seguimiento_No_di" bpmnElement="Flow_Seguimiento_No">
+        <di:waypoint x="1870" y="560"/>
+        <di:waypoint x="1920" y="555"/>
+      </bpmndi:BPMNEdge>
+
+      <bpmndi:BPMNEdge id="Flow_Marcar_Guardar_di" bpmnElement="Flow_Marcar_Guardar">
+        <di:waypoint x="2005" y="510"/>
+        <di:waypoint x="2005" y="520"/>
+      </bpmndi:BPMNEdge>
+
+      <bpmndi:BPMNEdge id="Flow_GuardarSeguimiento_Confirmar_di" bpmnElement="Flow_GuardarSeguimiento_Confirmar">
+        <di:waypoint x="2090" y="555"/>
+        <di:waypoint x="2140" y="555"/>
+      </bpmndi:BPMNEdge>
+
+      <bpmndi:BPMNEdge id="Flow_Seguimiento_Fin_di" bpmnElement="Flow_Seguimiento_Fin">
+        <di:waypoint x="2290" y="555"/>
+        <di:waypoint x="2350" y="555"/>
+      </bpmndi:BPMNEdge>
+
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+
+</bpmn:definitions>
