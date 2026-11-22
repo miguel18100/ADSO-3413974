@@ -1,0 +1,107 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prototipos - Sistema de Asistencia SENA</title>
+<style>
+body{font-family:Arial,sans-serif;background:#eef2f5;margin:0;padding:30px;color:#263238}
+.screen{max-width:950px;margin:35px auto;background:white;border:1px solid #ccd5dd;border-radius:12px;overflow:hidden;box-shadow:0 4px 18px #0001}
+header{background:#007a3d;color:white;padding:20px}
+header h1{margin:0;font-size:23px}
+header p{margin:8px 0 0}
+main{padding:25px}
+label{display:block;margin:15px 0 6px;font-weight:bold}
+input,select,button{padding:12px;border:1px solid #bbc5cc;border-radius:6px;width:100%;box-sizing:border-box;font-size:15px}
+button{background:#007a3d;color:white;font-weight:bold;margin-top:15px;cursor:pointer}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.panel{border:1px solid #d9e0e5;border-radius:8px;padding:18px;margin-top:15px}
+.qr{width:160px;height:160px;margin:20px auto;background:repeating-linear-gradient(45deg,#222 0 7px,#fff 7px 14px);border:12px solid white;outline:1px solid #ccc}
+.tag{background:#e4f3ea;color:#007a3d;padding:5px 10px;border-radius:20px;display:inline-block}
+table{width:100%;border-collapse:collapse;margin-top:15px}
+td,th{padding:12px;border-bottom:1px solid #ddd;text-align:left}
+footer{padding:15px;background:#f4f7f8;color:#667}
+@media(max-width:650px){.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<section class="screen">
+<header><h1>Prototipo 1 — Registro de asistencia QR</h1><p>Sistema de control de asistencia de aprendices</p></header>
+<main>
+<p><span class="tag">Sesión activa</span></p>
+<div class="grid">
+<div class="panel">
+<h2>Identificación de sesión</h2>
+<p><strong>Ficha:</strong> 3413974</p>
+<p><strong>Programa:</strong> ADSO</p>
+<p><strong>Estado:</strong> Activa</p>
+<p><strong>Vigencia:</strong> 20 minutos</p>
+</div>
+<div class="panel">
+<h2>QR de sesión</h2>
+<div class="qr"></div>
+<p style="text-align:center">Código de acceso: <strong>------</strong></p>
+</div>
+</div>
+<div class="panel">
+<h2>Escáner</h2>
+<p>La cámara permitirá leer el QR personal del aprendiz.</p>
+<button>Iniciar escáner</button>
+<label>Token QR (alternativa de entrada)</label>
+<input placeholder="Token del aprendiz">
+<button>Validar asistencia</button>
+</div>
+</main>
+<footer>Prototipo académico — CU-01 Registro de asistencia QR</footer>
+</section>
+
+<section class="screen">
+<header><h1>Prototipo 2 — Gestión de sesión</h1><p>Panel del instructor</p></header>
+<main>
+<h2>Crear sesión de asistencia</h2>
+<div class="grid">
+<div><label>Ficha</label><select><option>Seleccionar ficha</option><option>3413974 — ADSO</option></select></div>
+<div><label>Fecha y hora de inicio</label><input type="datetime-local"></div>
+<div><label>Tolerancia (minutos)</label><input type="number" min="0" max="120" value="10"></div>
+<div><label>Estado</label><input value="Configuración de sesión" readonly></div>
+</div>
+<button>Crear sesión</button>
+<div class="panel">
+<h2>Sesión actual</h2>
+<p><span class="tag">Activa</span></p>
+<p>QR y código de acceso disponibles</p>
+<button>Consultar registros</button>
+<button style="background:#b42318">Cerrar sesión</button>
+</div>
+</main>
+<footer>Prototipo académico — CU-02 Gestión de sesión</footer>
+</section>
+
+<section class="screen">
+<header><h1>Prototipo 3 — Registro manual</h1><p>Registro alternativo del aprendiz</p></header>
+<main>
+<h2>Registrar asistencia por documento</h2>
+<div class="panel">
+<label>Documento de identidad</label>
+<input placeholder="Ingrese el documento del aprendiz">
+<button>Buscar aprendiz</button>
+</div>
+<div class="panel">
+<h2>Datos del aprendiz</h2>
+<p><strong>Nombre:</strong> —</p>
+<p><strong>Documento:</strong> —</p>
+<p><strong>Ficha:</strong> —</p>
+<p><strong>Estado:</strong> —</p>
+</div>
+<div class="panel">
+<h2>Sesión seleccionada</h2>
+<p>Validación de ficha y vigencia de sesión</p>
+<button>Registrar asistencia manual</button>
+</div>
+</main>
+<footer>Prototipo académico — CU-03 Registro manual</footer>
+</section>
+
+</body>
+</html>

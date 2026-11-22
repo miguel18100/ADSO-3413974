@@ -1,0 +1,34 @@
+﻿flowchart TD
+    A([Inicio]) --> B[Instructor abre el escáner]
+    B --> C[Selecciona sesión de asistencia]
+    C --> D{¿Instructor autenticado y autorizado?}
+    D -- No --> E[Rechazar acceso]
+    E --> Z([Fin])
+    D -- Sí --> F{¿Sesión activa y vigente?}
+    F -- No --> G[Mostrar sesión no disponible]
+    G --> Z
+    F -- Sí --> H[Escanear QR del aprendiz]
+    H --> I[Enviar token y sesión al servidor]
+    I --> J{¿Token de aprendiz válido?}
+    J -- No --> K[Informar QR inválido]
+    K --> Z
+    J -- Sí --> L{¿Aprendiz activo y de la ficha?}
+    L -- No --> M[Rechazar registro]
+    M --> Z
+    L -- Sí --> N{¿GPS requerido?}
+    N -- Sí --> O[Validar ubicación y precisión]
+    O --> P{¿Ubicación válida y dentro del radio?}
+    P -- No --> Q[Rechazar por ubicación]
+    Q --> Z
+    P -- Sí --> R[Evaluar estado de red]
+    N -- No --> R
+    R --> S{¿Red bloqueada?}
+    S -- Sí --> T[Rechazar registro]
+    T --> Z
+    S -- No --> U[Calcular tardanza]
+    U --> V[Guardar asistencia]
+    V --> W{¿Registro duplicado?}
+    W -- Sí --> X[Informar asistencia ya registrada]
+    X --> Z
+    W -- No --> Y[Confirmar asistencia]
+    Y --> Z([Fin])

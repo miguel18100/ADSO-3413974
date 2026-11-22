@@ -1,0 +1,80 @@
+﻿classDiagram
+    class Administrador {
+        id
+        nombre
+        usuario
+        password_hash
+        creado_en
+    }
+
+    class Ficha {
+        id
+        numero
+        programa
+        jornada
+        activa
+    }
+
+    class Aprendiz {
+        id
+        documento
+        nombre
+        email
+        qr_token
+        activo
+        creado_en
+    }
+
+    class SesionAsistencia {
+        id
+        token
+        codigo
+        inicia_en
+        vence_en
+        activa
+        tolerancia_minutos
+    }
+
+    class Asistencia {
+        id
+        fecha_hora
+        ip
+        user_agent
+        estado_red
+        detalle_red
+        gps_lat
+        gps_lng
+        gps_precision
+        tarde_minutos
+        verificado_gps
+        consentimiento_datos
+    }
+
+    class IntentoCodigo {
+        ip_hash
+        intentos
+        ventana_desde
+        bloqueado_hasta
+        actualizado_en
+    }
+
+    class UbicacionRegistro {
+        gps_lat
+        gps_lng
+        gps_precision
+        verificado
+    }
+
+    class EvidenciaRed {
+        estado
+        detalle
+        ip
+    }
+
+    Ficha "1" --> "0..*" Aprendiz : agrupa
+    Ficha "0..1" --> "0..*" SesionAsistencia : contextualiza
+    Administrador "1" --> "0..*" SesionAsistencia : crea
+    SesionAsistencia "1" --> "0..*" Asistencia : contiene
+    Aprendiz "1" --> "0..*" Asistencia : registra
+    Asistencia "1" --> "0..1" UbicacionRegistro : incorpora
+    Asistencia "1" --> "1" EvidenciaRed : documenta
