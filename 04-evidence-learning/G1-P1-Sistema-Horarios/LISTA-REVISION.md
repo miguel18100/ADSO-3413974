@@ -39,3 +39,13 @@
 ## Nota
 
 Las verificaciones marcadas como realizadas corresponden a revisión documental y estructural. No representan pruebas de funcionamiento de una implementación de software ni validación formal de stakeholders.
+
+
+## Registro de revisión técnica — 22 de noviembre de 2026
+
+- Se comprobó la lectura UTF-8 del documento de requisitos funcionales.
+- Se verificó la matriz de trazabilidad: 16 registros, 16 identificadores únicos, sin IDs vacíos ni duplicados, RF-01 a RF-16.
+- Se verificó la estructura XML del archivo Draw.io: 1 diagrama, 31 celdas y sin IDs duplicados.
+- Se inspeccionaron los elementos y relaciones del diagrama: 3 actores, 11 casos de uso y las relaciones include/extend documentadas.
+- Se realizó una inspección visual del SVG; se consideraron aceptables los cruces de conectores y no se modificó el diagrama por motivos exclusivamente estéticos.
+- Estas comprobaciones no sustituyen la validación con stakeholders ni las verificaciones pendientes de entrega.
