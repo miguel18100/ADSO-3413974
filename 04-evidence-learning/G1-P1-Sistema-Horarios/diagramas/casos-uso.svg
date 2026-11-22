@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="1050" viewBox="0 0 1500 1050">
+<style>text{font-family:Arial,sans-serif;fill:#17202a}.actor{font-size:19px}.uc{font-size:16px}.rel{font-size:15px}.head{font-size:25px;font-weight:bold}.use{fill:#f7faff;stroke:#27658a;stroke-width:2}.boundary{fill:none;stroke:#222;stroke-width:2}.line{stroke:#444;stroke-width:2;fill:none}.dash{stroke-dasharray:8 6}</style>
+<text x="750" y="40" text-anchor="middle" class="head">Sistema de Horarios SENA — UML Casos de uso</text>
+<rect x="250" y="80" width="1000" height="900" class="boundary"/>
+<text x="750" y="110" text-anchor="middle" class="head">Sistema de Horarios SENA</text>
+<!-- actors labels -->
+<text x="110" y="230" text-anchor="middle" class="actor">Coordinador</text><text x="110" y="255" text-anchor="middle" class="actor">programación</text>
+<text x="110" y="620" text-anchor="middle" class="actor">Administrador</text><text x="110" y="645" text-anchor="middle" class="actor">funcional</text>
+<text x="1380" y="240" text-anchor="middle" class="actor">Consultor</text><text x="1380" y="265" text-anchor="middle" class="actor">institucional</text>
+<!-- actor stick figures -->
+<g stroke="#222" stroke-width="3" fill="none"><circle cx="110" cy="170" r="22"/><line x1="110" y1="192" x2="110" y2="260"/><line x1="75" y1="220" x2="145" y2="220"/><line x1="110" y1="260" x2="80" y2="305"/><line x1="110" y1="260" x2="140" y2="305"/>
+<circle cx="110" cy="560" r="22"/><line x1="110" y1="582" x2="110" y2="650"/><line x1="75" y1="610" x2="145" y2="610"/><line x1="110" y1="650" x2="80" y2="695"/><line x1="110" y1="650" x2="140" y2="695"/>
+<circle cx="1380" cy="180" r="22"/><line x1="1380" y1="202" x2="1380" y2="270"/><line x1="1345" y1="230" x2="1415" y2="230"/><line x1="1380" y1="270" x2="1350" y2="315"/><line x1="1380" y1="270" x2="1410" y2="315"/></g>
+<!-- use cases -->
+<g class="use"><ellipse cx="520" cy="180" rx="150" ry="45"/><ellipse cx="800" cy="180" rx="150" ry="45"/><ellipse cx="1080" cy="180" rx="150" ry="45"/>
+<ellipse cx="520" cy="300" rx="150" ry="45"/><ellipse cx="800" cy="300" rx="150" ry="45"/><ellipse cx="1080" cy="300" rx="150" ry="45"/>
+<ellipse cx="520" cy="430" rx="150" ry="45"/><ellipse cx="800" cy="430" rx="150" ry="45"/><ellipse cx="1080" cy="430" rx="150" ry="45"/>
+<ellipse cx="800" cy="560" rx="150" ry="45"/><ellipse cx="800" cy="700" rx="150" ry="45"/></g>
+<g class="uc" text-anchor="middle"><text x="520" y="185">UC-02 Gestionar instructores</text><text x="800" y="185">UC-03 Gestionar fichas</text><text x="1080" y="185">UC-04 Gestionar ambientes</text>
+<text x="520" y="305">UC-05 Gestionar programas</text><text x="800" y="305">UC-06 Registrar asignación</text><text x="1080" y="305">UC-09 Validar cruces</text>
+<text x="520" y="435">UC-07 Registrar día sin programación</text><text x="800" y="435">UC-08 Registrar novedad</text><text x="1080" y="435">UC-10 Consultar programación</text>
+<text x="800" y="565">UC-01 Consultar programación</text><text x="800" y="705">UC-11 Exportar programación</text></g>
+<!-- actor connections -->
+<g class="line"><line x1="145" y1="220" x2="370" y2="300"/><line x1="145" y1="220" x2="650" y2="300"/><line x1="145" y1="220" x2="370" y2="430"/><line x1="145" y1="220" x2="650" y2="430"/><line x1="145" y1="220" x2="650" y2="560"/><line x1="145" y1="220" x2="650" y2="700"/>
+<line x1="145" y1="610" x2="370" y2="180"/><line x1="145" y1="610" x2="650" y2="180"/><line x1="145" y1="610" x2="930" y2="180"/>
+<line x1="1345" y1="230" x2="1230" y2="430"/><line x1="1345" y1="230" x2="950" y2="560"/></g>
+<!-- include and extend -->
+<g class="line dash"><line x1="950" y1="300" x2="930" y2="300"/><line x1="950" y1="300" x2="1080" y2="345"/><line x1="800" y1="345" x2="1080" y2="345"/></g>
+<text x="990" y="355" class="rel">«include»</text>
+<line x1="800" y1="475" x2="800" y2="510" class="line dash"/><text x="820" y="500" class="rel">«extend»</text>
+<text x="750" y="950" text-anchor="middle" class="rel">Nota: diagrama preliminar; revisar conectores y disposición en herramienta UML antes de entregar.</text></svg>
