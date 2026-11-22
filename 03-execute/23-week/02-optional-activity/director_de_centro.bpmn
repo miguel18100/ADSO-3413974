@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di_1="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_Director_SENA_Pools" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.50.1" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.9.0">
+  <bpmn:collaboration id="Collaboration_Director_SENA">
+    <bpmn:participant id="Participant_DirectorSENA" name="Sistema de Gestión de Horarios SENA - Módulo Director de Centro" processRef="Process_Director_Pools" />
+    <bpmn:participant id="Participant_AdminSedes" name="Gestión de Ambientes / Sedes" processRef="Process_SedesDummy" />
+    <bpmn:messageFlow id="MessageFlow_Sedes" sourceRef="Participant_AdminSedes" targetRef="Task_DatosReferencia" />
+  </bpmn:collaboration>
+  <bpmn:process id="Process_Director_Pools" isExecutable="true">
+    <bpmn:laneSet id="LaneSet_Director">
+      <bpmn:lane id="Lane_Director" name="Director de Centro">
+        <bpmn:flowNodeRef>Gateway_ValidaLoginDir</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_GestionUsuarios</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_CorregirUsuario</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Start_LoginDirector</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_LoginCredencialesDir</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_RecuperarPassDir</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_PanelDirector</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_Parametrizacion</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_MenuDirector</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_DatosReferencia</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_AccionUsuarios</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_CrearUsuario</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_VerIndicadores</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_ValidaUsuario</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>End_Director</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_SistemaDirector" name="Plataforma / Backend">
+        <bpmn:flowNodeRef>Task_GuardarUsuarioBackend</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:exclusiveGateway id="Gateway_ValidaLoginDir" name="¿Credenciales Válidas?">
+      <bpmn:incoming>Flow_DL2</bpmn:incoming>
+      <bpmn:outgoing>Flow_DirOK</bpmn:outgoing>
+      <bpmn:outgoing>Flow_DirRecuperar</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:userTask id="Task_GestionUsuarios" name="Administrar Cuentas de Usuarios">
+      <bpmn:incoming>Flow_OptUsuarios</bpmn:incoming>
+      <bpmn:outgoing>Flow_U1</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="Task_CorregirUsuario" name="Corregir Correo Duplicado">
+      <bpmn:incoming>Flow_ErrorUsuario</bpmn:incoming>
+      <bpmn:outgoing>Flow_0jvvbrn</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:serviceTask id="Task_GuardarUsuarioBackend" name="Guardar Cuenta en el Sistema">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="guardar-usuario-sena" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_OkUsuario</bpmn:incoming>
+      <bpmn:outgoing>Flow_BackUsuarios</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="Flow_DL1" sourceRef="Start_LoginDirector" targetRef="Task_LoginCredencialesDir" />
+    <bpmn:sequenceFlow id="Flow_0wg1kub" sourceRef="Task_RecuperarPassDir" targetRef="Task_LoginCredencialesDir" />
+    <bpmn:sequenceFlow id="Flow_DL2" sourceRef="Task_LoginCredencialesDir" targetRef="Gateway_ValidaLoginDir" />
+    <bpmn:sequenceFlow id="Flow_DirOK" name="Sí" sourceRef="Gateway_ValidaLoginDir" targetRef="Task_PanelDirector">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=loginValido = true</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_DirRecuperar" name="No" sourceRef="Gateway_ValidaLoginDir" targetRef="Task_RecuperarPassDir">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=loginValido = false</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_MenuDirector" sourceRef="Task_PanelDirector" targetRef="Gateway_MenuDirector" />
+    <bpmn:sequenceFlow id="Flow_OptIndicadores" name="Indicadores" sourceRef="Gateway_MenuDirector" targetRef="Task_VerIndicadores">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=opcionDirector = "indicadores"</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_OptUsuarios" name="Usuarios" sourceRef="Gateway_MenuDirector" targetRef="Task_GestionUsuarios">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=opcionDirector = "usuarios"</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_OptDatosRef" name="Datos de referencia" sourceRef="Gateway_MenuDirector" targetRef="Task_DatosReferencia">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=opcionDirector = "datos_referencia"</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_OptParametrizacion" name="Parametrización" sourceRef="Gateway_MenuDirector" targetRef="Task_Parametrizacion">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=opcionDirector = "parametrizacion"</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_BackIndicadores" sourceRef="Task_VerIndicadores" targetRef="End_Director" />
+    <bpmn:sequenceFlow id="Flow_U1" sourceRef="Task_GestionUsuarios" targetRef="Gateway_AccionUsuarios" />
+    <bpmn:sequenceFlow id="Flow_NuevoUsuario" name="Sí (+ Nuevo usuario)" sourceRef="Gateway_AccionUsuarios" targetRef="Task_CrearUsuario">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=accionUsuario = "nuevo"</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_FinUsuarios" name="No" sourceRef="Gateway_AccionUsuarios" targetRef="End_Director">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=accionUsuario = "ninguno"</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_0jvvbrn" sourceRef="Task_CorregirUsuario" targetRef="Task_CrearUsuario" />
+    <bpmn:sequenceFlow id="Flow_U2" sourceRef="Task_CrearUsuario" targetRef="Gateway_ValidaUsuario" />
+    <bpmn:sequenceFlow id="Flow_ErrorUsuario" name="Sí (Correo ya registrado)" sourceRef="Gateway_ValidaUsuario" targetRef="Task_CorregirUsuario">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=correoRegistrado = true</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_OkUsuario" name="No (Disponible)" sourceRef="Gateway_ValidaUsuario" targetRef="Task_GuardarUsuarioBackend">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=correoRegistrado = false</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_BackUsuarios" sourceRef="Task_GuardarUsuarioBackend" targetRef="End_Director" />
+    <bpmn:sequenceFlow id="Flow_BackParametrizacion" sourceRef="Task_Parametrizacion" targetRef="Task_DatosReferencia" />
+    <bpmn:startEvent id="Start_LoginDirector" name="Pantalla Login">
+      <bpmn:outgoing>Flow_DL1</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:userTask id="Task_LoginCredencialesDir" name="Ingresar Correo y Contraseña Institucional">
+      <bpmn:incoming>Flow_DL1</bpmn:incoming>
+      <bpmn:incoming>Flow_0wg1kub</bpmn:incoming>
+      <bpmn:outgoing>Flow_DL2</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="Task_RecuperarPassDir" name="Recuperar Contraseña por Correo">
+      <bpmn:incoming>Flow_DirRecuperar</bpmn:incoming>
+      <bpmn:outgoing>Flow_0wg1kub</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="Task_PanelDirector" name="Visualizar Panel Principal Director (Indicadores)">
+      <bpmn:incoming>Flow_DirOK</bpmn:incoming>
+      <bpmn:outgoing>Flow_MenuDirector</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="Task_Parametrizacion" name="Configurar Prerrequisitos, Catálogos y Parámetros">
+      <bpmn:incoming>Flow_OptParametrizacion</bpmn:incoming>
+      <bpmn:outgoing>Flow_BackParametrizacion</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:exclusiveGateway id="Gateway_MenuDirector" name="¿Qué opción del menú selecciona?">
+      <bpmn:incoming>Flow_MenuDirector</bpmn:incoming>
+      <bpmn:outgoing>Flow_OptIndicadores</bpmn:outgoing>
+      <bpmn:outgoing>Flow_OptUsuarios</bpmn:outgoing>
+      <bpmn:outgoing>Flow_OptDatosRef</bpmn:outgoing>
+      <bpmn:outgoing>Flow_OptParametrizacion</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:userTask id="Task_DatosReferencia" name="Consultar y Mantener Datos de Referencia y Sedes">
+      <bpmn:incoming>Flow_OptDatosRef</bpmn:incoming>
+      <bpmn:incoming>Flow_BackParametrizacion</bpmn:incoming>
+      <bpmn:outgoing>Flow_06bms2t</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:sequenceFlow id="Flow_06bms2t" sourceRef="Task_DatosReferencia" targetRef="End_Director" />
+    <bpmn:exclusiveGateway id="Gateway_AccionUsuarios" name="¿Crear Nuevo Usuario?">
+      <bpmn:incoming>Flow_U1</bpmn:incoming>
+      <bpmn:outgoing>Flow_NuevoUsuario</bpmn:outgoing>
+      <bpmn:outgoing>Flow_FinUsuarios</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:userTask id="Task_CrearUsuario" name="Llenar Formulario Nuevo Usuario (Correo, Rol)">
+      <bpmn:incoming>Flow_NuevoUsuario</bpmn:incoming>
+      <bpmn:incoming>Flow_0jvvbrn</bpmn:incoming>
+      <bpmn:outgoing>Flow_U2</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="Task_VerIndicadores" name="Consultar KPIs, Riesgos y Gráficos de Fichas">
+      <bpmn:incoming>Flow_OptIndicadores</bpmn:incoming>
+      <bpmn:outgoing>Flow_BackIndicadores</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:exclusiveGateway id="Gateway_ValidaUsuario" name="¿Correo ya registrado?">
+      <bpmn:incoming>Flow_U2</bpmn:incoming>
+      <bpmn:outgoing>Flow_ErrorUsuario</bpmn:outgoing>
+      <bpmn:outgoing>Flow_OkUsuario</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:endEvent id="End_Director" name="Sesión / Tareas Finalizadas">
+      <bpmn:incoming>Flow_BackIndicadores</bpmn:incoming>
+      <bpmn:incoming>Flow_FinUsuarios</bpmn:incoming>
+      <bpmn:incoming>Flow_BackUsuarios</bpmn:incoming>
+      <bpmn:incoming>Flow_06bms2t</bpmn:incoming>
+    </bpmn:endEvent>
+  </bpmn:process>
+  <bpmn:process id="Process_SedesDummy" isExecutable="false" />
+  <di:BPMNDiagram id="BPMNDiagram_1">
+    <di:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_Director_SENA">
+      <di:BPMNShape id="Participant_DirectorSENA_di" bpmnElement="Participant_DirectorSENA" isHorizontal="true">
+        <dc:Bounds x="120" y="60" width="1450" height="700" />
+      </di:BPMNShape>
+      <di:BPMNShape id="Lane_SistemaDirector_di" bpmnElement="Lane_SistemaDirector" isHorizontal="true">
+        <dc:Bounds x="150" y="580" width="1420" height="180" />
+      </di:BPMNShape>
+      <di:BPMNShape id="Lane_Director_di" bpmnElement="Lane_Director" isHorizontal="true">
+        <dc:Bounds x="150" y="60" width="1420" height="520" />
+      </di:BPMNShape>
+      <di:BPMNShape id="Gateway_ValidaLoginDir_di" bpmnElement="Gateway_ValidaLoginDir" isMarkerVisible="true">
+        <dc:Bounds x="425" y="305" width="50" height="50" />
+        <di:BPMNLabel>
+          <dc:Bounds x="414" y="267.5" width="71" height="27" />
+        </di:BPMNLabel>
+      </di:BPMNShape>
+      <di:BPMNShape id="Task_GestionUsuarios_di" bpmnElement="Task_GestionUsuarios">
+        <dc:Bounds x="800" y="290" width="100" height="80" />
+      </di:BPMNShape>
+      <di:BPMNShape id="Task_CorregirUsuario_di" bpmnElement="Task_CorregirUsuario">
+        <dc:Bounds x="1040" y="80" width="100" height="80" />
+      </di:BPMNShape>
+      <di:BPMNShape id="Task_GuardarUsuarioBackend_di" bpmnElement="Task_GuardarUsuarioBackend">
+        <dc:Bounds x="1360" y="630" width="100" height="80" />
+      </di:BPMNShape>
+      <di:BPMNShape id="Start_LoginDirector_di" bpmnElement="Start_LoginDirector">
+        <dc:Bounds x="182" y="312" width="36" height="36" />
+        <di:BPMNLabel>
+          <dc:Bounds x="165" y="348" width="70" height="14" />
+        </di:BPMNLabel>
+      </di:BPMNShape>
+      <di:BPMNShape id="Task_LoginCredencialesDir_di" bpmnElement="Task_LoginCredencialesDir">
+        <dc:Bounds x="270" y="290" width="100" height="80" />
+      </di:BPMNShape>
+      <di:BPMNShape id="Task_RecuperarPassDir_di" bpmnElement="Task_RecuperarPassDir">
+        <dc:Bounds x="400" y="450" width="100" height="80" />
+      </di:BPMNShape>
+      <di:BPMNShape id="Task_PanelDirector_di" bpmnElement="Task_PanelDirector">
+        <dc:Bounds x="540" y="290" width="100" height="80" />
+      </di:BPMNShape>
+      <di:BPMNShape id="Task_Parametrizacion_di" bpmnElement="Task_Parametrizacion">
+        <dc:Bounds x="550" y="450" width="100" height="80" />
+      </di:BPMNShape>
+      <di:BPMNShape id="Gateway_MenuDirector_di" bpmnElement="Gateway_MenuDirector" isMarkerVisible="true">
+        <dc:Bounds x="685" y="305" width="50" height="50" />
+        <di:BPMNLabel>
+          <dc:Bounds x="673" y="355" width="89" height="27" />
+        </di:BPMNLabel>
+      </di:BPMNShape>
+      <di:BPMNShape id="Task_DatosReferencia_di" bpmnElement="Task_DatosReferencia">
+        <dc:Bounds x="800" y="450" width="100" height="80" />
+      </di:BPMNShape>
+      <di:BPMNShape id="Gateway_AccionUsuarios_di" bpmnElement="Gateway_AccionUsuarios" isMarkerVisible="true">
+        <dc:Bounds x="955" y="305" width="50" height="50" />
+        <di:BPMNLabel>
+          <dc:Bounds x="945" y="355" width="70" height="27" />
+        </di:BPMNLabel>
+      </di:BPMNShape>
+      <di:BPMNShape id="Task_CrearUsuario_di" bpmnElement="Task_CrearUsuario">
+        <dc:Bounds x="1040" y="220" width="100" height="80" />
+      </di:BPMNShape>
+      <di:BPMNShape id="Task_VerIndicadores_di" bpmnElement="Task_VerIndicadores">
+        <dc:Bounds x="800" y="150" width="100" height="80" />
+      </di:BPMNShape>
+      <di:BPMNShape id="Gateway_ValidaUsuario_di" bpmnElement="Gateway_ValidaUsuario" isMarkerVisible="true">
+        <dc:Bounds x="1235" y="235" width="50" height="50" />
+        <di:BPMNLabel>
+          <dc:Bounds x="1262" y="276" width="56" height="27" />
+        </di:BPMNLabel>
+      </di:BPMNShape>
+      <di:BPMNShape id="End_Director_di" bpmnElement="End_Director">
+        <dc:Bounds x="1452" y="312" width="36" height="36" />
+        <di:BPMNLabel>
+          <dc:Bounds x="1432" y="274.5" width="76" height="27" />
+        </di:BPMNLabel>
+      </di:BPMNShape>
+      <di:BPMNEdge id="Flow_DL1_di" bpmnElement="Flow_DL1">
+        <di_1:waypoint x="218" y="330" />
+        <di_1:waypoint x="270" y="330" />
+      </di:BPMNEdge>
+      <di:BPMNEdge id="Flow_0wg1kub_di" bpmnElement="Flow_0wg1kub">
+        <di_1:waypoint x="400" y="490" />
+        <di_1:waypoint x="385" y="490" />
+        <di_1:waypoint x="385" y="370" />
+        <di_1:waypoint x="370" y="370" />
+      </di:BPMNEdge>
+      <di:BPMNEdge id="Flow_DL2_di" bpmnElement="Flow_DL2">
+        <di_1:waypoint x="370" y="330" />
+        <di_1:waypoint x="425" y="330" />
+      </di:BPMNEdge>
+      <di:BPMNEdge id="Flow_DirOK_di" bpmnElement="Flow_DirOK">
+        <di_1:waypoint x="475" y="330" />
+        <di_1:waypoint x="540" y="330" />
+        <di:BPMNLabel>
+          <dc:Bounds x="496" y="312" width="11" height="14" />
+        </di:BPMNLabel>
+      </di:BPMNEdge>
+      <di:BPMNEdge id="Flow_DirRecuperar_di" bpmnElement="Flow_DirRecuperar">
+        <di_1:waypoint x="450" y="355" />
+        <di_1:waypoint x="450" y="450" />
+        <di:BPMNLabel>
+          <dc:Bounds x="458" y="390" width="15" height="14" />
+        </di:BPMNLabel>
+      </di:BPMNEdge>
+      <di:BPMNEdge id="Flow_MenuDirector_di" bpmnElement="Flow_MenuDirector">
+        <di_1:waypoint x="640" y="330" />
+        <di_1:waypoint x="685" y="330" />
+      </di:BPMNEdge>
+      <di:BPMNEdge id="Flow_OptIndicadores_di" bpmnElement="Flow_OptIndicadores">
+        <di_1:waypoint x="710" y="305" />
+        <di_1:waypoint x="710" y="190" />
+        <di_1:waypoint x="800" y="190" />
+        <di:BPMNLabel>
+          <dc:Bounds x="656" y="248" width="57" height="14" />
+        </di:BPMNLabel>
+      </di:BPMNEdge>
+      <di:BPMNEdge id="Flow_OptUsuarios_di" bpmnElement="Flow_OptUsuarios">
+        <di_1:waypoint x="735" y="330" />
+        <di_1:waypoint x="800" y="330" />
+        <di:BPMNLabel>
+          <dc:Bounds x="740" y="311" width="44" height="14" />
+        </di:BPMNLabel>
+      </di:BPMNEdge>
+      <di:BPMNEdge id="Flow_OptDatosRef_di" bpmnElement="Flow_OptDatosRef">
+        <di_1:waypoint x="710" y="355" />
+        <di_1:waypoint x="710" y="490" />
+        <di_1:waypoint x="800" y="490" />
+        <di:BPMNLabel>
+          <dc:Bounds x="636" y="389" width="49" height="27" />
+        </di:BPMNLabel>
+      </di:BPMNEdge>
+      <di:BPMNEdge id="Flow_OptParametrizacion_di" bpmnElement="Flow_OptParametrizacion">
+        <di_1:waypoint x="710" y="355" />
+        <di_1:waypoint x="710" y="490" />
+        <di_1:waypoint x="650" y="490" />
+        <di:BPMNLabel>
+          <dc:Bounds x="670" y="293" width="80" height="14" />
+        </di:BPMNLabel>
+      </di:BPMNEdge>
+      <di:BPMNEdge id="Flow_BackIndicadores_di" bpmnElement="Flow_BackIndicadores">
+        <di_1:waypoint x="900" y="190" />
+        <di_1:waypoint x="1171" y="190" />
+        <di_1:waypoint x="1171" y="330" />
+        <di_1:waypoint x="1452" y="330" />
+      </di:BPMNEdge>
+      <di:BPMNEdge id="Flow_U1_di" bpmnElement="Flow_U1">
+        <di_1:waypoint x="900" y="330" />
+        <di_1:waypoint x="955" y="330" />
+      </di:BPMNEdge>
+      <di:BPMNEdge id="Flow_NuevoUsuario_di" bpmnElement="Flow_NuevoUsuario">
+        <di_1:waypoint x="980" y="305" />
+        <di_1:waypoint x="980" y="260" />
+        <di_1:waypoint x="1040" y="260" />
+        <di:BPMNLabel>
+          <dc:Bounds x="930" y="275" width="59" height="27" />
+        </di:BPMNLabel>
+      </di:BPMNEdge>
+      <di:BPMNEdge id="Flow_FinUsuarios_di" bpmnElement="Flow_FinUsuarios">
+        <di_1:waypoint x="1005" y="330" />
+        <di_1:waypoint x="1452" y="330" />
+        <di:BPMNLabel>
+          <dc:Bounds x="1227" y="312" width="15" height="14" />
+        </di:BPMNLabel>
+      </di:BPMNEdge>
+      <di:BPMNEdge id="Flow_0jvvbrn_di" bpmnElement="Flow_0jvvbrn">
+        <di_1:waypoint x="1090" y="160" />
+        <di_1:waypoint x="1090" y="220" />
+      </di:BPMNEdge>
+      <di:BPMNEdge id="Flow_U2_di" bpmnElement="Flow_U2">
+        <di_1:waypoint x="1140" y="260" />
+        <di_1:waypoint x="1235" y="260" />
+      </di:BPMNEdge>
+      <di:BPMNEdge id="Flow_ErrorUsuario_di" bpmnElement="Flow_ErrorUsuario">
+        <di_1:waypoint x="1260" y="235" />
+        <di_1:waypoint x="1260" y="120" />
+        <di_1:waypoint x="1140" y="120" />
+        <di:BPMNLabel>
+          <dc:Bounds x="1179" y="169" width="66" height="27" />
+        </di:BPMNLabel>
+      </di:BPMNEdge>
+      <di:BPMNEdge id="Flow_OkUsuario_di" bpmnElement="Flow_OkUsuario">
+        <di_1:waypoint x="1260" y="285" />
+        <di_1:waypoint x="1260" y="670" />
+        <di_1:waypoint x="1360" y="670" />
+        <di:BPMNLabel>
+          <dc:Bounds x="1107" y="558" width="76" height="14" />
+        </di:BPMNLabel>
+      </di:BPMNEdge>
+      <di:BPMNEdge id="Flow_BackUsuarios_di" bpmnElement="Flow_BackUsuarios">
+        <di_1:waypoint x="1410" y="630" />
+        <di_1:waypoint x="1410" y="489" />
+        <di_1:waypoint x="1470" y="489" />
+        <di_1:waypoint x="1470" y="348" />
+      </di:BPMNEdge>
+      <di:BPMNEdge id="Flow_BackParametrizacion_di" bpmnElement="Flow_BackParametrizacion">
+        <di_1:waypoint x="650" y="490" />
+        <di_1:waypoint x="800" y="490" />
+      </di:BPMNEdge>
+      <di:BPMNEdge id="Flow_06bms2t_di" bpmnElement="Flow_06bms2t">
+        <di_1:waypoint x="900" y="490" />
+        <di_1:waypoint x="1050" y="490" />
+        <di_1:waypoint x="1050" y="330" />
+        <di_1:waypoint x="1452" y="330" />
+      </di:BPMNEdge>
+      <di:BPMNShape id="Participant_AdminSedes_di" bpmnElement="Participant_AdminSedes" isHorizontal="true">
+        <dc:Bounds x="120" y="790" width="1450" height="120" />
+      </di:BPMNShape>
+      <di:BPMNEdge id="MessageFlow_Sedes_di" bpmnElement="MessageFlow_Sedes">
+        <di_1:waypoint x="850" y="790" />
+        <di_1:waypoint x="850" y="530" />
+      </di:BPMNEdge>
+    </di:BPMNPlane>
+  </di:BPMNDiagram>
+</bpmn:definitions>

@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di_1="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_Soporte_SENA_Pools" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.50.1" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.9.0">
+  <bpmn:collaboration id="Collaboration_Soporte_SENA">
+    <bpmn:participant id="Participant_SoporteSENA" name="Sistema de Gestión de Horarios SENA - Módulo Administrador de Soporte" processRef="Process_Soporte_Pools" />
+    <bpmn:participant id="Participant_UsuariosSoporte" name="Usuarios / Canales de Ayuda" processRef="Process_UsuariosSoporteDummy" />
+    <bpmn:messageFlow id="MessageFlow_Ticket" sourceRef="Participant_UsuariosSoporte" targetRef="Task_GestionarTickets" />
+  </bpmn:collaboration>
+  <bpmn:process id="Process_Soporte_Pools" isExecutable="true">
+    <bpmn:laneSet id="LaneSet_Soporte">
+      <bpmn:lane id="Lane_Soporte" name="Administrador de Soporte">
+        <bpmn:flowNodeRef>Start_LoginSoporte</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_ValidaLoginSoporte</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_AccionTicket</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_GestionarRespaldos</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_LoginCredencialesSoporte</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_RecuperarPassSoporte</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_PanelSoporte</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_MenuSoporte</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_MonitorearLogs</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_GestionarTickets</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_ResponderTicket</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>End_Soporte</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_SistemaSoporte" name="Plataforma / Backend">
+        <bpmn:flowNodeRef>Task_ProcesarLoginSoporte</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_EjecutarRespaldoBackend</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:startEvent id="Start_LoginSoporte" name="Pantalla Login">
+      <bpmn:outgoing>Flow_SL1</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:exclusiveGateway id="Gateway_ValidaLoginSoporte" name="¿Credenciales Válidas?">
+      <bpmn:incoming>Flow_1yhl2wt</bpmn:incoming>
+      <bpmn:outgoing>Flow_SopOK</bpmn:outgoing>
+      <bpmn:outgoing>Flow_SopRecuperar</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:exclusiveGateway id="Gateway_AccionTicket" name="¿Atender / Responder Ticket?">
+      <bpmn:incoming>Flow_T1</bpmn:incoming>
+      <bpmn:outgoing>Flow_VerTicket</bpmn:outgoing>
+      <bpmn:outgoing>Flow_CerrarTickets</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:userTask id="Task_GestionarRespaldos" name="Configurar / Ejecutar Respaldo de Base de Datos">
+      <bpmn:incoming>Flow_OptBackups</bpmn:incoming>
+      <bpmn:outgoing>Flow_ToBackupBackend</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:sequenceFlow id="Flow_SL1" sourceRef="Start_LoginSoporte" targetRef="Task_LoginCredencialesSoporte" />
+    <bpmn:sequenceFlow id="Flow_SL2" sourceRef="Task_LoginCredencialesSoporte" targetRef="Task_ProcesarLoginSoporte" />
+    <bpmn:sequenceFlow id="Flow_ToGatewayLoginSop" sourceRef="Task_ProcesarLoginSoporte" targetRef="Task_RecuperarPassSoporte" />
+    <bpmn:sequenceFlow id="Flow_SopOK" name="Sí" sourceRef="Gateway_ValidaLoginSoporte" targetRef="Task_PanelSoporte">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=loginValido = true</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_SopRecuperar" name="No" sourceRef="Gateway_ValidaLoginSoporte" targetRef="Task_RecuperarPassSoporte">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=loginValido = false</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_RecupBackSop" sourceRef="Task_RecuperarPassSoporte" targetRef="Task_LoginCredencialesSoporte" />
+    <bpmn:sequenceFlow id="Flow_MenuSoporte" sourceRef="Task_PanelSoporte" targetRef="Gateway_MenuSoporte" />
+    <bpmn:sequenceFlow id="Flow_OptTickets" name="Tickets" sourceRef="Gateway_MenuSoporte" targetRef="Task_GestionarTickets">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=opcionSoporte = "tickets"</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_OptLogs" name="Monitoreo" sourceRef="Gateway_MenuSoporte" targetRef="Task_MonitorearLogs">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=opcionSoporte = "logs"</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_OptBackups" name="Respaldos" sourceRef="Gateway_MenuSoporte" targetRef="Task_GestionarRespaldos">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=opcionSoporte = "respaldos"</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_T1" sourceRef="Task_GestionarTickets" targetRef="Gateway_AccionTicket" />
+    <bpmn:sequenceFlow id="Flow_VerTicket" name="Sí" sourceRef="Gateway_AccionTicket" targetRef="Task_ResponderTicket">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=atenderTicket = true</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_CerrarTickets" name="No" sourceRef="Gateway_AccionTicket" targetRef="End_Soporte">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=atenderTicket = false</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_BackTicket" sourceRef="Task_ResponderTicket" targetRef="End_Soporte" />
+    <bpmn:sequenceFlow id="Flow_BackLogs" sourceRef="Task_MonitorearLogs" targetRef="End_Soporte" />
+    <bpmn:sequenceFlow id="Flow_ToBackupBackend" sourceRef="Task_GestionarRespaldos" targetRef="Task_EjecutarRespaldoBackend" />
+    <bpmn:sequenceFlow id="Flow_BackBackups" sourceRef="Task_EjecutarRespaldoBackend" targetRef="End_Soporte" />
+    <bpmn:serviceTask id="Task_ProcesarLoginSoporte" name="Validar Credenciales Soporte Backend">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="validar-login-soporte" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_SL2</bpmn:incoming>
+      <bpmn:outgoing>Flow_ToGatewayLoginSop</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:userTask id="Task_LoginCredencialesSoporte" name="Ingresar Correo y Contraseña Institucional">
+      <bpmn:incoming>Flow_SL1</bpmn:incoming>
+      <bpmn:incoming>Flow_RecupBackSop</bpmn:incoming>
+      <bpmn:outgoing>Flow_SL2</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:sequenceFlow id="Flow_1yhl2wt" sourceRef="Task_RecuperarPassSoporte" targetRef="Gateway_ValidaLoginSoporte" />
+    <bpmn:userTask id="Task_RecuperarPassSoporte" name="Recuperar Contraseña por Correo">
+      <bpmn:incoming>Flow_SopRecuperar</bpmn:incoming>
+      <bpmn:incoming>Flow_ToGatewayLoginSop</bpmn:incoming>
+      <bpmn:outgoing>Flow_RecupBackSop</bpmn:outgoing>
+      <bpmn:outgoing>Flow_1yhl2wt</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="Task_PanelSoporte" name="Visualizar Panel Principal Soporte (Mantenimiento y Tickets)">
+      <bpmn:incoming>Flow_SopOK</bpmn:incoming>
+      <bpmn:outgoing>Flow_MenuSoporte</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:exclusiveGateway id="Gateway_MenuSoporte" name="¿Qué opción del menú selecciona?">
+      <bpmn:incoming>Flow_MenuSoporte</bpmn:incoming>
+      <bpmn:outgoing>Flow_OptTickets</bpmn:outgoing>
+      <bpmn:outgoing>Flow_OptLogs</bpmn:outgoing>
+      <bpmn:outgoing>Flow_OptBackups</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:userTask id="Task_MonitorearLogs" name="Monitorear Logs del Sistema y Alertas de Errores">
+      <bpmn:incoming>Flow_OptLogs</bpmn:incoming>
+      <bpmn:outgoing>Flow_BackLogs</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="Task_GestionarTickets" name="Consultar Bandeja de Tickets de Soporte">
+      <bpmn:incoming>Flow_OptTickets</bpmn:incoming>
+      <bpmn:outgoing>Flow_T1</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:serviceTask id="Task_EjecutarRespaldoBackend" name="Generar Copia de Seguridad en Servidor">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="generar-respaldo-bd" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_ToBackupBackend</bpmn:incoming>
+      <bpmn:outgoing>Flow_BackBackups</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:userTask id="Task_ResponderTicket" name="Redactar Solución y Actualizar Estado del Ticket">
+      <bpmn:incoming>Flow_VerTicket</bpmn:incoming>
+      <bpmn:outgoing>Flow_BackTicket</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:endEvent id="End_Soporte" name="Sesión / Tareas Finalizadas">
+      <bpmn:incoming>Flow_BackTicket</bpmn:incoming>
+      <bpmn:incoming>Flow_CerrarTickets</bpmn:incoming>
+      <bpmn:incoming>Flow_BackLogs</bpmn:incoming>
+      <bpmn:incoming>Flow_BackBackups</bpmn:incoming>
+    </bpmn:endEvent>
+  </bpmn:process>
+  <bpmn:process id="Process_UsuariosSoporteDummy" isExecutable="false" />
+  <di:BPMNDiagram id="BPMNDiagram_1">
+    <di:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_Soporte_SENA">
+      <di:BPMNShape id="Participant_SoporteSENA_di" bpmnElement="Participant_SoporteSENA" isHorizontal="true">
+        <dc:Bounds x="120" y="80" width="1450" height="520" />
+      </di:BPMNShape>
+      <di:BPMNShape id="Lane_SistemaSoporte_di" bpmnElement="Lane_SistemaSoporte" isHorizontal="true">
+        <dc:Bounds x="150" y="420" width="1420" height="180" />
+      </di:BPMNShape>
+      <di:BPMNShape id="Lane_Soporte_di" bpmnElement="Lane_Soporte" isHorizontal="true">
+        <dc:Bounds x="150" y="80" width="1420" height="340" />
+        <di:BPMNLabel />
+      </di:BPMNShape>
+      <di:BPMNShape id="Start_LoginSoporte_di" bpmnElement="Start_LoginSoporte">
+        <dc:Bounds x="182" y="182" width="36" height="36" />
+        <di:BPMNLabel>
+          <dc:Bounds x="175" y="218" width="70" height="14" />
+        </di:BPMNLabel>
+      </di:BPMNShape>
+      <di:BPMNShape id="Gateway_ValidaLoginSoporte_di" bpmnElement="Gateway_ValidaLoginSoporte" isMarkerVisible="true">
+        <dc:Bounds x="535" y="175" width="50" height="50" />
+        <di:BPMNLabel>
+          <dc:Bounds x="524" y="137.5" width="71" height="27" />
+        </di:BPMNLabel>
+      </di:BPMNShape>
+      <di:BPMNShape id="Gateway_AccionTicket_di" bpmnElement="Gateway_AccionTicket" isMarkerVisible="true">
+        <dc:Bounds x="1085" y="115" width="50" height="50" />
+        <di:BPMNLabel>
+          <dc:Bounds x="1083" y="65" width="54" height="40" />
+        </di:BPMNLabel>
+      </di:BPMNShape>
+      <di:BPMNShape id="Task_GestionarRespaldos_di" bpmnElement="Task_GestionarRespaldos">
+        <dc:Bounds x="930" y="320" width="100" height="80" />
+      </di:BPMNShape>
+      <di:BPMNShape id="Task_ProcesarLoginSoporte_di" bpmnElement="Task_ProcesarLoginSoporte">
+        <dc:Bounds x="390" y="470" width="100" height="80" />
+      </di:BPMNShape>
+      <di:BPMNShape id="Task_LoginCredencialesSoporte_di" bpmnElement="Task_LoginCredencialesSoporte">
+        <dc:Bounds x="260" y="160" width="100" height="80" />
+      </di:BPMNShape>
+      <di:BPMNShape id="Task_RecuperarPassSoporte_di" bpmnElement="Task_RecuperarPassSoporte">
+        <dc:Bounds x="510" y="280" width="100" height="80" />
+      </di:BPMNShape>
+      <di:BPMNShape id="Task_PanelSoporte_di" bpmnElement="Task_PanelSoporte">
+        <dc:Bounds x="630" y="160" width="100" height="80" />
+      </di:BPMNShape>
+      <di:BPMNShape id="Gateway_MenuSoporte_di" bpmnElement="Gateway_MenuSoporte" isMarkerVisible="true">
+        <dc:Bounds x="795" y="175" width="50" height="50" />
+        <di:BPMNLabel>
+          <dc:Bounds x="855" y="186" width="89" height="27" />
+        </di:BPMNLabel>
+      </di:BPMNShape>
+      <di:BPMNShape id="Task_MonitorearLogs_di" bpmnElement="Task_MonitorearLogs">
+        <dc:Bounds x="940" y="220" width="100" height="80" />
+      </di:BPMNShape>
+      <di:BPMNShape id="Task_GestionarTickets_di" bpmnElement="Task_GestionarTickets">
+        <dc:Bounds x="920" y="100" width="100" height="80" />
+      </di:BPMNShape>
+      <di:BPMNShape id="Task_EjecutarRespaldoBackend_di" bpmnElement="Task_EjecutarRespaldoBackend">
+        <dc:Bounds x="1070" y="470" width="100" height="80" />
+      </di:BPMNShape>
+      <di:BPMNShape id="Task_ResponderTicket_di" bpmnElement="Task_ResponderTicket">
+        <dc:Bounds x="1220" y="100" width="100" height="80" />
+      </di:BPMNShape>
+      <di:BPMNShape id="End_Soporte_di" bpmnElement="End_Soporte">
+        <dc:Bounds x="1432" y="202" width="36" height="36" />
+        <di:BPMNLabel>
+          <dc:Bounds x="1412" y="238" width="76" height="27" />
+        </di:BPMNLabel>
+      </di:BPMNShape>
+      <di:BPMNEdge id="Flow_SL1_di" bpmnElement="Flow_SL1">
+        <di_1:waypoint x="218" y="200" />
+        <di_1:waypoint x="260" y="200" />
+      </di:BPMNEdge>
+      <di:BPMNEdge id="Flow_SL2_di" bpmnElement="Flow_SL2">
+        <di_1:waypoint x="310" y="240" />
+        <di_1:waypoint x="310" y="355" />
+        <di_1:waypoint x="440" y="355" />
+        <di_1:waypoint x="440" y="470" />
+      </di:BPMNEdge>
+      <di:BPMNEdge id="Flow_ToGatewayLoginSop_di" bpmnElement="Flow_ToGatewayLoginSop">
+        <di_1:waypoint x="490" y="510" />
+        <di_1:waypoint x="560" y="510" />
+        <di_1:waypoint x="560" y="360" />
+      </di:BPMNEdge>
+      <di:BPMNEdge id="Flow_SopOK_di" bpmnElement="Flow_SopOK">
+        <di_1:waypoint x="585" y="200" />
+        <di_1:waypoint x="630" y="200" />
+        <di:BPMNLabel>
+          <dc:Bounds x="598" y="182" width="11" height="14" />
+        </di:BPMNLabel>
+      </di:BPMNEdge>
+      <di:BPMNEdge id="Flow_SopRecuperar_di" bpmnElement="Flow_SopRecuperar">
+        <di_1:waypoint x="560" y="225" />
+        <di_1:waypoint x="560" y="280" />
+        <di:BPMNLabel>
+          <dc:Bounds x="572" y="245" width="15" height="14" />
+        </di:BPMNLabel>
+      </di:BPMNEdge>
+      <di:BPMNEdge id="Flow_RecupBackSop_di" bpmnElement="Flow_RecupBackSop">
+        <di_1:waypoint x="510" y="320" />
+        <di_1:waypoint x="450" y="320" />
+        <di_1:waypoint x="450" y="200" />
+        <di_1:waypoint x="360" y="200" />
+      </di:BPMNEdge>
+      <di:BPMNEdge id="Flow_MenuSoporte_di" bpmnElement="Flow_MenuSoporte">
+        <di_1:waypoint x="730" y="200" />
+        <di_1:waypoint x="795" y="200" />
+      </di:BPMNEdge>
+      <di:BPMNEdge id="Flow_OptTickets_di" bpmnElement="Flow_OptTickets">
+        <di_1:waypoint x="820" y="175" />
+        <di_1:waypoint x="820" y="140" />
+        <di_1:waypoint x="920" y="140" />
+        <di:BPMNLabel>
+          <dc:Bounds x="772" y="153" width="35" height="14" />
+        </di:BPMNLabel>
+      </di:BPMNEdge>
+      <di:BPMNEdge id="Flow_OptLogs_di" bpmnElement="Flow_OptLogs">
+        <di_1:waypoint x="820" y="225" />
+        <di_1:waypoint x="820" y="260" />
+        <di_1:waypoint x="940" y="260" />
+        <di:BPMNLabel>
+          <dc:Bounds x="765" y="231" width="49" height="14" />
+        </di:BPMNLabel>
+      </di:BPMNEdge>
+      <di:BPMNEdge id="Flow_OptBackups_di" bpmnElement="Flow_OptBackups">
+        <di_1:waypoint x="820" y="225" />
+        <di_1:waypoint x="820" y="360" />
+        <di_1:waypoint x="930" y="360" />
+        <di:BPMNLabel>
+          <dc:Bounds x="764" y="303" width="52" height="14" />
+        </di:BPMNLabel>
+      </di:BPMNEdge>
+      <di:BPMNEdge id="Flow_T1_di" bpmnElement="Flow_T1">
+        <di_1:waypoint x="1020" y="140" />
+        <di_1:waypoint x="1085" y="140" />
+      </di:BPMNEdge>
+      <di:BPMNEdge id="Flow_VerTicket_di" bpmnElement="Flow_VerTicket">
+        <di_1:waypoint x="1135" y="140" />
+        <di_1:waypoint x="1220" y="140" />
+        <di:BPMNLabel>
+          <dc:Bounds x="1165" y="122" width="11" height="14" />
+        </di:BPMNLabel>
+      </di:BPMNEdge>
+      <di:BPMNEdge id="Flow_CerrarTickets_di" bpmnElement="Flow_CerrarTickets">
+        <di_1:waypoint x="1110" y="165" />
+        <di_1:waypoint x="1110" y="220" />
+        <di_1:waypoint x="1432" y="220" />
+        <di:BPMNLabel>
+          <dc:Bounds x="1122" y="182" width="15" height="14" />
+        </di:BPMNLabel>
+      </di:BPMNEdge>
+      <di:BPMNEdge id="Flow_BackTicket_di" bpmnElement="Flow_BackTicket">
+        <di_1:waypoint x="1320" y="140" />
+        <di_1:waypoint x="1376" y="140" />
+        <di_1:waypoint x="1376" y="220" />
+        <di_1:waypoint x="1432" y="220" />
+      </di:BPMNEdge>
+      <di:BPMNEdge id="Flow_BackLogs_di" bpmnElement="Flow_BackLogs">
+        <di_1:waypoint x="1040" y="260" />
+        <di_1:waypoint x="1236" y="260" />
+        <di_1:waypoint x="1236" y="220" />
+        <di_1:waypoint x="1432" y="220" />
+      </di:BPMNEdge>
+      <di:BPMNEdge id="Flow_ToBackupBackend_di" bpmnElement="Flow_ToBackupBackend">
+        <di_1:waypoint x="1030" y="360" />
+        <di_1:waypoint x="1050" y="360" />
+        <di_1:waypoint x="1050" y="510" />
+        <di_1:waypoint x="1070" y="510" />
+      </di:BPMNEdge>
+      <di:BPMNEdge id="Flow_BackBackups_di" bpmnElement="Flow_BackBackups">
+        <di_1:waypoint x="1170" y="510" />
+        <di_1:waypoint x="1301" y="510" />
+        <di_1:waypoint x="1301" y="220" />
+        <di_1:waypoint x="1432" y="220" />
+      </di:BPMNEdge>
+      <di:BPMNEdge id="Flow_1yhl2wt_di" bpmnElement="Flow_1yhl2wt">
+        <di_1:waypoint x="560" y="280" />
+        <di_1:waypoint x="560" y="225" />
+      </di:BPMNEdge>
+      <di:BPMNShape id="Participant_UsuariosSoporte_di" bpmnElement="Participant_UsuariosSoporte" isHorizontal="true">
+        <dc:Bounds x="120" y="640" width="1450" height="120" />
+      </di:BPMNShape>
+      <di:BPMNEdge id="MessageFlow_Ticket_di" bpmnElement="MessageFlow_Ticket">
+        <di_1:waypoint x="970" y="640" />
+        <di_1:waypoint x="970" y="180" />
+      </di:BPMNEdge>
+    </di:BPMNPlane>
+  </di:BPMNDiagram>
+</bpmn:definitions>

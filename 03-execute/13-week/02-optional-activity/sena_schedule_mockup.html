@@ -1,0 +1,322 @@
+
+<h2 class="sr-only">Mockup interactivo — Sistema de gestión de horarios SENA</h2>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+#sa{position:relative;font-family:var(--font-sans);font-size:13px;border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);background:#F9FAFB;min-height:720px;}
+#sa-nav{background:#1E40AF;color:white;padding:0 16px;height:50px;display:flex;align-items:center;border-radius:var(--border-radius-lg) var(--border-radius-lg) 0 0;}
+.sa-logo{font-size:15px;font-weight:500;margin-right:14px;flex-shrink:0;letter-spacing:-0.3px;}
+.sa-logo small{font-size:10px;font-weight:400;opacity:0.5;border-left:1px solid rgba(255,255,255,0.2);padding-left:9px;margin-left:6px;}
+.sa-tabs{display:flex;flex:1;}
+.sa-tab{color:rgba(255,255,255,0.58);padding:0 12px;height:50px;display:flex;align-items:center;gap:5px;cursor:pointer;font-size:12px;border-bottom:2px solid transparent;user-select:none;}
+.sa-tab:hover{color:rgba(255,255,255,0.9);}
+.sa-tab.active{color:white;border-bottom-color:white;}
+.sa-user{display:flex;align-items:center;gap:8px;font-size:11px;opacity:0.8;flex-shrink:0;}
+.sa-avatar{width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:500;}
+.sa-screen{padding:18px 20px;}
+.sa-card{background:white;border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:14px 16px;margin-bottom:12px;}
+.sa-card-title{font-size:12px;font-weight:500;color:var(--color-text-primary);margin-bottom:11px;display:flex;align-items:center;gap:6px;}
+.badge{display:inline-flex;align-items:center;padding:2px 7px;border-radius:999px;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.3px;}
+.b-ok{background:#D1FAE5;color:#065F46;}
+.b-info{background:#DBEAFE;color:#1E40AF;}
+.b-cancel{background:#E5E7EB;color:#374151;}
+.b-err{background:#FEE2E2;color:#991B1B;}
+.b-warn{background:#FEF3C7;color:#92400E;}
+.btn{display:inline-flex;align-items:center;gap:5px;padding:6px 12px;border-radius:5px;font-size:12px;font-weight:500;font-family:var(--font-sans);cursor:pointer;border:0.5px solid var(--color-border-secondary);background:white;color:var(--color-text-primary);}
+.btn:hover{background:var(--color-background-secondary);}
+.btn-p{background:#2563EB;color:white;border-color:#2563EB;}
+.btn-p:hover{background:#1D4ED8;color:white;}
+.btn-g{border:none;color:#2563EB;background:transparent;}
+.btn-g:hover{background:#DBEAFE;}
+.sa-table{width:100%;border-collapse:collapse;font-size:11px;}
+.sa-table th{background:#F3F4F6;color:#6B7280;font-weight:500;padding:7px 10px;text-align:left;border-bottom:1px solid #E5E7EB;}
+.sa-table td{padding:7px 10px;border-bottom:0.5px solid #F3F4F6;color:var(--color-text-primary);vertical-align:middle;}
+.sa-table tr:last-child td{border-bottom:none;}
+.sa-table tr:hover td{background:#F9FAFB;}
+.cal-grid{display:grid;grid-template-columns:46px repeat(6,1fr);border:0.5px solid #E5E7EB;border-radius:8px;overflow:hidden;background:white;}
+.cal-hdr{background:#F3F4F6;padding:5px 2px;text-align:center;font-weight:500;color:#374151;border-bottom:1px solid #E5E7EB;font-size:10px;line-height:1.5;}
+.cal-time{background:#F9FAFB;padding:0 5px 0 0;text-align:right;color:#9CA3AF;border-bottom:0.5px solid #F3F4F6;border-right:1px solid #E5E7EB;font-size:9px;padding-top:5px;}
+.cal-cell{border-bottom:0.5px solid #F3F4F6;border-right:0.5px solid #F3F4F6;min-height:54px;padding:2px;vertical-align:top;}
+.cal-cell:last-child{border-right:none;}
+.cal-ev{border-radius:3px;padding:3px 4px;margin-bottom:2px;cursor:pointer;font-size:9px;line-height:1.3;border-left:2px solid;}
+.cal-ev:hover{opacity:0.85;}
+.ev-ok{background:#D1FAE5;border-color:#10B981;color:#065F46;}
+.ev-info{background:#DBEAFE;border-color:#3B82F6;color:#1E40AF;}
+.ev-cancel{background:#E5E7EB;border-color:#9CA3AF;color:#374151;}
+.ev-conflict{background:#FEF3C7;border-color:#F59E0B;color:#92400E;}
+.fg{margin-bottom:11px;}
+.fl{display:block;font-size:11px;font-weight:500;color:#374151;margin-bottom:3px;}
+.fl .req{color:#EF4444;}
+.fi,.fs{width:100%;padding:7px 9px;border:1px solid #D1D5DB;border-radius:5px;font-size:12px;font-family:var(--font-sans);color:var(--color-text-primary);background:white;outline:none;}
+.fi:focus,.fs:focus{border-color:#2563EB;}
+.fs{appearance:none;}
+.fr2{display:grid;grid-template-columns:1fr 1fr;gap:9px;}
+.vz{padding:8px 10px;border-radius:5px;font-size:11px;margin-bottom:10px;display:flex;align-items:flex-start;gap:6px;}
+.v-idle{background:#DBEAFE;color:#1E40AF;}
+.v-ok{background:#D1FAE5;color:#065F46;}
+.v-warn{background:#FEF3C7;color:#92400E;}
+.v-err{background:#FEE2E2;color:#991B1B;}
+#sa-modal{position:absolute;inset:0;background:rgba(0,0,0,0.44);z-index:50;display:none;align-items:flex-start;justify-content:center;padding-top:30px;}
+#sa-modal.open{display:flex;}
+.modal-box{background:white;border-radius:10px;width:500px;max-width:95%;padding:18px;overflow-y:auto;}
+.modal-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
+.modal-title{font-size:14px;font-weight:500;color:var(--color-text-primary);}
+.modal-close{background:none;border:none;cursor:pointer;color:#9CA3AF;padding:4px;border-radius:4px;font-size:16px;line-height:1;}
+.modal-close:hover{background:#F3F4F6;}
+.modal-footer{display:flex;justify-content:flex-end;gap:8px;margin-top:12px;padding-top:10px;border-top:0.5px solid #E5E7EB;}
+.ag-card{background:white;border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:11px 14px;margin-bottom:8px;cursor:pointer;}
+.ag-card:hover{border-color:#2563EB;}
+.conflict-item{background:#FEF3C7;border:0.5px solid #F59E0B;border-radius:7px;padding:9px;margin-bottom:7px;display:flex;gap:8px;}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.filters{display:flex;gap:7px;margin-bottom:11px;align-items:center;flex-wrap:wrap;}
+.f-input{padding:5px 9px;border:0.5px solid #D1D5DB;border-radius:5px;font-size:11px;font-family:var(--font-sans);outline:none;background:white;color:var(--color-text-primary);}
+.ai-btn{background:none;border:none;cursor:pointer;padding:3px 5px;border-radius:3px;font-size:15px;}
+.ai-edit{color:#2563EB;}
+.ai-edit:hover{background:#DBEAFE;}
+.ai-del{color:#EF4444;}
+.ai-del:hover{background:#FEE2E2;}
+.pg{display:flex;gap:4px;margin-top:10px;justify-content:center;}
+.pg-n{width:25px;height:25px;display:flex;align-items:center;justify-content:center;border:0.5px solid #D1D5DB;border-radius:4px;font-size:11px;cursor:pointer;background:white;color:var(--color-text-primary);}
+.pg-n.on{background:#2563EB;color:white;border-color:#2563EB;}
+.metric{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:11px 13px;}
+.metric-label{font-size:10px;color:var(--color-text-secondary);margin-bottom:3px;}
+.metric-val{font-size:21px;font-weight:500;}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
+.obs-card{background:#F9FAFB;border:0.5px solid #E5E7EB;border-radius:5px;padding:9px;border-left:3px solid #9CA3AF;margin-bottom:7px;}
+</style>
+
+<div id="sa">
+  <div id="sa-nav">
+    <div class="sa-logo">SENA <small>Gestión de horarios</small></div>
+    <div class="sa-tabs">
+      <div class="sa-tab" id="tab-dashboard" onclick="sTab('dashboard')"><i class="ti ti-home" aria-hidden="true"></i> Dashboard</div>
+      <div class="sa-tab" id="tab-calendario" onclick="sTab('calendario')"><i class="ti ti-calendar" aria-hidden="true"></i> Calendario</div>
+      <div class="sa-tab" id="tab-agenda" onclick="sTab('agenda')"><i class="ti ti-list" aria-hidden="true"></i> Mi agenda</div>
+      <div class="sa-tab" id="tab-recursos" onclick="sTab('recursos')"><i class="ti ti-building" aria-hidden="true"></i> Recursos</div>
+    </div>
+    <div class="sa-user"><span>María López</span><div class="sa-avatar">ML</div></div>
+  </div>
+
+  <!-- DASHBOARD -->
+  <div id="screen-dashboard" class="sa-screen">
+    <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:14px;">
+      <div>
+        <h1 style="font-size:18px;font-weight:500;color:var(--color-text-primary);">Dashboard</h1>
+        <p style="font-size:11px;color:var(--color-text-secondary);margin-top:2px;">Semana 21 · 18–23 de mayo de 2026 · Coordinadora: María López</p>
+      </div>
+      <div style="display:flex;gap:7px;">
+        <button class="btn" onclick="openModal('crear')"><i class="ti ti-plus" aria-hidden="true"></i> Crear horario</button>
+        <button class="btn btn-p" onclick="sTab('calendario')"><i class="ti ti-calendar" aria-hidden="true"></i> Ver calendario</button>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-bottom:13px;">
+      <div class="metric"><div class="metric-label">Horarios esta semana</div><div class="metric-val" style="color:var(--color-text-primary);">18</div></div>
+      <div class="metric"><div class="metric-label">Realizados</div><div class="metric-val" style="color:#1D4ED8;">11</div></div>
+      <div class="metric"><div class="metric-label">Programados</div><div class="metric-val" style="color:#059669;">5</div></div>
+      <div class="metric"><div class="metric-label">Conflictos activos</div><div class="metric-val" style="color:#D97706;">2</div></div>
+    </div>
+    <div class="g2">
+      <div class="sa-card">
+        <div class="sa-card-title"><i class="ti ti-alert-triangle" aria-hidden="true" style="color:#D97706;"></i> Alertas de conflictos</div>
+        <div class="conflict-item">
+          <i class="ti ti-alert-triangle" aria-hidden="true" style="color:#D97706;font-size:16px;flex-shrink:0;margin-top:1px;"></i>
+          <div>
+            <div style="font-size:12px;font-weight:500;color:#92400E;">Conflicto de ambiente</div>
+            <div style="font-size:10px;color:#92400E;margin-top:2px;">LAB-101 · Lun 18 may · 08:00–10:00<br>Ficha 2491234 vs Ficha 2498765</div>
+            <button class="btn btn-g" style="margin-top:5px;padding:2px 8px;font-size:10px;" onclick="openModal('crear')">Resolver</button>
+          </div>
+        </div>
+        <div class="conflict-item">
+          <i class="ti ti-alert-triangle" aria-hidden="true" style="color:#D97706;font-size:16px;flex-shrink:0;margin-top:1px;"></i>
+          <div>
+            <div style="font-size:12px;font-weight:500;color:#92400E;">Conflicto de instructor</div>
+            <div style="font-size:10px;color:#92400E;margin-top:2px;">Juan Pérez · Mié 20 may · 14:00–16:00<br>Ficha 2487321 vs Ficha 2491234</div>
+            <button class="btn btn-g" style="margin-top:5px;padding:2px 8px;font-size:10px;" onclick="openModal('crear')">Resolver</button>
+          </div>
+        </div>
+      </div>
+      <div class="sa-card">
+        <div class="sa-card-title"><i class="ti ti-clock" aria-hidden="true" style="color:#2563EB;"></i> Próximos horarios</div>
+        <table class="sa-table">
+          <thead><tr><th>Ficha</th><th>Ambiente</th><th>Instructor</th><th>Fecha · Hora</th></tr></thead>
+          <tbody>
+            <tr><td>2491234</td><td>LAB-102</td><td>M. López</td><td>Hoy · 14:00</td></tr>
+            <tr><td>2498765</td><td>AULA-201</td><td>C. Gómez</td><td>Hoy · 16:00</td></tr>
+            <tr><td>2487321</td><td>LAB-101</td><td>A. Rodríguez</td><td>Mié · 08:00</td></tr>
+            <tr><td>2491234</td><td>AULA-202</td><td>J. Pérez</td><td>Mié · 10:00</td></tr>
+            <tr><td>2498765</td><td>LAB-101</td><td>M. López</td><td>Jue · 08:00</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- CALENDARIO -->
+  <div id="screen-calendario" class="sa-screen">
+    <div style="display:flex;align-items:center;gap:7px;margin-bottom:10px;flex-wrap:wrap;">
+      <h1 style="font-size:18px;font-weight:500;color:var(--color-text-primary);flex:1;">Calendario semanal</h1>
+      <select class="f-input"><option>Todas las fichas</option><option>2491234 — Prog. Web</option><option>2498765 — Dev. Software</option><option>2487321 — Análisis de Datos</option></select>
+      <button class="btn" style="padding:5px 9px;"><i class="ti ti-chevron-left" aria-hidden="true"></i></button>
+      <button class="btn btn-p" style="padding:5px 10px;font-size:11px;">Hoy</button>
+      <button class="btn" style="padding:5px 9px;"><i class="ti ti-chevron-right" aria-hidden="true"></i></button>
+      <button class="btn btn-p" style="font-size:11px;" onclick="openModal('crear')"><i class="ti ti-plus" aria-hidden="true"></i> Crear</button>
+    </div>
+    <p style="font-size:11px;color:var(--color-text-secondary);margin-bottom:9px;">Semana 21 · 18 – 23 de mayo de 2026</p>
+    <div class="cal-grid">
+      <div class="cal-hdr"></div>
+      <div class="cal-hdr">Lun<br><span style="color:#9CA3AF;font-weight:400;">18</span></div>
+      <div class="cal-hdr">Mar<br><span style="color:#9CA3AF;font-weight:400;">19</span></div>
+      <div class="cal-hdr" style="background:#EFF6FF;"><span style="color:#2563EB;font-weight:600;">Mié</span><br><span style="color:#2563EB;">20</span></div>
+      <div class="cal-hdr">Jue<br><span style="color:#9CA3AF;font-weight:400;">21</span></div>
+      <div class="cal-hdr">Vie<br><span style="color:#9CA3AF;font-weight:400;">22</span></div>
+      <div class="cal-hdr">Sáb<br><span style="color:#9CA3AF;font-weight:400;">23</span></div>
+      <div class="cal-time">06:00</div>
+      <div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell" style="background:#EFF6FF;"></div><div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell"></div>
+      <div class="cal-time">08:00</div>
+      <div class="cal-cell"><div class="cal-ev ev-info" onclick="openModal('detalle')"><strong>08–10:00</strong><br>LAB-101 · J.Pérez<br>2491234</div></div>
+      <div class="cal-cell"><div class="cal-ev ev-ok" onclick="openModal('detalle')"><strong>08–10:00</strong><br>LAB-102 · M.López<br>2498765</div></div>
+      <div class="cal-cell" style="background:#EFF6FF;"><div class="cal-ev ev-info" onclick="openModal('detalle')"><strong>08–10:00</strong><br>AULA-201 · C.Gómez<br>2487321</div></div>
+      <div class="cal-cell"><div class="cal-ev ev-ok" onclick="openModal('detalle')"><strong>08–10:00</strong><br>LAB-101 · M.López<br>2498765</div></div>
+      <div class="cal-cell"><div class="cal-ev ev-ok" onclick="openModal('detalle')"><strong>08–10:00</strong><br>AULA-202 · A.Rodr.<br>2491234</div></div>
+      <div class="cal-cell"></div>
+      <div class="cal-time">10:00</div>
+      <div class="cal-cell"><div class="cal-ev ev-cancel" onclick="openModal('detalle')"><strong>10–12:00</strong><br>AULA-201 · C.Gómez<br>2487321</div></div>
+      <div class="cal-cell"></div>
+      <div class="cal-cell" style="background:#EFF6FF;"><div class="cal-ev ev-ok" onclick="openModal('detalle')"><strong>10–12:00</strong><br>AULA-202 · J.Pérez<br>2491234</div></div>
+      <div class="cal-cell"></div>
+      <div class="cal-cell"><div class="cal-ev ev-info" onclick="openModal('detalle')"><strong>10–12:00</strong><br>LAB-101 · J.Pérez<br>2487321</div></div>
+      <div class="cal-cell"></div>
+      <div class="cal-time">12:00</div>
+      <div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell" style="background:#EFF6FF;"></div><div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell"></div>
+      <div class="cal-time">14:00</div>
+      <div class="cal-cell"><div class="cal-ev ev-ok" onclick="openModal('detalle')"><strong>14–16:00</strong><br>LAB-102 · M.López<br>2491234</div></div>
+      <div class="cal-cell"><div class="cal-ev ev-info" onclick="openModal('detalle')"><strong>14–16:00</strong><br>AULA-201 · A.Rodr.<br>2498765</div></div>
+      <div class="cal-cell" style="background:#FFFBEB;"><div class="cal-ev ev-conflict" onclick="openModal('detalle')"><strong>14–16:00 ⚠</strong><br>LAB-101 · J.Pérez<br>CONFLICTO</div></div>
+      <div class="cal-cell"><div class="cal-ev ev-info" onclick="openModal('detalle')"><strong>14–16:00</strong><br>AULA-202 · C.Gómez<br>2491234</div></div>
+      <div class="cal-cell"></div>
+      <div class="cal-cell"><div class="cal-ev ev-ok" onclick="openModal('detalle')"><strong>14–18:00</strong><br>LAB-101 · M.López<br>2498765</div></div>
+      <div class="cal-time">16:00</div>
+      <div class="cal-cell"><div class="cal-ev ev-info" onclick="openModal('detalle')"><strong>16–18:00</strong><br>AULA-202 · C.Gómez<br>2498765</div></div>
+      <div class="cal-cell"></div><div class="cal-cell" style="background:#EFF6FF;"></div><div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell"></div>
+      <div class="cal-time">18:00</div>
+      <div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell" style="background:#EFF6FF;"></div><div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell"></div>
+    </div>
+    <div style="display:flex;gap:12px;margin-top:9px;font-size:10px;color:var(--color-text-secondary);flex-wrap:wrap;">
+      <span style="display:flex;align-items:center;gap:4px;"><span style="width:8px;height:8px;border-radius:1px;background:#D1FAE5;border-left:2px solid #10B981;display:inline-block;"></span>Programado</span>
+      <span style="display:flex;align-items:center;gap:4px;"><span style="width:8px;height:8px;border-radius:1px;background:#DBEAFE;border-left:2px solid #3B82F6;display:inline-block;"></span>Realizado</span>
+      <span style="display:flex;align-items:center;gap:4px;"><span style="width:8px;height:8px;border-radius:1px;background:#E5E7EB;border-left:2px solid #9CA3AF;display:inline-block;"></span>Cancelado</span>
+      <span style="display:flex;align-items:center;gap:4px;"><span style="width:8px;height:8px;border-radius:1px;background:#FEF3C7;border-left:2px solid #F59E0B;display:inline-block;"></span>Conflicto</span>
+    </div>
+  </div>
+
+  <!-- AGENDA -->
+  <div id="screen-agenda" class="sa-screen">
+    <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:13px;">
+      <div>
+        <h1 style="font-size:18px;font-weight:500;color:var(--color-text-primary);">Mi agenda</h1>
+        <p style="font-size:11px;color:var(--color-text-secondary);margin-top:2px;">Instructor: Juan Pérez</p>
+      </div>
+    </div>
+    <div class="filters">
+      <input type="date" class="f-input" value="2026-05-18">
+      <span style="font-size:11px;color:var(--color-text-secondary);">–</span>
+      <input type="date" class="f-input" value="2026-05-24">
+      <label style="font-size:11px;color:var(--color-text-secondary);display:flex;align-items:center;gap:4px;cursor:pointer;white-space:nowrap;"><input type="checkbox"> Mostrar cancelados</label>
+    </div>
+    <div class="ag-card" onclick="openModal('detalle')">
+      <div style="display:flex;align-items:center;gap:7px;margin-bottom:4px;"><span class="badge b-info">Realizado</span><span style="font-size:12px;font-weight:500;color:var(--color-text-primary);">Lun 18 may · 08:00 – 10:00</span></div>
+      <div style="font-size:12px;color:var(--color-text-primary);">Ficha 2491234 — Programación Web · LAB-101</div>
+      <div style="font-size:11px;color:var(--color-text-secondary);margin-top:2px;">Tema: Variables y tipos de datos</div>
+    </div>
+    <div class="ag-card" onclick="openModal('detalle')">
+      <div style="display:flex;align-items:center;gap:7px;margin-bottom:4px;"><span class="badge b-ok">Programado</span><span style="font-size:12px;font-weight:500;color:var(--color-text-primary);">Mié 20 may · 14:00 – 16:00</span></div>
+      <div style="font-size:12px;color:var(--color-text-primary);">Ficha 2487321 — Análisis de Datos · LAB-101</div>
+      <div style="font-size:11px;color:var(--color-text-secondary);margin-top:2px;">Tema: Introducción a SQL</div>
+    </div>
+    <div class="ag-card" onclick="openModal('detalle')">
+      <div style="display:flex;align-items:center;gap:7px;margin-bottom:4px;"><span class="badge b-ok">Programado</span><span style="font-size:12px;font-weight:500;color:var(--color-text-primary);">Vie 22 may · 10:00 – 12:00</span></div>
+      <div style="font-size:12px;color:var(--color-text-primary);">Ficha 2487321 — Análisis de Datos · LAB-101</div>
+      <div style="font-size:11px;color:var(--color-text-secondary);margin-top:2px;">Tema: Consultas avanzadas y JOIN</div>
+    </div>
+    <div class="ag-card" onclick="openModal('detalle')">
+      <div style="display:flex;align-items:center;gap:7px;margin-bottom:4px;"><span class="badge b-ok">Programado</span><span style="font-size:12px;font-weight:500;color:var(--color-text-primary);">Sáb 23 may · 14:00 – 18:00</span></div>
+      <div style="font-size:12px;color:var(--color-text-primary);">Ficha 2491234 — Programación Web · LAB-102</div>
+      <div style="font-size:11px;color:var(--color-text-secondary);margin-top:2px;">Tema: Fundamentos de React.js</div>
+    </div>
+  </div>
+
+  <!-- RECURSOS -->
+  <div id="screen-recursos" class="sa-screen">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:13px;">
+      <h1 style="font-size:18px;font-weight:500;color:var(--color-text-primary);">Ambientes</h1>
+      <button class="btn btn-p" onclick="openModal('crear')"><i class="ti ti-plus" aria-hidden="true"></i> Nuevo ambiente</button>
+    </div>
+    <div class="filters">
+      <input placeholder="Buscar por código o nombre..." class="f-input" style="flex:1;">
+      <select class="f-input"><option>Todos los estados</option><option>Activo</option><option>Inactivo</option></select>
+      <select class="f-input"><option>Todos los tipos</option><option>Laboratorio</option><option>Aula</option><option>Taller</option></select>
+    </div>
+    <div class="sa-card" style="padding:0;overflow:hidden;">
+      <table class="sa-table" style="table-layout:fixed;">
+        <colgroup><col style="width:82px"><col><col style="width:96px"><col style="width:44px"><col style="width:66px"><col style="width:64px"></colgroup>
+        <thead><tr><th>Código</th><th>Nombre</th><th>Tipo</th><th style="text-align:center;">Cap.</th><th>Estado</th><th style="text-align:center;">Acciones</th></tr></thead>
+        <tbody>
+          <tr><td style="font-weight:500;">LAB-101</td><td>Laboratorio de Sistemas 101</td><td>Laboratorio</td><td style="text-align:center;">30</td><td><span class="badge b-ok">Activo</span></td><td style="text-align:center;"><button class="ai-btn ai-edit" aria-label="Editar" onclick="openModal('crear')"><i class="ti ti-edit" aria-hidden="true"></i></button><button class="ai-btn ai-del" aria-label="Desactivar"><i class="ti ti-trash" aria-hidden="true"></i></button></td></tr>
+          <tr><td style="font-weight:500;">LAB-102</td><td>Laboratorio de Sistemas 102</td><td>Laboratorio</td><td style="text-align:center;">25</td><td><span class="badge b-ok">Activo</span></td><td style="text-align:center;"><button class="ai-btn ai-edit" aria-label="Editar" onclick="openModal('crear')"><i class="ti ti-edit" aria-hidden="true"></i></button><button class="ai-btn ai-del" aria-label="Desactivar"><i class="ti ti-trash" aria-hidden="true"></i></button></td></tr>
+          <tr><td style="font-weight:500;">AULA-201</td><td>Aula de clases 201</td><td>Aula</td><td style="text-align:center;">40</td><td><span class="badge b-ok">Activo</span></td><td style="text-align:center;"><button class="ai-btn ai-edit" aria-label="Editar" onclick="openModal('crear')"><i class="ti ti-edit" aria-hidden="true"></i></button><button class="ai-btn ai-del" aria-label="Desactivar"><i class="ti ti-trash" aria-hidden="true"></i></button></td></tr>
+          <tr><td style="font-weight:500;">AULA-202</td><td>Aula de clases 202</td><td>Aula</td><td style="text-align:center;">35</td><td><span class="badge b-ok">Activo</span></td><td style="text-align:center;"><button class="ai-btn ai-edit" aria-label="Editar" onclick="openModal('crear')"><i class="ti ti-edit" aria-hidden="true"></i></button><button class="ai-btn ai-del" aria-label="Desactivar"><i class="ti ti-trash" aria-hidden="true"></i></button></td></tr>
+          <tr><td style="font-weight:500;">TALL-01</td><td>Taller de mantenimiento</td><td>Taller</td><td style="text-align:center;">20</td><td><span class="badge b-cancel">Inactivo</span></td><td style="text-align:center;"><button class="ai-btn ai-edit" aria-label="Editar" onclick="openModal('crear')"><i class="ti ti-edit" aria-hidden="true"></i></button><button class="ai-btn" style="opacity:0.25;color:#EF4444;cursor:not-allowed;" disabled aria-label="No disponible"><i class="ti ti-trash" aria-hidden="true"></i></button></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="pg"><div class="pg-n on">1</div><div class="pg-n">2</div><div class="pg-n">3</div><div class="pg-n">···</div><div class="pg-n"><i class="ti ti-chevron-right" aria-hidden="true" style="font-size:11px;"></i></div></div>
+  </div>
+
+  <!-- MODAL -->
+  <div id="sa-modal" onclick="if(event.target===this)closeModal()">
+    <div class="modal-box" id="modal-content"></div>
+  </div>
+</div>
+
+<script>
+var SCREENS=['dashboard','calendario','agenda','recursos'];
+var vc=0;
+
+var CREAR='<div class="modal-hdr"><span class="modal-title">Crear horario</span><button class="modal-close" onclick="closeModal()" aria-label="Cerrar"><i class="ti ti-x"></i></button></div><div class="fr2"><div class="fg"><label class="fl">Ficha <span class="req">*</span></label><select class="fs"><option value="">Seleccionar...</option><option>2491234 — Prog. Web</option><option>2498765 — Dev. Software</option><option>2487321 — Análisis de Datos</option></select></div><div class="fg"><label class="fl">Ambiente <span class="req">*</span></label><select class="fs"><option value="">Seleccionar...</option><option>LAB-101 (cap. 30)</option><option>LAB-102 (cap. 25)</option><option>AULA-201 (cap. 40)</option><option>AULA-202 (cap. 35)</option></select></div></div><div class="fg"><label class="fl">Instructor <span class="req">*</span></label><select class="fs"><option value="">Seleccionar...</option><option>Juan Pérez</option><option>María López</option><option>Carlos Gómez</option><option>Ana Rodríguez</option></select></div><div class="fr2"><div class="fg"><label class="fl">Fecha <span class="req">*</span></label><input type="date" class="fi" value="2026-05-25"></div><div class="fg" style="display:grid;grid-template-columns:1fr 1fr;gap:7px;"><div><label class="fl">Inicio <span class="req">*</span></label><input type="time" class="fi" value="08:00"></div><div><label class="fl">Fin <span class="req">*</span></label><input type="time" class="fi" value="10:00"></div></div></div><div class="fg"><label class="fl">Tema</label><textarea class="fi" rows="2" placeholder="Contenido de la sesión (opcional)" style="resize:vertical;"></textarea></div><div class="vz v-idle" id="val-z"><i class="ti ti-info-circle" style="flex-shrink:0;margin-top:1px;font-size:14px;" aria-hidden="true"></i><span>Haz clic en <strong>Validar</strong> para verificar disponibilidad</span></div><div style="margin-bottom:10px;"><button class="btn" onclick="doValidate()" style="font-size:11px;"><i class="ti ti-shield-check" aria-hidden="true"></i> Validar disponibilidad</button></div><div class="modal-footer"><button class="btn" onclick="closeModal()">Cancelar</button><button class="btn btn-p" id="btn-save" disabled style="opacity:0.5;cursor:not-allowed;"><i class="ti ti-device-floppy" aria-hidden="true"></i> Guardar</button></div>';
+
+var DETALLE='<div class="modal-hdr"><span class="modal-title">Detalle del horario</span><button class="modal-close" onclick="closeModal()" aria-label="Cerrar"><i class="ti ti-x"></i></button></div><div style="margin-bottom:13px;"><span class="badge b-ok" style="margin-bottom:9px;display:inline-block;">Programado</span><div style="display:grid;gap:6px;font-size:12px;"><div style="display:flex;gap:8px;"><span style="font-weight:500;min-width:78px;color:#374151;">Ficha</span><span>2491234 — Programación Web</span></div><div style="display:flex;gap:8px;"><span style="font-weight:500;min-width:78px;color:#374151;">Ambiente</span><span>LAB-102 · Capacidad: 25</span></div><div style="display:flex;gap:8px;"><span style="font-weight:500;min-width:78px;color:#374151;">Instructor</span><span>María López</span></div><div style="display:flex;gap:8px;"><span style="font-weight:500;min-width:78px;color:#374151;">Fecha</span><span>Lunes 18 de mayo, 2026</span></div><div style="display:flex;gap:8px;"><span style="font-weight:500;min-width:78px;color:#374151;">Hora</span><span>14:00 – 16:00</span></div><div style="display:flex;gap:8px;"><span style="font-weight:500;min-width:78px;color:#374151;">Tema</span><span style="color:#6B7280;">Fundamentos de React.js</span></div></div></div><div style="border-top:0.5px solid #E5E7EB;padding-top:11px;margin-bottom:10px;"><div style="font-size:12px;font-weight:500;color:#374151;margin-bottom:7px;">Observaciones</div><div class="obs-card"><div style="display:flex;align-items:center;gap:6px;margin-bottom:4px;"><span class="badge b-cancel">Nota</span><span style="font-size:10px;color:#9CA3AF;">2026-05-18 · 10:15 AM</span></div><div style="font-size:11px;color:#9CA3AF;">Coordinadora: María López</div><div style="font-size:12px;color:#374151;margin-top:3px;">Se ajustó el horario por solicitud del instructor. Validado sin conflictos.</div></div><button class="btn btn-g" style="margin-top:6px;font-size:11px;padding:3px 8px;"><i class="ti ti-plus" aria-hidden="true"></i> Agregar observación</button></div><div class="modal-footer"><button class="btn" onclick="closeModal()"><i class="ti ti-edit" aria-hidden="true"></i> Editar</button><button class="btn" style="color:#EF4444;border-color:#EF4444;border-width:0.5px;" onclick="closeModal()"><i class="ti ti-ban" aria-hidden="true"></i> Cancelar horario</button></div>';
+
+function sTab(n){
+  SCREENS.forEach(function(s){
+    document.getElementById('screen-'+s).style.display=s===n?'':'none';
+    document.getElementById('tab-'+s).classList.toggle('active',s===n);
+  });
+}
+
+function openModal(t){
+  vc=0;
+  document.getElementById('modal-content').innerHTML=t==='detalle'?DETALLE:CREAR;
+  document.getElementById('sa-modal').classList.add('open');
+}
+
+function closeModal(){
+  document.getElementById('sa-modal').classList.remove('open');
+}
+
+function doValidate(){
+  var states=[
+    {cls:'v-ok',icon:'ti-check',msg:'Horario válido. No se detectaron conflictos.',ok:true},
+    {cls:'v-warn',icon:'ti-alert-triangle',msg:'Advertencia: La capacidad del ambiente (25) es menor que los aprendices de la ficha (28). Se puede guardar con advertencia.',ok:true},
+    {cls:'v-err',icon:'ti-x',msg:'Conflicto: El instructor Juan Pérez ya tiene un horario asignado en este rango horario.',ok:false}
+  ];
+  var s=states[vc%3]; vc++;
+  var z=document.getElementById('val-z');
+  z.className='vz '+s.cls;
+  z.innerHTML='<i class="ti '+s.icon+'" aria-hidden="true" style="flex-shrink:0;margin-top:1px;font-size:14px;"></i><span>'+s.msg+'</span>';
+  var b=document.getElementById('btn-save');
+  b.disabled=!s.ok;
+  b.style.opacity=s.ok?'1':'0.5';
+  b.style.cursor=s.ok?'pointer':'not-allowed';
+}
+
+sTab('dashboard');
+</script>

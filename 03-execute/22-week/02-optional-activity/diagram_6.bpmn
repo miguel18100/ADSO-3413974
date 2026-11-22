@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL"
+    xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+    xmlns:dc="http://www.omg.org/spec/DD/20100524/DC"
+    xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
+    id="Definitions_Aprendiz"
+    targetNamespace="http://bpmn.io/schema/bpmn">
+
+  <!-- PROCESO PRINCIPAL -->
+  <bpmn:process
+      id="Process_GestionHorariosAprendiz"
+      name="Gestión de Horarios - Aprendiz"
+      isExecutable="false">
+
+    <!-- INICIO -->
+    <bpmn:startEvent
+        id="StartEvent_Aprendiz"
+        name="Aprendiz inicia sesión">
+      <bpmn:outgoing>Flow_Start_Login</bpmn:outgoing>
+    </bpmn:startEvent>
+
+    <!-- LOGIN -->
+    <bpmn:userTask
+        id="Task_Ingresar"
+        name="Ingresar al sistema">
+      <bpmn:incoming>Flow_Start_Login</bpmn:incoming>
+      <bpmn:outgoing>Flow_Login_Validar</bpmn:outgoing>
+    </bpmn:userTask>
+
+    <!-- VALIDACIÓN -->
+    <bpmn:exclusiveGateway
+        id="Gateway_ValidarAcceso"
+        name="¿Credenciales válidas?">
+      <bpmn:incoming>Flow_Login_Validar</bpmn:incoming>
+      <bpmn:outgoing>Flow_AccesoCorrecto</bpmn:outgoing>
+      <bpmn:outgoing>Flow_AccesoIncorrecto</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+
+    <!-- MENSAJE DE ERROR -->
+    <bpmn:task
+        id="Task_ErrorLogin"
+        name="Mostrar error de inicio de sesión">
+      <bpmn:incoming>Flow_AccesoIncorrecto</bpmn:incoming>
+      <bpmn:outgoing>Flow_Error_Reintentar</bpmn:outgoing>
+    </bpmn:task>
+
+    <!-- REGRESO AL LOGIN -->
+    <bpmn:sequenceFlow
+        id="Flow_Error_Reintentar"
+        name="Reintentar"
+        sourceRef="Task_ErrorLogin"
+        targetRef="Task_Ingresar" />
+
+    <!-- INGRESO AL SISTEMA -->
+    <bpmn:task
+        id="Task_VerHorario"
+        name="Consultar mi horario">
+      <bpmn:incoming>Flow_AccesoCorrecto</bpmn:incoming>
+      <bpmn:outgoing>Flow_Horario_Decision</bpmn:outgoing>
+    </bpmn:task>
+
+    <!-- DECISIÓN DEL APRENDIZ -->
+    <bpmn:exclusiveGateway
+        id="Gateway_Consulta"
+        name="¿Qué desea consultar?">
+      <bpmn:incoming>Flow_Horario_Decision</bpmn:incoming>
+      <bpmn:outgoing>Flow_ConsultarDetalle</bpmn:outgoing>
+      <bpmn:outgoing>Flow_ConsultarNotificaciones</bpmn:outgoing>
+      <bpmn:outgoing>Flow_Finalizar</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+
+    <!-- DETALLE DE CLASE -->
+    <bpmn:userTask
+        id="Task_DetalleClase"
+        name="Ver detalle de clase">
+      <bpmn:incoming>Flow_ConsultarDetalle</bpmn:incoming>
+      <bpmn:outgoing>Flow_Detalle_Final</bpmn:outgoing>
+    </bpmn:userTask>
+
+    <!-- REGRESO AL HORARIO -->
+    <bpmn:sequenceFlow
+        id="Flow_Detalle_Final"
+        name="Volver a mi horario"
+        sourceRef="Task_DetalleClase"
+        targetRef="Gateway_Consulta" />
+
+    <!-- NOTIFICACIONES -->
+    <bpmn:userTask
+        id="Task_Notificaciones"
+        name="Consultar notificaciones">
+      <bpmn:incoming>Flow_ConsultarNotificaciones</bpmn:incoming>
+      <bpmn:outgoing>Flow_Notificaciones_Final</bpmn:outgoing>
+    </bpmn:userTask>
+
+    <!-- REGRESO AL HORARIO -->
+    <bpmn:sequenceFlow
+        id="Flow_Notificaciones_Final"
+        name="Volver a mi horario"
+        sourceRef="Task_Notificaciones"
+        targetRef="Gateway_Consulta" />
+
+    <!-- FIN -->
+    <bpmn:endEvent
+        id="EndEvent_Aprendiz"
+        name="Finalizar consulta">
+      <bpmn:incoming>Flow_Finalizar</bpmn:incoming>
+    </bpmn:endEvent>
+
+    <!-- FLUJOS -->
+    <bpmn:sequenceFlow
+        id="Flow_Start_Login"
+        sourceRef="StartEvent_Aprendiz"
+        targetRef="Task_Ingresar" />
+
+    <bpmn:sequenceFlow
+        id="Flow_Login_Validar"
+        sourceRef="Task_Ingresar"
+        targetRef="Gateway_ValidarAcceso" />
+
+    <bpmn:sequenceFlow
+        id="Flow_AccesoCorrecto"
+        name="Sí"
+        sourceRef="Gateway_ValidarAcceso"
+        targetRef="Task_VerHorario" />
+
+    <bpmn:sequenceFlow
+        id="Flow_AccesoIncorrecto"
+        name="No"
+        sourceRef="Gateway_ValidarAcceso"
+        targetRef="Task_ErrorLogin" />
+
+    <bpmn:sequenceFlow
+        id="Flow_Horario_Decision"
+        sourceRef="Task_VerHorario"
+        targetRef="Gateway_Consulta" />
+
+    <bpmn:sequenceFlow
+        id="Flow_ConsultarDetalle"
+        name="Ver detalle"
+        sourceRef="Gateway_Consulta"
+        targetRef="Task_DetalleClase" />
+
+    <bpmn:sequenceFlow
+        id="Flow_ConsultarNotificaciones"
+        name="Notificaciones"
+        sourceRef="Gateway_Consulta"
+        targetRef="Task_Notificaciones" />
+
+    <bpmn:sequenceFlow
+        id="Flow_Finalizar"
+        name="Salir"
+        sourceRef="Gateway_Consulta"
+        targetRef="EndEvent_Aprendiz" />
+
+  </bpmn:process>
+
+  <!-- DIAGRAMA VISUAL -->
+  <bpmndi:BPMNDiagram
+      id="BPMNDiagram_Aprendiz">
+
+    <bpmndi:BPMNPlane
+        id="BPMNPlane_Aprendiz"
+        bpmnElement="Process_GestionHorariosAprendiz">
+
+      <!-- INICIO -->
+      <bpmndi:BPMNShape
+          id="Shape_StartEvent_Aprendiz"
+          bpmnElement="StartEvent_Aprendiz">
+        <dc:Bounds x="100" y="200" width="36" height="36"/>
+      </bpmndi:BPMNShape>
+
+      <!-- LOGIN -->
+      <bpmndi:BPMNShape
+          id="Shape_Task_Ingresar"
+          bpmnElement="Task_Ingresar">
+        <dc:Bounds x="180" y="178" width="140" height="80"/>
+      </bpmndi:BPMNShape>
+
+      <!-- GATEWAY LOGIN -->
+      <bpmndi:BPMNShape
+          id="Shape_Gateway_ValidarAcceso"
+          bpmnElement="Gateway_ValidarAcceso"
+          isMarkerVisible="true">
+        <dc:Bounds x="365" y="193" width="50" height="50"/>
+      </bpmndi:BPMNShape>
+
+      <!-- ERROR -->
+      <bpmndi:BPMNShape
+          id="Shape_Task_ErrorLogin"
+          bpmnElement="Task_ErrorLogin">
+        <dc:Bounds x="320" y="330" width="170" height="80"/>
+      </bpmndi:BPMNShape>
+
+      <!-- MI HORARIO -->
+      <bpmndi:BPMNShape
+          id="Shape_Task_VerHorario"
+          bpmnElement="Task_VerHorario">
+        <dc:Bounds x="470" y="178" width="160" height="80"/>
+      </bpmndi:BPMNShape>
+
+      <!-- GATEWAY CONSULTA -->
+      <bpmndi:BPMNShape
+          id="Shape_Gateway_Consulta"
+          bpmnElement="Gateway_Consulta"
+          isMarkerVisible="true">
+        <dc:Bounds x="680" y="193" width="50" height="50"/>
+      </bpmndi:BPMNShape>
+
+      <!-- DETALLE -->
+      <bpmndi:BPMNShape
+          id="Shape_Task_DetalleClase"
+          bpmnElement="Task_DetalleClase">
+        <dc:Bounds x="800" y="90" width="170" height="80"/>
+      </bpmndi:BPMNShape>
+
+      <!-- NOTIFICACIONES -->
+      <bpmndi:BPMNShape
+          id="Shape_Task_Notificaciones"
+          bpmnElement="Task_Notificaciones">
+        <dc:Bounds x="800" y="250" width="170" height="80"/>
+      </bpmndi:BPMNShape>
+
+      <!-- FIN -->
+      <bpmndi:BPMNShape
+          id="Shape_EndEvent_Aprendiz"
+          bpmnElement="EndEvent_Aprendiz">
+        <dc:Bounds x="1050" y="200" width="36" height="36"/>
+      </bpmndi:BPMNShape>
+
+      <!-- FLUJO INICIO -> LOGIN -->
+      <bpmndi:BPMNEdge
+          id="Edge_Flow_Start_Login"
+          bpmnElement="Flow_Start_Login">
+        <di:waypoint x="136" y="218"/>
+        <di:waypoint x="180" y="218"/>
+      </bpmndi:BPMNEdge>
+
+      <!-- LOGIN -> GATEWAY -->
+      <bpmndi:BPMNEdge
+          id="Edge_Flow_Login_Validar"
+          bpmnElement="Flow_Login_Validar">
+        <di:waypoint x="320" y="218"/>
+        <di:waypoint x="365" y="218"/>
+      </bpmndi:BPMNEdge>
+
+      <!-- GATEWAY -> HORARIO -->
+      <bpmndi:BPMNEdge
+          id="Edge_Flow_AccesoCorrecto"
+          bpmnElement="Flow_AccesoCorrecto">
+        <di:waypoint x="415" y="218"/>
+        <di:waypoint x="470" y="218"/>
+      </bpmndi:BPMNEdge>
+
+      <!-- GATEWAY -> ERROR -->
+      <bpmndi:BPMNEdge
+          id="Edge_Flow_AccesoIncorrecto"
+          bpmnElement="Flow_AccesoIncorrecto">
+        <di:waypoint x="390" y="243"/>
+        <di:waypoint x="390" y="330"/>
+      </bpmndi:BPMNEdge>
+
+      <!-- ERROR -> LOGIN -->
+      <bpmndi:BPMNEdge
+          id="Edge_Flow_Error_Reintentar"
+          bpmnElement="Flow_Error_Reintentar">
+        <di:waypoint x="320" y="370"/>
+        <di:waypoint x="250" y="370"/>
+        <di:waypoint x="250" y="258"/>
+      </bpmndi:BPMNEdge>
+
+      <!-- HORARIO -> GATEWAY -->
+      <bpmndi:BPMNEdge
+          id="Edge_Flow_Horario_Decision"
+          bpmnElement="Flow_Horario_Decision">
+        <di:waypoint x="630" y="218"/>
+        <di:waypoint x="680" y="218"/>
+      </bpmndi:BPMNEdge>
+
+      <!-- GATEWAY -> DETALLE -->
+      <bpmndi:BPMNEdge
+          id="Edge_Flow_ConsultarDetalle"
+          bpmnElement="Flow_ConsultarDetalle">
+        <di:waypoint x="705" y="193"/>
+        <di:waypoint x="705" y="130"/>
+        <di:waypoint x="800" y="130"/>
+      </bpmndi:BPMNEdge>
+
+      <!-- DETALLE -> GATEWAY -->
+      <bpmndi:BPMNEdge
+          id="Edge_Flow_Detalle_Final"
+          bpmnElement="Flow_Detalle_Final">
+        <di:waypoint x="885" y="170"/>
+        <di:waypoint x="885" y="218"/>
+        <di:waypoint x="730" y="218"/>
+      </bpmndi:BPMNEdge>
+
+      <!-- GATEWAY -> NOTIFICACIONES -->
+      <bpmndi:BPMNEdge
+          id="Edge_Flow_ConsultarNotificaciones"
+          bpmnElement="Flow_ConsultarNotificaciones">
+        <di:waypoint x="705" y="243"/>
+        <di:waypoint x="705" y="290"/>
+        <di:waypoint x="800" y="290"/>
+      </bpmndi:BPMNEdge>
+
+      <!-- NOTIFICACIONES -> GATEWAY -->
+      <bpmndi:BPMNEdge
+          id="Edge_Flow_Notificaciones_Final"
+          bpmnElement="Flow_Notificaciones_Final">
+        <di:waypoint x="885" y="250"/>
+        <di:waypoint x="885" y="218"/>
+        <di:waypoint x="730" y="218"/>
+      </bpmndi:BPMNEdge>
+
+      <!-- GATEWAY -> FIN -->
+      <bpmndi:BPMNEdge
+          id="Edge_Flow_Finalizar"
+          bpmnElement="Flow_Finalizar">
+        <di:waypoint x="730" y="218"/>
+        <di:waypoint x="1050" y="218"/>
+      </bpmndi:BPMNEdge>
+
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+
+</bpmn:definitions>

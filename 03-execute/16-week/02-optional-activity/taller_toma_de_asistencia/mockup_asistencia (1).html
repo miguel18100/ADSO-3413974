@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Mockup — Sistema Inteligente de Toma de Asistencia</title>
+<style>
+  :root{
+    --sena-green:#39A900;
+    --sena-green-dark:#2C7E00;
+    --ink:#1C2B1F;
+    --paper:#F4F7F2;
+    --card:#FFFFFF;
+    --line:#DCE6D6;
+    --muted:#6B7A6E;
+    --amber:#C98A1B;
+    --red:#C1443A;
+    font-family:'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    padding:28px 16px 60px;
+  }
+  .wrap{max-width:1080px;margin:0 auto;}
+  header.page-head{
+    text-align:center;
+    margin-bottom:22px;
+  }
+  header.page-head h1{
+    font-size:22px;
+    margin:0 0 4px;
+    letter-spacing:.3px;
+  }
+  header.page-head p{
+    margin:0;
+    color:var(--muted);
+    font-size:13px;
+  }
+  nav.tabs{
+    display:flex;
+    gap:6px;
+    justify-content:center;
+    flex-wrap:wrap;
+    margin-bottom:26px;
+  }
+  nav.tabs button{
+    border:1px solid var(--line);
+    background:var(--card);
+    color:var(--ink);
+    padding:9px 16px;
+    border-radius:999px;
+    font-size:13px;
+    cursor:pointer;
+    transition:all .15s ease;
+  }
+  nav.tabs button:hover{border-color:var(--sena-green);}
+  nav.tabs button.active{
+    background:var(--sena-green);
+    border-color:var(--sena-green);
+    color:#fff;
+    font-weight:600;
+  }
+  .phone-frame{
+    max-width:390px;
+    margin:0 auto;
+    background:var(--card);
+    border-radius:26px;
+    border:1px solid var(--line);
+    box-shadow:0 18px 40px -20px rgba(28,43,31,.35);
+    overflow:hidden;
+  }
+  .status-bar{
+    height:26px;
+    background:var(--ink);
+  }
+  .app-bar{
+    background:var(--sena-green);
+    color:#fff;
+    padding:14px 18px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .app-bar .title{font-size:16px;font-weight:700;}
+  .app-bar .sub{font-size:11px;opacity:.85;}
+  .screen{
+    padding:18px;
+    min-height:520px;
+    display:none;
+    flex-direction:column;
+    gap:14px;
+  }
+  .screen.active{display:flex;}
+
+  /* --- Inicio --- */
+  .logo-badge{
+    width:64px;height:64px;border-radius:16px;
+    background:var(--sena-green);
+    display:flex;align-items:center;justify-content:center;
+    color:#fff;font-weight:800;font-size:20px;
+    margin:18px auto 4px;
+  }
+  .center-text{text-align:center;}
+  .center-text h2{font-size:17px;margin:6px 0 2px;}
+  .center-text p{font-size:12.5px;color:var(--muted);margin:0;}
+  .field{
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:11px 12px;
+    font-size:13px;
+    color:var(--muted);
+    background:#FBFCFA;
+  }
+  .btn{
+    background:var(--sena-green);
+    color:#fff;
+    border:none;
+    border-radius:10px;
+    padding:12px;
+    font-size:13.5px;
+    font-weight:700;
+    text-align:center;
+    cursor:pointer;
+    letter-spacing:.2px;
+  }
+  .btn.secondary{
+    background:transparent;
+    color:var(--sena-green-dark);
+    border:1px solid var(--sena-green);
+  }
+  .divider-label{
+    text-align:center;font-size:11px;color:var(--muted);
+    display:flex;align-items:center;gap:8px;
+  }
+  .divider-label::before,.divider-label::after{
+    content:"";flex:1;height:1px;background:var(--line);
+  }
+
+  /* --- Registro de asistencia --- */
+  .ficha-tag{
+    background:#EAF5E1;
+    color:var(--sena-green-dark);
+    font-size:11px;
+    font-weight:700;
+    padding:6px 10px;
+    border-radius:8px;
+    display:inline-block;
+    width:fit-content;
+  }
+  .search-row{
+    display:flex;align-items:center;gap:8px;
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:9px 12px;
+    font-size:12.5px;
+    color:var(--muted);
+    background:#FBFCFA;
+  }
+  .roster{display:flex;flex-direction:column;gap:8px;overflow-y:auto;}
+  .aprendiz-row{
+    display:flex;align-items:center;justify-content:space-between;
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:9px 11px;
+  }
+  .aprendiz-name{font-size:12.5px;font-weight:600;}
+  .aprendiz-name span{display:block;font-size:10.5px;color:var(--muted);font-weight:400;}
+  .estado-pills{display:flex;gap:4px;}
+  .pill{
+    width:26px;height:26px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    font-size:11px;font-weight:700;
+    border:1px solid var(--line);
+    color:var(--muted);
+  }
+  .pill.ok{background:var(--sena-green);color:#fff;border-color:var(--sena-green);}
+  .pill.tarde{background:var(--amber);color:#fff;border-color:var(--amber);}
+  .pill.ausente{background:var(--red);color:#fff;border-color:var(--red);}
+  .footnote{font-size:10.5px;color:var(--muted);text-align:center;}
+
+  /* --- QR --- */
+  .qr-box{
+    width:190px;height:190px;
+    margin:6px auto 0;
+    border-radius:16px;
+    background:
+      repeating-linear-gradient(0deg, var(--ink) 0 8px, transparent 8px 16px),
+      repeating-linear-gradient(90deg, var(--ink) 0 8px, transparent 8px 16px);
+    background-blend-mode:multiply;
+    background-color:#fff;
+    border:1px solid var(--line);
+    position:relative;
+  }
+  .qr-box::before, .qr-box::after{
+    content:"";position:absolute;width:34px;height:34px;
+    border:6px solid var(--ink);border-radius:6px;background:#fff;
+  }
+  .qr-box::before{top:12px;left:12px;}
+  .qr-box::after{top:12px;right:12px;}
+  .timer-chip{
+    align-self:center;
+    background:var(--ink);
+    color:#fff;
+    font-size:12px;
+    font-weight:700;
+    padding:6px 14px;
+    border-radius:999px;
+  }
+  .stat-row{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);}
+  .stat-row b{color:var(--ink);}
+
+  /* --- Consulta --- */
+  .filter-chip-row{display:flex;gap:6px;flex-wrap:wrap;}
+  .chip{
+    border:1px solid var(--line);
+    border-radius:999px;
+    padding:6px 11px;
+    font-size:11px;
+    color:var(--muted);
+  }
+  .chip.active{background:var(--sena-green);color:#fff;border-color:var(--sena-green);}
+  .history-row{
+    display:flex;justify-content:space-between;align-items:center;
+    border-bottom:1px dashed var(--line);
+    padding:8px 2px;
+    font-size:12px;
+  }
+  .history-row .date{color:var(--muted);font-size:10.5px;}
+  .badge{
+    font-size:10px;font-weight:700;padding:3px 8px;border-radius:6px;color:#fff;
+  }
+  .badge.ok{background:var(--sena-green);}
+  .badge.tarde{background:var(--amber);}
+  .badge.ausente{background:var(--red);}
+
+  /* --- Reportes --- */
+  .kpi-row{display:flex;gap:8px;}
+  .kpi{
+    flex:1;border:1px solid var(--line);border-radius:12px;
+    padding:10px;text-align:center;background:#FBFCFA;
+  }
+  .kpi b{display:block;font-size:18px;}
+  .kpi span{font-size:10px;color:var(--muted);}
+  .bars{
+    display:flex;align-items:flex-end;gap:8px;height:110px;
+    border-bottom:1px solid var(--line);
+    padding-top:8px;
+  }
+  .bar{flex:1;background:var(--sena-green);border-radius:5px 5px 0 0;position:relative;}
+  .bar.low{background:#BFE3A0;}
+  .bar-label{
+    display:flex;gap:8px;font-size:9.5px;color:var(--muted);
+  }
+  .bar-label span{flex:1;text-align:center;}
+  .export-row{display:flex;gap:8px;}
+  .export-row .btn{flex:1;font-size:12px;padding:10px;}
+
+  .caption{
+    text-align:center;font-size:12px;color:var(--muted);margin-top:14px;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="page-head">
+    <h1>Sistema Inteligente de Toma de Asistencia</h1>
+    <p>Mockup de pantallas · Ficha 3413974 — ADSO · SENA</p>
+  </header>
+
+  <nav class="tabs">
+    <button class="active" data-screen="inicio">1. Inicio</button>
+    <button data-screen="registro">2. Registro de asistencia</button>
+    <button data-screen="qr">3. Generación de QR (v2.0)</button>
+    <button data-screen="consulta">4. Consulta de asistencias</button>
+    <button data-screen="reportes">5. Reportes</button>
+  </nav>
+
+  <div class="phone-frame">
+    <div class="status-bar"></div>
+    <div class="app-bar">
+      <div>
+        <div class="title" id="appBarTitle">Inicio</div>
+        <div class="sub" id="appBarSub">Ficha 3413974 · ADSO</div>
+      </div>
+      <div style="font-size:11px;opacity:.85;">⚙</div>
+    </div>
+
+    <!-- 1. INICIO -->
+    <div class="screen active" id="inicio">
+      <div class="logo-badge">SA</div>
+      <div class="center-text">
+        <h2>Bienvenido, instructor</h2>
+        <p>Inicia sesión para gestionar la asistencia de tu ficha</p>
+      </div>
+      <div class="field">Correo institucional</div>
+      <div class="field">Contraseña</div>
+      <div class="btn">Iniciar sesión</div>
+      <div class="divider-label">ficha activa</div>
+      <div class="aprendiz-row">
+        <div class="aprendiz-name">3413974<span>Análisis y Desarrollo de Software</span></div>
+        <div class="chip active">Activa</div>
+      </div>
+      <div class="btn secondary">Ir a registro de asistencia →</div>
+    </div>
+
+    <!-- 2. REGISTRO -->
+    <div class="screen" id="registro">
+      <div class="ficha-tag">Ficha 3413974 · ADSO — 09 jul 2026</div>
+      <div class="search-row">🔍 Buscar aprendiz por nombre…</div>
+      <div class="roster">
+        <div class="aprendiz-row">
+          <div class="aprendiz-name">Laura Gómez<span>Documento 1 019 XXX 445</span></div>
+          <div class="estado-pills">
+            <div class="pill ok">A</div><div class="pill">T</div><div class="pill">F</div>
+          </div>
+        </div>
+        <div class="aprendiz-row">
+          <div class="aprendiz-name">Andrés Rojas<span>Documento 1 020 XXX 118</span></div>
+          <div class="estado-pills">
+            <div class="pill">A</div><div class="pill tarde">T</div><div class="pill">F</div>
+          </div>
+        </div>
+        <div class="aprendiz-row">
+          <div class="aprendiz-name">Camila Torres<span>Documento 1 021 XXX 902</span></div>
+          <div class="estado-pills">
+            <div class="pill">A</div><div class="pill">T</div><div class="pill ausente">F</div>
+          </div>
+        </div>
+        <div class="aprendiz-row">
+          <div class="aprendiz-name">Julián Pérez<span>Documento 1 022 XXX 337</span></div>
+          <div class="estado-pills">
+            <div class="pill ok">A</div><div class="pill">T</div><div class="pill">F</div>
+          </div>
+        </div>
+      </div>
+      <div class="footnote">A = Asistió · T = Tarde · F = Ausente</div>
+      <div class="btn">Guardar registro (RF02 · RF03 · RF04)</div>
+    </div>
+
+    <!-- 3. QR -->
+    <div class="screen" id="qr">
+      <div class="center-text">
+        <h2>Código QR dinámico</h2>
+        <p>Los aprendices escanean para registrar su asistencia</p>
+      </div>
+      <div class="qr-box"></div>
+      <div class="timer-chip">Nuevo código en 00:20</div>
+      <div class="stat-row"><span>Sesión activa</span><b>09:47 restantes</b></div>
+      <div class="stat-row"><span>Registros recibidos</span><b>18 / 24</b></div>
+      <div class="btn secondary">Cerrar sesión de asistencia</div>
+      <div class="footnote">El QR cambia cada 20 s · la sesión dura 10 min y expira automáticamente</div>
+    </div>
+
+    <!-- 4. CONSULTA -->
+    <div class="screen" id="consulta">
+      <div class="search-row">🔍 Buscar por aprendiz, fecha u hora…</div>
+      <div class="filter-chip-row">
+        <div class="chip active">Todos</div>
+        <div class="chip">Asistió</div>
+        <div class="chip">Tarde</div>
+        <div class="chip">Ausente</div>
+      </div>
+      <div>
+        <div class="history-row">
+          <span>Laura Gómez<br><span class="date">09 jul · 6:58 a. m.</span></span>
+          <span class="badge ok">Asistió</span>
+        </div>
+        <div class="history-row">
+          <span>Andrés Rojas<br><span class="date">09 jul · 7:11 a. m.</span></span>
+          <span class="badge tarde">Tarde</span>
+        </div>
+        <div class="history-row">
+          <span>Camila Torres<br><span class="date">09 jul · —</span></span>
+          <span class="badge ausente">Ausente</span>
+        </div>
+        <div class="history-row">
+          <span>Julián Pérez<br><span class="date">08 jul · 6:55 a. m.</span></span>
+          <span class="badge ok">Asistió</span>
+        </div>
+      </div>
+      <div class="btn secondary">Editar registro seleccionado (RF06)</div>
+    </div>
+
+    <!-- 5. REPORTES -->
+    <div class="screen" id="reportes">
+      <div class="center-text"><h2>Reporte de asistencia</h2><p>Ficha 3413974 · corte al 09 jul 2026</p></div>
+      <div class="kpi-row">
+        <div class="kpi"><b>92%</b><span>Asistencia</span></div>
+        <div class="kpi"><b>5%</b><span>Tardanzas</span></div>
+        <div class="kpi"><b>3%</b><span>Ausencias</span></div>
+      </div>
+      <div class="bars">
+        <div class="bar" style="height:88%"></div>
+        <div class="bar" style="height:94%"></div>
+        <div class="bar low" style="height:60%"></div>
+        <div class="bar" style="height:97%"></div>
+        <div class="bar" style="height:90%"></div>
+      </div>
+      <div class="bar-label"><span>Lun</span><span>Mar</span><span>Mié</span><span>Jue</span><span>Vie</span></div>
+      <div class="export-row">
+        <div class="btn secondary">Exportar PDF</div>
+        <div class="btn secondary">Exportar Excel</div>
+      </div>
+      <div class="footnote">Exportación PDF/Excel planteada como mejora — Versión 2.0</div>
+    </div>
+
+  </div>
+
+  <p class="caption">Mockup de baja fidelidad — referencia visual para validar el flujo con el instructor antes de programar</p>
+</div>
+
+<script>
+  const buttons = document.querySelectorAll('nav.tabs button');
+  const screens = document.querySelectorAll('.screen');
+  const titles = {
+    inicio: ['Inicio', 'Ficha 3413974 · ADSO'],
+    registro: ['Registro de asistencia', 'Ficha 3413974 · 09 jul 2026'],
+    qr: ['Generación de QR', 'Sesión activa'],
+    consulta: ['Consulta de asistencias', 'Historial de la ficha'],
+    reportes: ['Reportes', 'Ficha 3413974']
+  };
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      buttons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const target = btn.dataset.screen;
+      screens.forEach(s => s.classList.toggle('active', s.id === target));
+      document.getElementById('appBarTitle').textContent = titles[target][0];
+      document.getElementById('appBarSub').textContent = titles[target][1];
+    });
+  });
+</script>
+</body>
+</html>
