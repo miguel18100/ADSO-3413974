@@ -5,7 +5,7 @@
 - **Producto:** G1-P1 — Modelo conceptual.
 - **Caso de estudio:** Sistema de Horarios SENA (MVP).
 - **Programa:** Análisis y Desarrollo de Software (ADSO).
-- **Aprendiz/equipo:** Completar con los datos reales del equipo.
+- **Juan Miguel Muñoz Castañeda** Completar con los datos reales del equipo.
 - **Fecha de elaboración:** 21 de noviembre de 2026.
 
 ## Objetivo
