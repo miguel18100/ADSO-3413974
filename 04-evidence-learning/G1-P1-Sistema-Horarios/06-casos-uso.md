@@ -8,6 +8,8 @@
 - **Aprendiz:** beneficiario asociado a una ficha; no se gestiona individualmente en el MVP.
 
 ## Casos de uso
+
+> **Diferenciación de consultas:** UC-01 representa la visualización general de la programación, como una vista global o listado inicial. UC-10 representa la búsqueda específica mediante filtros (fecha, ficha, instructor o ambiente). Esta distinción es conceptual y deberá confirmarse durante la validación funcional.
 | ID | Caso de uso | Actor(es) | Objetivo |
 |---|---|---|---|
 | UC-01 | Consultar programación | Coordinador, Consultor | Visualizar horarios |

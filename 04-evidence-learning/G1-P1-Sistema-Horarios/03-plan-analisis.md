@@ -11,4 +11,4 @@
 | A7 | Revisar y validar artefactos conceptuales | Equipo + stakeholder | 1 día | Acta/lista de ajustes | Hallazgos y cambios registrados |
 | A8 | Consolidar entrega y control de calidad | Responsable de entrega | 1 día | Paquete P1 + README | Lista de chequeo cumplida |
 
-> Las duraciones y responsables son una planificación propuesta, no evidencia de actividades ya ejecutadas. Ajustar fechas y responsables reales.
+> **Nota de planificación:** las duraciones, responsables y criterios de cierre corresponden a una propuesta de organización del análisis. No representan por sí mismos actividades ejecutadas ni validaciones realizadas con stakeholders. Las fechas de ejecución y los ajustes derivados de la validación deberán registrarse conforme al trabajo real.

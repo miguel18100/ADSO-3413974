@@ -21,7 +21,7 @@
 
 ## Pendientes antes de entregar
 
-- [ ] Completar los datos reales de identificación y del equipo.
+- [x] Registrar la identificación del aprendiz en el README de entrega.
 - [ ] Confirmar actores, reglas y requisitos con stakeholders, cuando sea posible.
 - [ ] Confirmar permisos y roles.
 - [ ] Confirmar recurrencia y granularidad de horarios.

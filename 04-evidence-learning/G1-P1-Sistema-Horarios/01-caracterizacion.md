@@ -11,7 +11,7 @@
 |---|---|
 | Tipo de proyecto | Aplicación web de apoyo a la programación de formación |
 | Complejidad | Media: múltiples entidades relacionadas y reglas de conflicto |
-| Equipo | Equipo de proyecto SENA ADSO; completar integrantes reales en README |
+| Responsable de la evidencia | Juan Miguel Muñoz Castañeda (aprendiz ADSO) |
 | Estabilidad de requisitos | Parcial. El alcance MVP está definido; reglas de recurrencia, roles, importación y datos institucionales requieren confirmación |
 | Disponibilidad del cliente/usuario | Pendiente de confirmar con stakeholders; se requiere validar ejemplos anonimizados y reglas operativas |
 | Fuente de entendimiento | Discovery y alcance MVP del repositorio; no se analizó físicamente el Excel |
