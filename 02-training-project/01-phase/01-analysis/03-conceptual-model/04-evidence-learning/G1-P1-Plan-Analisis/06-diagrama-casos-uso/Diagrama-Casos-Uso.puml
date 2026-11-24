@@ -1,26 +1,27 @@
-@startuml
-title Sistema de Registro de Asistencia SENA\nDiagrama de Casos de Uso - G1-P1
+﻿@startuml
+title Sistema Gestor de Ambulancias (SGA)\nDiagrama de Casos de Uso - G1-P1
 
 left to right direction
-
 skinparam shadowing false
 skinparam packageStyle rectangle
 skinparam actorStyle awesome
 skinparam linetype ortho
-skinparam nodesep 35
-skinparam ranksep 45
+skinparam nodesep 20
+skinparam ranksep 35
+skinparam ArrowColor #566573
 skinparam usecase {
   BackgroundColor White
   BorderColor #2E4053
 }
-skinparam ArrowColor #566573
 
-actor Instructor
-actor Aprendiz
+actor Administrador as Admin
+actor "Coordinador Operativo" as Coordinador
+actor "Personal Operativo\n(TES/Paramédico)" as Operativo
+actor "Director / Gerencia" as Director
 
-rectangle "Sistema de Registro de Asistencia SENA" {
+rectangle "Sistema Gestor de Ambulancias (SGA)" {
 
-  package "Administracion" {
+  package "Administración y acceso" {
     (CU-01 Iniciar sesión) as CU01
     (CU-02 Cerrar sesión) as CU02
     (CU-03 Consultar dashboard) as CU03
@@ -28,81 +29,102 @@ rectangle "Sistema de Registro de Asistencia SENA" {
     (CU-05 Configurar sistema) as CU05
   }
 
-  package "Gestion de sesiones" {
-    (CU-06 Crear sesión de asistencia) as CU06
-    (CU-07 Generar y visualizar código QR) as CU07
-    (CU-08 Regenerar código de sesión) as CU08
-    (CU-09 Finalizar sesión) as CU09
+  package "Gestión de recursos" {
+    (CU-06 Gestionar ambulancias) as CU06
+    (CU-07 Gestionar personal operativo) as CU07
+    (CU-08 Consultar disponibilidad de recursos) as CU08
   }
 
-  package "Registro de asistencia" {
-    (CU-10 Escanear código QR) as CU10
-    (CU-11 Ingresar código manual) as CU11
-    (CU-12 Identificar aprendiz) as CU12
-    (CU-13 Validar sesión y aprendiz) as CU13
-    (CU-14 Registrar asistencia) as CU14
-    (CU-15 Confirmar registro de asistencia) as CU15
+  package "Gestión de solicitudes" {
+    (CU-09 Registrar solicitud de servicio) as CU09
+    (CU-10 Consultar solicitudes) as CU10
+    (CU-11 Clasificar solicitud) as CU11
+    (CU-12 Asignar ambulancia y personal) as CU12
+    (CU-13 Consultar asignaciones) as CU13
   }
 
-  package "Consultas y reportes" {
-    (CU-16 Consultar historial de sesiones) as CU16
-    (CU-17 Consultar historial individual) as CU17
-    (CU-18 Consultar reportes de asistencia) as CU18
+  package "Seguimiento operativo" {
+    (CU-14 Actualizar estado del servicio) as CU14
+    (CU-15 Registrar novedad del servicio) as CU15
+    (CU-16 Consultar historial de servicios) as CU16
+  }
+
+  package "Informes y gestión" {
+    (CU-17 Generar reportes operativos) as CU17
+    (CU-18 Consultar indicadores de gestión) as CU18
   }
 }
 
-Instructor --> CU01
-Instructor --> CU02
-Instructor --> CU03
-Instructor --> CU04
-Instructor --> CU05
-Instructor --> CU06
-Instructor --> CU07
-Instructor --> CU08
-Instructor --> CU09
-Instructor --> CU16
-Instructor --> CU18
+Admin --> CU01
+Admin --> CU03
+Admin --> CU04
+Admin --> CU05
+Admin --> CU06
+Admin --> CU07
+Admin --> CU08
 
-Aprendiz --> CU10
-Aprendiz --> CU11
-Aprendiz --> CU12
-Aprendiz --> CU14
-Aprendiz --> CU15
-Aprendiz --> CU17
+Coordinador --> CU01
+Coordinador --> CU03
+Coordinador --> CU08
+Coordinador --> CU09
+Coordinador --> CU10
+Coordinador --> CU11
+Coordinador --> CU12
+Coordinador --> CU13
+Coordinador --> CU16
+Coordinador --> CU17
 
-CU14 ..> CU13 : <<include>>
-CU14 ..> CU12 : <<include>>
+Operativo --> CU01
+Operativo --> CU13
+Operativo --> CU14
+Operativo --> CU15
+Operativo --> CU16
 
-CU08 ..> CU07 : <<extend>>
+Director --> CU01
+Director --> CU03
+Director --> CU16
+Director --> CU17
+Director --> CU18
 
-note right of CU10
-  Alternativa de identificación
-  mediante lectura QR.
+CU12 ..> CU08 : <<include>>
+CU12 ..> CU11 : <<include>>
+CU14 ..> CU13 : <<extend>>
+CU15 ..> CU14 : <<extend>>
+
+note bottom of CU09
+Permite registrar la información
+necesaria para una solicitud
+de transporte asistencial.
 end note
 
-note right of CU11
-  Alternativa de identificación
-  mediante ingreso manual.
+note bottom of CU11
+Clasificación según los criterios
+definidos para el servicio.
 end note
 
-note right of CU13
-  Valida la sesión y la existencia
-  del aprendiz antes del registro.
+note bottom of CU12
+La asignación considera la disponibilidad
+de ambulancias y personal operativo.
 end note
 
-note right of CU14
-  Impide registros duplicados
-  por sesión y aprendiz.
+note bottom of CU14
+Permite actualizar el estado operativo
+del servicio durante su ejecución.
 end note
 
-note right of CU16
-  Incluye filtros y consulta
-  de detalles de sesiones.
+note bottom of CU15
+Permite documentar novedades
+relacionadas con el servicio.
 end note
 
-note right of CU18
-  Los filtros y cálculos se realizan
-  con la información disponible.
+note bottom of CU17
+Los reportes se generan a partir
+de la información disponible.
+end note
+
+note bottom of CU18
+Indicadores de gestión operativa
+con información consolidada.
 end note
 
 @enduml
