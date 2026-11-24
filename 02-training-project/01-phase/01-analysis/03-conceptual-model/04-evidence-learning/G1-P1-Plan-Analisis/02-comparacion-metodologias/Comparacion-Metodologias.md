@@ -1,121 +1,78 @@
-﻿# Comparación de metodologías de desarrollo de software
+# Comparación de metodologías de desarrollo de software
 
-## 1. Introducción
+## 1. Propósito
 
-Para el desarrollo del Sistema Gestor de Ambulancias (SGA), se realiza una comparación de diferentes metodologías de desarrollo de software con el propósito de identificar el enfoque que mejor se adapte a las características del proyecto, su alcance preliminar, la necesidad de definir requisitos, la organización del equipo y la posibilidad de realizar entregas incrementales.
+Comparar RUP, Scrum, XP y RAD respecto de las características concretas del Sistema Gestor de Ambulancias (SGA), para seleccionar un marco de trabajo coherente con el tipo de solución, el tamaño del equipo, la estabilidad de los requisitos y la disponibilidad de los usuarios clave.
 
-Las metodologías evaluadas son RUP, Scrum, XP y RAD.
+## 2. Características del proyecto utilizadas como criterios
 
-## 2. Metodologías evaluadas
+| Característica del SGA | Dato de referencia | Implicación para la metodología |
+|---|---|---|
+| Tipo de solución | Aplicación web multiusuario, modular y orientada a procesos operativos de ambulancias, asignaciones y seguimiento. | Se requiere integrar funcionalidades y revisar incrementos que puedan validarse por módulos. |
+| Tamaño del equipo | 5 integrantes: liderazgo/Scrum Master, 2 perfiles backend, 1 frontend y 1 QA/Tester. | Conviene una organización ligera que distribuya responsabilidades sin introducir una carga de gestión desproporcionada. |
+| Estabilidad de requisitos | Media: existe una línea base funcional, pero reglas de asignación, prioridad y operación TAB/TAM requieren refinamiento. | Se necesita admitir cambios controlados y repriorización conforme se aclaren reglas de negocio. |
+| Disponibilidad de cliente/usuarios | No se acredita disponibilidad continua en las fuentes; se asume disponibilidad periódica mediante sesiones programadas. | Se requieren revisiones planificadas y criterios de aceptación claros; los enfoques que exigen presencia diaria del cliente tienen mayor riesgo. |
 
-### 2.1 RUP (Rational Unified Process)
+**Nota de alcance:** la disponibilidad de usuarios es un supuesto de planificación y no un hecho verificado. Los instrumentos de encuesta, entrevista y observación están diseñados, pero no se encontraron respuestas diligenciadas en la fuente revisada.
 
-RUP es una metodología de desarrollo de software que organiza el proceso en fases y disciplinas, haciendo énfasis en la gestión de requisitos, el diseño arquitectónico, la implementación, las pruebas y la documentación.
+## 3. Metodologías evaluadas
 
-**Ventajas:**
-- Permite organizar el proyecto por fases.
-- Promueve la documentación y trazabilidad de requisitos.
-- Facilita la identificación y gestión de riesgos.
-- Favorece el desarrollo iterativo.
+### 3.1 RUP (Rational Unified Process)
 
-**Desventajas:**
-- Puede generar una carga documental considerable.
-- Requiere planificación y organización rigurosas.
-- Puede resultar complejo para equipos pequeños.
+RUP organiza el desarrollo por fases e iteraciones y da importancia a la arquitectura, la gestión de requisitos, los riesgos y la documentación.
 
-**Aplicabilidad al SGA:**
+- **Fortalezas para el SGA:** trazabilidad, control documental, arquitectura y gestión de riesgos en un sistema con procesos operativos importantes.
+- **Limitaciones para el contexto:** su aplicación completa puede incrementar la carga de planificación y documentación para un equipo de cinco integrantes.
+- **Ajuste a las características:** apropiado para la complejidad del sistema, aunque menos ligero para iteraciones frecuentes y validación periódica.
 
-RUP podría contribuir a organizar la definición de requisitos, arquitectura, diseño y pruebas del SGA, especialmente por la importancia de documentar los procesos de gestión de ambulancias, perfiles de usuario y reglas operativas.
+### 3.2 Scrum
 
-### 2.2 Scrum
+Scrum organiza el trabajo en iteraciones con objetivos, backlog priorizado, revisión de incrementos y adaptación del plan.
 
-Scrum es un marco de trabajo ágil que permite organizar el desarrollo mediante ciclos de trabajo denominados Sprint, priorización de funcionalidades, seguimiento periódico y revisión de incrementos.
+- **Fortalezas para el SGA:** permite priorizar módulos críticos (solicitudes, disponibilidad, asignación, seguimiento) y revisar cada incremento con los usuarios cuando estén disponibles.
+- **Limitaciones para el contexto:** necesita un responsable de producto o representante que responda dudas y participe en revisiones programadas.
+- **Ajuste a las características:** encaja con un equipo de cinco personas, requisitos de estabilidad media y entregas funcionales por módulo; la participación periódica se puede organizar mediante sesiones de revisión.
 
-**Ventajas:**
-- Permite desarrollar funcionalidades de forma incremental.
-- Facilita la adaptación a cambios en los requisitos.
-- Promueve la comunicación y colaboración del equipo.
-- Permite revisar avances periódicamente.
-- Facilita la priorización de funcionalidades.
+### 3.3 XP (Extreme Programming)
 
-**Desventajas:**
-- Requiere compromiso y comunicación constante.
-- La falta de organización puede afectar el cumplimiento de los Sprint.
-- Requiere una adecuada priorización y gestión del backlog.
+XP enfatiza prácticas técnicas como pruebas frecuentes, integración continua, refactorización y retroalimentación cercana.
 
-**Aplicabilidad al SGA:**
+- **Fortalezas para el SGA:** útil para elevar calidad del código, probar reglas de asignación y reducir defectos en funcionalidades críticas.
+- **Limitaciones para el contexto:** exige disciplina técnica y retroalimentación frecuente; la disponibilidad no continua del cliente puede dificultar algunas prácticas.
+- **Ajuste a las características:** puede complementar el desarrollo, pero no se selecciona como marco organizativo principal de la fase de análisis.
 
-Scrum permite organizar el desarrollo del SGA por módulos, como autenticación, gestión de ambulancias TAB/TAM, personal asistencial, solicitudes de emergencia, asignación y reportes, facilitando la revisión progresiva de los avances.
+### 3.4 RAD (Rapid Application Development)
 
-### 2.3 XP (Extreme Programming)
+RAD prioriza prototipos rápidos y ciclos de retroalimentación del usuario.
 
-XP es una metodología ágil enfocada en la calidad del software, la comunicación, la retroalimentación frecuente y las prácticas técnicas de desarrollo.
+- **Fortalezas para el SGA:** permite validar temprano pantallas de despacho, solicitudes, ambulancias y seguimiento.
+- **Limitaciones para el contexto:** depende de la participación frecuente de usuarios y puede ser insuficiente como único esquema para controlar requisitos y trazabilidad.
+- **Ajuste a las características:** es útil como técnica de prototipado, pero menos adecuado como marco principal mientras la disponibilidad del cliente no esté confirmada.
 
-**Ventajas:**
-- Promueve la calidad del código.
-- Favorece la integración frecuente.
-- Fomenta la retroalimentación continua.
-- Impulsa la realización de pruebas.
-- Facilita la adaptación a cambios.
+## 4. Comparación ponderada respecto del SGA
 
-**Desventajas:**
-- Exige disciplina técnica.
-- Puede requerir disponibilidad frecuente de usuarios o responsables.
-- Algunas prácticas pueden ser difíciles de aplicar cuando el equipo no dispone de experiencia suficiente.
+Escala: 1 = ajuste bajo; 2 = limitado; 3 = moderado; 4 = alto; 5 = muy alto. Los pesos priorizan el tipo de solución y la necesidad de adaptación sin perder de vista el tamaño del equipo y la disponibilidad de usuarios. La puntuación es una herramienta de decisión del proyecto, no una medida universal de las metodologías. **Fórmula aplicada:** resultado = suma de (peso del criterio × calificación de la metodología / 5). Por ejemplo, para Scrum: (30×5/5) + (20×5/5) + (25×4/5) + (25×3/5) = 85 puntos.
 
-**Aplicabilidad al SGA:**
+| Criterio vinculado a la caracterización | Peso | RUP | Scrum | XP | RAD |
+|---|---:|---:|---:|---:|---:|
+| Adecuación al tipo de solución web, modular y operativa | 30 % | 4 | 5 | 4 | 4 |
+| Adecuación a equipo de 5 integrantes | 20 % | 3 | 5 | 3 | 4 |
+| Manejo de requisitos con estabilidad media | 25 % | 3 | 4 | 4 | 3 |
+| Viabilidad con disponibilidad periódica del cliente | 25 % | 3 | 3 | 2 | 2 |
+| **Resultado ponderado** | **100 %** | **66/100** | **85/100** | **66/100** | **65/100** |
 
-XP podría apoyar el desarrollo del SGA mediante pruebas frecuentes, revisión del código, integración continua y validación de funcionalidades relacionadas con las solicitudes, asignaciones y seguimiento de ambulancias.
+### 4.1 Justificación de las puntuaciones
 
-### 2.4 RAD (Rapid Application Development)
-
-RAD es un enfoque de desarrollo que prioriza la construcción rápida de prototipos, la retroalimentación del usuario y la evolución de la solución mediante iteraciones.
-
-**Ventajas:**
-- Favorece la construcción rápida de prototipos.
-- Permite obtener retroalimentación temprana.
-- Facilita la visualización de interfaces.
-- Puede reducir el tiempo de desarrollo de ciertos componentes.
-
-**Desventajas:**
-- Requiere participación activa de los usuarios.
-- Puede generar dificultades si los requisitos son complejos.
-- No siempre es adecuado para proyectos que requieren planificación arquitectónica detallada.
-- La rapidez puede afectar la calidad si no se realizan controles adecuados.
-
-**Aplicabilidad al SGA:**
-
-RAD podría utilizarse para prototipar interfaces del sistema, como el panel de coordinación, formularios de solicitudes de emergencia, gestión de ambulancias y vistas de seguimiento, permitiendo validar las interfaces antes de su implementación definitiva.
-
-## 3. Comparación de metodologías
-
-| Criterio | RUP | Scrum | XP | RAD |
-|---|---|---|---|---|
-| Organización del proyecto | Por fases e iteraciones | Por Sprint | Iteraciones cortas | Prototipos e iteraciones rápidas |
-| Gestión de requisitos | Formal y documentada | Backlog priorizado | Requisitos orientados a historias y cambios | Requisitos y retroalimentación |
-| Documentación | Alta | Moderada y adaptable | Generalmente ligera | Variable |
-| Adaptación a cambios | Media-alta | Alta | Alta | Alta |
-| Participación del usuario | Durante las fases y revisiones | Frecuente | Muy frecuente | Muy frecuente |
-| Control de calidad | Disciplinas y pruebas | Revisión de incrementos | Prácticas técnicas intensivas | Validación de prototipos |
-| Adecuación a equipos pequeños | Media | Alta | Alta, con disciplina técnica | Alta, dependiendo del alcance |
-| Aplicabilidad al SGA | Alta | Alta | Alta | Media-alta |
-
-## 4. Análisis comparativo
-
-RUP proporciona una estructura organizada para la gestión documental, los requisitos y la arquitectura del sistema. Sin embargo, su aplicación completa puede representar una carga considerable para un equipo de desarrollo pequeño.
-
-Scrum ofrece flexibilidad para organizar el desarrollo del SGA en incrementos funcionales y permite priorizar módulos de acuerdo con las necesidades identificadas. Su enfoque facilita el seguimiento del trabajo y la revisión de resultados.
-
-XP se destaca por sus prácticas técnicas orientadas a la calidad, especialmente las pruebas, integración frecuente y revisión del código. Estas prácticas podrían complementar el proceso de desarrollo.
-
-RAD permite construir prototipos de manera rápida y facilita la validación de interfaces, aunque no necesariamente ofrece por sí solo toda la estructura de planificación y seguimiento requerida para el proyecto.
+- **RUP:** alto ajuste a la complejidad y documentación; ajuste moderado por su mayor carga y por la necesidad de planificación formal.
+- **Scrum:** alto ajuste al tamaño de equipo y a la priorización modular; requiere gestionar la disponibilidad periódica del cliente mediante revisiones programadas y un representante definido.
+- **XP:** sus prácticas técnicas son valiosas, pero la retroalimentación cercana y disciplina de equipo pueden ser más exigentes en este contexto.
+- **RAD:** favorece prototipos, aunque su mayor dependencia de la participación frecuente del usuario lo hace menos conveniente como marco principal con la disponibilidad aún no confirmada.
 
 ## 5. Conclusión
 
-A partir de la comparación realizada, Scrum presenta características favorables para la organización del desarrollo del Sistema Gestor de Ambulancias (SGA), debido a su enfoque incremental, flexibilidad, organización del trabajo y posibilidad de priorizar funcionalidades.
-
-La selección definitiva de la metodología se documenta en el archivo de selección y justificación de metodología, correspondiente al siguiente componente del plan de análisis.
+Scrum obtiene la mayor puntuación ponderada (85/100) y se considera la opción principal para organizar el análisis y el desarrollo incremental del SGA. RUP aporta prácticas documentales útiles; XP aporta prácticas de calidad técnica; RAD aporta prototipado rápido. Estas prácticas pueden considerarse complementarias, pero Scrum se mantiene como el marco organizativo seleccionado para evitar una combinación metodológica sin reglas claras.
 
 ---
 
-Documento correspondiente a la evidencia G1-P1 – Plan de análisis.
+**Evidencia:** G1-P1 - Plan de análisis.
+**Proyecto:** Sistema Gestor de Ambulancias (SGA).
