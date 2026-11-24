@@ -1,113 +1,61 @@
-﻿# Selección y justificación de la metodología de desarrollo
+# Selección y justificación de la metodología de desarrollo
 
-## 1. Introducción
+## 1. Metodología seleccionada
 
-Con base en la comparación realizada entre las metodologías RUP (Rational Unified Process), Scrum, XP (Extreme Programming) y RAD (Rapid Application Development), se desarrolla el proceso de selección de la metodología que mejor se adapta a las características, necesidades y objetivos del proyecto **Sistema Gestor de Ambulancias (SGA)**.
+**Marco de trabajo principal: Scrum.**
 
-La selección tiene como propósito establecer un marco de trabajo que facilite la organización de las actividades de análisis, la identificación de requisitos, la definición de funcionalidades, la construcción de artefactos conceptuales y la planificación del trabajo del equipo de desarrollo.
+Se selecciona Scrum para organizar el trabajo del Sistema Gestor de Ambulancias (SGA) mediante objetivos de iteración, un backlog priorizado, responsabilidades definidas y revisiones de incrementos.
 
-## 2. Metodología seleccionada
+## 2. Evidencia que sustenta la selección
 
-**Metodología seleccionada: Scrum.**
+La comparación de RUP, Scrum, XP y RAD utilizó cuatro características del SGA: tipo de solución web y modular, equipo de cinco integrantes, estabilidad media de los requisitos y disponibilidad del cliente no acreditada como continua. Con una escala de ajuste de 1 a 5 y ponderaciones explícitas, Scrum obtuvo **85/100**, por encima de RUP (66/100), XP (66/100) y RAD (65/100).
 
-Se selecciona Scrum como marco de trabajo principal para orientar la organización y el desarrollo progresivo del proyecto Sistema Gestor de Ambulancias (SGA).
+La puntuación no significa que Scrum sea universalmente superior; expresa su mejor ajuste relativo a las condiciones documentadas para este proyecto.
 
-Scrum permite organizar el trabajo mediante ciclos iterativos, priorizar actividades, establecer objetivos de trabajo, revisar avances y adaptar la planificación cuando se identifican nuevas necesidades o ajustes en los requisitos.
+## 3. Justificación
 
-La selección se fundamenta en la naturaleza modular del sistema, la necesidad de analizar sus funcionalidades, la posibilidad de distribuir responsabilidades entre los integrantes del equipo y la conveniencia de producir entregables verificables de manera progresiva.
+### 3.1 Organización de un equipo pequeño
 
-## 3. Justificación de la selección
+El proyecto identifica cinco perfiles de desarrollo: liderazgo/Scrum Master, dos perfiles backend, un perfil frontend y un perfil QA/Tester. Esta distribución describe los perfiles del proyecto, pero no acredita por sí sola que estén asignadas todas las responsabilidades de Scrum. La documentación consultada no identifica quién ejercerá como Product Owner. Esta responsabilidad deberá asignarse explícitamente a una persona con capacidad para ordenar el Product Backlog y comunicar el Product Goal antes de iniciar los Sprints. Scrum permite organizar el trabajo entre estas responsabilidades mediante objetivos de iteración y un backlog compartido, sin exigir una estructura documental tan pesada como la aplicación completa de RUP.
 
-Scrum se considera una alternativa adecuada para el proyecto por las siguientes razones:
+### 3.2 Desarrollo modular e incremental
 
-### 3.1. Desarrollo progresivo
+El SGA comprende funcionalidades diferenciadas que pueden priorizarse y revisarse por incrementos: autenticación, gestión de ambulancias TAB/TAM, gestión del personal, solicitudes, disponibilidad, asignación, seguimiento, novedades y reportes. Esta estructura permite entregar y revisar primero las funciones críticas de operación.
 
-El Sistema Gestor de Ambulancias contempla funcionalidades como la gestión de ambulancias, clasificación de vehículos de transporte asistencial, gestión del personal operativo, recepción y registro de solicitudes de atención, asignación de ambulancias, seguimiento de las operaciones y generación de reportes.
+### 3.3 Adaptación a requisitos de estabilidad media
 
-Scrum facilita la organización de estas funcionalidades en unidades de trabajo que pueden planificarse, revisarse y documentarse progresivamente.
+El alcance principal está identificado, pero los criterios de asignación, disponibilidad, prioridad clínica y diferencias operativas TAB/TAM requieren refinamiento. La revisión del backlog permite incorporar esos hallazgos y ajustar prioridades sin perder la trazabilidad de los requisitos.
 
-### 3.2. Adaptabilidad a los cambios
+### 3.4 Disponibilidad periódica de usuarios
 
-Durante el análisis de software pueden surgir nuevos requisitos, aclaraciones sobre las reglas de operación, ajustes en los procesos de asignación de ambulancias o modificaciones en las necesidades de seguimiento de los servicios.
+Las fuentes consultadas identifican perfiles de usuario e instrumentos de levantamiento, pero no acreditan que exista un cliente disponible diariamente ni muestran entrevistas diligenciadas. Por ello, Scrum deberá apoyarse en sesiones de revisión programadas y en un representante de usuario que consolide observaciones. Esta condición es una restricción de planificación que deberá confirmarse, no una disponibilidad asumida como hecho.
 
-Scrum permite revisar las prioridades y adaptar las actividades de trabajo de acuerdo con los hallazgos y las necesidades del proyecto.
+### 3.5 Seguimiento y verificación
 
-### 3.3. Organización del equipo
+La revisión al cierre de cada iteración permitirá comprobar que los requisitos priorizados estén relacionados con casos de uso, que los modelos sean consistentes y que los cambios se registren. El rol QA/Tester del equipo puede apoyar la verificación documental y el control de calidad de los incrementos.
 
-El marco de trabajo permite distribuir las actividades y responsabilidades entre los integrantes del equipo, promoviendo la comunicación, el seguimiento del progreso y la revisión de los entregables.
+## 4. Forma de aplicación propuesta
 
-### 3.4. Priorización de funcionalidades
+| Iteración | Objetivo | Actividades/entregables principales | Criterio de cierre |
+|---|---|---|---|
+| Preparación previa al primer Sprint | Acordar alcance, actores, enfoque y backlog inicial | Caracterización, comparación metodológica, selección y plan de análisis | Cuatro aspectos de caracterización explícitos y backlog priorizado |
+| Sprint 1 - Modelado funcional | Definir y relacionar requisitos, actores y casos de uso | Inventario RF/RNF, catálogo de casos de uso y matriz de trazabilidad | Cada RF del alcance está vinculado a uno o más casos de uso o justificado |
+| Sprint 2 - Consolidación | Revisar el diagrama, corregir inconsistencias y publicar la evidencia | Diagrama UML editable/exportado, revisión cruzada, README y publicación | Mínimos de UML y fuentes editables cumplidos; README y commits verificables |
 
-El SGA posee diferentes módulos y funcionalidades que pueden organizarse según su importancia y relación con el objetivo principal del software.
+La tabla describe la forma propuesta de aplicar Scrum a la fase de análisis; no afirma que se hayan realizado ceremonias formales que no estén registradas.
 
-La priorización permite concentrar inicialmente los esfuerzos en procesos fundamentales como el registro de solicitudes de atención, la disponibilidad de ambulancias, la asignación operativa y el seguimiento de los servicios, sin descuidar los procesos complementarios.
+## 5. Razones para no seleccionar las otras metodologías como marco principal
 
-### 3.5. Seguimiento y revisión de entregables
+- **RUP:** aporta estructura y trazabilidad, pero su carga de disciplinas y documentación puede ser desproporcionada para un equipo de cinco personas y el alcance de la evidencia.
+- **XP:** sus prácticas de calidad son valiosas para la implementación, pero exige una retroalimentación técnica y de usuario muy frecuente; se recomienda adoptar prácticas puntuales de pruebas e integración cuando corresponda.
+- **RAD:** facilita prototipos, pero depende de disponibilidad frecuente de usuarios; se puede utilizar como técnica complementaria de validación de interfaces, no como marco principal.
 
-Scrum favorece la revisión periódica del trabajo realizado, permitiendo identificar avances, dificultades, pendientes y posibles ajustes.
+## 6. Conclusión
 
-Esto resulta útil para la elaboración de los artefactos correspondientes a la fase de análisis, especialmente la caracterización de la solución, la identificación de requisitos, la matriz de trazabilidad y el modelo conceptual del Sistema Gestor de Ambulancias.
+Scrum es el marco principal seleccionado para el SGA por su ajuste al tamaño del equipo, al carácter modular de la aplicación y a la necesidad de refinar requisitos de estabilidad media. Su aplicación depende de programar revisiones con los usuarios clave, dado que su disponibilidad continua no está documentada. La selección queda sustentada en la comparación ponderada y se refleja en el plan de actividades por iteraciones.
 
-## 4. Aplicación de Scrum al proyecto
+## 7. Referencias
 
-Para orientar el trabajo del proyecto se propone una aplicación adaptada de Scrum, teniendo en cuenta el contexto académico, las actividades de análisis y la organización del equipo.
-
-| Elemento | Aplicación al proyecto |
-|---|---|
-| Product Backlog | Lista priorizada de funcionalidades, necesidades, requisitos y actividades relacionadas con el Sistema Gestor de Ambulancias. |
-| Sprint | Periodo de trabajo organizado para desarrollar y revisar un conjunto de actividades y entregables. |
-| Sprint Planning | Planificación de las actividades, objetivos y entregables que se abordarán durante el ciclo de trabajo. |
-| Daily Scrum | Seguimiento breve del progreso, dificultades y tareas pendientes del equipo, cuando resulte aplicable. |
-| Sprint Review | Revisión de los entregables obtenidos y su correspondencia con los objetivos establecidos. |
-| Sprint Retrospective | Evaluación del proceso de trabajo, identificación de dificultades y propuestas de mejora. |
-| Incremento | Resultado verificable obtenido al finalizar el ciclo de trabajo, como documentación, diagramas, requisitos o funcionalidades desarrolladas. |
-
-Los elementos anteriores se plantean como una adaptación académica y organizativa de Scrum. Su implementación concreta dependerá de los acuerdos, disponibilidad y dinámica de trabajo del equipo.
-
-## 5. Comparación de la metodología seleccionada frente a las alternativas
-
-| Criterio | Scrum | RUP | XP | RAD |
-|---|---|---|---|---|
-| Adaptabilidad | Alta | Moderada, con estructura definida | Alta | Alta |
-| Organización del trabajo | Iteraciones y objetivos de trabajo | Fases y disciplinas | Iteraciones y prácticas técnicas | Prototipado rápido |
-| Seguimiento | Reuniones y revisiones periódicas | Seguimiento por fases y artefactos | Seguimiento mediante prácticas y retroalimentación | Evaluación frecuente de prototipos |
-| Gestión de prioridades | Backlog priorizado | Planificación estructurada | Priorización de funcionalidades | Priorización y construcción rápida |
-| Organización del equipo | Roles y colaboración | Roles y procesos definidos | Colaboración técnica intensa | Participación frecuente de usuarios |
-| Adaptación al proyecto | Alta | Alta, aunque puede resultar más estructurado | Alta, con fuerte orientación técnica | Alta, especialmente para prototipos |
-| Aplicabilidad académica | Alta | Alta | Moderada a alta | Moderada a alta |
-
-Esta comparación se realiza desde la perspectiva de las características y necesidades del proyecto, no como una clasificación universal de superioridad entre metodologías.
-
-## 6. Razones por las cuales no se seleccionaron las otras metodologías como marco principal
-
-### 6.1. RUP
-
-RUP proporciona una estructura organizada por fases y disciplinas, además de favorecer la documentación y el análisis de riesgos.
-
-Sin embargo, para el contexto del proyecto se considera que su estructura puede representar una mayor carga organizativa y documental frente a la dinámica de trabajo académico del equipo. Scrum permite organizar el análisis del SGA de manera incremental, manteniendo una planificación flexible y revisiones periódicas.
-
-### 6.2. XP (Extreme Programming)
-
-XP enfatiza prácticas técnicas como programación en parejas, pruebas frecuentes, integración continua, refactorización y desarrollo orientado a entregas pequeñas.
-
-Aunque estas prácticas pueden ser útiles durante la construcción del software, el proyecto requiere inicialmente organizar actividades de análisis, identificación de requisitos, definición de procesos operativos y elaboración de modelos conceptuales. Por esta razón, Scrum se considera más adecuado como marco organizativo principal en esta etapa.
-
-### 6.3. RAD (Rapid Application Development)
-
-RAD se orienta al desarrollo rápido mediante prototipos, participación constante de usuarios y ciclos de construcción acelerados.
-
-Aunque podría ser útil para desarrollar prototipos de módulos del SGA, Scrum proporciona una estructura de organización y seguimiento que se considera más apropiada para distribuir las actividades de análisis, documentar los requisitos y revisar los entregables del equipo.
-
-## 7. Conclusión
-
-Scrum se selecciona como marco de trabajo para orientar el proyecto Sistema Gestor de Ambulancias (SGA), debido a su adaptabilidad, organización mediante ciclos de trabajo, priorización de funcionalidades y facilidad para revisar progresivamente los entregables.
-
-Su aplicación permitirá organizar el análisis de las funcionalidades relacionadas con la gestión de ambulancias, el personal operativo, las solicitudes de atención, la asignación de recursos, el seguimiento de los servicios y la generación de reportes.
-
-La selección de Scrum constituye una propuesta de organización para el proyecto formativo y no implica que el sistema se encuentre implementado ni que los procesos planteados hayan sido validados operacionalmente.
-
-## 8. Referencias
-
-- Schwaber, K., & Sutherland, J. (2020). *The Scrum Guide*. Scrum Guides.
+- Schwaber, K., & Sutherland, J. (2020). *The Scrum Guide*. https://scrumguides.org
 - Sommerville, I. (2011). *Ingeniería de software* (9.ª ed.). Pearson.
 - Pressman, R. S., & Maxim, B. R. (2015). *Ingeniería de software: Un enfoque práctico*. McGraw-Hill.
