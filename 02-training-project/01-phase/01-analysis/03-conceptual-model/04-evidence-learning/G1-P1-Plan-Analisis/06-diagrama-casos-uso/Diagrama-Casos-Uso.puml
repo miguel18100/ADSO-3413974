@@ -1,0 +1,108 @@
+@startuml
+title Sistema de Registro de Asistencia SENA\nDiagrama de Casos de Uso - G1-P1
+
+left to right direction
+
+skinparam shadowing false
+skinparam packageStyle rectangle
+skinparam actorStyle awesome
+skinparam linetype ortho
+skinparam nodesep 35
+skinparam ranksep 45
+skinparam usecase {
+  BackgroundColor White
+  BorderColor #2E4053
+}
+skinparam ArrowColor #566573
+
+actor Instructor
+actor Aprendiz
+
+rectangle "Sistema de Registro de Asistencia SENA" {
+
+  package "Administracion" {
+    (CU-01 Iniciar sesión) as CU01
+    (CU-02 Cerrar sesión) as CU02
+    (CU-03 Consultar dashboard) as CU03
+    (CU-04 Gestionar usuarios) as CU04
+    (CU-05 Configurar sistema) as CU05
+  }
+
+  package "Gestion de sesiones" {
+    (CU-06 Crear sesión de asistencia) as CU06
+    (CU-07 Generar y visualizar código QR) as CU07
+    (CU-08 Regenerar código de sesión) as CU08
+    (CU-09 Finalizar sesión) as CU09
+  }
+
+  package "Registro de asistencia" {
+    (CU-10 Escanear código QR) as CU10
+    (CU-11 Ingresar código manual) as CU11
+    (CU-12 Identificar aprendiz) as CU12
+    (CU-13 Validar sesión y aprendiz) as CU13
+    (CU-14 Registrar asistencia) as CU14
+    (CU-15 Confirmar registro de asistencia) as CU15
+  }
+
+  package "Consultas y reportes" {
+    (CU-16 Consultar historial de sesiones) as CU16
+    (CU-17 Consultar historial individual) as CU17
+    (CU-18 Consultar reportes de asistencia) as CU18
+  }
+}
+
+Instructor --> CU01
+Instructor --> CU02
+Instructor --> CU03
+Instructor --> CU04
+Instructor --> CU05
+Instructor --> CU06
+Instructor --> CU07
+Instructor --> CU08
+Instructor --> CU09
+Instructor --> CU16
+Instructor --> CU18
+
+Aprendiz --> CU10
+Aprendiz --> CU11
+Aprendiz --> CU12
+Aprendiz --> CU14
+Aprendiz --> CU15
+Aprendiz --> CU17
+
+CU14 ..> CU13 : <<include>>
+CU14 ..> CU12 : <<include>>
+
+CU08 ..> CU07 : <<extend>>
+
+note right of CU10
+  Alternativa de identificación
+  mediante lectura QR.
+end note
+
+note right of CU11
+  Alternativa de identificación
+  mediante ingreso manual.
+end note
+
+note right of CU13
+  Valida la sesión y la existencia
+  del aprendiz antes del registro.
+end note
+
+note right of CU14
+  Impide registros duplicados
+  por sesión y aprendiz.
+end note
+
+note right of CU16
+  Incluye filtros y consulta
+  de detalles de sesiones.
+end note
+
+note right of CU18
+  Los filtros y cálculos se realizan
+  con la información disponible.
+end note
+
+@enduml
