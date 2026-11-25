@@ -1,4 +1,4 @@
-# Matriz de requisitos y casos de uso - G1-P1 Plan de análisis
+﻿# Matriz de requisitos y casos de uso - G1-P1 Plan de análisis
 
 ## 1. Introducción
 
@@ -223,7 +223,6 @@ Los casos se nombran con verbo más objeto y representan objetivos de los actore
 | Caso base | Caso relacionado | Relación y dirección | Justificación de una línea |
 |---|---|---|---|
 | CU-11 Asignar ambulancia y personal | CU-07 Consultar disponibilidad de recursos | `CU-11 ..> CU-07` `<<include>>` | La consulta de disponibilidad siempre forma parte de la asignación para evitar seleccionar recursos no disponibles. |
-| CU-14 Registrar novedad del servicio | CU-13 Actualizar estado del servicio | `CU-14 ..> CU-13` `<<extend>>` | El registro de novedad amplía opcionalmente la actualización/seguimiento cuando ocurre un evento que debe documentarse. |
 
 **Punto de extensión de CU-13:** `registrarNovedad`, durante el seguimiento o la actualización del estado del servicio, cuando se presenta una novedad operativa.  
 **Justificación de cada generalización (la flecha apunta del perfil especializado al actor general):**
@@ -408,7 +407,7 @@ La fuente SRS contiene 44 registros en estos cinco módulos. Se transcriben aqu�
 
 ## 15. Conclusiones
 
-La matriz consolidada relaciona los 31 RF de la línea base consolidada con 22 casos de uso; incorpora 21 registros de 4.6 y 36 registros de 4.7/4.8. Además, mantiene 44 registros de las secciones 4.1-4.5 con una decisión provisional y su justificación individual. La cobertura total del SRS PDF queda pendiente hasta la confirmación formal del alcance. Los 14 requisitos no funcionales preliminares se mantienen diferenciados. Las relaciones UML `include` y `extend` se justifican por su obligatoriedad o carácter condicional y se mantienen alineadas con la matriz.
+La matriz consolidada relaciona los 31 RF de la línea base consolidada con 22 casos de uso; incorpora 21 registros de 4.6 y 36 registros de 4.7/4.8. Además, mantiene 44 registros de las secciones 4.1-4.5 con una decisión provisional y su justificación individual. La cobertura total del SRS PDF queda pendiente hasta la confirmación formal del alcance. Los 14 requisitos no funcionales preliminares se mantienen diferenciados. La relación UML `include` se justifica por su obligatoriedad y se mantiene alineada con el diagrama. CU-14 Gestionar novedades operativas se representa como un caso de uso independiente, sin relación `extend`.
 
 La cobertura integral del SRS disponible queda condicionada a resolver la discrepancia de alcance señalada: el PDF incluye módulos que no aparecen en el documento de proyecto e instrumentos consultados. Esta aclaración evita declarar un porcentaje total no demostrado y deja identificado el punto que debe confirmarse antes de una evaluación definitiva.
 
@@ -428,9 +427,11 @@ La cobertura integral del SRS disponible queda condicionada a resolver la discre
 | Dos o más actores primarios fuera de la frontera | Cumple: 5 perfiles concretos | Administrador, Coordinador operativo, Paramédico TAB, Paramédico TAM y Analista/directivo; además hay 2 actores abstractos para generalización. |
 | Asociaciones actor-caso de uso | Cumple según el catálogo de actores | Cada caso tiene al menos un actor iniciador indicado en la matriz y representado en el diagrama. |
 | «include» obligatorio y con dirección correcta | Cumple | CU-11 → CU-07: asignar ambulancia y personal siempre requiere consultar disponibilidad. |
-| «extend» condicional, con punto de extensión y dirección correcta | Cumple | CU-14 → CU-13: registrar una novedad amplía opcionalmente la actualización/seguimiento cuando ocurre una novedad operativa; el punto de extensión `registrarNovedad` está indicado. |
+| Relación «extend» | No se aplica | CU-14 Gestionar novedades operativas se modela como objetivo independiente, sin dependencia condicional de CU-13. |
 | Generalización de actores | Cumple y está justificada | Los cinco perfiles heredan del actor general Usuario del SGA para inicio/cierre y documentos; coordinación y paramédicos heredan además las funciones operativas comunes de Personal operativo; el Paramédico TAM tiene el caso exclusivo de intervenciones prehospitalarias. |
 | Casos duplicados, CRUD fragmentado o ciclos | No se identifican duplicados en el catálogo consolidado; los casos de gestión agrupan operaciones relacionadas | Las operaciones de mantenimiento se agrupan en «Gestionar» cuando representan el mismo objetivo del actor. |
-| Fuente editable y exportaciones | Entregadas | `.drawio`, `.puml`, `.png` y `.svg` en la carpeta `06-diagrama-casos-uso`. |
+| Fuente editable y exportaciones | Entregadas | ``.drawio`, `.puml` y `.png` en la carpeta `06-diagrama-casos-uso`. |
 
-**Nota de revisión:** la matriz y el diagrama se normalizaron a los mismos 19 identificadores de casos de uso, cinco perfiles concretos y dos actores abstractos de generalización. La versión editable debe abrirse en diagrams.net para comprobar que las asociaciones y posiciones se conservan al abrirla.
+**Nota de revisión:** la matriz y el diagrama se normalizaron a los mismos 22 identificadores de casos de uso, cinco perfiles concretos y dos actores abstractos de generalización. La versión editable debe abrirse en diagrams.net para comprobar que las asociaciones y posiciones se conservan al abrirla.
+
+
