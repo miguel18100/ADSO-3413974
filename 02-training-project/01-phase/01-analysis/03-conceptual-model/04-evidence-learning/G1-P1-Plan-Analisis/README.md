@@ -81,7 +81,7 @@ La IA se utilizó como herramienta de apoyo. La revisión, comprobación de arch
 - [x] Se verificó el historial de Git y la existencia de commits en al menos dos días diferentes dentro del período establecido.
 - [x] Se revisaron los artefactos de la entrega y su organización.
 - [x] Se identificaron y retiraron duplicados y archivos accidentales durante la consolidación.
-- [ ] Hice `push` y comprobé en GitHub que la carpeta está publicada.
+- [x] Hice `push` y comprobé en GitHub que la carpeta está publicada.
 
 ---
 
