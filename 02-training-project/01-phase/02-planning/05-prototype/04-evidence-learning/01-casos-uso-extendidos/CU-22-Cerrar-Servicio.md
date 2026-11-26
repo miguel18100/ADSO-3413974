@@ -103,7 +103,7 @@ El coordinador operativo selecciona un servicio y solicita iniciar el proceso de
 |---|---|
 | Requisito funcional | RF-31 |
 | Caso de uso | CU-22 |
-| Diagrama de actividad | DA-02 o diagrama específico de cierre por definir |
+| Diagrama de actividad | DA-03 – Cerrar servicio (CU-22) |
 | Prototipo | P-03 |
 | Modelo de dominio | Servicio, Paciente, Intervención y demás clases que correspondan |
 | Modelo ER | Entidades y relaciones asociadas al cierre del servicio, por consolidar |
@@ -111,3 +111,4 @@ El coordinador operativo selecciona un servicio y solicita iniciar el proceso de
 ## 13. Observaciones
 
 La información, los campos obligatorios, las validaciones y las condiciones de cierre deben verificarse frente a los documentos de análisis de P1. Este caso de uso constituye una versión preliminar de diseño para la actividad de prototipado P2.
+
