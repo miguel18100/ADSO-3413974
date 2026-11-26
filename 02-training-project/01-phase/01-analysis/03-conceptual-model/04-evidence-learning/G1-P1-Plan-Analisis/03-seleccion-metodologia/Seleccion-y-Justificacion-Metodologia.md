@@ -1,4 +1,4 @@
-# Selección y justificación de la metodología de desarrollo
+﻿# Selección y justificación de la metodología de desarrollo
 
 ## 1. Metodología seleccionada
 
@@ -56,6 +56,5 @@ Scrum es el marco principal seleccionado para el SGA por su ajuste al tamaño de
 
 ## 7. Referencias
 
-- Schwaber, K., & Sutherland, J. (2020). *The Scrum Guide*. https://scrumguides.org
-- Sommerville, I. (2011). *Ingeniería de software* (9.ª ed.). Pearson.
-- Pressman, R. S., & Maxim, B. R. (2015). *Ingeniería de software: Un enfoque práctico*. McGraw-Hill.
+- Schwaber, K., & Sutherland, J. (2020). *The Scrum Guide*. https://scrumguides.org/scrum-guide.html
+- Beck, K., et al. (2001). *Manifesto for Agile Software Development*. https://agilemanifesto.org/iso/es/manifesto.html
