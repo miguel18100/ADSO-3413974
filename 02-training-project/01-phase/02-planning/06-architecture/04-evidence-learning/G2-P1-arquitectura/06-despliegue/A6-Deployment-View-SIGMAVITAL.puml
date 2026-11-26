@@ -1,0 +1,44 @@
+﻿@startuml
+title SIGMAVITAL - Deployment View
+
+skinparam componentStyle rectangle
+skinparam shadowing false
+
+node "Client Device" as client {
+  artifact "Web Browser" as browser
+}
+
+node "Application Server" as app {
+  artifact "SIGMAVITAL Web Application" as webapp
+  artifact "Application Controllers" as controllers
+  artifact "GestionServicioFacade" as facade
+  artifact "Domain Components" as domain
+}
+
+node "Database Server" as dbserver {
+  database "SIGMAVITAL Relational Database" as database
+}
+
+browser --> webapp : HTTPS
+webapp --> controllers : Application interaction
+controllers --> facade : Workflow coordination
+facade --> domain : Domain operations
+domain --> database : SQL / Database connection
+
+note right of client
+  User interface access
+  through a web browser
+end note
+
+note right of app
+  Application logic,
+  workflow coordination
+  and domain processing
+end note
+
+note right of dbserver
+  Persistent storage
+  and data integrity
+end note
+
+@enduml

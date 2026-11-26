@@ -1,0 +1,57 @@
+﻿@startuml
+title SIGMAVITAL - Software Architecture
+
+skinparam componentStyle rectangle
+skinparam packageStyle rectangle
+
+package "Presentation Layer" {
+  component "Web User Interface" as UI
+}
+
+package "Application Layer" {
+  component "Application Controllers" as Controllers
+  component "GestionServicioFacade" as Facade
+}
+
+package "Domain Layer" {
+  component "Service Management" as Service
+  component "Assignment Management" as Assignment
+  component "Assignment Strategy" as Strategy
+  component "Patient Management" as Patient
+  component "User and Role Management" as UserManagement
+}
+
+package "Infrastructure Layer" {
+  component "Persistence / Repository" as Repository
+  database "Relational Database" as DB
+}
+
+UI --> Controllers
+Controllers --> Facade
+Facade --> Service
+Facade --> Assignment
+Service --> Patient
+Assignment --> Strategy
+Facade --> UserManagement
+Service --> Repository
+Assignment --> Repository
+Patient --> Repository
+UserManagement --> Repository
+Repository --> DB
+
+note right of UI
+  RNF: Usability
+  Accessible user workflows
+end note
+
+note right of Controllers
+  RNF: Maintainability
+  Separation of concerns
+end note
+
+note right of DB
+  RNF: Integrity
+  Persistent and consistent data
+end note
+
+@enduml

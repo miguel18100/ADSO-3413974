@@ -1,0 +1,71 @@
+﻿@startuml
+title SIGMAVITAL - Component View
+
+skinparam componentStyle rectangle
+
+package "Presentation" {
+  component "Web UI" as UI
+}
+
+package "Application" {
+  component "Application Controller" as Controller
+  component "GestionServicioFacade" as Facade
+}
+
+package "Domain Components" {
+  component "Service Management" as Service
+  component "Assignment Management" as Assignment
+  component "Assignment Strategy" as Strategy
+  component "Patient Management" as Patient
+  component "User and Role Management" as UserRole
+  component "Service Closure Management" as Closure
+}
+
+package "Infrastructure" {
+  component "Repository / Persistence" as Repository
+  component "Database" as DB
+}
+
+interface "IServiceWorkflow" as IServiceWorkflow
+interface "IAssignment" as IAssignment
+interface "IPatientManagement" as IPatient
+interface "IUserManagement" as IUser
+interface "IServiceClosure" as IClosure
+interface "IDataPersistence" as IData
+
+UI --> IServiceWorkflow
+Controller ..> IServiceWorkflow
+Facade - IServiceWorkflow
+
+Facade --> Service
+Facade --> Assignment
+Facade --> Closure
+
+Service - IPatient
+Patient ..> IPatient
+
+Assignment - IAssignment
+Strategy ..> IAssignment
+
+Facade - IUser
+UserRole ..> IUser
+
+Closure - IClosure
+Service ..> IClosure
+
+Service --> IData
+Assignment --> IData
+Patient --> IData
+UserRole --> IData
+Closure --> IData
+
+Repository - IData
+Repository --> DB
+
+note bottom
+Proposed component design.
+Interfaces represent contracts between components.
+Implementation and integration remain pending validation.
+end note
+
+@enduml

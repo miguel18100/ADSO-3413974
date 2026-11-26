@@ -153,5 +153,17 @@ EstrategiaAsignacion <|.. EstrategiaAsignacionGeneral
 
 Paciente "1" -- "0..*" Servicio : recibe atención
 
+
+class GestionServicioFacade {
+  +gestionarSolicitud(solicitud: Solicitud): Servicio
+  +coordinarAsignacion(servicio: Servicio): Asignacion
+  +finalizarServicio(servicio: Servicio): RegistroCierre
+}
+
+GestionServicioFacade ..> Solicitud : coordina
+GestionServicioFacade ..> Asignacion : delega
+GestionServicioFacade ..> Servicio : gestiona
+GestionServicioFacade ..> RegistroCierre : coordina
 @enduml
+
 
