@@ -1,4 +1,4 @@
-﻿# B4 - Diccionario de Datos SIGMAVITAL
+# B4 - Diccionario de Datos SIGMAVITAL
 
 ## 1. Objetivo
 
@@ -11,7 +11,7 @@ Documentar los atributos que componen el modelo relacional de SIGMAVITAL, especi
 | Campo | Tipo | Tamaño | Restricciones | Dominio / Descripción |
 |---|---|---|---|---|
 | id_rol | INT | 4 bytes | PK, NOT NULL | Identificador único del rol |
-| nombre | VARCHAR | 50 caracteres | NOT NULL | Nombre del rol |
+| nombre | VARCHAR | 50 caracteres | NOT NULL, UNIQUE | Nombre del rol |
 | descripcion | VARCHAR | 255 caracteres | NULL permitido | Descripción del rol |
 
 ### 2.2 Tabla: Usuario
@@ -21,7 +21,7 @@ Documentar los atributos que componen el modelo relacional de SIGMAVITAL, especi
 | id_usuario | INT | 4 bytes | PK, NOT NULL | Identificador único del usuario |
 | id_rol | INT | 4 bytes | FK, NOT NULL | Referencia a Rol.id_rol |
 | nombre | VARCHAR | 100 caracteres | NOT NULL | Nombre del usuario |
-| correo | VARCHAR | 150 caracteres | NOT NULL, UNIQUE recomendado | Correo electrónico del usuario |
+| correo | VARCHAR | 150 caracteres | NOT NULL, UNIQUE | Correo electrónico del usuario |
 | estado | VARCHAR | 20 caracteres | NOT NULL | Activo, Inactivo u otro estado autorizado |
 | fecha_creacion | DATETIME | 8 bytes aprox. | NOT NULL | Fecha y hora de creación del registro |
 
@@ -51,7 +51,7 @@ Documentar los atributos que componen el modelo relacional de SIGMAVITAL, especi
 | Campo | Tipo | Tamaño | Restricciones | Dominio / Descripción |
 |---|---|---|---|---|
 | id_servicio | INT | 4 bytes | PK, NOT NULL | Identificador del servicio |
-| id_solicitud | INT | 4 bytes | FK, UNIQUE recomendado, NOT NULL | Solicitud asociada al servicio |
+| id_solicitud | INT | 4 bytes | FK, UNIQUE, NOT NULL | Solicitud asociada al servicio |
 | id_paciente | INT | 4 bytes | FK, NOT NULL | Paciente asociado al servicio |
 | fecha_inicio | DATETIME | 8 bytes aprox. | NOT NULL | Fecha y hora de inicio |
 | estado | VARCHAR | 30 caracteres | NOT NULL | Estado operativo del servicio |
@@ -63,7 +63,7 @@ Documentar los atributos que componen el modelo relacional de SIGMAVITAL, especi
 | Campo | Tipo | Tamaño | Restricciones | Dominio / Descripción |
 |---|---|---|---|---|
 | id_cierre | INT | 4 bytes | PK, NOT NULL | Identificador del registro de cierre |
-| id_servicio | INT | 4 bytes | FK, NOT NULL | Servicio relacionado |
+| id_servicio | INT | 4 bytes | FK, UNIQUE, NOT NULL | Servicio relacionado; máximo un registro de cierre por servicio |
 | fecha_cierre | DATETIME | 8 bytes aprox. | NOT NULL | Fecha y hora del cierre |
 | resumen_condicion | TEXT | Variable | NULL permitido | Resumen de la condición del paciente |
 | destino | VARCHAR | 255 caracteres | NULL permitido | Destino final del paciente |
@@ -74,7 +74,7 @@ Documentar los atributos que componen el modelo relacional de SIGMAVITAL, especi
 | Campo | Tipo | Tamaño | Restricciones | Dominio / Descripción |
 |---|---|---|---|---|
 | id_ambulancia | INT | 4 bytes | PK, NOT NULL | Identificador de ambulancia |
-| placa | VARCHAR | 15 caracteres | NOT NULL, UNIQUE recomendado | Placa del vehículo |
+| placa | VARCHAR | 15 caracteres | NOT NULL, UNIQUE | Placa del vehículo |
 | tipo | VARCHAR | 50 caracteres | NOT NULL | Tipo de ambulancia |
 | estado_operativo | VARCHAR | 30 caracteres | NOT NULL | Estado operativo del vehículo |
 | ubicacion_referencia | VARCHAR | 255 caracteres | NULL permitido | Ubicación de referencia |
@@ -135,4 +135,3 @@ Los tamaños y tipos de datos documentados constituyen una propuesta técnica de
 ## 4. Consideraciones sobre protección de datos
 
 SIGMAVITAL contempla información relacionada con usuarios, pacientes, personal y servicios. Los datos personales y la información relacionada con la atención de pacientes deberán manejarse con controles de acceso, confidencialidad, almacenamiento seguro y uso limitado a las finalidades autorizadas.
-

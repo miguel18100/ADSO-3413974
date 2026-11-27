@@ -74,7 +74,7 @@
 
 ### Operaciones
 - +registrar(): void
-- +actualizarRegistro(descripcion: String): void
+- +actualizarRegistro(): void
 - +consultar(): String
 
 ## Clase: RegistroCierre
@@ -97,3 +97,4 @@
 ## Estado
 
 Se completa el detalle preliminar de las seis clases restantes. Las operaciones y atributos son una propuesta de diseño que deberá validarse con las reglas de negocio y los requisitos.
+

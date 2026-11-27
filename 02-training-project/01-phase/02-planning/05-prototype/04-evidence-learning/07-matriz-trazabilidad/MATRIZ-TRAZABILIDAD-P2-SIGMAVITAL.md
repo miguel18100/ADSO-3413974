@@ -53,7 +53,7 @@ Esta matriz complementa la trazabilidad arquitectónica A7. No sustituye la matr
 | RF-18 | CU-11 | CU-11 detallado; DA-02 | CU-11 detallado; DA-02 | ASIGNACION y ASIGNACION_PERSONAL | Asignaciones: selección de servicio, ambulancia y personal (CU-11) | Evidencia detallada disponible |
 | RF-19 | CU-12 | Consulta de asignaciones | No identificado en evidencias detalladas actuales | ASIGNACION y SERVICIO; consulta específica pendiente | Asignaciones: representación general; consulta específica por validar | Pendiente de trazabilidad específica |
 | RF-20 | CU-13 | Actualización de estado | No identificado en evidencias detalladas actuales | SERVICIO: estado y datos operativos | Servicios: listado y estados representados | Pendiente de trazabilidad específica |
-| RF-21 | CU-14 | Novedades operativas | No identificado en evidencias detalladas actuales | Novedad operativa: entidad específica no identificada en MD-01 / MER-01 | Prototipo v01: correspondencia específica pendiente | Pendiente de trazabilidad específica |
+| RF-21 | CU-14 | Novedades operativas | No identificado en evidencias detalladas actuales | Novedad operativa: entidad específica no identificada en MD-01 / MER-01 | Prototipo v01: módulo específico de novedades no identificado | Pendiente de trazabilidad específica |
 | RF-22 | CU-15 | Historial de servicios | No identificado en evidencias detalladas actuales | SERVICIO: historial específico pendiente de definición | Servicios y Dashboard: servicios recientes; historial específico por validar | Pendiente de trazabilidad específica |
 | RF-23 | CU-05 | Información de ambulancias | No identificado en evidencias detalladas actuales | AMBULANCIA en MER-01 | Ambulancias: información y estado en listado | Pendiente de trazabilidad específica |
 | RF-24 | CU-06 | Información de personal | No identificado en evidencias detalladas actuales | PERSONAL en MER-01 | Personal: información y estado en listado | Pendiente de trazabilidad específica |
@@ -61,8 +61,8 @@ Esta matriz complementa la trazabilidad arquitectónica A7. No sustituye la matr
 | RF-26 | CU-16 | Reportes operativos | No identificado en evidencias detalladas actuales | MD-01 / MER-01: revisión específica pendiente | Prototipo v01: correspondencia específica pendiente | Pendiente de trazabilidad específica |
 | RF-27 | CU-17 | Indicadores de gestión | No identificado en evidencias detalladas actuales | MD-01 / MER-01: revisión específica pendiente | Prototipo v01: correspondencia específica pendiente | Pendiente de trazabilidad específica |
 | RF-28 | CU-17 | Indicadores de gestión | No identificado en evidencias detalladas actuales | MD-01 / MER-01: revisión específica pendiente | Prototipo v01: correspondencia específica pendiente | Pendiente de trazabilidad específica |
-| RF-29 | CU-20 | Datos básicos del paciente | No identificado en evidencias detalladas actuales | PACIENTE en MER-01 y MD-01; asociación con SERVICIO pendiente de validar | Pacientes: listado y representación de registro | Relación conceptual por validar |
-| RF-30 | CU-21 | Intervenciones prehospitalarias TAM | No identificado en evidencias detalladas actuales | INTERVENCION en MER-01 y MD-01 | Intervenciones: formulario representativo | Relación conceptual por validar |
+| RF-29 | CU-20 | Datos básicos del paciente | No identificado en evidencias detalladas actuales | PACIENTE y relación PACIENTE–SERVICIO representadas en MD-01 y MER-01; validación integral pendiente | Pacientes: listado y botón de registro representativo en prototipo v01 | Representación conceptual y visual existente; validación pendiente |
+| RF-30 | CU-21 | Intervenciones prehospitalarias TAM | No identificado en evidencias detalladas actuales | INTERVENCION y relación SERVICIO–INTERVENCION representadas en MD-01 y MER-01 | Intervenciones: formulario representativo en prototipo v01 | Representación conceptual y visual existente; validación pendiente |
 | RF-31 | CU-22 | CU-22 detallado; DA-03 | CU-22 detallado; DA-03 | SERVICIO y REGISTRO_CIERRE en MER-01 | Cierres: formulario de cierre de servicio (CU-22) | Evidencia detallada disponible |
 ## 4. Evidencias detalladas actualmente identificadas
 
@@ -119,4 +119,5 @@ Los modelos MD-01 y MER-01, así como el prototipo UI y su documentación comple
 ---
 
 **Documento de seguimiento:** esta matriz debe actualizarse cuando se incorporen nuevas evidencias y verificaciones.
+
 

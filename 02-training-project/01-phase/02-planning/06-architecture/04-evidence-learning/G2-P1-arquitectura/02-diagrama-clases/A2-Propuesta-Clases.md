@@ -49,8 +49,8 @@ A partir de esta propuesta se desarrollaron y revisaron los siguientes elementos
 - Composiciones justificadas a nivel de diseño.
 - Abstracción Strategy con dos implementaciones.
 - Trazabilidad de clases hacia requisitos funcionales.
-- Diagrama UML editable mediante PlantUML.
-- Exportación del diagrama a PNG y SVG.
+- Diagrama UML editable mediante Draw.io (.drawio).
+- Representación gráfica actualizada en PNG.
 - Revisión visual del diagrama.
 - Incorporación de la asociación Paciente - Servicio, fundamentada en RF-29.
 
@@ -65,3 +65,5 @@ La asociación Paciente - Servicio se representa como asociación simple, no com
 Esta decisión se fundamenta en RF-29 y se documenta en A2-Decision-Paciente-Servicio.md y A2-Relaciones-Multiplicidades.md.
 
 El diseño se encuentra validado a nivel UML. La implementación, persistencia y comprobación definitiva de reglas operativas corresponden a etapas posteriores del desarrollo.
+
+

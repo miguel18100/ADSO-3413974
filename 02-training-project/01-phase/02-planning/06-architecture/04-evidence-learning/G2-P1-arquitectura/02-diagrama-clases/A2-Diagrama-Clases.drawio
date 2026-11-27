@@ -1,0 +1,178 @@
+<mxfile host="app.diagrams.net" agent="ChatGPT">
+  <diagram id="SIGMAVITAL-A2" name="A2 - Clases">
+    <mxGraphModel dx="1529" dy="2177" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2000" pageHeight="1500" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="Usuario" parent="1" style="swimlane;fontSize=12;startSize=28;horizontal=1;rounded=0;html=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#333333;" value="&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;b&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;Usuario&lt;/b&gt;&lt;hr&gt;&lt;div align=&quot;left&quot;&gt;- idUsuario: int&lt;br&gt;- nombre: String&lt;br&gt;- correo: String&lt;br&gt;- hashContrasena: String&lt;br&gt;- activo: Boolean&lt;/div&gt;&lt;hr&gt;&lt;div align=&quot;left&quot;&gt;+ autenticar(correo, contrasena): Boolean&lt;br&gt;+ actualizarDatos(nombre, correo): void&lt;br&gt;+ desactivar(): void&lt;/div&gt;" vertex="1">
+          <mxGeometry height="190" width="260" x="720" y="890" as="geometry" />
+        </mxCell>
+        <mxCell id="Rol" parent="1" style="swimlane;fontSize=12;startSize=28;horizontal=1;rounded=0;html=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#333333;" value="&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;b&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;Rol&lt;/b&gt;&lt;hr&gt;&lt;div align=&quot;left&quot;&gt;- idRol: int&lt;br&gt;- nombre: String&lt;br&gt;- descripcion: String&lt;/div&gt;&lt;hr&gt;&lt;div align=&quot;left&quot;&gt;+ asignarA(usuario): void&lt;br&gt;+ revocarA(usuario): void&lt;br&gt;+ consultarPermisos(): List&lt;/div&gt;" vertex="1">
+          <mxGeometry height="190" width="260" x="1060" y="890" as="geometry" />
+        </mxCell>
+        <mxCell id="Ambulancia" parent="1" style="swimlane;fontSize=12;startSize=28;horizontal=1;rounded=0;html=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#333333;" value="&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;b&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;Ambulancia&lt;/b&gt;&lt;hr&gt;&lt;div align=&quot;left&quot;&gt;- idAmbulancia: int&lt;br&gt;- placa: String&lt;br&gt;- tipo: String&lt;br&gt;- estadoOperativo: String&lt;br&gt;- ubicacion: String&lt;/div&gt;&lt;hr&gt;&lt;div align=&quot;left&quot;&gt;+ actualizarEstado(estado): void&lt;br&gt;+ consultarDisponibilidad(): Boolean&lt;br&gt;+ actualizarUbicacion(ubicacion): void&lt;/div&gt;" vertex="1">
+          <mxGeometry height="190" width="260" x="720" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="Personal" parent="1" style="swimlane;fontSize=12;startSize=28;horizontal=1;rounded=0;html=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#333333;" value="&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;b&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;Personal&lt;/b&gt;&lt;hr&gt;&lt;div align=&quot;left&quot;&gt;- idPersonal: int&lt;br&gt;- nombre: String&lt;br&gt;- documento: String&lt;br&gt;- cargo: String&lt;br&gt;- estado: String&lt;/div&gt;&lt;hr&gt;&lt;div align=&quot;left&quot;&gt;+ actualizarEstado(estado): void&lt;br&gt;+ consultarDisponibilidad(): Boolean&lt;br&gt;+ validarParticipacion(): Boolean&lt;/div&gt;" vertex="1">
+          <mxGeometry height="190" width="260" x="40" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="Solicitud" parent="1" style="swimlane;fontSize=12;startSize=28;horizontal=1;rounded=0;html=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#333333;" value="&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;b&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;Solicitud&lt;/b&gt;&lt;hr&gt;&lt;div align=&quot;left&quot;&gt;- idSolicitud: int&lt;br&gt;- fechaHora: DateTime&lt;br&gt;- descripcion: String&lt;br&gt;- prioridad: String&lt;br&gt;- estado: String&lt;/div&gt;&lt;hr&gt;&lt;div align=&quot;left&quot;&gt;+ registrar(): void&lt;br&gt;+ actualizarEstado(estado): void&lt;br&gt;+ consultarDetalle(): String&lt;/div&gt;" vertex="1">
+          <mxGeometry height="190" width="260" x="720" y="620" as="geometry" />
+        </mxCell>
+        <mxCell id="Servicio" parent="1" style="swimlane;fontSize=12;startSize=28;horizontal=1;rounded=0;html=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#333333;" value="&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;b&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;Servicio&lt;/b&gt;&lt;/div&gt;&lt;/b&gt;&lt;hr&gt;&lt;div align=&quot;left&quot;&gt;- idServicio: int&lt;br&gt;- fechaHoraInicio: DateTime&lt;br&gt;- estado: String&lt;br&gt;- observaciones: String&lt;/div&gt;&lt;hr&gt;&lt;div align=&quot;left&quot;&gt;+ iniciar(): void&lt;br&gt;+ actualizarEstado(estado): void&lt;br&gt;+ consultarEstado(): String&lt;br&gt;+ finalizar(): void&lt;/div&gt;" vertex="1">
+          <mxGeometry height="190" width="260" x="380" y="440" as="geometry" />
+        </mxCell>
+        <mxCell id="Asignacion" parent="1" style="swimlane;fontSize=12;startSize=28;horizontal=1;rounded=0;html=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#333333;" value="&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;b&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;Asignacion&lt;/b&gt;&lt;hr&gt;&lt;div align=&quot;left&quot;&gt;- idAsignacion: int&lt;br&gt;- fechaHoraAsignacion: DateTime&lt;br&gt;- estado: String&lt;br&gt;- criterio: String&lt;/div&gt;&lt;hr&gt;&lt;div align=&quot;left&quot;&gt;+ asignarAmbulancia(ambulancia): Boolean&lt;br&gt;+ validarDisponibilidad(): Boolean&lt;br&gt;+ cancelar(): void&lt;/div&gt;" vertex="1">
+          <mxGeometry height="190" width="260" x="720" y="350" as="geometry" />
+        </mxCell>
+        <mxCell id="AsignacionPersonal" parent="1" style="swimlane;fontSize=12;startSize=28;horizontal=1;rounded=0;html=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#333333;" value="&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;b&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;AsignacionPersonal&lt;/b&gt;&lt;hr&gt;&lt;div align=&quot;left&quot;&gt;- idAsignacionPersonal: int&lt;br&gt;- funcion: String&lt;br&gt;- fechaHoraVinculacion: DateTime&lt;/div&gt;&lt;hr&gt;&lt;div align=&quot;left&quot;&gt;+ vincularPersonal(personal): void&lt;br&gt;+ desvincularPersonal(): void&lt;br&gt;+ validarPerfil(): Boolean&lt;/div&gt;" vertex="1">
+          <mxGeometry height="190" width="260" x="380" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="Paciente" parent="1" style="swimlane;fontSize=12;startSize=28;horizontal=1;rounded=0;html=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#333333;" value="&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;b&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;Paciente&lt;/b&gt;&lt;hr&gt;&lt;div align=&quot;left&quot;&gt;- idPaciente: int&lt;br&gt;- identificacion: String&lt;br&gt;- nombre: String&lt;br&gt;- fechaNacimiento: Date&lt;br&gt;- datosMinimosRegistrados: Boolean&lt;/div&gt;&lt;hr&gt;&lt;div align=&quot;left&quot;&gt;+ registrarDatosBasicos(): void&lt;br&gt;+ actualizarDatosBasicos(): void&lt;br&gt;+ consultarDatos(): String&lt;/div&gt;" vertex="1">
+          <mxGeometry height="190" width="260" x="40" y="350" as="geometry" />
+        </mxCell>
+        <mxCell id="Intervencion" parent="1" style="swimlane;fontSize=12;startSize=28;horizontal=1;rounded=0;html=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#333333;" value="&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;b&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;Intervencion&lt;/b&gt;&lt;hr&gt;&lt;div align=&quot;left&quot;&gt;- idIntervencion: int&lt;br&gt;- fechaHora: DateTime&lt;br&gt;- descripcion: String&lt;br&gt;- tipoIntervencion: String&lt;br&gt;- responsable: String&lt;/div&gt;&lt;hr&gt;&lt;div align=&quot;left&quot;&gt;+ registrar(): void&lt;br&gt;+ actualizarRegistro(): void&lt;br&gt;+ consultar(): String&lt;/div&gt;" vertex="1">
+          <mxGeometry height="190" width="260" x="40" y="620" as="geometry" />
+        </mxCell>
+        <mxCell id="RegistroCierre" parent="1" style="swimlane;fontSize=12;startSize=28;horizontal=1;rounded=0;html=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#333333;" value="&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;b&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;RegistroCierre&lt;/b&gt;&lt;hr&gt;&lt;div align=&quot;left&quot;&gt;- idRegistroCierre: int&lt;br&gt;- fechaHoraCierre: DateTime&lt;br&gt;- condicionSalida: String&lt;br&gt;- destinoAsistencial: String&lt;br&gt;- resumenAtencion: String&lt;br&gt;- observaciones: String&lt;/div&gt;&lt;hr&gt;&lt;div align=&quot;left&quot;&gt;+ registrarCierre(): Boolean&lt;br&gt;+ validarServicioFinalizado(): Boolean&lt;br&gt;+ consultarResumen(): String&lt;/div&gt;" vertex="1">
+          <mxGeometry height="190" width="260" x="720" y="1160" as="geometry" />
+        </mxCell>
+        <mxCell id="EstrategiaAsignacion" parent="1" style="swimlane;fontSize=12;startSize=28;horizontal=1;rounded=0;html=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#333333;" value="&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;b&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;EstrategiaAsignacion&lt;/b&gt;&lt;hr&gt;&lt;div align=&quot;left&quot;&gt;+ seleccionarAmbulancia(ambulancias, solicitud): Ambulancia&lt;br&gt;+ evaluar(ambulancia, solicitud): Boolean&lt;/div&gt;" vertex="1">
+          <mxGeometry height="190" width="260" x="1060" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="EstrategiaAsignacionUrgente" parent="1" style="swimlane;fontSize=12;startSize=28;horizontal=1;rounded=0;html=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#333333;" value="&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;b&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;EstrategiaAsignacionUrgente&lt;/b&gt;&lt;hr&gt;&lt;div align=&quot;left&quot;&gt;+ seleccionarAmbulancia(ambulancias, solicitud): Ambulancia&lt;br&gt;+ evaluar(ambulancia, solicitud): Boolean&lt;/div&gt;" vertex="1">
+          <mxGeometry height="190" width="260" x="1400" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="EstrategiaAsignacionGeneral" parent="1" style="swimlane;fontSize=12;startSize=28;horizontal=1;rounded=0;html=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#333333;" value="&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;b&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;EstrategiaAsignacionGeneral&lt;/b&gt;&lt;hr&gt;&lt;div align=&quot;left&quot;&gt;+ seleccionarAmbulancia(ambulancias, solicitud): Ambulancia&lt;br&gt;+ evaluar(ambulancia, solicitud): Boolean&lt;/div&gt;" vertex="1">
+          <mxGeometry height="190" width="260" x="1740" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="GestionServicioFacade" parent="1" style="swimlane;fontSize=12;startSize=28;horizontal=1;rounded=0;html=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#333333;" value="&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;b&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;GestionServicioFacade&lt;/b&gt;&lt;/div&gt;&lt;/b&gt;&lt;hr&gt;&lt;div align=&quot;left&quot;&gt;+ gestionarSolicitud(solicitud): Servicio&lt;br&gt;+ coordinarAsignacion(servicio): Asignacion&lt;br&gt;+ finalizarServicio(servicio): RegistroCierre&lt;/div&gt;" vertex="1">
+          <mxGeometry height="190" width="260" x="1400" y="890" as="geometry" />
+        </mxCell>
+        <mxCell id="rel1" edge="1" parent="1" source="Usuario" style="html=1;endArrow=none;endFill=0;exitX=1.0000;exitY=0.5000;entryX=0.0000;entryY=0.5000;exitPerimeter=0;entryPerimeter=0;rounded=0;" target="Rol" value="0..* ↔ 0..*">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rel2" edge="1" parent="1" source="Usuario" style="html=1;endArrow=none;endFill=0;exitX=0.5000;exitY=0.0000;entryX=0.5000;entryY=1.0000;exitPerimeter=0;entryPerimeter=0;rounded=0;" target="Solicitud" value="1 registra 0..*">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rel3" edge="1" parent="1" source="Solicitud" style="html=1;endArrow=none;endFill=0;exitX=0.0000;exitY=0.5000;entryX=1.0000;entryY=0.9211;exitPerimeter=0;entryPerimeter=0;rounded=0;" target="Servicio" value="1 → 0..1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="680" y="715" />
+              <mxPoint x="680" y="615" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rel4" edge="1" parent="1" source="Paciente" style="html=1;endArrow=none;endFill=0;exitX=1.0000;exitY=0.5000;entryX=0.0000;entryY=0.2632;exitPerimeter=0;entryPerimeter=0;rounded=0;" target="Servicio" value="1 paciente ↔ 0..* servicios">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="340" y="445" />
+              <mxPoint x="340" y="490" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rel5" edge="1" parent="1" source="Servicio" style="html=1;endArrow=none;endFill=0;startArrow=diamond;startFill=1;exitX=1.0000;exitY=0.1053;entryX=0.0000;entryY=0.5789;exitPerimeter=0;entryPerimeter=0;rounded=0;" target="Asignacion" value="1 contiene 0..*">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rel6" edge="1" parent="1" source="Ambulancia" style="html=1;endArrow=none;endFill=0;exitX=0.5000;exitY=1.0000;entryX=0.5000;entryY=0.0000;exitPerimeter=0;entryPerimeter=0;rounded=0;" target="Asignacion" value="1 ambulancia ↔ 0..* asignaciones">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rel7" edge="1" parent="1" source="Asignacion" style="html=1;endArrow=none;endFill=0;startArrow=diamond;startFill=1;exitX=0.1500;exitY=0.0000;entryX=0.5000;entryY=1.0000;exitPerimeter=0;entryPerimeter=0;rounded=0;" target="AsignacionPersonal" value="1 contiene 1..*">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="759" y="310" />
+              <mxPoint x="510" y="310" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rel8" edge="1" parent="1" source="Personal" style="html=1;endArrow=none;endFill=0;exitX=1.0000;exitY=0.5000;entryX=0.0000;entryY=0.5000;exitPerimeter=0;entryPerimeter=0;rounded=0;" target="AsignacionPersonal" value="1 personal ↔ 0..*">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rel9" edge="1" parent="1" source="Servicio" style="html=1;endArrow=none;endFill=0;startArrow=diamond;startFill=1;exitX=0.0000;exitY=0.7895;entryX=1.0000;entryY=0.5000;exitPerimeter=0;entryPerimeter=0;rounded=0;" target="Intervencion" value="1 contiene 0..*">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="340" y="590" />
+              <mxPoint x="340" y="715" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rel10" edge="1" parent="1" source="Servicio" style="html=1;endArrow=none;endFill=0;startArrow=diamond;startFill=1;exitX=0.5000;exitY=1.0000;entryX=0.0000;entryY=0.5000;exitPerimeter=0;entryPerimeter=0;rounded=0;" target="RegistroCierre" value="1 contiene 0..1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="510" y="1255" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rel11" edge="1" parent="1" source="Usuario" style="html=1;endArrow=none;endFill=0;exitX=0.5000;exitY=1.0000;entryX=0.5000;entryY=0.0000;exitPerimeter=0;entryPerimeter=0;rounded=0;" target="RegistroCierre" value="1 registra 0..*">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rel12" edge="1" parent="1" source="Asignacion" style="html=1;endArrow=open;endFill=0;dashed=1;exitX=0.8500;exitY=0.0000;entryX=0.5000;entryY=1.0000;exitPerimeter=0;entryPerimeter=0;rounded=0;" target="EstrategiaAsignacion" value="utiliza">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="941" y="310" />
+              <mxPoint x="1190" y="310" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rel13" edge="1" parent="1" source="EstrategiaAsignacion" style="html=1;endArrow=block;endFill=0;dashed=1;exitX=1.0000;exitY=0.5000;entryX=0.0000;entryY=0.5000;exitPerimeter=0;entryPerimeter=0;rounded=0;" target="EstrategiaAsignacionUrgente" value="implementa">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rel14" edge="1" parent="1" source="EstrategiaAsignacion" style="html=1;endArrow=block;endFill=0;dashed=1;exitX=0.5000;exitY=0.0000;entryX=0.5000;entryY=0.0000;exitPerimeter=0;entryPerimeter=0;rounded=0;" target="EstrategiaAsignacionGeneral" value="implementa">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1190" y="40" />
+              <mxPoint x="1870" y="40" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rel15" edge="1" parent="1" source="GestionServicioFacade" style="html=1;endArrow=open;endFill=0;dashed=1;exitX=0.2692;exitY=0.0000;entryX=1.0000;entryY=0.5000;exitPerimeter=0;entryPerimeter=0;rounded=0;" target="Solicitud" value="coordina">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1470" y="715" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rel16" edge="1" parent="1" source="GestionServicioFacade" style="html=1;endArrow=open;endFill=0;dashed=1;exitX=0.7308;exitY=0.0000;entryX=1.0000;entryY=0.5789;exitPerimeter=0;entryPerimeter=0;rounded=0;" target="Asignacion" value="delega">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1590" y="460" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rel17" edge="1" parent="1" source="GestionServicioFacade" style="html=1;endArrow=open;endFill=0;dashed=1;exitX=0.5000;exitY=0.0000;entryX=1.0000;entryY=0.7368;exitPerimeter=0;entryPerimeter=0;rounded=0;" target="Servicio" value="gestiona">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1530" y="580" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="yjPkhEJcaewyvTpRzH5d-1" connectable="0" parent="rel17" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];inheritText=1;" value="Text" vertex="1">
+          <mxGeometry relative="1" x="0.6768" y="2" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rel18" edge="1" parent="1" source="GestionServicioFacade" style="html=1;endArrow=open;endFill=0;dashed=1;exitX=0.5000;exitY=1.0000;entryX=1.0000;entryY=0.5000;exitPerimeter=0;entryPerimeter=0;rounded=0;" target="RegistroCierre" value="coordina">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1530" y="1255" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

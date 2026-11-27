@@ -1,4 +1,4 @@
-﻿-- =========================================================
+-- =========================================================
 -- B5 - Script de creación de base de datos SIGMAVITAL
 -- Motor: MySQL 8.x
 -- =========================================================
@@ -93,7 +93,7 @@ CREATE TABLE Servicio (
 
 CREATE TABLE RegistroCierre (
     id_cierre INT AUTO_INCREMENT PRIMARY KEY,
-    id_servicio INT NOT NULL,
+    id_servicio INT NOT NULL UNIQUE,
     fecha_cierre DATETIME NOT NULL,
     resumen_condicion TEXT,
     destino VARCHAR(255),
@@ -194,5 +194,3 @@ CREATE TABLE Intervencion (
 -- =========================================================
 -- FIN DEL SCRIPT
 -- =========================================================
-
-

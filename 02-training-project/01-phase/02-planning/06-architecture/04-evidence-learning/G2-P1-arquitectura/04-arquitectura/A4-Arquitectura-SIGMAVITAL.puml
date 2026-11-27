@@ -40,18 +40,19 @@ UserManagement --> Repository
 Repository --> DB
 
 note right of UI
-  RNF: Usability
-  Accessible user workflows
+  Consideration: User-oriented interface
+  Accessible user workflows (pending validation)
 end note
 
 note right of Controllers
-  RNF: Maintainability
+  RNF-09: Modularity
   Separation of concerns
 end note
 
 note right of DB
-  RNF: Integrity
+  RNF-05: Data integrity
   Persistent and consistent data
 end note
 
 @enduml
+

@@ -46,9 +46,9 @@ Se reutilizan como fuentes de análisis:
 - [x] Se revisaron las responsabilidades de las clases.
 - [x] Se revisaron las decisiones de abstracción y asignación.
 - [x] Se incorporó la asociación Paciente - Servicio con base en RF-29.
-- [x] Se conserva el archivo editable PlantUML (.puml).
+- [x] Se conserva el archivo editable Draw.io (.drawio).
 - [x] Se generó la representación PNG.
-- [x] Se generó la representación SVG.
+- [x] Se conserva la representación PNG actualizada.
 - [x] Se revisó visualmente el diagrama generado.
 
 ## 5. Artefactos asociados
@@ -57,9 +57,9 @@ Se reutilizan como fuentes de análisis:
 - A2-Clases-Detalle-Parte2.md
 - A2-Decision-Abstraccion.md
 - A2-Decision-Paciente-Servicio.md
-- A2-Diagrama-Clases.puml
+- A2-Diagrama-Clases.drawio
 - A2-Diagrama-Clases.png
-- A2-Diagrama-Clases.svg
+
 - A2-Propuesta-Clases.md
 - A2-Relaciones-Multiplicidades.md
 - A2-Strategy-Asignacion.md
@@ -89,4 +89,6 @@ La validación realizada corresponde al nivel de diseño UML. La implementación
 
 ## 8. Estado
 
-A2 cuenta con diagrama de clases elaborado, editable y exportado a PNG y SVG. Se revisaron las clases, relaciones, multiplicidades, composición, estrategia de asignación, trazabilidad y asociación Paciente - Servicio, manteniendo la coherencia documental con los requisitos funcionales seleccionados.
+A2 cuenta con diagrama de clases elaborado, editable en Draw.io y representado en PNG. Se revisaron las clases, relaciones, multiplicidades, composición, estrategia de asignación, trazabilidad y asociación Paciente - Servicio, manteniendo la coherencia documental con los requisitos funcionales seleccionados.
+
+

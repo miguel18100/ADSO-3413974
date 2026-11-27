@@ -175,9 +175,9 @@ These dependencies aim to preserve component separation and reduce unnecessary d
 
 The component diagram is provided in the following files:
 
-- `A5-Component-View-SIGMAVITAL.puml`: editable PlantUML source.
-- `A5-Component-View-SIGMAVITAL.png`: diagram image.
-- `A5-Component-View-SIGMAVITAL.svg`: vector diagram.
+- A5-Component-View-SIGMAVITAL.drawio: editable source diagram created with Draw.io.
+- A5-Component-View-SIGMAVITAL.png: graphical representation of the component view.
+- A5-Component-View-SIGMAVITAL.svg: vector representation of the component view.
 
 The diagram represents the proposed component organization, interface contracts, and dependencies.
 
@@ -196,3 +196,4 @@ The proposed SIGMAVITAL component view organizes the system into presentation, a
 The component separation, interface contracts, and dependency organization provide a conceptual foundation for modular development, maintainability, testability, and integration.
 
 This view complements the architectural and class design evidence and supports the subsequent implementation and validation of the software solution.
+

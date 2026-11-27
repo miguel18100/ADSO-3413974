@@ -80,7 +80,7 @@
 |---|---|---|
 | Especificación preliminar de diseño de interfaz | Documentación | Elaborada |
 | Documentación de interfaces | Complementar | Parcial – pendiente revisión integral |
-| Criterios de usabilidad | Definir y documentar | Pendiente de consolidación |
+| Criterios de usabilidad | Documentados preliminarmente en la especificación de diseño; pendientes de consolidación y validación integral | Parcial |
 | Evaluación ergonómica | Elaboración | Pendiente |
 | Revisión de consistencia visual | Comparación documental | Realizada preliminarmente |
 | Validación de accesibilidad | Evaluación formal | Pendiente |
@@ -128,3 +128,4 @@ Las actividades pendientes deberán revisarse y completarse con base en las guí
 ---
 
 SENA – ADSO – Ficha 3413974
+

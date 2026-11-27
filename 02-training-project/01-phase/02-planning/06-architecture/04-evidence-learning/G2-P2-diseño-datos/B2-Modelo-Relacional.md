@@ -1,4 +1,4 @@
-﻿# B2 - Modelo Relacional de Datos SIGMAVITAL
+# B2 - Modelo Relacional de Datos SIGMAVITAL
 
 ## 1. Objetivo
 
@@ -97,7 +97,7 @@ del sistema SIGMAVITAL.
 - Usuario 1:N Solicitud
 - Solicitud 1:0..1 Servicio
 - Paciente 1:N Servicio
-- Servicio 1:N RegistroCierre (pendiente validar cardinalidad)
+- Servicio 1:0..1 RegistroCierre (un servicio puede tener cero o un registro de cierre)
 - Servicio 1:N Asignacion
 - Ambulancia 1:N Asignacion
 - Asignacion 1:N AsignacionPersonal
@@ -125,4 +125,3 @@ Este documento representa la propuesta del modelo relacional B2.
 | Transformación de relaciones N:M | La relación entre Asignacion y Personal se resuelve mediante la tabla intermedia AsignacionPersonal, que contiene las claves foráneas id_asignacion e id_personal. |
 | Incorporación de atributos | Los atributos identificados en cada entidad del modelo conceptual se incorporan a sus respectivas tablas relacionales. |
 | Integridad referencial | Las claves foráneas permiten mantener la consistencia entre los registros relacionados y evitar referencias a registros inexistentes. |
-

@@ -92,23 +92,26 @@ The proposed interaction flow is:
 
 | NFR ID | Non-Functional Requirement | Architectural Response | Expected Benefit |
 |---|---|---|---|
-| RNF-01 | Maintainability | Layered architecture and separation of responsibilities. | Changes can be isolated more effectively between architectural layers. |
-| RNF-02 | Modularity | Specialized domain components and Strategy. | Components can evolve with reduced dependency on unrelated functionality. |
-| RNF-03 | Data Integrity | Repository abstraction and relational database constraints. | Supports consistent and controlled persistence of related data. |
-| RNF-04 | Usability | Dedicated Presentation Layer. | Supports a user-oriented interface independent of domain implementation. |
-| RNF-05 | Testability | Separation between application, domain, and infrastructure responsibilities. | Supports isolated testing of components and business rules. |
-| RNF-06 | Extensibility | Strategy pattern and modular domain organization. | New assignment strategies or domain capabilities can be incorporated with reduced impact on existing components. |
+| RNF-03 | Access control | Application controllers, role-related domain responsibilities, and controlled access to application operations. | Provides a proposed structure for implementing and validating access restrictions. |
+| RNF-04 | Information protection | Layer separation and controlled interaction with infrastructure and persistence components. | Provides architectural separation to support protection mechanisms during implementation. |
+| RNF-05 | Data integrity | Relational database, repository abstraction, and data integrity constraints. | Supports integrity controls and consistency of persisted information. |
+| RNF-06 | Consistency | Domain responsibilities and controlled application workflows. | Supports consistent handling of business operations. |
+| RNF-08 | Backup and recovery | Infrastructure layer and database administration mechanisms to be defined during implementation. | Establishes the architectural location for subsequent backup and recovery implementation. |
+| RNF-09 | Modularity | Layered architecture and specialized domain components. | Supports separation of responsibilities and modular evolution. |
+| RNF-11 | Performance | Separation of responsibilities and infrastructure components that can be evaluated and optimized during implementation. | Provides a basis for subsequent performance evaluation and optimization. |
+| RNF-12 | Privacy and legal handling of personal and health data | Controlled access, domain separation, and persistence responsibilities. | Provides a structural basis for implementing and validating privacy controls. |
+| RNF-13 | Auditability | Application workflows and domain responsibilities can be extended with audit records and traceability mechanisms. | Provides a proposed architectural basis for audit implementation. |
+| RNF-14 | Secure communication and production configuration | Presentation/application communication and infrastructure configuration must be secured during implementation and deployment. | Establishes security considerations for subsequent implementation and deployment validation. |
 
 ## 7. Architecture Diagram
 
 The architecture diagram is provided in the following files:
 
-- `A4-Arquitectura-SIGMAVITAL.puml`: editable PlantUML source.
-- `A4-Arquitectura-SIGMAVITAL.png`: diagram image.
-- `A4-Arquitectura-SIGMAVITAL.svg`: vector diagram.
+- `A4-Arquitectura-SIGMAVITAL.drawio`: editable Draw.io source of the architecture diagram.
+- `A4-Arquitectura-SIGMAVITAL.png`: graphical representation of the architecture diagram.
+- `A4-Arquitectura-SIGMAVITAL.svg`: vector representation of the architecture diagram.
 
 The diagram illustrates the architectural layers, their components, dependency relationships, and selected non-functional considerations.
-
 ## 8. Architecture Limitations and Implementation Considerations
 
 The architecture represents a proposed design for SIGMAVITAL. Its components, interfaces, persistence mechanisms, and operational behavior must be validated during implementation and testing.
@@ -129,3 +132,5 @@ The proposed SIGMAVITAL architecture establishes a structured organization based
 The layered design, domain modularization, Strategy pattern, Facade coordination, and Repository abstraction provide a foundation for maintainability, modularity, testability, extensibility, and data integrity.
 
 This architectural proposal supports the subsequent development, integration, and validation activities of the SIGMAVITAL software solution.
+
+

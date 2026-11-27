@@ -24,23 +24,23 @@
 | CA-06 | Los casos de uso cuentan con descripción o especificación suficiente. | P1 | Major | Pendiente de validación | Revisar especificaciones. |
 | CA-07 | La documentación de análisis y diseño mantiene consistencia entre requisitos y casos de uso. | P1 | Critical | Pendiente de validación | Comparar matriz y casos de uso. |
 | CA-08 | Los artefactos del Producto 1 están organizados en sus respectivas carpetas. | P1 | Minor | Pendiente de validación | Revisar estructura del repositorio. |
-| CA-09 | El modelo conceptual de datos representa las entidades principales del sistema. | P2 | Critical | Pendiente de validación | B1-Diagrama-Conceptual.drawio. |
-| CA-10 | El modelo conceptual incluye mínimo seis entidades. | P2 | Critical | Pendiente de validación | Revisar B1. |
-| CA-11 | El modelo conceptual representa relaciones y cardinalidades. | P2 | Critical | Pendiente de validación | Revisar B1. |
-| CA-12 | El modelo conceptual contempla relaciones 1:N y N:M. | P2 | Critical | Pendiente de validación | Revisar B1. |
-| CA-13 | El modelo relacional contempla mínimo ocho tablas. | P2 | Critical | Pendiente de validación | B2-Diagrama-Relacional.drawio. |
-| CA-14 | Las tablas del modelo relacional cuentan con claves primarias. | P2 | Critical | Pendiente de validación | Revisar B2. |
-| CA-15 | Las relaciones entre tablas están representadas mediante claves foráneas. | P2 | Critical | Pendiente de validación | Revisar B2. |
-| CA-16 | Las relaciones N:M están resueltas mediante tablas intermediarias. | P2 | Critical | Pendiente de validación | Revisar B2. |
-| CA-17 | El modelo relacional documenta reglas de transformación del modelo conceptual. | P2 | Major | Pendiente de validación | B2-Modelo-Relacional.md. |
-| CA-18 | El proceso de normalización documenta las etapas hasta 3FN. | P2 | Critical | Pendiente de validación | B3-Normalizacion.md. |
-| CA-19 | La normalización incluye dependencias funcionales y ejemplos de las tablas analizadas. | P2 | Major | Pendiente de validación | Revisar B3. |
-| CA-20 | El diccionario de datos documenta campos, tipos, tamaños, restricciones y dominios. | P2 | Critical | Pendiente de validación | B4-Diccionario-Datos.md. |
-| CA-21 | El script SQL permite crear la estructura de la base de datos. | P2 | Critical | Pendiente de validación | B5-Creacion-Base-Datos.sql. |
-| CA-22 | La ejecución del script SQL fue comprobada y se verificó la creación de las tablas. | P2 | Critical | Pendiente de validación | Captura B5 de tablas. |
-| CA-23 | Las claves foráneas de la base de datos fueron verificadas. | P2 | Critical | Pendiente de validación | Captura B5 de relaciones. |
-| CA-24 | Se documentaron políticas de integridad, confidencialidad, disponibilidad y protección de datos. | P2 | Critical | Pendiente de validación | B6-Politicas-Seguridad-Datos.md. |
-| CA-25 | Se documentó una matriz de acceso por roles y el tratamiento de datos personales. | P2 | Critical | Pendiente de validación | Revisar B6. |
+| CA-09 | El modelo conceptual de datos representa las entidades principales del sistema. | P2 | Critical | Cumple | Cumple. Revisado en B1-Diagrama-Conceptual.drawio y B1-Modelo-Conceptual-Datos.md. |
+| CA-10 | El modelo conceptual incluye mínimo seis entidades. | P2 | Critical | Cumple | Cumple. Se identifican 11 entidades en el modelo conceptual B1. |
+| CA-11 | El modelo conceptual representa relaciones y cardinalidades. | P2 | Critical | Cumple | Cumple. Relaciones y cardinalidades documentadas en B1. |
+| CA-12 | El modelo conceptual contempla relaciones 1:N y N:M. | P2 | Critical | Cumple | Cumple. Se documentan relaciones 1:N y N:M mediante AsignacionPersonal. |
+| CA-13 | El modelo relacional contempla mínimo ocho tablas. | P2 | Critical | Cumple | Cumple. El modelo relacional contempla 11 tablas. |
+| CA-14 | Las tablas del modelo relacional cuentan con claves primarias. | P2 | Critical | Cumple | Cumple. Se identifican claves primarias en las 11 tablas. |
+| CA-15 | Las relaciones entre tablas están representadas mediante claves foráneas. | P2 | Critical | Cumple | Cumple. Se documentan FK y se verificaron técnicamente 11 claves foráneas. |
+| CA-16 | Las relaciones N:M están resueltas mediante tablas intermediarias. | P2 | Critical | Cumple | Cumple. La relación N:M entre Asignacion y Personal se resuelve mediante AsignacionPersonal. |
+| CA-17 | El modelo relacional documenta reglas de transformación del modelo conceptual. | P2 | Major | Cumple | Cumple. Se documentan reglas de transformación conceptual-relacional en B2. |
+| CA-18 | El proceso de normalización documenta las etapas hasta 3FN. | P2 | Critical | Cumple | Cumple. Normalización hasta 3FN documentada en B3. |
+| CA-19 | La normalización incluye dependencias funcionales y ejemplos de las tablas analizadas. | P2 | Major | Cumple | Cumple. Dependencias funcionales y ejemplos documentados en B3. |
+| CA-20 | El diccionario de datos documenta campos, tipos, tamaños, restricciones y dominios. | P2 | Critical | Cumple | Cumple. Diccionario revisado con campos, tipos, tamaños, restricciones y dominios. |
+| CA-21 | El script SQL permite crear la estructura de la base de datos. | P2 | Critical | Cumple | Cumple. Existe script SQL de creación de estructura. |
+| CA-22 | La ejecución del script SQL fue comprobada y se verificó la creación de las tablas. | P2 | Critical | Cumple | Cumple. Ejecución comprobada y evidencia de creación de 11 tablas. |
+| CA-23 | Las claves foráneas de la base de datos fueron verificadas. | P2 | Critical | Cumple | Cumple. Verificación técnica de 11 claves foráneas. |
+| CA-24 | Se documentaron políticas de integridad, confidencialidad, disponibilidad y protección de datos. | P2 | Critical | Cumple | Cumple. Políticas de seguridad e integridad documentadas en B6. |
+| CA-25 | Se documentó una matriz de acceso por roles y el tratamiento de datos personales. | P2 | Critical | Cumple | Cumple. Matriz de acceso por roles y tratamiento de datos personales documentados en B6. |
 
 ## 3. Registro de validación
 
@@ -92,4 +92,10 @@ Los criterios de aceptación y hallazgos deberán evaluarse utilizando esta esca
 
 Las validaciones técnicas registradas corresponden a las comprobaciones realizadas sobre el modelo relacional y el script SQL en el ambiente de prueba, así como a los ajustes documentales efectuados en B6. Los criterios restantes de P1 y P2 deberán verificarse contra sus artefactos y evidencias antes de asignarles un estado definitivo.
 
+
+
+| VT-07 | Prueba real de unicidad de RegistroCierre.id_servicio: se insertó un cierre y se rechazó un segundo cierre para el mismo servicio; transacción revertida y registros temporales verificados. | Cumple | B5-Evidencia-Unicidad-Cierre.txt |
+
+
+| H-04 | La cardinalidad Servicio–RegistroCierre no estaba alineada entre los artefactos conceptual, relacional y SQL. | Major | Se alineó a 1:0..1, se incorporó UNIQUE a id_servicio y se verificó mediante prueba real en MariaDB. | B2-Modelo-Relacional.md, B2-Diagrama-Relacional.drawio, B4-Diccionario-Datos.md, B5-Creacion-Base-Datos.sql y B5-Evidencia-Unicidad-Cierre.txt |
 

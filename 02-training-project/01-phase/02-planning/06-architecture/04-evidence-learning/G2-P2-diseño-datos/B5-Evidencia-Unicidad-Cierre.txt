@@ -1,0 +1,39 @@
+﻿VALIDACION VT-07 - UNICIDAD DE REGISTRO DE CIERRE
+Proyecto: SIGMAVITAL
+Bloque: G2-P2 - Diseno de datos
+Fecha: 2026-11-27
+Ambiente: Base de datos temporal de auditoria
+Base: sigmavital_auditoria_20261127
+Motor: MariaDB 10.4.32
+
+OBJETIVO:
+Verificar que un servicio no pueda tener mas de un RegistroCierre.
+
+VERIFICACIONES ESTRUCTURALES:
+- 11 tablas creadas correctamente.
+- 11 claves foraneas verificadas.
+- RegistroCierre.id_servicio NOT NULL.
+- RegistroCierre.id_servicio UNIQUE.
+- Clave foranea fk_cierre_servicio.
+- ON DELETE CASCADE.
+- ON UPDATE CASCADE.
+
+PRUEBA FUNCIONAL:
+1. Se insertaron registros temporales de Rol, Usuario, Paciente,
+   Solicitud y Servicio dentro de una transaccion.
+2. Se insertó correctamente el primer RegistroCierre.
+3. Se intento insertar un segundo RegistroCierre para el mismo servicio.
+4. MariaDB rechazó el segundo registro con ERROR 1062:
+   Duplicate entry para la clave id_servicio.
+5. Se ejecutó ROLLBACK.
+6. Se verificó que los registros temporales de Rol, Usuario y Paciente
+   no permanecieran en la base temporal.
+
+RESULTADO:
+CUMPLE. La restriccion UNIQUE impide la duplicidad de RegistroCierre
+para un mismo Servicio en la prueba ejecutada.
+
+ALCANCE:
+Prueba tecnica puntual realizada sobre MariaDB 10.4.32.
+No representa validacion integral de la aplicacion, pruebas de usuario
+ni certificacion completa de todos los criterios de aceptacion.

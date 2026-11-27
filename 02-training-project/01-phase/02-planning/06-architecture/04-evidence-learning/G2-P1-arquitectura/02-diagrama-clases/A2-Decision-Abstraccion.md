@@ -21,4 +21,5 @@ No se afirma que estos criterios estén actualmente implementados ni validados. 
 
 ## Estado
 
-Decisión preliminar pendiente de validar durante el desarrollo del diagrama de clases UML.
+Decisión revisada e incorporada al diagrama de clases UML A2. La validación corresponde al nivel de diseño; la implementación y validación de las reglas operativas permanecen pendientes.
+

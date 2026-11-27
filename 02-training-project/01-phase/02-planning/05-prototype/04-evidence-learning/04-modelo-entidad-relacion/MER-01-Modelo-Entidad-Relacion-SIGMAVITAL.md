@@ -237,7 +237,6 @@ erDiagram
         string resumen_atencion
         string observaciones_finales
     }
-    }
 
 ## 6. Relaciones y cardinalidades
 
@@ -330,6 +329,8 @@ Este modelo aún requiere revisión de cardinalidades, restricciones de negocio,
 
 **SENA – ADSO – Ficha 3413974**
 **G1-P2 – Actividad 05: Prototipo**
+
+
 
 
 

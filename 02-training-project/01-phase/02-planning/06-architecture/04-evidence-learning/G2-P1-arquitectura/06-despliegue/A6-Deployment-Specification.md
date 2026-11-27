@@ -105,9 +105,9 @@ The specific database protocol, port, server configuration, and deployment techn
 
 The deployment diagram is provided in the following files:
 
-- `A6-Deployment-View-SIGMAVITAL.puml`: editable PlantUML source.
-- `A6-Deployment-View-SIGMAVITAL.png`: diagram image.
-- `A6-Deployment-View-SIGMAVITAL.svg`: vector diagram.
+- A6-Deployment-View-SIGMAVITAL.drawio: editable source diagram created with Draw.io.
+- A6-Deployment-View-SIGMAVITAL.png: graphical representation of the deployment view.
+- A6-Deployment-View-SIGMAVITAL.svg: vector representation of the deployment view.
 
 The diagram represents the proposed client, application, and database deployment nodes and their communication relationships.
 
@@ -171,3 +171,4 @@ The proposed deployment architecture separates user access, application processi
 This structure establishes a conceptual deployment foundation for SIGMAVITAL and supports security, separation of responsibilities, maintainability, and future infrastructure validation.
 
 The deployment model remains a proposal until its infrastructure, configuration, communication, and operational behavior are implemented and tested.
+
