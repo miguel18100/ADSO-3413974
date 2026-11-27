@@ -23,7 +23,7 @@
 |---|---|---|---|
 | 1 | Matriz de requisitos y casos de uso | Consolidé la trazabilidad de requisitos funcionales y casos de uso, corregí inconsistencias en el número de casos y alineé la documentación de relaciones UML con el diagrama. | [Historial de la matriz](https://github.com/miguel18100/ADSO-3413974/commits/main/02-training-project/01-phase/01-analysis/03-conceptual-model/04-evidence-learning/G1-P1-Plan-Analisis/05-matriz-requisitos-casos-uso/) |
 | 2 | Diagrama de casos de uso | Consolidé la versión editable principal, manteniendo 22 casos de uso, cinco perfiles concretos, generalizaciones y la relación `include` entre CU-11 y CU-07. | [Historial del diagrama](https://github.com/miguel18100/ADSO-3413974/commits/main/02-training-project/01-phase/01-analysis/03-conceptual-model/04-evidence-learning/G1-P1-Plan-Analisis/06-diagrama-casos-uso/) |
-| 3 | Exportaciones del diagrama | Regeneré las exportaciones PNG y SVG a partir del diagrama consolidado para disponer de representación visual actualizada. | [Historial de la carpeta](https://github.com/miguel18100/ADSO-3413974/commits/main/02-training-project/01-phase/01-analysis/03-conceptual-model/04-evidence-learning/G1-P1-Plan-Analisis/06-diagrama-casos-uso/) |
+| 3 | Exportaciones del diagrama | Regeneré las exportaciones PNG y SVG a partir del diagrama consolidado. El 27 de noviembre de 2026 reorganicé visualmente las asociaciones y distribución de los actores y paquetes para mejorar la legibilidad, conservando los 22 casos de uso y la lógica de las relaciones UML. | [Historial de la carpeta](https://github.com/miguel18100/ADSO-3413974/commits/main/02-training-project/01-phase/01-analysis/03-conceptual-model/04-evidence-learning/G1-P1-Plan-Analisis/06-diagrama-casos-uso/) |
 
 ## 4. Qué construí nuevo
 
@@ -43,7 +43,7 @@
 - [x] Diagrama de casos de uso (fuente editable): [Diagrama Draw.io](./06-diagrama-casos-uso/Diagrama-Casos-Uso.drawio).
 - [x] Diagrama de casos de uso (imagen PNG): [Diagrama PNG](./06-diagrama-casos-uso/Diagrama-Casos-Uso.drawio.png).
 - [x] Diagrama de casos de uso (imagen SVG): [Diagrama SVG](./06-diagrama-casos-uso/Diagrama-Casos-Uso.drawio.svg).
-- [x] Fuente complementaria PlantUML: [Diagrama PlantUML](./06-diagrama-casos-uso/Diagrama-Casos-Uso.puml).
+- [x] Fuente complementaria PlantUML: eliminada intencionalmente; el diagrama vigente se conserva en Draw.io y sus exportaciones PNG y SVG.
 - [x] Matriz requisito → caso de uso: [Matriz de trazabilidad](./05-matriz-requisitos-casos-uso/Matriz-Requisitos-Casos-Uso.md).
 
 **Producto 2**
@@ -81,10 +81,14 @@ La IA se utilizó como herramienta de apoyo. La revisión, comprobación de arch
 - [x] Se verificó el historial de Git y la existencia de commits en al menos dos días diferentes dentro del período establecido.
 - [x] Se revisaron los artefactos de la entrega y su organización.
 - [x] Se identificaron y retiraron duplicados y archivos accidentales durante la consolidación.
-- [x] Hice `push` y comprobé en GitHub que la carpeta está publicada.
+- [ ] Los cambios de esta revisión quedan pendientes de publicar en GitHub tras finalizar la auditoría.
 
 ---
 
 **Servicio Nacional de Aprendizaje – SENA**  
 **ADSO – Ficha 3413974**  
 **Proyecto formativo: Sistema Gestor de Ambulancias (SGA)**
+
+
+
+

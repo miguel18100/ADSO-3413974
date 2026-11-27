@@ -430,8 +430,9 @@ La cobertura integral del SRS disponible queda condicionada a resolver la discre
 | Relación «extend» | No se aplica | CU-14 Gestionar novedades operativas se modela como objetivo independiente, sin dependencia condicional de CU-13. |
 | Generalización de actores | Cumple y está justificada | Los cinco perfiles heredan del actor general Usuario del SGA para inicio/cierre y documentos; coordinación y paramédicos heredan además las funciones operativas comunes de Personal operativo; el Paramédico TAM tiene el caso exclusivo de intervenciones prehospitalarias. |
 | Casos duplicados, CRUD fragmentado o ciclos | No se identifican duplicados en el catálogo consolidado; los casos de gestión agrupan operaciones relacionadas | Las operaciones de mantenimiento se agrupan en «Gestionar» cuando representan el mismo objetivo del actor. |
-| Fuente editable y exportaciones | Entregadas | ``.drawio`, `.puml` y `.png` en la carpeta `06-diagrama-casos-uso`. |
+| Fuente editable y exportaciones | Entregadas | `.drawio`, `.png` y `.svg` en la carpeta `06-diagrama-casos-uso`; fuente PlantUML eliminada intencionalmente. |
 
 **Nota de revisión:** la matriz y el diagrama se normalizaron a los mismos 22 identificadores de casos de uso, cinco perfiles concretos y dos actores abstractos de generalización. La versión editable debe abrirse en diagrams.net para comprobar que las asociaciones y posiciones se conservan al abrirla.
+
 
 
