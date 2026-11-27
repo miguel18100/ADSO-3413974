@@ -1,8 +1,8 @@
-﻿# Matriz de requisitos y casos de uso - G1-P1 Plan de análisis
+# Matriz de requisitos y casos de uso - G1-P1 Plan de análisis
 
 ## 1. Introducción
 
-Esta matriz consolida los requisitos funcionales (RF), los requisitos no funcionales (RNF), los actores, las reglas de negocio y los casos de uso preliminares del Sistema Gestor de Ambulancias (SGA). Su finalidad es relacionar las funciones identificadas con los objetivos de los actores y ofrecer una base verificable para el diagrama UML.
+Esta matriz consolida los requisitos funcionales (RF), los requisitos no funcionales (RNF), los actores, las reglas de negocio y los casos de uso preliminares del Sistema Gestor de Ambulancias (SGA). Su finalidad es relacionar las funciones identificadas con los objetivos de los actores y ofrecer una base verificable para el diagrama UML. La cobertura se separa en dos planos: (1) requisitos del alcance operativo definido para el proyecto y (2) registros del PDF SGA_SRS que pertenecen a módulos adicionales cuya inclusión debe contrastarse con el alcance del proyecto. No se mezclan ambos denominadores ni se presentan exclusiones propuestas como aprobaciones institucionales.
 
 Los requisitos constituyen una línea base de análisis derivada del alcance y los objetivos del proyecto SGA y de los instrumentos de levantamiento disponibles. Los instrumentos consultados están diseñados, pero no contienen respuestas diligenciadas; por ello, los requisitos se consideran preliminares y requieren validación con usuarios del contexto.
 
@@ -14,7 +14,7 @@ Relacionar el 100 % de los requisitos funcionales de la línea base de esta matr
 
 La línea base de G1-P1 se limita al núcleo operativo de ambulancias: usuarios y acceso, ambulancias TAB/TAM, personal operativo, solicitudes, clasificación, disponibilidad, asignación, seguimiento, novedades, historial e informes.
 
-**Control de consistencia de las fuentes:** el repositorio contiene `Proyecto Sistema Gestor de ambulancia Version 2.docx`, `Instrumentos_SGA_Completos (1) (1).docx` y `SGA_SRS.pdf`. Los dos primeros describen el proyecto de ambulancias y sus instrumentos. El PDF `SGA_SRS.pdf` incluye además secciones de módulos (por ejemplo, cartera/finanzas, visitantes, PQRS, unidades/residentes y proveedores) que no aparecen descritas en el alcance del documento de proyecto de ambulancias. Para esta evidencia no se incorporan esas funciones ajenas al alcance operativo sin confirmación; quedan señaladas como inconsistencia documental que debe aclararse antes de afirmar cobertura de todo el contenido del PDF. La conciliación por módulo y la decisión requerida para cerrar C3 se documentan en [Conciliacion-Alcance-SRS.md](../07-conciliacion-srs/Conciliacion-Alcance-SRS.md).
+**Control de consistencia de las fuentes:** `Proyecto Sistema Gestor de ambulancia Version 2.docx` define como alcance del SGA la solicitud, registro, clasificación, asignación, monitoreo, seguimiento y cierre de servicios prehospitalarios, junto con ambulancias TAB/TAM, personal, pacientes, seguridad y reportes (§§1.4-1.6). `SGA_SRS.pdf` contiene además módulos de finanzas/cartera, visitantes, PQRS, unidades con propietarios/residentes y proveedores (§§4.1-4.5), que no quedan sustentados por el alcance y los perfiles de usuario del documento de proyecto. Se mantienen visibles en la matriz y se documenta una propuesta de exclusión por módulo y por registro; no se atribuye aprobación formal al instructor/equipo. Los módulos documentales, auditoría y novedades (§§4.6-4.8) sí se relacionan con los procesos y la trazabilidad del SGA y se mapean a casos de uso. La conciliación y sus límites se detallan en [Conciliacion-Alcance-SRS.md](../07-conciliacion-srs/Conciliacion-Alcance-SRS.md).
 
 ## 4. Fuentes de identificación
 
@@ -103,7 +103,7 @@ Los casos se nombran con verbo más objeto y representan objetivos de los actore
 |---|---|---|---|---|
 | CU-01 | Iniciar sesión | Todos | RF-01 | Acceder al sistema según el rol asignado. |
 | CU-02 | Cerrar sesión | Todos | RF-02 | Finalizar la sesión del usuario autenticado. |
-| CU-03 | Consultar tablero operativo | Administrador, Coordinador, Analista/directivo | RF-04 | Consultar el estado actual de solicitudes, servicios, ambulancias y recursos disponibles, sin duplicar los indicadores históricos de CU-17. |
+| CU-03 | Consultar tablero operativo | Administrador, Coordinador, Analista/directivo | RF-04 y SRS 4.8 RF-81, RF-84 | Consultar el estado actual de solicitudes, servicios, ambulancias y recursos disponibles, sin duplicar los indicadores históricos de CU-17. |
 | CU-04 | Gestionar usuarios, roles y permisos | Administrador | RF-03 | Consultar, crear, actualizar o desactivar usuarios y administrar sus permisos. |
 | CU-05 | Gestionar ambulancias | Administrador, Coordinador | RF-05, RF-06, RF-07, RF-08, RF-23 | Registrar, consultar y actualizar la información y el estado operativo de las ambulancias TAB/TAM. |
 | CU-06 | Gestionar personal operativo | Administrador, Coordinador | RF-09, RF-10, RF-11, RF-24 | Registrar, actualizar y consultar la información del personal y su disponibilidad autorizada. |
@@ -114,12 +114,12 @@ Los casos se nombran con verbo más objeto y representan objetivos de los actore
 | CU-11 | Asignar ambulancia y personal | Coordinador | RF-17, RF-18 | Asociar a una solicitud los recursos compatibles y disponibles. |
 | CU-12 | Consultar asignaciones | Coordinador, Paramédico TAB, Paramédico TAM | RF-19 | Consultar el detalle de la asignación y los recursos asociados. |
 | CU-13 | Actualizar estado del servicio | Coordinador, Paramédico TAB, Paramédico TAM | RF-20 | Actualizar el estado operativo del servicio durante su ciclo. |
-| CU-14 | Gestionar novedades operativas | Paramédico TAB, Paramédico TAM, Coordinador | RF-21 y SRS 4.8 RF-61 a RF-76 | Registrar, clasificar, priorizar, asignar, actualizar y consultar novedades asociadas a servicios o ambulancias, con evidencia y trazabilidad según permisos. |
-| CU-15 | Consultar historial de servicios | Coordinador, Paramédico TAB, Paramédico TAM, Analista/directivo | RF-22 | Consultar servicios registrados y su evolución histórica, según permisos. |
-| CU-16 | Generar reportes operativos | Coordinador, Analista/directivo | RF-25, RF-26 | Generar reportes filtrados por fechas, estado y recursos asociados. |
-| CU-17 | Consultar indicadores de gestión | Coordinador, Analista/directivo | RF-27, RF-28 y SRS 4.8 RF-75 | Consultar indicadores e información consolidada para apoyar decisiones. |
-| CU-18 | Consultar auditoría operativa | Administrador, Analista/directivo | SRS 4.7 RF-41 a RF-60 | Consultar registros de auditoría, filtrar eventos, revisar detalle e historial y exportar resultados según permisos. |
-| CU-19 | Gestionar documentos y protocolos operativos | Administrador, Coordinador, Paramédico TAB, Paramédico TAM, Analista/directivo | SRS 4.6: RF-20 a RF-40 (21 registros de la tabla; incluye IDs repetidos) | Cargar, clasificar, describir, versionar, consultar, visualizar, descargar, asociar y controlar documentos operativos y protocolos según rol; conserva auditoría e integridad. |
+| CU-14 | Gestionar novedades operativas | Paramédico TAB, Paramédico TAM, Coordinador | RF-21 y SRS 4.8 RF-61 a RF-78 y RF-80 a RF-88 (incluye apariciones duplicadas) | Registrar, clasificar, priorizar, asignar, actualizar y consultar novedades asociadas a servicios o ambulancias, con evidencia y trazabilidad según permisos. |
+| CU-15 | Consultar historial de servicios | Coordinador, Paramédico TAB, Paramédico TAM, Analista/directivo | RF-22 y SRS 4.8 RF-86 | Consultar servicios registrados y su evolución histórica, según permisos. |
+| CU-16 | Generar reportes operativos | Coordinador, Analista/directivo | RF-25, RF-26 y SRS 4.8 RF-80, RF-88 | Generar reportes filtrados por fechas, estado y recursos asociados. |
+| CU-17 | Consultar indicadores de gestión | Coordinador, Analista/directivo | RF-27, RF-28 y SRS 4.8 RF-75, RF-83, RF-86 | Consultar indicadores e información consolidada para apoyar decisiones. |
+| CU-18 | Consultar auditoría operativa | Administrador, Analista/directivo | SRS 4.7: 20 registros (RF-41 a RF-60; incluye IDs repetidos) | Consultar registros de auditoría, filtrar eventos, revisar detalle e historial y exportar resultados según permisos. |
+| CU-19 | Gestionar documentos y protocolos operativos | Administrador, Coordinador, Paramédico TAB, Paramédico TAM, Analista/directivo | SRS 4.6: 21 registros de la tabla (incluye IDs repetidos); SRS 4.8 RF-85 | Cargar, clasificar, describir, versionar, consultar, visualizar, descargar, asociar y controlar documentos operativos y protocolos según rol; conserva auditoría e integridad. |
 | CU-20 | Registrar datos básicos del paciente | Paramédico TAB, Paramédico TAM | RF-29; SRS §6.2, CU-11 | Registrar los datos mínimos de identificación y atención inicial del paciente asociados al servicio; no sustituye ni pretende gestionar una historia clínica completa. |
 | CU-21 | Registrar intervenciones prehospitalarias | Paramédico TAM | RF-30; SRS §6.2, CU-12 | Registrar las intervenciones realizadas por personal TAM durante el servicio, con fecha, descripción y relación con el servicio atendido, según permisos. |
 | CU-22 | Cerrar servicio | Coordinador operativo | RF-31; SRS §6.2, CU-07 (segunda aparición, identificador duplicado) | Registrar el cierre operativo del servicio con resumen de atención, condición de salida, destino asistencial, tiempos y observaciones autorizadas. |
@@ -223,8 +223,9 @@ Los casos se nombran con verbo más objeto y representan objetivos de los actore
 | Caso base | Caso relacionado | Relación y dirección | Justificación de una línea |
 |---|---|---|---|
 | CU-11 Asignar ambulancia y personal | CU-07 Consultar disponibilidad de recursos | `CU-11 ..> CU-07` `<<include>>` | La consulta de disponibilidad siempre forma parte de la asignación para evitar seleccionar recursos no disponibles. |
+| CU-13 Actualizar estado del servicio | CU-14 Gestionar novedades operativas | `CU-14 ..> CU-13` `<<extend>>` | El registro/gestión de una novedad se ejecuta solo cuando, durante la actualización de estado, se detecta un incidente que debe documentarse; no ocurre en todas las actualizaciones. |
 
-**Punto de extensión de CU-13:** `registrarNovedad`, durante el seguimiento o la actualización del estado del servicio, cuando se presenta una novedad operativa.  
+**Punto de extensión de CU-13:** `registrarNovedad`, con la condición `[si durante la actualización se identifica un incidente operativo]`. CU-14 también conserva su asociación directa con Coordinador y Personal operativo porque puede iniciarse como objetivo independiente al registrar o consultar una novedad ya existente.  
 **Justificación de cada generalización (la flecha apunta del perfil especializado al actor general):**
 
 | Relación | Justificación |
@@ -238,7 +239,7 @@ Los casos se nombran con verbo más objeto y representan objetivos de los actore
 
 ## 13. Trazabilidad complementaria de requisitos funcionales del SRS
 
-La revisión directa del `SGA_SRS.pdf` identifica tres bloques funcionales relacionados con el SGA de ambulancias: **4.6 Gestión documental y protocolos**, **4.7 Bitácora y auditoría del sistema** y **4.8 Gestión de novedades y bitácora operativa**. Sus 57 registros se trazan como complemento de la línea base consolidada. Los objetivos adicionales descritos en la sección 6.2 del mismo SRS se integran como RF-29 a RF-31 y CU-20 a CU-22.
+La revisión directa del `SGA_SRS.pdf` identifica tres bloques funcionales relacionados con el SGA de ambulancias: **4.6 Gestión documental y protocolos (21 registros)**, **4.7 Bitácora y auditoría del sistema (20 registros)** y **4.8 Gestión de novedades y bitácora operativa (28 registros)**. Se trazan **69 registros** como complemento de la línea base consolidada. La matriz incluye todas las apariciones de la sección 4.8; la versión anterior solo llegaba a RF-76 y omitía RF-77 (dos apariciones), RF-78 y RF-80 a RF-88. Los objetivos adicionales descritos en la sección 6.2 del mismo SRS se integran como RF-29 a RF-31 y CU-20 a CU-22.
 
 | Referencia del SRS | Requisito resumido | Caso(s) relacionado(s) / tratamiento |
 |---|---|---|
@@ -278,6 +279,18 @@ La revisión directa del `SGA_SRS.pdf` identifica tres bloques funcionales relac
 | 4.8 RF-74 | Generar reportes de incidencias | CU-16 |
 | 4.8 RF-75 | Consultar estadísticas e indicadores de incidencias | CU-17 |
 | 4.8 RF-76 | Garantizar trazabilidad de cada incidente | CU-14 y CU-18 |
+| 4.8 RF-77 (1.ª aparición) | Asociar una novedad a un servicio de emergencia específico cuando aplique | CU-14 |
+| 4.8 RF-78 | Notificar automáticamente a responsables cuando se asigne un incidente o cambie su estado | CU-14 |
+| 4.8 RF-77 (2.ª aparición) | Cerrar una novedad solo después de su gestión, validación y documentación | CU-14 |
+| 4.8 RF-80 | Exportar información de incidencias a PDF o Excel | CU-14 y CU-16 |
+| 4.8 RF-81 | Establecer tiempo estimado de resolución y alertar cuando se supere | CU-14 y CU-03 |
+| 4.8 RF-82 | Reasignar responsables por cambios operativos o incumplimiento | CU-14 |
+| 4.8 RF-83 | Categorizar incidencias recurrentes para analizar patrones | CU-14 y CU-17 |
+| 4.8 RF-84 | Priorizar automáticamente incidentes críticos en la interfaz | CU-03 y CU-14 |
+| 4.8 RF-85 | Asociar múltiples evidencias o archivos a una novedad | CU-14 y CU-19 |
+| 4.8 RF-86 | Generar historial consolidado por ambulancia, personal o tipo de servicio | CU-14, CU-15 y CU-17 |
+| 4.8 RF-87 | Bloquear edición de incidencias cerradas | CU-14 |
+| 4.8 RF-88 | Integrar incidencias con reportes y auditoría | CU-14, CU-16, CU-17 y CU-18 |
 
 ### 13.1 Trazabilidad del módulo de gestión documental (SRS 4.6)
 
@@ -312,7 +325,7 @@ El SRS desarrolla un módulo documental y en su sección 7.6 incluye la carga y 
 
 **Control de calidad de la fuente:** el PDF repite los identificadores RF-47 en la sección 4.7, RF-57 en la sección 4.7 y RF-67 en la sección 4.8, además de presentar saltos de numeración (por ejemplo, RF-49 y RF-59 no aparecen en las tablas transcritas). No se corrigen esos códigos en la fuente; se distinguen aquí por sección y orden de aparición para evitar colisiones. El equipo debe corregir el SRS maestro si estos duplicados son errores de digitación.
 
-**Cobertura demostrada:** los 31 RF de la línea base consolidada están relacionados con casos de uso. Además, se trazan los 57 registros funcionales de las secciones 4.6, 4.7 y 4.8 del SRS. Los 44 registros de las secciones 4.1 a 4.5 se mantienen individualizados en la sección 13.2 con su justificación y estado de alcance. Por tanto, la cobertura de la línea base consolidada es 31/31 (100 %), pero la cobertura de los 101 registros de la sección 4 del SRS completo no puede declararse en 90 % o más mientras no exista una decisión formal sobre los módulos 4.1 a 4.5. El equipo/instructor debe confirmar si esos módulos pertenecen al SGA de ambulancias o si son contenido ajeno incorporado al documento.
+**Cobertura y tratamiento de la fuente:** los 31 RF de la línea base operativa están relacionados con casos de uso. Además, se trazan los 69 registros funcionales de 4.6, 4.7 y 4.8. Los otros 44 registros de 4.1 a 4.5 se conservan individualmente y cada uno tiene una propuesta de exclusión con justificación en la sección 13.2. El inventario completo de §4 contiene 113 apariciones: 69 mapeadas directamente y 44 propuestas como fuera del alcance actual. No se presenta la cifra 69/113 como 90 % de cobertura directa; la calificación máxima de C3 depende de que el evaluador acepte el alcance del documento principal y considere justificadas las 44 exclusiones, tal como permite la rúbrica para los requisitos no cubiertos.
 
 ### 13.2 Registro de requisitos de SRS 4.1-4.5 justificados como discrepancia de alcance
 
@@ -320,63 +333,72 @@ La fuente SRS contiene 44 registros en estos cinco módulos. Se transcriben aqu�
 
 | Sección | ID tal como aparece en SRS | Requisito / objetivo resumido | Decisión provisional | Justificación |
 |---|---|---|---|---|
-| 4.1 Finanzas/cartera | RF-6.1.1 | Registrar ingresos | No se modela | No está en el flujo de solicitud, asignación, seguimiento o cierre prehospitalario; 1.5 del SRS excluye procesos de facturación externos. |
-| 4.1 | RF-6.1.2 | Registrar egresos financieros | No se modela | Gestión contable/financiera no definida en el alcance base. |
-| 4.1 | RF-6.1.3 | Gestionar cartera y deudas de usuarios | No se modela | La gestión de cartera no está definida como objetivo operativo del SGA. |
-| 4.1 | RF-6.1.4 | Generar facturas automáticamente | No se modela | La facturación no forma parte del flujo de servicio descrito en el documento base. |
-| 4.1 | RF-6.1.5 | Consultar estado de cuenta | No se modela | Consulta financiera no descrita para los perfiles del SGA. |
-| 4.1 | RF-6.1.6 | Generar reportes financieros | No se modela | Los reportes de la línea base son operativos/estadísticos, no financieros. |
-| 4.1 | RF-6.1.7 (1.ª aparición) | Enviar notificaciones de pago | No se modela | Depende del módulo de cartera no incluido en el alcance operativo inicial. |
-| 4.1 | RF-6.1.8 | Mantener historial financiero | No se modela | No corresponde al historial de servicios prehospitalarios. |
-| 4.1 | RF-6.1.7 (2.ª aparición) | Generar recibos de pago | No se modela | ID repetido; función financiera no descrita en el alcance base. |
-| 4.1 | RF-6.1.10 | Listar usuarios morosos | No se modela | Gestión de morosidad no es función operativa de ambulancias. |
-| 4.2 Visitantes | RF-6.2.1 | Registrar visitantes | No se modela | No existe actor visitante/vigilante ni proceso de control de acceso físico en el alcance prehospitalario. |
-| 4.2 | RF-6.2.2 | Controlar ingreso de visitantes | No se modela | El SGA gestiona servicios y recursos de ambulancia, no accesos a instalaciones. |
-| 4.2 | RF-6.2.3 | Registrar salida de visitantes | No se modela | Proceso ajeno al despacho y seguimiento de ambulancias. |
-| 4.2 | RF-6.2.4 | Autorizar preautorizaciones de visitantes | No se modela | Depende de actores residentes/vigilantes no definidos para el SGA. |
-| 4.2 | RF-6.2.5 | Mantener historial de visitas | No se modela | No equivale al historial de servicios prehospitalarios. |
-| 4.2 | RF-6.2.6 | Generar reportes de visitantes | No se modela | No aparece como indicador del alcance de ambulancias. |
-| 4.2 | RF-6.2.7 (1.ª aparición) | Verificar identidad de visitantes | No se modela | No se define un proceso de registro/control de visitantes. |
-| 4.2 | RF-6.2.8 | Registrar vehículos de visitantes | No se modela | Control de estacionamiento/visitantes ajeno a la operación de ambulancias. |
-| 4.2 | RF-6.2.7 (2.ª aparición) | Alertar sobre riesgos de visitantes | No se modela | ID repetido y funcionalidad de seguridad física fuera del alcance declarado. |
-| 4.3 PQRS | RF-6.3.1 | Registrar PQRS | Pendiente de decisión | No se describe en las fuentes de alcance; podría ser un módulo institucional transversal, pero no es parte explícita de P1. |
-| 4.3 | RF-6.3.2 | Clasificar PQRS | Pendiente de decisión | Depende de la inclusión del módulo PQRS, no validada en el alcance base. |
-| 4.3 | RF-6.3.3 | Asignar responsable de PQRS | Pendiente de decisión | No se identifican responsables ni flujo PQRS en los instrumentos. |
-| 4.3 | RF-6.3.4 | Consultar seguimiento de PQRS | Pendiente de decisión | No debe confundirse con el seguimiento del servicio de ambulancia. |
-| 4.3 | RF-6.3.5 | Notificar cambios de PQRS | Pendiente de decisión | Requiere confirmar si el SGA incluye atención de solicitudes/quejas institucionales. |
-| 4.3 | RF-6.3.6 | Mantener historial de PQRS | Pendiente de decisión | El historial de servicios sí está modelado; el historial PQRS no está en alcance confirmado. |
-| 4.3 | RF-6.3.7 (1.ª aparición) | Generar reportes PQRS | Pendiente de decisión | Reportes de PQRS no equivalen a reportes operativos de ambulancias. |
-| 4.3 | RF-6.3.8 | Responder PQRS | Pendiente de decisión | No hay flujo, actor o regla definida en la documentación principal. |
-| 4.3 | RF-6.3.7 (2.ª aparición) | Cerrar caso PQRS | Pendiente de decisión | ID repetido; requiere decidir inclusión del módulo. |
-| 4.4 Unidades | RF-6.4.1 | Registrar propietarios | No se modela | Propietarios no son actores del SGA de transporte asistencial. |
-| 4.4 | RF-6.4.2 | Asociar propietario a unidad | No se modela | La unidad descrita se relaciona con propiedad/residencia, no con ambulancia. |
-| 4.4 | RF-6.4.3 | Actualizar datos de propietarios/unidades | No se modela | No corresponde a la gestión de ambulancias TAB/TAM. |
-| 4.4 | RF-6.4.4 | Consultar datos de unidad | No se modela | La denominación es ambigua, pero la tabla usa propietario/residente; el inventario de ambulancias se cubre en CU-05. |
-| 4.4 | RF-6.4.5 | Mantener historial de cambios | No se modela | Asociado al módulo residencial/unidades, no al historial operativo de ambulancias. |
-| 4.4 | RF-6.4.6 | Clasificar unidad | No se modela | El concepto parece residencial; la clasificación TAB/TAM se encuentra en CU-05/CU-10. Requiere corregir la fuente para evitar ambigüedad. |
-| 4.4 | RF-6.4.7 | Registrar residentes | No se modela | El SGA registra pacientes y personal, no residentes de unidades habitacionales. |
-| 4.4 | RF-6.4.8 | Controlar estado de unidad | No se modela | El estado de ambulancias se gestiona en CU-05; el contexto de propietarios/residentes indica otra entidad. |
-| 4.5 Proveedores | RF-6.5.1 | Registrar proveedores | Pendiente de decisión | Podría ser administración de proveedores de mantenimiento, pero no está contemplado en el alcance base ni en los instrumentos. |
-| 4.5 | RF-6.5.2 | Registrar contratos con proveedores | Pendiente de decisión | No se especifican contratos ni actores de compras en el SGA base. |
-| 4.5 | RF-6.5.3 | Controlar vigencia de contratos | Pendiente de decisión | Depende de incluir el proceso de gestión de proveedores. |
-| 4.5 | RF-6.5.4 | Asociar servicios a proveedores | Pendiente de decisión | No hay relación proveedor-servicio descrita para el transporte asistencial. |
-| 4.5 | RF-6.5.5 | Mantener historial de proveedores | Pendiente de decisión | No está en los procesos ni perfiles del alcance base. |
-| 4.5 | RF-6.5.6 | Generar reportes de proveedores | Pendiente de decisión | Los reportes de la línea base son de servicios, recursos y desempeño operativo. |
-| 4.5 | RF-6.5.7 | Evaluar proveedores | Pendiente de decisión | No se define un proceso de evaluación de terceros. |
-| 4.5 | RF-6.5.8 | Alertar vencimientos de contratos | Pendiente de decisión | Requiere confirmar gestión de contratos en el alcance. |
+| 4.1 Finanzas/cartera | RF-6.1.1 | Registrar ingresos | Propuesta de exclusión por alcance | No está en el flujo de solicitud, asignación, seguimiento o cierre prehospitalario; §1.5 del SRS excluye integraciones con aseguradoras/EPS y plataformas de facturación; la exclusión del módulo financiero interno se propone porque no aparece en el alcance del documento principal del proyecto. |
+| 4.1 | RF-6.1.2 | Registrar egresos financieros | Propuesta de exclusión por alcance | Gestión contable/financiera no definida en el alcance base. |
+| 4.1 | RF-6.1.3 | Gestionar cartera y deudas de usuarios | Propuesta de exclusión por alcance | La gestión de cartera no está definida en los objetivos ni en los perfiles operativos del documento principal del SGA. |
+| 4.1 | RF-6.1.4 | Generar facturas automáticamente | Propuesta de exclusión por alcance | La facturación no aparece entre los procesos de solicitud, asignación, monitoreo y cierre descritos en el documento principal. |
+| 4.1 | RF-6.1.5 | Consultar estado de cuenta | Propuesta de exclusión por alcance | Consulta financiera no descrita para administrador, coordinador, personal TAB/TAM ni analista/directivo en el documento principal. |
+| 4.1 | RF-6.1.6 | Generar reportes financieros | Propuesta de exclusión por alcance | Los reportes de la línea base son operativos/estadísticos, no financieros. |
+| 4.1 | RF-6.1.7 (1.ª aparición) | Enviar notificaciones de pago | Propuesta de exclusión por alcance | Depende del módulo de cartera no incluido en el alcance operativo inicial. |
+| 4.1 | RF-6.1.8 | Mantener historial financiero | Propuesta de exclusión por alcance | No corresponde al historial de servicios prehospitalarios. |
+| 4.1 | RF-6.1.7 (2.ª aparición) | Generar recibos de pago | Propuesta de exclusión por alcance | ID repetido; función financiera no descrita en el alcance base. |
+| 4.1 | RF-6.1.10 | Listar usuarios morosos | Propuesta de exclusión por alcance | La gestión de morosidad no corresponde a la gestión de recursos, servicios y atención prehospitalaria definida en §§1.4-1.6 del proyecto. |
+| 4.2 Visitantes | RF-6.2.1 | Registrar visitantes | Propuesta de exclusión por alcance | No existe actor visitante/vigilante ni proceso de control de acceso físico en el alcance prehospitalario. |
+| 4.2 | RF-6.2.2 | Controlar ingreso de visitantes | Propuesta de exclusión por alcance | El SGA gestiona servicios y recursos de ambulancia, no accesos a instalaciones. |
+| 4.2 | RF-6.2.3 | Registrar salida de visitantes | Propuesta de exclusión por alcance | Proceso ajeno al despacho y seguimiento de ambulancias. |
+| 4.2 | RF-6.2.4 | Autorizar preautorizaciones de visitantes | Propuesta de exclusión por alcance | Depende de actores residentes/vigilantes no definidos para el SGA. |
+| 4.2 | RF-6.2.5 | Mantener historial de visitas | Propuesta de exclusión por alcance | No equivale al historial de servicios prehospitalarios. |
+| 4.2 | RF-6.2.6 | Generar reportes de visitantes | Propuesta de exclusión por alcance | No aparece como indicador del alcance de ambulancias. |
+| 4.2 | RF-6.2.7 (1.ª aparición) | Verificar identidad de visitantes | Propuesta de exclusión por alcance | No se define un proceso de registro/control de visitantes. |
+| 4.2 | RF-6.2.8 | Registrar vehículos de visitantes | Propuesta de exclusión por alcance | Control de estacionamiento/visitantes ajeno a la operación de ambulancias. |
+| 4.2 | RF-6.2.7 (2.ª aparición) | Alertar sobre riesgos de visitantes | Propuesta de exclusión por alcance | ID repetido y funcionalidad de seguridad física fuera del alcance declarado. |
+| 4.3 PQRS | RF-6.3.1 | Registrar PQRS | Propuesta de exclusión por alcance | El alcance §§1.4-1.5 del documento de proyecto describe gestión prehospitalaria y no define recepción de PQRS ni un flujo de atención de quejas. Se conserva como posible ampliación, no como función confirmada de G1-P1. |
+| 4.3 | RF-6.3.2 | Clasificar PQRS | Propuesta de exclusión por alcance | El alcance del proyecto no define categorías ni reglas de clasificación PQRS; requiere una ampliación expresa del SRS/alcance para incorporarse. |
+| 4.3 | RF-6.3.3 | Asignar responsable de PQRS | Propuesta de exclusión por alcance | Los perfiles del §1.6 del proyecto no incluyen un rol de gestión PQRS ni un flujo de asignación de casos de atención al usuario. |
+| 4.3 | RF-6.3.4 | Consultar seguimiento de PQRS | Propuesta de exclusión por alcance | El seguimiento modelado corresponde al ciclo del servicio prehospitalario; no se especifica un expediente PQRS independiente. |
+| 4.3 | RF-6.3.5 | Notificar cambios de PQRS | Propuesta de exclusión por alcance | La notificación de cambios PQRS depende del flujo PQRS no definido en los objetivos ni procesos del proyecto. |
+| 4.3 | RF-6.3.6 | Mantener historial de PQRS | Propuesta de exclusión por alcance | El historial de servicios se cubre en CU-15; un historial de PQRS sería una entidad/proceso distinto no incluido en el alcance documentado. |
+| 4.3 | RF-6.3.7 (1.ª aparición) | Generar reportes PQRS | Propuesta de exclusión por alcance | Los reportes definidos para el SGA son operativos e históricos; no se describen reportes de quejas o peticiones. |
+| 4.3 | RF-6.3.8 | Responder PQRS | Propuesta de exclusión por alcance | El documento de proyecto no define responsable, estados, plazos ni reglas de respuesta de PQRS. |
+| 4.3 | RF-6.3.7 (2.ª aparición) | Cerrar caso PQRS | Propuesta de exclusión por alcance | El identificador se repite en el SRS; el cierre de PQRS no es el cierre operativo de un servicio de ambulancia (CU-22). |
+| 4.4 Unidades | RF-6.4.1 | Registrar propietarios | Propuesta de exclusión por alcance | Propietarios no son actores del SGA de transporte asistencial. |
+| 4.4 | RF-6.4.2 | Asociar propietario a unidad | Propuesta de exclusión por alcance | La unidad descrita se relaciona con propiedad/residencia, no con ambulancia. |
+| 4.4 | RF-6.4.3 | Actualizar datos de propietarios/unidades | Propuesta de exclusión por alcance | No corresponde a la gestión de ambulancias TAB/TAM. |
+| 4.4 | RF-6.4.4 | Consultar datos de unidad | Propuesta de exclusión por alcance | La denominación es ambigua, pero la tabla usa propietario/residente; el inventario de ambulancias se cubre en CU-05. |
+| 4.4 | RF-6.4.5 | Mantener historial de cambios | Propuesta de exclusión por alcance | Asociado al módulo residencial/unidades, no al historial operativo de ambulancias. |
+| 4.4 | RF-6.4.6 | Clasificar unidad | Propuesta de exclusión por alcance | El concepto parece residencial; la clasificación TAB/TAM se encuentra en CU-05/CU-10. Requiere corregir la fuente para evitar ambigüedad. |
+| 4.4 | RF-6.4.7 | Registrar residentes | Propuesta de exclusión por alcance | El SGA registra pacientes y personal, no residentes de unidades habitacionales. |
+| 4.4 | RF-6.4.8 | Controlar estado de unidad | Propuesta de exclusión por alcance | El estado de ambulancias se gestiona en CU-05; el contexto de propietarios/residentes indica otra entidad. |
+| 4.5 Proveedores | RF-6.5.1 | Registrar proveedores | Propuesta de exclusión por alcance | No se define un proceso de compras, abastecimiento o mantenimiento por terceros en §§1.4-1.6 del proyecto; no se introduce un actor proveedor. |
+| 4.5 | RF-6.5.2 | Registrar contratos con proveedores | Propuesta de exclusión por alcance | El ciclo contractual con proveedores no aparece entre las funcionalidades, actores ni entregables operativos del SGA. |
+| 4.5 | RF-6.5.3 | Controlar vigencia de contratos | Propuesta de exclusión por alcance | Es una función dependiente de compras/contratación, proceso no definido en el alcance base. |
+| 4.5 | RF-6.5.4 | Asociar servicios a proveedores | Propuesta de exclusión por alcance | Los servicios modelados son atenciones prehospitalarias; no se define prestación tercerizada ni asociación proveedor-servicio. |
+| 4.5 | RF-6.5.5 | Mantener historial de proveedores | Propuesta de exclusión por alcance | No existe entidad ni actor de proveedor en el modelo operativo fuente. |
+| 4.5 | RF-6.5.6 | Generar reportes de proveedores | Propuesta de exclusión por alcance | Los reportes previstos se refieren a tiempos de respuesta, servicios y uso de recursos, no a compras o proveedores. |
+| 4.5 | RF-6.5.7 | Evaluar proveedores | Propuesta de exclusión por alcance | No se establecen criterios, responsables ni flujo de evaluación de terceros en los documentos base. |
+| 4.5 | RF-6.5.8 | Alertar vencimientos de contratos | Propuesta de exclusión por alcance | La gestión de vigencias contractuales no está incluida en los procesos descritos para el SGA. |
 
-**Lectura para el evaluador:** 4.2 y 4.4 presentan indicios fuertes de contenido de otro dominio (vigilancia, visitantes, propietarios y residentes). 4.1 está parcialmente limitado por la exclusión de procesos de facturación/finanzas en el alcance; 4.3 y 4.5 podrían ser extensiones institucionales y se dejan pendientes, no se excluyen como hecho. Por tanto, no se afirma que el 100 % del SRS PDF esté cubierto ni se sustituye la validación del equipo/instructor.
+**Lectura para el evaluador:** la exclusión de 4.1 se apoya además en el §1.5 del SGA_SRS.pdf, que excluye la integración con aseguradoras/EPS y plataformas de facturación, y en el alcance del documento de proyecto. Las secciones 4.2 y 4.4 muestran vocabulario de vigilancia, visitantes, propietarios y residentes que no coincide con los perfiles ni procesos del SGA prehospitalario. Las secciones 4.3 y 4.5 se registran como propuestas de exclusión porque no aparecen en los objetivos, alcance ni perfiles del documento de proyecto; si el instructor confirma que deben formar parte del alcance, deberán incorporarse como requisitos nuevos y modelarse en una ampliación posterior. Ninguna de estas decisiones se presenta como aprobación formal del instructor.
 
 ### 13.3 Lectura cuantitativa del SRS completo para C3
 
-| Estado de los requisitos funcionales de la sección 4 del SRS | Cantidad | Tratamiento |
-|---|---:|---|
-| Registros 4.6, 4.7 y 4.8 trazados a casos de uso | 57 | Cubiertos en la matriz y el modelo UML. |
-| Registros 4.1, 4.2 y 4.4 con indicios de dominio diferente | 27 | No modelados; cada fila tiene justificación individual y requiere confirmación del equipo/instructor. |
-| Registros 4.3 y 4.5 pendientes de decisión de alcance | 17 | No se asumen como excluidos ni como incluidos hasta obtener una decisión formal. |
-| **Total de registros funcionales listados en §4** | **101** | 57 trazados, 27 con exclusión propuesta y 17 pendientes de decisión. |
+La revisión de las tablas del PDF `SGA_SRS.pdf` identifica 113 apariciones de requisitos funcionales en §4. Los identificadores que se repiten se cuentan como registros separados por su sección y orden de aparición; los saltos de numeración no se inventan ni se corrigen.
 
-**Cálculo conservador:** 57/101 = **56,4 %** de requisitos de la sección 4 trazados a casos de uso. Las exclusiones propuestas están justificadas individualmente, pero las 17 filas pendientes y la ausencia de aprobación formal impiden afirmar que se alcanzó el 90 % del SRS completo. Si el equipo/instructor confirma formalmente que los 44 registros de 4.1 a 4.5 no pertenecen al alcance del SGA, la base funcional aplicable de las secciones 4.6 a 4.8 queda trazada al 100 % (57/57). Esta decisión no debe atribuirse al aprendiz sin evidencia de aprobación.
+| Módulo del SRS | Registros identificados | Tratamiento en G1-P1 |
+|---|---:|---|
+| 4.1 Gestión financiera y cartera | 10 | 10 propuestas de exclusión por alcance, con justificación individual |
+| 4.2 Gestión de visitantes | 9 | 9 propuestas de exclusión por dominio/actores, con justificación individual |
+| 4.3 PQRS | 9 | 9 propuestas de exclusión por alcance, con justificación individual |
+| 4.4 Unidades | 8 | 8 propuestas de exclusión por dominio y ambigüedad de fuente, con justificación individual |
+| 4.5 Proveedores | 8 | 8 propuestas de exclusión por alcance, con justificación individual |
+| 4.6 Gestión documental | 21 | 21 registros trazados a CU-19 y casos transversales |
+| 4.7 Bitácora y auditoría | 20 | 20 registros trazados a CU-18 y casos que generan eventos |
+| 4.8 Novedades y bitácora operativa | 28 | 28 registros trazados a CU-14 y casos transversales |
+| **Total §4** | **113** | **69 trazados + 44 justificados como propuesta de no alcance; 0 sin tratamiento** |
+
+**Cobertura del alcance operativo documentado:** 69/69 = **100 %** de los registros de 4.6-4.8 relacionados con los procesos de gestión documental, auditoría y novedades del SGA están trazados a casos de uso. La línea base consolidada del proyecto mantiene 31/31 RF trazados y 14 RNF diferenciados.
+
+La lectura bruta del PDF es 69/113 = **61,1 % de mapeo directo** y 44/113 = **38,9 % de propuestas de exclusión justificadas**. La lectura por alcance es 69/69 = **100 % de registros directamente trazados en los módulos 4.6-4.8 aplicables**, con los 44 registros restantes conservados y justificados individualmente como discrepancia de alcance. La rúbrica C3 asigna el 100 % cuando se cubre al menos el 90 % de los requisitos funcionales y los restantes están justificados. Por tanto, la estimación de 15/15 para C3 es defendible si el evaluador acepta que 4.1-4.5 no pertenecen al alcance vigente; si decide que esos 44 registros también son obligatorios para el SGA, deberá solicitarse una ampliación de alcance y la nota puede bajar. No se afirma que las exclusiones estén formalmente aprobadas.
 
 ### 13.4 Correspondencia con los casos de uso descritos en §6.2 del SRS
 
@@ -398,8 +420,8 @@ La fuente SRS contiene 44 registros en estos cinco módulos. Se transcriben aqu�
 
 ## 14. Control de alcance y limitaciones
 
-- Los 31 RF constituyen la línea base funcional del alcance de ambulancias que se modela en esta evidencia. A esa línea base se integran el módulo documental 4.6 (21 registros trazados) y las funciones operativas de auditoría/novedades de 4.7 y 4.8 (36 registros trazados).
-- El SRS PDF ubicado en el repositorio contiene otros módulos y secciones que no concuerdan claramente con la descripción y los instrumentos del proyecto de ambulancias. Antes de declarar cobertura de ese PDF completo, se debe confirmar si esos módulos pertenecen al alcance del SGA o si el archivo contiene contenido de otro sistema.
+- Los 31 RF constituyen la línea base funcional del alcance de ambulancias que se modela en esta evidencia. A esa línea base se integran 21 registros de 4.6, 20 de 4.7 y 28 de 4.8 (69 registros trazados en total).
+- El SRS PDF contiene módulos 4.1-4.5 que no aparecen dentro del alcance/actores del documento de proyecto. Cada uno de sus 44 registros se conserva y justifica en la sección 13.2 como propuesta de exclusión; su aceptación debe confirmarse con el instructor/equipo. La conciliación no sustituye esa confirmación.
 - Los requisitos, actores y reglas de negocio son preliminares y deben validarse con representantes del contexto operativo.
 - No se afirma que se hayan aplicado encuestas, entrevistas u observación ni que los resultados se hayan validado con usuarios reales.
 - La asignación debe considerar disponibilidad, tipo de unidad y criterios operativos; las reglas específicas requieren confirmación por personal autorizado.
@@ -407,9 +429,9 @@ La fuente SRS contiene 44 registros en estos cinco módulos. Se transcriben aqu�
 
 ## 15. Conclusiones
 
-La matriz consolidada relaciona los 31 RF de la línea base consolidada con 22 casos de uso; incorpora 21 registros de 4.6 y 36 registros de 4.7/4.8. Además, mantiene 44 registros de las secciones 4.1-4.5 con una decisión provisional y su justificación individual. La cobertura total del SRS PDF queda pendiente hasta la confirmación formal del alcance. Los 14 requisitos no funcionales preliminares se mantienen diferenciados. La relación UML `include` se justifica por su obligatoriedad y se mantiene alineada con el diagrama. CU-14 Gestionar novedades operativas se representa como un caso de uso independiente, sin relación `extend`.
+La matriz relaciona 31/31 RF de la línea base con 22 casos de uso; además, traza 21 registros de 4.6, 20 de 4.7 y 28 de 4.8. Los 44 registros de 4.1-4.5 se mantienen individualizados con una propuesta de exclusión y una justificación explícita, pendiente de aceptación por el evaluador. Los 14 RNF se mantienen diferenciados. En UML, CU-11 incluye CU-07 porque la consulta de disponibilidad es obligatoria para asignar; CU-14 extiende CU-13 en el punto `registrarNovedad` cuando se detecta un incidente durante la actualización de estado; las generalizaciones de actores conservan los objetivos comunes y evitan asignar permisos indebidos.
 
-La cobertura integral del SRS disponible queda condicionada a resolver la discrepancia de alcance señalada: el PDF incluye módulos que no aparecen en el documento de proyecto e instrumentos consultados. Esta aclaración evita declarar un porcentaje total no demostrado y deja identificado el punto que debe confirmarse antes de una evaluación definitiva.
+La cobertura integral del SRS disponible se ha conciliado con un tratamiento explícito de los 113 registros de §4: 69 trazados y 44 justificados como propuesta de exclusión. El porcentaje de cobertura aplicable depende de que el evaluador acepte el alcance del proyecto documentado. La matriz no oculta la diferencia entre mapeo directo (69/113) y cobertura de los módulos aplicables (69/69).
 
 ---
 
@@ -425,14 +447,14 @@ La cobertura integral del SRS disponible queda condicionada a resolver la discre
 | Ocho o más casos de uso distintos | Cumple: 22 casos | CU-01 a CU-22; cada nombre expresa una acción mediante verbo y objeto. |
 | Frontera del sistema | Cumple | Rectángulo denominado Sistema Gestor de Ambulancias (SGA). |
 | Dos o más actores primarios fuera de la frontera | Cumple: 5 perfiles concretos | Administrador, Coordinador operativo, Paramédico TAB, Paramédico TAM y Analista/directivo; además hay 2 actores abstractos para generalización. |
-| Asociaciones actor-caso de uso | Cumple según el catálogo de actores | Cada caso tiene al menos un actor iniciador indicado en la matriz y representado en el diagrama. |
+| Asociaciones actor-caso de uso | Corregido y alineado con el catálogo de actores | Usuario del SGA inicia autenticación/cierre y acceso documental; Personal operativo inicia objetivos comunes de operación; cada perfil concreto conserva solo sus funciones específicas. |
 | «include» obligatorio y con dirección correcta | Cumple | CU-11 → CU-07: asignar ambulancia y personal siempre requiere consultar disponibilidad. |
-| Relación «extend» | No se aplica | CU-14 Gestionar novedades operativas se modela como objetivo independiente, sin dependencia condicional de CU-13. |
+| Relación «extend» | Cumple | CU-14 Gestionar novedades operativas extiende CU-13 Actualizar estado del servicio, desde CU-14 hacia CU-13, solo cuando se identifica una novedad; punto `registrarNovedad` y guarda documentados en §12. |
 | Generalización de actores | Cumple y está justificada | Los cinco perfiles heredan del actor general Usuario del SGA para inicio/cierre y documentos; coordinación y paramédicos heredan además las funciones operativas comunes de Personal operativo; el Paramédico TAM tiene el caso exclusivo de intervenciones prehospitalarias. |
 | Casos duplicados, CRUD fragmentado o ciclos | No se identifican duplicados en el catálogo consolidado; los casos de gestión agrupan operaciones relacionadas | Las operaciones de mantenimiento se agrupan en «Gestionar» cuando representan el mismo objetivo del actor. |
 | Fuente editable y exportaciones | Entregadas | `.drawio`, `.png` y `.svg` en la carpeta `06-diagrama-casos-uso`; fuente PlantUML eliminada intencionalmente. |
 
-**Nota de revisión:** la matriz y el diagrama se normalizaron a los mismos 22 identificadores de casos de uso, cinco perfiles concretos y dos actores abstractos de generalización. La versión editable debe abrirse en diagrams.net para comprobar que las asociaciones y posiciones se conservan al abrirla.
+**Nota de revisión:** la matriz y el diagrama se normalizaron a los mismos 22 identificadores de casos de uso, cinco perfiles concretos y dos actores abstractos de generalización. Se incorporan `include` y `extend` con dirección correcta y justificación. La fuente editable y sus exportaciones se incluyen en esta carpeta; se recomienda abrir el `.drawio` en diagrams.net antes de su publicación para revisar el ajuste visual final.
 
 
 

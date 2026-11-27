@@ -1,6 +1,6 @@
 # B7 – Checklist de aceptación de Productos 1 y 2 – SIGMAVITAL
 
-**Proyecto:** SIGMAVITAL · **Ficha:** 3413974 – ADSO · **Evidencia:** G2-P2
+**Proyecto:** SIGMAVITAL · **Ficha:** 3413974 – ADSO · **Evidencia:** G2-P2  
 **Propósito:** verificar de forma medible los artefactos de P1 y P2. Los estados reflejan evidencia documental disponible en el paquete; no sustituyen una evaluación del instructor ni declaran pruebas que no se hayan ejecutado.
 
 ## 1. Estados y severidad
@@ -69,3 +69,7 @@
 ## 5. Resultado de aceptación
 
 El diseño documental de P1 y P2 tiene evidencias identificadas para los criterios declarados como cumplidos. **No se declara aceptación integral todavía**: la prueba de unicidad de AsignacionPersonal y el ejercicio de restauración deben ejecutarse en un motor MariaDB/MySQL y adjuntarse como evidencia. La implementación de puertos, TLS, autorización y rendimiento corresponde a la fase técnica posterior.
+
+## 6. Control de los cambios de última versión
+
+El guion `B5-Prueba-Unicidad-AsignacionPersonal.sql` crea fixtures ficticios dentro de una transacción y revierte la operación; la ejecución continúa **Pendiente** hasta adjuntar el log de MariaDB/MySQL. La reejecución del DDL vigente y el simulacro de restauración también permanecen **Pendientes** hasta que se aporten salidas reales. No se cambian a `Cumple` por la sola existencia de los scripts.

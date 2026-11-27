@@ -1,4 +1,4 @@
-﻿# Selección y justificación de la metodología de desarrollo
+# Selección y justificación de la metodología de desarrollo
 
 ## 1. Metodología seleccionada
 
@@ -16,7 +16,7 @@ La puntuación no significa que Scrum sea universalmente superior; expresa su me
 
 ### 3.1 Organización de un equipo pequeño
 
-El proyecto identifica cinco perfiles de desarrollo: liderazgo/Scrum Master, dos perfiles backend, un perfil frontend y un perfil QA/Tester. Esta distribución describe los perfiles del proyecto, pero no acredita por sí sola que estén asignadas todas las responsabilidades de Scrum. La documentación consultada no identifica quién ejercerá como Product Owner. Esta responsabilidad deberá asignarse explícitamente a una persona con capacidad para ordenar el Product Backlog y comunicar el Product Goal antes de iniciar los Sprints. Scrum permite organizar el trabajo entre estas responsabilidades mediante objetivos de iteración y un backlog compartido, sin exigir una estructura documental tan pesada como la aplicación completa de RUP.
+El documento del proyecto identifica cinco integrantes/autores, pero no asigna formalmente funciones como Product Owner, Scrum Master ni perfiles backend, frontend o QA. Por ello, esta selección propone Scrum como marco de organización; no afirma que sus responsabilidades estén ya asignadas. Antes de iniciar los Sprints, el equipo deberá designar un Product Owner con capacidad para ordenar el Product Backlog y comunicar el Product Goal, y aclarar quién facilita el proceso Scrum. La estructura ligera de Scrum puede ayudar a coordinar el trabajo de cinco integrantes sin introducir una carga documental desproporcionada.
 
 ### 3.2 Desarrollo modular e incremental
 

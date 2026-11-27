@@ -19,7 +19,7 @@ Permitir al coordinador operativo registrar una solicitud de atención de ambula
 ## 3. Actores
 
 - **Actor principal:** Coordinador operativo.
-- **Actor secundario:** Sistema SGA.
+- **Actores secundarios:** No se identifican actores externos para este flujo. El SGA es el sistema bajo estudio, no un actor externo.
 
 ## 4. Precondiciones
 

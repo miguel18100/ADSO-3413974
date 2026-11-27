@@ -1,7 +1,7 @@
 # MATRIZ-TRAZABILIDAD-P2 – SIGMAVITAL
 
-**Proyecto:** Sistema Gestor de Ambulancias (SGA) – SIGMAVITAL
-**Línea base:** 31 requisitos funcionales RF-01 a RF-31 de G1-P1
+**Proyecto:** Sistema Gestor de Ambulancias (SGA) – SIGMAVITAL  
+**Línea base:** 31 requisitos funcionales RF-01 a RF-31 de G1-P1  
 **Alcance:** trazabilidad de diseño; no acredita implementación ni pruebas funcionales.
 
 ## 1. Matriz integral de trazabilidad
@@ -30,7 +30,7 @@ La columna «Caso de uso / evidencia» identifica el caso de la línea base. Par
 | RF-18 | Asociación de personal al servicio | CU-11 + plantilla + DA-02 | Asignacion, AsignacionPersonal, Personal | ASIGNACION, ASIGNACION_PERSONAL, PERSONAL | P-02 – Asignación |
 | RF-19 | Consulta de asignaciones | CU-12 (línea base G1-P1) | Asignacion, AsignacionPersonal, Ambulancia, Personal, Servicio | ASIGNACION, ASIGNACION_PERSONAL, AMBULANCIA, PERSONAL, SERVICIO | Asignaciones |
 | RF-20 | Actualización del estado de servicio | CU-13 (línea base G1-P1) | Servicio, Asignacion, RegistroCierre | SERVICIO, ASIGNACION, REGISTRO_CIERRE | Servicios / Cierres |
-| RF-21 | Registro de novedades del servicio | CU-14 (línea base G1-P1) | Servicio, Intervencion (relación parcial) | SERVICIO, INTERVENCION (relación parcial) | Servicios / Intervenciones |
+| RF-21 | Registro de novedades del servicio | CU-14 (línea base G1-P1) | Servicio, NovedadOperativa, Usuario | SERVICIO, NOVEDAD_OPERATIVA, USUARIO | Servicios / Novedades |
 | RF-22 | Consulta de historial de servicios | CU-15 (línea base G1-P1) | Servicio, Solicitud, Asignacion, RegistroCierre | SERVICIO, SOLICITUD, ASIGNACION, REGISTRO_CIERRE | Servicios / Dashboard |
 | RF-23 | Consulta de ambulancias y servicios asociados | CU-05 (línea base G1-P1) | Ambulancia, Asignacion, Servicio | AMBULANCIA, ASIGNACION, SERVICIO | Ambulancias / Servicios |
 | RF-24 | Consulta de personal y servicios asociados | CU-06 (línea base G1-P1) | Personal, AsignacionPersonal, Asignacion, Servicio | PERSONAL, ASIGNACION_PERSONAL, ASIGNACION, SERVICIO | Personal / Asignaciones |
@@ -49,10 +49,10 @@ La columna «Caso de uso / evidencia» identifica el caso de la línea base. Par
 | Requisitos funcionales de la línea base | 31 |
 | Requisitos relacionados con un caso de uso | 31/31 (100 %) |
 | Requisitos con clase(s) conceptual(es) identificada(s) | 31/31 (100 % a nivel de diseño) |
-| Requisitos con entidad(es) de datos identificada(s) | 30/31 completos (96,8 %); RF-21 parcial |
+| Requisitos con entidad(es) de datos identificada(s) | 31/31 completos (100 %) |
 | Requisitos de los casos críticos con pantalla identificada | 4/4 RF de CU-08, CU-11 y CU-22 |
 
-**Observación RF-21:** el modelo actual no tiene una entidad independiente `NOVEDAD_OPERATIVA`. Se relaciona provisionalmente con `SERVICIO` e `INTERVENCION`, pero una intervención asistencial no debe asumirse automáticamente como una novedad operativa. Se deja como cobertura parcial hasta confirmar con el instructor si las novedades requieren registro independiente. Esta reserva explícita evita declarar una equivalencia de negocio que no está demostrada.
+**Resolución RF-21:** se incorporó `NovedadOperativa` / `NOVEDAD_OPERATIVA` como concepto y entidad independiente, relacionada con `SERVICIO` y `USUARIO`. La novedad operativa no se equipara a `INTERVENCION`, que conserva el significado de actuación asistencial. La decisión se deriva del requisito explícito de registrar novedades del servicio; su validación de negocio final se mantiene como una comprobación institucional previa a implementación, no como una prueba ya realizada.
 
 ## 3. Trazabilidad de casos críticos
 
@@ -67,12 +67,12 @@ La columna «Caso de uso / evidencia» identifica el caso de la línea base. Par
 1. Los CU-01 a CU-22 son identificadores de la línea base G1-P1. Que un caso figure en la matriz no significa que todos tengan una plantilla extendida en P2.
 2. Los RF-25 a RF-28 son funciones de consulta y agregación. Se trazan a las entidades que aportan sus datos; no se inventa una entidad persistente «Reporte» o «Indicador».
 3. Las pantallas del prototipo son representaciones visuales. No acreditan persistencia, integración backend ni ejecución real de los procesos.
-4. RF-21 queda parcial por la ausencia de una entidad de novedades independiente; requiere decisión de alcance antes de afirmar 100 %.
+4. RF-21 se traza a NOVEDAD_OPERATIVA, SERVICIO y USUARIO; las novedades operativas se diferencian de las intervenciones asistenciales.
 5. Las asociaciones entre clases y entidades son propuestas de diseño que requieren validación con el responsable del proceso.
 
 ## 5. Referencias
 
-- [Matriz de requisitos y casos de uso G1-P1](../../../../01-analysis/03-conceptual-model/04-evidence-learning/G1-P1-Plan-Analisis/05-matriz-requisitos-casos-uso/Matriz-Requisitos-Casos-Uso.md)
+- [Matriz de requisitos y casos de uso G1-P1](../../G1-P1-Plan-Analisis/05-matriz-requisitos-casos-uso/Matriz-Requisitos-Casos-Uso.md)
 - [MD-01 – Modelo de dominio](../03-modelo-dominio/MD-01-Modelo-Dominio-SIGMAVITAL.md)
 - [MER-01 – Modelo entidad-relación](../04-modelo-entidad-relacion/MER-01-Modelo-Entidad-Relacion-SIGMAVITAL.md)
 - [Prototipo SIGMAVITAL](../05-prototipo-ui/01-mockups/SIGMAVITAL-Prototipo-v01.html)

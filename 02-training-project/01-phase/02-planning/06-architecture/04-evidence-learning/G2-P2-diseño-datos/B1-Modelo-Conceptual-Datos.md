@@ -1,7 +1,7 @@
 # B1 – Modelo Conceptual de Datos SIGMAVITAL
 
-**Proyecto:** Sistema Gestor de Ambulancias (SGA) – SIGMAVITAL
-**Evidencia:** G2-P2 – Diseño de datos
+**Proyecto:** Sistema Gestor de Ambulancias (SGA) – SIGMAVITAL  
+**Evidencia:** G2-P2 – Diseño de datos  
 **Nivel:** Modelo conceptual; no especifica aún tipos SQL ni detalles físicos.
 
 ## 1. Objetivo y alcance
@@ -69,3 +69,7 @@ El archivo editable `B1-Diagrama-Conceptual.drawio` representa las once entidade
 ## 8. Trazabilidad y limitaciones
 
 El modelo se relaciona con A1 (requisitos), A2 (clases), A5 (componentes) y los artefactos G1-P2 MD-01/MER-01. Es un modelo conceptual de diseño, no evidencia de base de datos desplegada. La validación física se documenta en B2–B5. Las cardinalidades reflejan las reglas propuestas y requieren aprobación del responsable funcional antes de producción.
+
+## 6. Alcance de roles en el MVP y relación con A2
+
+El diseño de clases de G2-P1 representa la asociación Usuario–Rol con capacidad extensible para varios roles por cuenta. El modelo de persistencia de esta primera versión limita cada cuenta a un rol principal, expresado por la relación Rol `0..*` – Usuario `1..1` y por `Usuario.id_rol` en B2/B5. Por tanto, el multirol no está soportado por el esquema actual. Si se requiere en una versión posterior, deberá incorporarse `UsuarioRol` como entidad asociativa y actualizar en conjunto B1, B2, B4, B5 y las políticas de autorización.

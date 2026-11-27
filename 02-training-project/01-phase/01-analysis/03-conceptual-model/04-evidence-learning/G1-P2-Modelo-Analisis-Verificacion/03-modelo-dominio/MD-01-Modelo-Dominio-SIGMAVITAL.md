@@ -1,9 +1,9 @@
 # MD-01 – Modelo de dominio SIGMAVITAL
 
-**Proyecto:** Sistema Gestor de Ambulancias (SGA) – SIGMAVITAL
-**Ficha:** 3413974 – Análisis y Desarrollo de Software (ADSO)
-**Evidencia:** G1-P2 – Modelado y prototipado
-**Versión:** 1.1 – Ajuste de trazabilidad y consistencia conceptual
+**Proyecto:** Sistema Gestor de Ambulancias (SGA) – SIGMAVITAL  
+**Ficha:** 3413974 – Análisis y Desarrollo de Software (ADSO)  
+**Evidencia:** G1-P2 – Modelado y prototipado  
+**Versión:** 1.2 – 27/11/2026 · Trazabilidad completa de novedades operativas  
 **Estado:** Modelo conceptual de análisis; pendiente de validación con usuarios e instructor.
 
 ## 1. Objetivo
@@ -12,7 +12,7 @@ Representar los conceptos principales del negocio de gestión de servicios de am
 
 ## 2. Alcance
 
-El modelo cubre usuarios y roles, solicitudes, servicios, pacientes, ambulancias, personal operativo, asignaciones, intervenciones y registros de cierre. Los conceptos se derivan de la línea base de 31 requisitos funcionales de G1-P1. El modelo no representa una historia clínica electrónica integral.
+El modelo cubre usuarios y roles, solicitudes, servicios, pacientes, ambulancias, personal operativo, asignaciones, intervenciones, novedades operativas y registros de cierre. Los conceptos se derivan de la línea base de 31 requisitos funcionales de G1-P1. El modelo no representa una historia clínica electrónica integral.
 
 ## 3. Convenciones
 
@@ -153,6 +153,19 @@ Representa el resumen documental del cierre operativo.
 | destino | Destino asistencial reportado |
 | observacionesFinales | Observaciones finales |
 
+### 4.12 NovedadOperativa
+
+Representa un evento o situación relevante que ocurre durante la gestión de un servicio y requiere seguimiento operativo. Se diferencia de `Intervencion`: la intervención documenta una actuación asistencial, mientras que la novedad registra una incidencia, cambio de estado u observación operativa.
+
+| Atributo | Descripción |
+|---|---|
+| identificadorNovedad | Identificador de la novedad |
+| fechaHoraNovedad | Fecha y hora del evento |
+| tipoNovedad | Clasificación de la novedad |
+| descripcion | Descripción del evento reportado |
+| estadoSeguimiento | Estado de atención o seguimiento |
+| observaciones | Información complementaria
+
 ## 5. Asociaciones, verbos y multiplicidades mínimas/máximas
 
 | Clase origen | Verbo de la asociación | Clase destino | Multiplicidad en origen | Multiplicidad en destino | Interpretación |
@@ -169,6 +182,8 @@ Representa el resumen documental del cierre operativo.
 | Personal | realiza | Intervencion | 0..* | 1..1 | Un integrante puede realizar varias intervenciones; cada intervención identifica un responsable. |
 | Servicio | genera | RegistroCierre | 0..1 | 1..1 | Un servicio puede no tener cierre o tener uno; cada cierre corresponde a un único servicio. |
 | Usuario | registra | RegistroCierre | 0..* | 1..1 | Un usuario autorizado puede registrar varios cierres; cada cierre identifica al responsable. |
+| Servicio | registra | NovedadOperativa | 0..* | 1..1 | Un servicio puede registrar varias novedades; cada novedad pertenece a un servicio. |
+| Usuario | reporta | NovedadOperativa | 0..* | 1..1 | Un usuario con permiso puede reportar varias novedades; cada novedad identifica quién la reportó. |
 
 ## 6. Reglas conceptuales
 
@@ -181,7 +196,8 @@ Representa el resumen documental del cierre operativo.
 7. El cierre debe estar asociado a un servicio y a un usuario autorizado.
 8. Los datos de paciente deben limitarse a los necesarios para la operación y atención inicial.
 9. Los estados de solicitud, asignación y servicio deben mantener consistencia durante el ciclo operativo.
-10. Las cardinalidades representan la regla conceptual propuesta y deben confirmarse con el responsable del proceso antes de la implementación.
+10. Las novedades operativas se registran como concepto independiente y no se confunden con las intervenciones asistenciales.
+11. Las cardinalidades representan la regla conceptual propuesta y deben confirmarse con el responsable del proceso antes de la implementación.
 
 ## 7. Diagrama conceptual de dominio
 
@@ -221,7 +237,7 @@ classDiagram
 
 | Criterio | Resultado | Evidencia |
 |---|---|---|
-| Ocho o más clases conceptuales | Cumple | Se identifican once clases en la sección 4. |
+| Ocho o más clases conceptuales | Cumple | Se identifican doce clases en la sección 4. |
 | Dos o más atributos de negocio en al menos cinco clases | Cumple | Tablas de atributos de las secciones 4.1 a 4.11. |
 | Asociaciones con verbos y multiplicidades | Cumple documentalmente | Tabla de la sección 5 y diagrama. |
 | Clase de asociación o generalización justificada | Cumple | AsignacionPersonal; sección 8. |
@@ -231,7 +247,7 @@ classDiagram
 
 ## 10. Trazabilidad y limitaciones
 
-El modelo ofrece una base conceptual para las entidades SOLICITUD, SERVICIO, PACIENTE, AMBULANCIA, PERSONAL, ASIGNACION, ASIGNACION_PERSONAL, INTERVENCION, REGISTRO_CIERRE, USUARIO y ROL. El modelo no incluye una entidad independiente `NOVEDAD_OPERATIVA`; el RF-21 se relaciona de forma parcial con Servicio e Intervencion hasta que se confirme si las novedades deben persistirse como registros separados.
+El modelo ofrece una base conceptual para los doce conceptos ROL, USUARIO, SOLICITUD, SERVICIO, PACIENTE, AMBULANCIA, PERSONAL, ASIGNACION, ASIGNACION_PERSONAL, INTERVENCION, REGISTRO_CIERRE y NOVEDAD_OPERATIVA. RF-21 se vincula directamente con NovedadOperativa y Servicio. La separación evita equiparar una novedad operativa con una intervención asistencial.
 
 La presencia de una clase en el modelo no acredita implementación ni validación con usuarios. Las cardinalidades son propuestas de análisis y requieren confirmación con el contexto operativo.
 

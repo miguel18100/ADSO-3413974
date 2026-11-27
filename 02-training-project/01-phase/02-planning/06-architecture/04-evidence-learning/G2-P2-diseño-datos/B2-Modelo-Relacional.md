@@ -128,3 +128,7 @@ Este documento representa la propuesta del modelo relacional B2.
 | Transformación de relaciones N:M | La relación entre Asignacion y Personal se resuelve mediante la tabla intermedia AsignacionPersonal, que contiene las claves foráneas id_asignacion e id_personal. |
 | Incorporación de atributos | Los atributos identificados en cada entidad del modelo conceptual se incorporan a sus respectivas tablas relacionales. |
 | Integridad referencial | Las claves foráneas permiten mantener la consistencia entre los registros relacionados y evitar referencias a registros inexistentes. |
+
+## 6. Alcance de roles del MVP frente al diseño de clases
+
+La tabla `Usuario` mantiene `id_rol` como FK para un solo rol principal por cuenta. El diagrama de clases A2 de G2-P1 modela una asociación Usuario–Rol más flexible, pensada como extensión del diseño de aplicación. Esta versión de persistencia no permite guardar múltiples roles por usuario. Para habilitarlo, deberá añadirse la tabla `UsuarioRol` con claves foráneas a Usuario y Rol y restricción UNIQUE sobre la pareja, además de actualizar B1, B4 y B5.

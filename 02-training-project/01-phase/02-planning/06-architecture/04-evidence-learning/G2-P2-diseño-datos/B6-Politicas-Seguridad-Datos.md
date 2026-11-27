@@ -8,26 +8,26 @@ Establecer las políticas de seguridad para proteger la información almacenada 
 
 ### 2.1 Políticas de integridad
 
-**PI-01. Integridad referencial:**
+**PI-01. Integridad referencial:**  
 Todas las relaciones entre tablas deben mantener la integridad referencial mediante claves primarias y foráneas. No se permitirán registros relacionados con identificadores inexistentes.
 
-**PI-02. Validación de datos:**
+**PI-02. Validación de datos:**  
 Los datos ingresados deben cumplir con los tipos de datos, restricciones, campos obligatorios, valores únicos y reglas de validación definidos en el modelo de datos.
 
 ### 2.2 Políticas de confidencialidad
 
-**PC-01. Control de acceso por roles:**
+**PC-01. Control de acceso por roles:**  
 El acceso a la información estará restringido de acuerdo con el rol y las responsabilidades del usuario. Cada usuario tendrá únicamente los permisos necesarios para desarrollar sus funciones.
 
-**PC-02. Protección de datos personales:**
+**PC-02. Protección de datos personales:**  
 Los datos personales de pacientes, usuarios y personal deberán ser consultados únicamente por personal autorizado. No se deberán compartir, publicar ni utilizar con fines diferentes a los autorizados.
 
 ### 2.3 Políticas de disponibilidad
 
-**PD-01. Copias de seguridad:**
+**PD-01. Copias de seguridad:**  
 Se deberán realizar copias de seguridad periódicas de la base de datos SIGMAVITAL. Los respaldos deberán almacenarse en ubicaciones seguras y verificarse periódicamente mediante pruebas de restauración.
 
-**PD-02. Continuidad y recuperación:**
+**PD-02. Continuidad y recuperación:**  
 Se deberán establecer procedimientos de recuperación ante fallos del servidor, errores operativos, pérdida de información o incidentes de seguridad. Se deberá verificar el funcionamiento de la base de datos después de su recuperación.
 
 ## 3. Matriz de acceso por roles y tablas

@@ -5,7 +5,7 @@
 - **Proyecto:** Sistema Gestor de Ambulancias (SGA) – SIGMAVITAL.
 - **Fase:** G1-P2 – Actividad 05: Prototipo.
 - **Artefacto:** MER-01 – Modelo Entidad-Relación.
-- **Versión:** 1.0 – Diseño preliminar.
+- **Versión:** 1.2 – 27/11/2026 · Trazabilidad completa de RF y claves relacionadas.
 - **Fuente:** Modelo conceptual MD-01 y artefactos de G1-P1.
 - **Notación:** Modelo entidad-relación con representación de cardinalidades tipo Crow's Foot.
 
@@ -51,6 +51,7 @@ Se emplea una representación de relaciones mediante cardinalidades, identificad
 | estado | Estado operativo del servicio |
 | observaciones | Observaciones generales |
 | solicitud_id (FK) | Solicitud asociada |
+| paciente_id (FK) | Paciente de referencia del servicio |
 
 ### 4.3 PACIENTE
 
@@ -112,6 +113,7 @@ Se emplea una representación de relaciones mediante cardinalidades, identificad
 |---|---|
 | intervencion_id (PK) | Identificador de intervención |
 | servicio_id (FK) | Servicio relacionado |
+| personal_id (FK) | Integrante responsable de la intervención |
 | fecha_hora_intervencion | Fecha y hora |
 | descripcion | Descripción de intervención |
 | observaciones | Observaciones adicionales |
@@ -134,7 +136,7 @@ Se emplea una representación de relaciones mediante cardinalidades, identificad
 | nombre (UK) | Nombre del perfil |
 | descripcion | Responsabilidades generales del perfil |
 
-## 4.11 USUARIO
+### 4.11 USUARIO
 
 | Atributo | Descripción |
 |---|---|
@@ -143,6 +145,19 @@ Se emplea una representación de relaciones mediante cardinalidades, identificad
 | nombre_completo | Nombre del usuario |
 | rol_id (FK) | Rol asignado a la cuenta |
 | estado | Estado de la cuenta |
+
+### 4.12 NOVEDAD_OPERATIVA
+
+| Atributo | Descripción |
+|---|---|
+| novedad_id (PK) | Identificador de la novedad operativa |
+| servicio_id (FK) | Servicio al que pertenece la novedad |
+| usuario_id (FK) | Usuario autorizado que reporta la novedad |
+| fecha_hora_novedad | Fecha y hora del evento |
+| tipo_novedad | Clasificación de la novedad |
+| descripcion | Descripción del evento |
+| estado_seguimiento | Estado de atención o seguimiento |
+| observaciones | Información complementaria |
 
 ## 5. Diagrama entidad-relación
 
@@ -273,6 +288,8 @@ Las cardinalidades se expresan como mínimo..máximo vistas desde cada extremo d
 | PERSONAL | integra | ASIGNACION_PERSONAL | 0..* | 1..1 | Una persona puede integrar varias asignaciones; cada vínculo identifica una persona. |
 | SERVICIO | registra | INTERVENCION | 0..* | 1..1 | Un servicio puede registrar intervenciones; cada intervención pertenece a un servicio. |
 | PERSONAL | realiza | INTERVENCION | 0..* | 1..1 | Un integrante puede registrar intervenciones; cada intervención identifica al responsable. |
+| SERVICIO | registra | NOVEDAD_OPERATIVA | 0..* | 1..1 | Un servicio puede registrar varias novedades; cada novedad pertenece a un solo servicio. |
+| USUARIO | reporta | NOVEDAD_OPERATIVA | 0..* | 1..1 | Un usuario puede reportar varias novedades; cada novedad identifica al reportante. |
 | SERVICIO | documenta | REGISTRO_CIERRE | 0..1 | 1..1 | Un servicio puede no estar cerrado o tener un cierre; cada cierre corresponde a un servicio. |
 | USUARIO | autoriza/ registra | REGISTRO_CIERRE | 0..* | 1..1 | Un usuario autorizado puede registrar varios cierres; cada cierre identifica al responsable. |
 
@@ -294,9 +311,9 @@ La relación entre SERVICIO y AMBULANCIA se gestiona mediante ASIGNACION, que co
 
 Esto permite registrar cambios de asignación y conservar información de las asignaciones efectuadas.
 
-## 8. Relaciones adicionales no incorporadas
+## 8. Justificación de ausencia de relación recursiva o entidad débil
 
-La relación recursiva de supervisión entre integrantes de PERSONAL no se incorpora en esta versión del MER-01, debido a que no se encuentra consolidada en el modelo conceptual MD-01 ni sustentada de forma explícita en los casos de uso revisados.
+No se incorpora una relación recursiva sobre PERSONAL ni una entidad débil en esta versión porque las fuentes del caso de ambulancias y los casos de uso revisados no definen una jerarquía de supervisión entre integrantes ni una entidad cuya identificación dependa de la clave de otra entidad. No se agrega esa regla por suposición. La rúbrica permite justificar esta ausencia cuando el caso no la requiere. La relación N:M entre ASIGNACION y PERSONAL sí se resuelve mediante ASIGNACION_PERSONAL, que cuenta con atributos propios.
 
 Su incorporación queda condicionada a la identificación y validación de una regla organizacional o requisito funcional que la justifique.
 ## 9. Participación y restricciones preliminares

@@ -9,7 +9,7 @@ Comparar RUP, Scrum, XP y RAD respecto de las características concretas del Sis
 | Característica del SGA | Dato de referencia | Implicación para la metodología |
 |---|---|---|
 | Tipo de solución | Aplicación web multiusuario, modular y orientada a procesos operativos de ambulancias, asignaciones y seguimiento. | Se requiere integrar funcionalidades y revisar incrementos que puedan validarse por módulos. |
-| Tamaño del equipo | 5 integrantes: liderazgo/Scrum Master, 2 perfiles backend, 1 frontend y 1 QA/Tester. | Conviene una organización ligera que distribuya responsabilidades sin introducir una carga de gestión desproporcionada. |
+| Tamaño del equipo | 5 integrantes identificados en el documento del proyecto; la fuente no acredita una distribución formal de roles técnicos. | Conviene una organización ligera que permita asignar responsabilidades explícitas sin introducir una carga de gestión desproporcionada. |
 | Estabilidad de requisitos | Media: existe una línea base funcional, pero reglas de asignación, prioridad y operación TAB/TAM requieren refinamiento. | Se necesita admitir cambios controlados y repriorización conforme se aclaren reglas de negocio. |
 | Disponibilidad de cliente/usuarios | No se acredita disponibilidad continua en las fuentes; se asume disponibilidad periódica mediante sesiones programadas. | Se requieren revisiones planificadas y criterios de aceptación claros; los enfoques que exigen presencia diaria del cliente tienen mayor riesgo. |
 

@@ -41,9 +41,9 @@ Las dependencias desde `id_asignacion` y `id_personal` muestran atributos que de
 
 Se separan los atributos que dependen de una sola parte de la clave compuesta:
 
-**Asignacion** (`id_asignacion` PK, `fecha_asignacion`, `id_ambulancia` FK).
-**Personal** (`id_personal` PK, `nombre`, `perfil_operativo`).
-**AsignacionPersonal** (`id_asignacion` FK, `id_personal` FK, `funcion`, `fecha_vinculacion`).
+**Asignacion** (`id_asignacion` PK, `fecha_asignacion`, `id_ambulancia` FK).  
+**Personal** (`id_personal` PK, `nombre`, `perfil_operativo`).  
+**AsignacionPersonal** (`id_asignacion` FK, `id_personal` FK, `funcion`, `fecha_vinculacion`).  
 En este paso se eliminan dependencias parciales de los atributos no clave respecto de cada parte de la clave candidata compuesta.
 
 En `AsignacionPersonal`, `funcion` y `fecha_vinculacion` dependen de la combinación completa. La clave alternativa compuesta `(id_asignacion, id_personal)` permanece como restricción `UNIQUE` en el esquema físico, aunque la tabla utilice además una PK sustituta `id_asignacion_personal` para referencia interna.

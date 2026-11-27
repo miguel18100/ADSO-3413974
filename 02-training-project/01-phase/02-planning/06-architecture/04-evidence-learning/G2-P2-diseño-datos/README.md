@@ -1,11 +1,11 @@
 # G2-P2 - Diseño de Datos | SIGMAVITAL
 
-**Aprendiz:** Juan Miguel Muñoz Castañeda
-**Programa:** Análisis y Desarrollo de Software (ADSO)
-**Ficha:** 3413974
-**Proyecto:** SIGMAVITAL
-**Fase:** Planeación - Arquitectura y diseño de datos
-**Evidencia:** G2-P2 - Diseño de datos
+**Aprendiz:** Juan Miguel Muñoz Castañeda  
+**Programa:** Análisis y Desarrollo de Software (ADSO)  
+**Ficha:** 3413974  
+**Proyecto:** SIGMAVITAL  
+**Fase:** Planeación - Arquitectura y diseño de datos  
+**Evidencia:** G2-P2 - Diseño de datos  
 
 ---
 
@@ -27,7 +27,7 @@ Esta evidencia complementa los artefactos desarrollados en la evidencia G2-P1 - 
 - **Despliegue:** carpeta [06-despliegue](../G2-P1-arquitectura/06-despliegue/).
 - **Trazabilidad de requisitos:** [A7-Requirements-Traceability-Matrix.md](../G2-P1-arquitectura/07-trazabilidad/A7-Requirements-Traceability-Matrix.md).
 
-Los artefactos de P1 sirven como referencia para identificar entidades, responsabilidades, relaciones y necesidades de persistencia del sistema.
+Los artefactos de P1 sirven como referencia para identificar entidades, responsabilidades, relaciones y necesidades de persistencia del sistema. **Decisión de roles:** el diagrama de clases A2 permite una asociación Usuario–Rol extensible; la persistencia del MVP en B1/B2/B5 restringe cada usuario a un único rol principal. El multirol no se declara implementado y exigiría una tabla `UsuarioRol` y actualización coordinada de los modelos y del DDL.
 
 ## 3. Artefactos desarrollados
 
@@ -66,18 +66,20 @@ Define las tablas y sus atributos, tipos de datos, convenciones, restricciones y
 
 ### B5. Creación de la base de datos
 
-- [B5-Creacion-Base-Datos.sql](B5-Creacion-Base-Datos.sql)
+- [B5-Creacion-Base-Datos.sql](B5-Creacion-Base-Datos.sql) — DDL de entrega.
+- [B5-Prueba.sql](B5-Prueba.sql) — copia del DDL vigente que crea la base aislada `sigmavital_prueba`.
 - [B5-Evidencia-Checks.txt](B5-Evidencia-Checks.txt)
 - [B5-Evidencia-Relaciones.txt](B5-Evidencia-Relaciones.txt)
 - [B5-Evidencia-Tablas.txt](B5-Evidencia-Tablas.txt)
 - [B5-Evidencia-Ejecucion-Tablas.png](B5-Evidencia-Ejecucion-Tablas.png)
 - [B5-Evidencia-Relaciones.png](B5-Evidencia-Relaciones.png)
 - [B5-Evidencia-Unicidad-Cierre.txt](B5-Evidencia-Unicidad-Cierre.txt) — evidencia histórica de VT-07 sobre una versión anterior del esquema.
-- [B5-Prueba-Unicidad-AsignacionPersonal.sql](B5-Prueba-Unicidad-AsignacionPersonal.sql) — prueba manual pendiente de ejecutar.
+- [B5-Prueba-Unicidad-AsignacionPersonal.sql](B5-Prueba-Unicidad-AsignacionPersonal.sql) — guion automático con datos ficticios transaccionales; pendiente de ejecutar y capturar.
+- [B5-Guia-Ejecucion-Evidencias.md](B5-Guia-Ejecucion-Evidencias.md) — instrucciones para verificar DDL, UNIQUE compuesta y restauración aislada.
 
 Se incluye el script de creación de tablas, restricciones y relaciones. Las evidencias de ejecución adjuntas documentan una versión anterior del DDL. La versión actual agrega la FK `RegistroCierre.id_usuario` y la restricción UNIQUE compuesta de `AsignacionPersonal`; por ello, las evidencias históricas no certifican por sí solas la ejecución del esquema actualizado.
 
-**Pendiente antes de declarar validada esta versión:** ejecutar `B5-Creacion-Base-Datos.sql` y `B5-Prueba.sql` sobre MariaDB/MySQL, repetir las verificaciones de tablas, 12 claves foráneas y 7 restricciones CHECK, y ejecutar `B5-Prueba-Unicidad-AsignacionPersonal.sql`. Adjuntar el resultado real de la consola y la fecha del entorno utilizado.
+**Pendiente antes de declarar validada esta versión:** ejecutar `B5-Prueba.sql` (copia de prueba del DDL vigente) sobre MariaDB/MySQL, repetir las verificaciones de 11 tablas, 12 claves foráneas y 7 restricciones CHECK, y ejecutar `B5-Prueba-Unicidad-AsignacionPersonal.sql`. Adjuntar el resultado real de consola y fecha del entorno. La guía reproducible está en `B5-Guia-Ejecucion-Evidencias.md`.
 
 ### B6. Políticas de seguridad de datos
 
@@ -114,17 +116,9 @@ Las modificaciones y verificaciones se documentan en los archivos correspondient
 
 ## 6. Verificaciones técnicas efectuadas
 
-Se realizaron verificaciones sobre el script SQL y su ejecución en un entorno de prueba, incluyendo:
+Existen evidencias históricas de ejecución en MariaDB para una versión anterior del esquema: 11 tablas, 11 claves foráneas, 7 restricciones CHECK y una prueba real de unicidad de `RegistroCierre.id_servicio`. El DDL de entrega se actualizó después con la FK `RegistroCierre.id_usuario` y la UNIQUE compuesta de `AsignacionPersonal`; por eso, la evidencia histórica **no acredita la ejecución integral del DDL actual**.
 
-- Creación y comprobación de las tablas.
-- Verificación de claves foráneas.
-- Revisión de acciones ON DELETE y ON UPDATE.
-- Comprobación de restricciones CHECK.
-- Evidencia visual de la estructura de las tablas.
-- Evidencia visual de las relaciones.
-- Documentación de las políticas de seguridad.
-
-Estas verificaciones corresponden a los aspectos técnicos comprobados y no representan la aprobación automática de todos los criterios de aceptación.
+Para cerrar la versión vigente se prepararon `B5-Prueba.sql`, `B5-Prueba-Unicidad-AsignacionPersonal.sql` y `B5-Guia-Ejecucion-Evidencias.md`. Se deben ejecutar en una base aislada y conservar los logs reales antes de actualizar los estados pendientes. La prueba de restauración sigue igualmente pendiente.
 
 ## 7. Autoevaluación
 
@@ -146,14 +140,14 @@ Declaro que revisé los artefactos que conforman esta evidencia, comprendí su c
 
 ---
 
-**Proyecto:** SIGMAVITAL
-**Evidencia:** G2-P2 - Diseño de Datos
+**Proyecto:** SIGMAVITAL  
+**Evidencia:** G2-P2 - Diseño de Datos  
 **Ficha:** 3413974 - ADSO
 
 
 ## Ajustes de revisión
 
-- B1 expresa verbos y cardinalidades mínimas/máximas por extremo; el diagrama Draw.io se ajustó en la fuente editable.
+- B1 documenta verbos y cardinalidades mínimas/máximas por extremo. El diagrama Draw.io que ya existía se conserva sin cambios en este paquete.
 - B2 y los scripts B5 incluyen la restricción UNIQUE compuesta de `AsignacionPersonal`.
 - B3 presenta una clave candidata compuesta y dependencia parcial, además de una dependencia transitiva.
 - B4 declara el estándar de nomenclatura.
@@ -163,4 +157,9 @@ Declaro que revisé los artefactos que conforman esta evidencia, comprendí su c
 **Importante:** la prueba de unicidad de la pareja Asignacion/Personal y el simulacro de restauración están preparados, pero deben ejecutarse en MariaDB/MySQL y registrarse antes de declararlos como pruebas superadas.
 
 - B2 ahora incluye `id_usuario` como FK de `RegistroCierre`, consistente con la relación de responsable definida en B1. La evidencia de ejecución anterior debe repetirse porque el esquema cambió.
-- Las exportaciones gráficas actualizadas de B1/B2 se acompañan de fuentes Graphviz `.dot`; los archivos `.drawio` siguen siendo fuentes editables de Draw.io.
+- B1/B2 conservan sus fuentes Draw.io, fuentes Graphviz `.dot` y exportaciones disponibles. Ningún diagrama se redibujó ni se regeneró durante esta corrección.
+
+
+## Estado de ejecución del DDL actual
+
+La evidencia anterior corresponde a una versión previa del script. La ejecución de la copia vigente, la prueba de la UNIQUE compuesta y la restauración aislada están preparadas, pero no se marcan como superadas hasta disponer de los resultados reales de MariaDB/MySQL.
