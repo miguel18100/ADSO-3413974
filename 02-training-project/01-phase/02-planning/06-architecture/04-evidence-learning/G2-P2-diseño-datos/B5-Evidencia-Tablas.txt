@@ -1,0 +1,12 @@
+﻿Tables_in_sigmavital_prueba
+ambulancia
+asignacion
+asignacionpersonal
+intervencion
+paciente
+personal
+registrocierre
+rol
+servicio
+solicitud
+usuario

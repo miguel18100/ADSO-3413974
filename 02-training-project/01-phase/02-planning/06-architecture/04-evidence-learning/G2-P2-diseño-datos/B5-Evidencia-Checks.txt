@@ -1,0 +1,8 @@
+﻿TABLE_NAME	CONSTRAINT_NAME	CHECK_CLAUSE
+asignacion	estado	`estado` in ('Pendiente','En proceso','Asignado','Activo','Finalizado','Cancelado','Disponible','En servicio','Fuera de servicio')
+personal	estado	`estado` in ('Activo','Inactivo','Pendiente','Disponible','En servicio','Fuera de servicio')
+servicio	estado	`estado` in ('Pendiente','En proceso','Asignado','Activo','Finalizado','Cancelado','Disponible','En servicio','Fuera de servicio')
+servicio	fecha_finalizacion	`fecha_finalizacion` is null or `fecha_finalizacion` >= `fecha_inicio`
+solicitud	prioridad	`prioridad` in ('Baja','Media','Alta','Critica')
+solicitud	estado	`estado` in ('Pendiente','En proceso','Asignado','Activo','Finalizado','Cancelado','Disponible','En servicio','Fuera de servicio')
+usuario	estado	`estado` in ('Activo','Inactivo','Pendiente','Disponible','En servicio','Fuera de servicio')
