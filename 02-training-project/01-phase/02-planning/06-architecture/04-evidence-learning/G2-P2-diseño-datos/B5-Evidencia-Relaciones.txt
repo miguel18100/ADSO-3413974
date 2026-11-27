@@ -1,4 +1,4 @@
-﻿TABLE_NAME	CONSTRAINT_NAME	DELETE_RULE	UPDATE_RULE
+TABLE_NAME	CONSTRAINT_NAME	DELETE_RULE	UPDATE_RULE
 asignacion	fk_asignacion_servicio	CASCADE	CASCADE
 asignacion	fk_asignacion_ambulancia	RESTRICT	CASCADE
 asignacionpersonal	fk_asignacionpersonal_personal	RESTRICT	CASCADE
@@ -10,3 +10,5 @@ servicio	fk_servicio_solicitud	RESTRICT	CASCADE
 servicio	fk_servicio_paciente	RESTRICT	CASCADE
 solicitud	fk_solicitud_usuario	RESTRICT	CASCADE
 usuario	fk_usuario_rol	RESTRICT	CASCADE
+
+NOTA DE CONTROL DE VERSION (27-11-2026): esta salida corresponde a la versión previa del esquema y registra 11 claves foráneas. El DDL actualizado incorpora fk_cierre_usuario y ahora define 12 claves foráneas. Esta captura/salida se conserva como evidencia histórica; no acredita la ejecución del esquema actualizado. Se debe recrear la base de prueba y guardar una nueva salida antes de marcar B5 como validado para esta versión.

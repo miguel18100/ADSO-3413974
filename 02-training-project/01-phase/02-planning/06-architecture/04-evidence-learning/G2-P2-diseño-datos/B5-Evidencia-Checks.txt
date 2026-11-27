@@ -1,4 +1,4 @@
-﻿TABLE_NAME	CONSTRAINT_NAME	CHECK_CLAUSE
+TABLE_NAME	CONSTRAINT_NAME	CHECK_CLAUSE
 asignacion	estado	`estado` in ('Pendiente','En proceso','Asignado','Activo','Finalizado','Cancelado','Disponible','En servicio','Fuera de servicio')
 personal	estado	`estado` in ('Activo','Inactivo','Pendiente','Disponible','En servicio','Fuera de servicio')
 servicio	estado	`estado` in ('Pendiente','En proceso','Asignado','Activo','Finalizado','Cancelado','Disponible','En servicio','Fuera de servicio')
@@ -6,3 +6,5 @@ servicio	fecha_finalizacion	`fecha_finalizacion` is null or `fecha_finalizacion`
 solicitud	prioridad	`prioridad` in ('Baja','Media','Alta','Critica')
 solicitud	estado	`estado` in ('Pendiente','En proceso','Asignado','Activo','Finalizado','Cancelado','Disponible','En servicio','Fuera de servicio')
 usuario	estado	`estado` in ('Activo','Inactivo','Pendiente','Disponible','En servicio','Fuera de servicio')
+
+NOTA DE CONTROL DE VERSION (27-11-2026): esta evidencia se conserva como resultado histórico de la versión anterior. Volver a ejecutar la versión actual completa de B5 antes de declarar validada la base actualizada.

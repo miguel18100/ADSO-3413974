@@ -1,4 +1,4 @@
-﻿VALIDACION VT-07 - UNICIDAD DE REGISTRO DE CIERRE
+VALIDACION VT-07 - UNICIDAD DE REGISTRO DE CIERRE
 Proyecto: SIGMAVITAL
 Bloque: G2-P2 - Diseno de datos
 Fecha: 2026-11-27
@@ -37,3 +37,12 @@ ALCANCE:
 Prueba tecnica puntual realizada sobre MariaDB 10.4.32.
 No representa validacion integral de la aplicacion, pruebas de usuario
 ni certificacion completa de todos los criterios de aceptacion.
+
+
+NOTA DE VIGENCIA DEL ESQUEMA (2026-11-27):
+Esta evidencia corresponde a una versión anterior del DDL, que tenía 11 claves foráneas.
+La versión documental actual agrega la FK RegistroCierre.id_usuario -> Usuario.id_usuario;
+por tanto, el esquema vigente contempla 12 claves foráneas. La prueba de unicidad de
+id_servicio sigue siendo una evidencia histórica válida del comportamiento probado en aquella
+versión, pero no certifica la ejecución completa del DDL actualizado. Reejecutar B5-Creacion-
+Base-Datos.sql y B5-Prueba.sql antes de presentar la versión actual como validada.

@@ -47,7 +47,8 @@ del sistema SIGMAVITAL.
 
 ### RegistroCierre
 - id_cierre (PK)
-- id_servicio (FK)
+- id_servicio (FK, UNIQUE)
+- id_usuario (FK)
 - fecha_cierre
 - resumen_condicion
 - destino
@@ -82,6 +83,7 @@ del sistema SIGMAVITAL.
 - id_personal (FK)
 - funcion
 - fecha_vinculacion
+- Restricción UNIQUE (`id_asignacion`, `id_personal`) para impedir duplicados de la misma persona en una asignación.
 
 ### Intervencion
 - id_intervencion (PK)
@@ -98,6 +100,7 @@ del sistema SIGMAVITAL.
 - Solicitud 1:0..1 Servicio
 - Paciente 1:N Servicio
 - Servicio 1:0..1 RegistroCierre (un servicio puede tener cero o un registro de cierre)
+- Usuario 1:N RegistroCierre (cada cierre identifica al usuario responsable mediante id_usuario)
 - Servicio 1:N Asignacion
 - Ambulancia 1:N Asignacion
 - Asignacion 1:N AsignacionPersonal
@@ -121,7 +124,7 @@ Este documento representa la propuesta del modelo relacional B2.
 | Identificación de claves primarias (PK) | Cada tabla cuenta con una clave primaria que permite identificar de manera única cada registro. |
 | Transformación de relaciones 1:N | Las relaciones uno a muchos se implementan mediante claves foráneas ubicadas en la tabla del lado N. Por ejemplo, id_rol en Usuario e id_usuario en Solicitud. |
 | Transformación de relaciones 1:0..1 | La relación entre Solicitud y Servicio se implementa mediante id_solicitud como clave foránea en Servicio. Para garantizar la cardinalidad 0..1, dicha FK debe tener una restricción UNIQUE. |
-| Transformación de relaciones entre entidades | Las relaciones entre Servicio, Paciente, Asignacion, Ambulancia, RegistroCierre e Intervencion se representan mediante claves foráneas que mantienen la integridad referencial. |
+| Transformación de relaciones entre entidades | Las relaciones entre Servicio, Paciente, Usuario, Asignacion, Ambulancia, RegistroCierre e Intervencion se representan mediante claves foráneas que mantienen la integridad referencial. RegistroCierre conserva id_usuario como FK del responsable del cierre. |
 | Transformación de relaciones N:M | La relación entre Asignacion y Personal se resuelve mediante la tabla intermedia AsignacionPersonal, que contiene las claves foráneas id_asignacion e id_personal. |
 | Incorporación de atributos | Los atributos identificados en cada entidad del modelo conceptual se incorporan a sus respectivas tablas relacionales. |
 | Integridad referencial | Las claves foráneas permiten mantener la consistencia entre los registros relacionados y evitar referencias a registros inexistentes. |

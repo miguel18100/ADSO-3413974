@@ -94,6 +94,7 @@ CREATE TABLE Servicio (
 CREATE TABLE RegistroCierre (
     id_cierre INT AUTO_INCREMENT PRIMARY KEY,
     id_servicio INT NOT NULL UNIQUE,
+    id_usuario INT NOT NULL,
     fecha_cierre DATETIME NOT NULL,
     resumen_condicion TEXT,
     destino VARCHAR(255),
@@ -101,7 +102,11 @@ CREATE TABLE RegistroCierre (
 
     CONSTRAINT fk_cierre_servicio
         FOREIGN KEY (id_servicio)
-        REFERENCES Servicio(id_servicio) ON UPDATE CASCADE ON DELETE CASCADE
+        REFERENCES Servicio(id_servicio) ON UPDATE CASCADE ON DELETE CASCADE,
+
+    CONSTRAINT fk_cierre_usuario
+        FOREIGN KEY (id_usuario)
+        REFERENCES Usuario(id_usuario) ON UPDATE CASCADE ON DELETE RESTRICT
 );
 
 -- =========================================================
@@ -167,7 +172,10 @@ CREATE TABLE AsignacionPersonal (
 
     CONSTRAINT fk_asignacionpersonal_personal
         FOREIGN KEY (id_personal)
-        REFERENCES Personal(id_personal) ON UPDATE CASCADE ON DELETE RESTRICT
+        REFERENCES Personal(id_personal) ON UPDATE CASCADE ON DELETE RESTRICT,
+
+    CONSTRAINT uq_asignacionpersonal_asignacion_personal
+        UNIQUE (id_asignacion, id_personal)
 );
 
 -- =========================================================

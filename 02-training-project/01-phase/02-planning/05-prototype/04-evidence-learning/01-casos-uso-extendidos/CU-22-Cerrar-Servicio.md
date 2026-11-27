@@ -1,4 +1,4 @@
-﻿# CU-22 - Cerrar servicio
+# CU-22 - Cerrar servicio
 
 ## 1. Identificación
 
@@ -105,8 +105,8 @@ El coordinador operativo selecciona un servicio y solicita iniciar el proceso de
 | Caso de uso | CU-22 |
 | Diagrama de actividad | DA-03 – Cerrar servicio (CU-22) |
 | Prototipo | P-03 |
-| Modelo de dominio | Servicio, Paciente, Intervención y demás clases que correspondan |
-| Modelo ER | Entidades y relaciones asociadas al cierre del servicio, por consolidar |
+| Modelo de dominio | Servicio, Paciente, Intervencion y RegistroCierre (MD-01, secciones 4 y 5) |
+| Modelo ER | SERVICIO, PACIENTE, INTERVENCION, REGISTRO_CIERRE y USUARIO (MER-01, secciones 4 a 6) |
 
 ## 13. Observaciones
 

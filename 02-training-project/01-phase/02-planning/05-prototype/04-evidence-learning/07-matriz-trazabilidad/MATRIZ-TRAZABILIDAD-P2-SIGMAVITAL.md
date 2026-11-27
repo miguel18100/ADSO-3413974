@@ -1,123 +1,82 @@
-﻿# MATRIZ DE TRAZABILIDAD P2 – SIGMAVITAL
+# MATRIZ-TRAZABILIDAD-P2 – SIGMAVITAL
 
-**Proyecto:** SIGMAVITAL – Sistema de Gestión de Ambulancias  
-**Ficha:** 3413974 – Análisis y Desarrollo de Software (ADSO)  
-**Fase:** Planeación – Diseño y prototipo  
-**Artefacto:** Matriz complementaria de trazabilidad P2  
-**Estado:** Consolidación documental preliminar  
+**Proyecto:** Sistema Gestor de Ambulancias (SGA) – SIGMAVITAL
+**Línea base:** 31 requisitos funcionales RF-01 a RF-31 de G1-P1
+**Alcance:** trazabilidad de diseño; no acredita implementación ni pruebas funcionales.
 
----
+## 1. Matriz integral de trazabilidad
 
-## 1. Objetivo
+La columna «Caso de uso / evidencia» identifica el caso de la línea base. Para los tres casos críticos se enlaza además la plantilla extendida y el diagrama de actividad específico. La rúbrica exige pantalla para los casos críticos, por lo que P-01, P-02 y P-03 se identifican expresamente.
 
-Consolidar la relación entre los requisitos funcionales de la línea base G1-P1 y los artefactos de diseño elaborados durante P2, incluyendo casos de uso, diagramas de actividad, modelo de dominio, modelo entidad-relación y prototipo de interfaz.
+| Requisito | Función resumida | Caso de uso / evidencia de análisis | Clases MD-01 | Entidades MER-01 | Pantalla / módulo |
+|---|---|---|---|---|---|
+| RF-01 | Inicio de sesión de usuarios | CU-01 (línea base G1-P1) | Usuario, Rol | USUARIO, ROL | — |
+| RF-02 | Cierre de sesión del usuario autenticado | CU-02 (línea base G1-P1) | Usuario | USUARIO | — |
+| RF-03 | Gestión de usuarios según permisos | CU-04 (línea base G1-P1) | Usuario, Rol | USUARIO, ROL | — |
+| RF-04 | Tablero operativo por rol | CU-03 (línea base G1-P1) | Usuario, Solicitud, Servicio, Ambulancia, Personal, Asignacion | USUARIO, SOLICITUD, SERVICIO, AMBULANCIA, PERSONAL, ASIGNACION | Dashboard (panel principal) |
+| RF-05 | Registro de ambulancias | CU-05 (línea base G1-P1) | Ambulancia | AMBULANCIA | — |
+| RF-06 | Actualización de ambulancias | CU-05 (línea base G1-P1) | Ambulancia | AMBULANCIA | — |
+| RF-07 | Consulta de ambulancias | CU-05 (línea base G1-P1) | Ambulancia, Asignacion | AMBULANCIA, ASIGNACION | — |
+| RF-08 | Gestión del estado operativo de ambulancias | CU-05 (línea base G1-P1) | Ambulancia, Asignacion | AMBULANCIA, ASIGNACION | — |
+| RF-09 | Registro de personal operativo | CU-06 (línea base G1-P1) | Personal | PERSONAL | — |
+| RF-10 | Actualización de personal operativo | CU-06 (línea base G1-P1) | Personal | PERSONAL | — |
+| RF-11 | Consulta de personal operativo | CU-06 (línea base G1-P1) | Personal, AsignacionPersonal | PERSONAL, ASIGNACION_PERSONAL | — |
+| RF-12 | Registro de solicitudes de servicio | CU-08 + plantilla + DA-01 | Solicitud, Usuario | SOLICITUD, USUARIO | P-01 – Registro de solicitud |
+| RF-13 | Consulta de solicitudes registradas | CU-09 (línea base G1-P1) | Solicitud, Servicio | SOLICITUD, SERVICIO | Solicitudes |
+| RF-14 | Actualización de solicitudes | CU-09 (línea base G1-P1) | Solicitud | SOLICITUD | Solicitudes |
+| RF-15 | Clasificación de solicitudes | CU-10 (línea base G1-P1) | Solicitud, Servicio | SOLICITUD, SERVICIO | Solicitudes / Servicios |
+| RF-16 | Consulta de recursos disponibles | CU-07 (línea base G1-P1) | Ambulancia, Personal, Asignacion, AsignacionPersonal | AMBULANCIA, PERSONAL, ASIGNACION, ASIGNACION_PERSONAL | Ambulancias / Personal |
+| RF-17 | Asignación de ambulancia a solicitud | CU-11 + plantilla + DA-02 | Solicitud, Servicio, Asignacion, Ambulancia, Personal | SOLICITUD, SERVICIO, ASIGNACION, AMBULANCIA, PERSONAL | P-02 – Asignación |
+| RF-18 | Asociación de personal al servicio | CU-11 + plantilla + DA-02 | Asignacion, AsignacionPersonal, Personal | ASIGNACION, ASIGNACION_PERSONAL, PERSONAL | P-02 – Asignación |
+| RF-19 | Consulta de asignaciones | CU-12 (línea base G1-P1) | Asignacion, AsignacionPersonal, Ambulancia, Personal, Servicio | ASIGNACION, ASIGNACION_PERSONAL, AMBULANCIA, PERSONAL, SERVICIO | Asignaciones |
+| RF-20 | Actualización del estado de servicio | CU-13 (línea base G1-P1) | Servicio, Asignacion, RegistroCierre | SERVICIO, ASIGNACION, REGISTRO_CIERRE | Servicios / Cierres |
+| RF-21 | Registro de novedades del servicio | CU-14 (línea base G1-P1) | Servicio, Intervencion (relación parcial) | SERVICIO, INTERVENCION (relación parcial) | Servicios / Intervenciones |
+| RF-22 | Consulta de historial de servicios | CU-15 (línea base G1-P1) | Servicio, Solicitud, Asignacion, RegistroCierre | SERVICIO, SOLICITUD, ASIGNACION, REGISTRO_CIERRE | Servicios / Dashboard |
+| RF-23 | Consulta de ambulancias y servicios asociados | CU-05 (línea base G1-P1) | Ambulancia, Asignacion, Servicio | AMBULANCIA, ASIGNACION, SERVICIO | Ambulancias / Servicios |
+| RF-24 | Consulta de personal y servicios asociados | CU-06 (línea base G1-P1) | Personal, AsignacionPersonal, Asignacion, Servicio | PERSONAL, ASIGNACION_PERSONAL, ASIGNACION, SERVICIO | Personal / Asignaciones |
+| RF-25 | Generación de reportes operativos | CU-16 (línea base G1-P1) | Servicio, Solicitud, Asignacion, Ambulancia, Personal | SERVICIO, SOLICITUD, ASIGNACION, AMBULANCIA, PERSONAL | Dashboard / Servicios (vista de consulta) |
+| RF-26 | Filtros de reportes operativos | CU-16 (línea base G1-P1) | Servicio, Solicitud, Asignacion, Ambulancia, Personal | SERVICIO, SOLICITUD, ASIGNACION, AMBULANCIA, PERSONAL | Dashboard / Servicios (criterios de filtro por definir) |
+| RF-27 | Consulta de indicadores de gestión | CU-17 (línea base G1-P1) | Servicio, Asignacion, Ambulancia, Personal | SERVICIO, ASIGNACION, AMBULANCIA, PERSONAL | Dashboard (indicadores representativos) |
+| RF-28 | Consulta de información consolidada | CU-17 (línea base G1-P1) | Servicio, Solicitud, Asignacion, Ambulancia, Personal, Intervencion | SERVICIO, SOLICITUD, ASIGNACION, AMBULANCIA, PERSONAL, INTERVENCION | Dashboard |
+| RF-29 | Datos básicos del paciente | CU-20 (línea base G1-P1) | Paciente, Servicio | PACIENTE, SERVICIO | Pacientes |
+| RF-30 | Registro de intervenciones prehospitalarias | CU-21 (línea base G1-P1) | Intervencion, Personal, Servicio, Paciente | INTERVENCION, PERSONAL, SERVICIO, PACIENTE | Intervenciones |
+| RF-31 | Cierre de un servicio finalizado | CU-22 + plantilla + DA-03 | Servicio, RegistroCierre, Paciente, Intervencion, Usuario | SERVICIO, REGISTRO_CIERRE, PACIENTE, INTERVENCION, USUARIO | P-03 – Cierre de servicio |
 
-Esta matriz complementa la trazabilidad arquitectónica A7. No sustituye la matriz de requisitos original ni constituye evidencia de implementación o pruebas funcionales.
+## 2. Resultado de cobertura
 
-## 2. Fuentes de trazabilidad
+| Comprobación | Resultado |
+|---|---:|
+| Requisitos funcionales de la línea base | 31 |
+| Requisitos relacionados con un caso de uso | 31/31 (100 %) |
+| Requisitos con clase(s) conceptual(es) identificada(s) | 31/31 (100 % a nivel de diseño) |
+| Requisitos con entidad(es) de datos identificada(s) | 30/31 completos (96,8 %); RF-21 parcial |
+| Requisitos de los casos críticos con pantalla identificada | 4/4 RF de CU-08, CU-11 y CU-22 |
 
-- Matriz de requisitos y casos de uso G1-P1.
-- A1 – Requisitos y decisiones tecnológicas.
-- A2 – Trazabilidad de clases y requisitos.
-- A7 – Matriz de trazabilidad arquitectónica.
-- Casos de uso extendidos CU-08, CU-11 y CU-22.
-- Diagramas de actividad DA-01, DA-02 y DA-03.
-- MD-01 – Modelo de dominio SIGMAVITAL.
-- MER-01 – Modelo entidad-relación SIGMAVITAL.
-- Prototipo UI SIGMAVITAL v01.
-- Mapa de navegación.
-- Especificación de diseño.
-- Checklist de verificación P2.
+**Observación RF-21:** el modelo actual no tiene una entidad independiente `NOVEDAD_OPERATIVA`. Se relaciona provisionalmente con `SERVICIO` e `INTERVENCION`, pero una intervención asistencial no debe asumirse automáticamente como una novedad operativa. Se deja como cobertura parcial hasta confirmar con el instructor si las novedades requieren registro independiente. Esta reserva explícita evita declarar una equivalencia de negocio que no está demostrada.
 
-## 3. Matriz de trazabilidad de requisitos funcionales
+## 3. Trazabilidad de casos críticos
 
-| Requisito | Caso de uso G1-P1 | Evidencia detallada identificada | Diagrama de actividad | Modelo de datos | Prototipo UI | Estado documental |
-|---|---|---|---|---|---|---|
-| RF-01 | CU-01 | Autenticación | No identificado en evidencias detalladas actuales | MD-01 / MER-01: revisión específica pendiente | Prototipo v01: correspondencia específica pendiente | Pendiente de trazabilidad específica |
-| RF-02 | CU-02 | Cerrar sesión | No identificado en evidencias detalladas actuales | MD-01 / MER-01: revisión específica pendiente | Prototipo v01: correspondencia específica pendiente | Pendiente de trazabilidad específica |
-| RF-03 | CU-04 | Usuarios, roles y permisos | No identificado en evidencias detalladas actuales | MD-01 / MER-01: revisión específica pendiente | Prototipo v01: correspondencia específica pendiente | Pendiente de trazabilidad específica |
-| RF-04 | CU-03 | Tablero operativo | No identificado en evidencias detalladas actuales | Usuario y entidades operativas del modelo; dashboard no representado como entidad | Dashboard: panel principal y resumen operativo | Pendiente de trazabilidad específica |
-| RF-05 | CU-05 | Gestión de ambulancias | No identificado en evidencias detalladas actuales | AMBULANCIA en MER-01 | Ambulancias: listado y estados | Pendiente de trazabilidad específica |
-| RF-06 | CU-05 | Gestión de ambulancias | No identificado en evidencias detalladas actuales | AMBULANCIA en MER-01 | Ambulancias: listado y estados | Pendiente de trazabilidad específica |
-| RF-07 | CU-05 | Gestión de ambulancias | No identificado en evidencias detalladas actuales | AMBULANCIA en MER-01 | Ambulancias: listado y estados | Pendiente de trazabilidad específica |
-| RF-08 | CU-05 | Gestión de ambulancias | No identificado en evidencias detalladas actuales | AMBULANCIA en MER-01 | Ambulancias: listado y estados | Pendiente de trazabilidad específica |
-| RF-09 | CU-06 | Gestión de personal | No identificado en evidencias detalladas actuales | PERSONAL en MER-01 | Personal: listado de personal operativo | Pendiente de trazabilidad específica |
-| RF-10 | CU-06 | Gestión de personal | No identificado en evidencias detalladas actuales | PERSONAL en MER-01 | Personal: listado de personal operativo | Pendiente de trazabilidad específica |
-| RF-11 | CU-06 | Gestión de personal | No identificado en evidencias detalladas actuales | PERSONAL en MER-01 | Personal: listado de personal operativo | Pendiente de trazabilidad específica |
-| RF-12 | CU-08 | CU-08 detallado; DA-01 | CU-08 detallado; DA-01 | SOLICITUD y USUARIO en MER-01; Solicitud en MD-01 | Solicitudes: formulario de registro (CU-08) | Evidencia detallada disponible |
-| RF-13 | CU-09 | Gestión de solicitudes | No identificado en evidencias detalladas actuales | SOLICITUD: estado y datos de solicitud | Solicitudes: módulo de registro y gestión representado | Pendiente de trazabilidad específica |
-| RF-14 | CU-09 | Gestión de solicitudes | No identificado en evidencias detalladas actuales | SOLICITUD: estado y datos de solicitud | Solicitudes: módulo de registro y gestión representado | Pendiente de trazabilidad específica |
-| RF-15 | CU-10 | Clasificación de solicitudes | No identificado en evidencias detalladas actuales | SOLICITUD: atributo prioridad | Solicitudes: opciones de tipo; clasificación específica por validar | Pendiente de trazabilidad específica |
-| RF-16 | CU-07 | Disponibilidad de recursos | No identificado en evidencias detalladas actuales | AMBULANCIA y PERSONAL: estados operativos; disponibilidad independiente solo en MD-01 | Ambulancias, Personal y Asignaciones: disponibilidad representada | Pendiente de trazabilidad específica |
-| RF-17 | CU-11 | CU-11 detallado; DA-02 | CU-11 detallado; DA-02 | ASIGNACION, AMBULANCIA y ASIGNACION_PERSONAL | Asignaciones: selección de servicio, ambulancia y personal (CU-11) | Evidencia detallada disponible |
-| RF-18 | CU-11 | CU-11 detallado; DA-02 | CU-11 detallado; DA-02 | ASIGNACION y ASIGNACION_PERSONAL | Asignaciones: selección de servicio, ambulancia y personal (CU-11) | Evidencia detallada disponible |
-| RF-19 | CU-12 | Consulta de asignaciones | No identificado en evidencias detalladas actuales | ASIGNACION y SERVICIO; consulta específica pendiente | Asignaciones: representación general; consulta específica por validar | Pendiente de trazabilidad específica |
-| RF-20 | CU-13 | Actualización de estado | No identificado en evidencias detalladas actuales | SERVICIO: estado y datos operativos | Servicios: listado y estados representados | Pendiente de trazabilidad específica |
-| RF-21 | CU-14 | Novedades operativas | No identificado en evidencias detalladas actuales | Novedad operativa: entidad específica no identificada en MD-01 / MER-01 | Prototipo v01: módulo específico de novedades no identificado | Pendiente de trazabilidad específica |
-| RF-22 | CU-15 | Historial de servicios | No identificado en evidencias detalladas actuales | SERVICIO: historial específico pendiente de definición | Servicios y Dashboard: servicios recientes; historial específico por validar | Pendiente de trazabilidad específica |
-| RF-23 | CU-05 | Información de ambulancias | No identificado en evidencias detalladas actuales | AMBULANCIA en MER-01 | Ambulancias: información y estado en listado | Pendiente de trazabilidad específica |
-| RF-24 | CU-06 | Información de personal | No identificado en evidencias detalladas actuales | PERSONAL en MER-01 | Personal: información y estado en listado | Pendiente de trazabilidad específica |
-| RF-25 | CU-16 | Reportes operativos | No identificado en evidencias detalladas actuales | MD-01 / MER-01: revisión específica pendiente | Prototipo v01: correspondencia específica pendiente | Pendiente de trazabilidad específica |
-| RF-26 | CU-16 | Reportes operativos | No identificado en evidencias detalladas actuales | MD-01 / MER-01: revisión específica pendiente | Prototipo v01: correspondencia específica pendiente | Pendiente de trazabilidad específica |
-| RF-27 | CU-17 | Indicadores de gestión | No identificado en evidencias detalladas actuales | MD-01 / MER-01: revisión específica pendiente | Prototipo v01: correspondencia específica pendiente | Pendiente de trazabilidad específica |
-| RF-28 | CU-17 | Indicadores de gestión | No identificado en evidencias detalladas actuales | MD-01 / MER-01: revisión específica pendiente | Prototipo v01: correspondencia específica pendiente | Pendiente de trazabilidad específica |
-| RF-29 | CU-20 | Datos básicos del paciente | No identificado en evidencias detalladas actuales | PACIENTE y relación PACIENTE–SERVICIO representadas en MD-01 y MER-01; validación integral pendiente | Pacientes: listado y botón de registro representativo en prototipo v01 | Representación conceptual y visual existente; validación pendiente |
-| RF-30 | CU-21 | Intervenciones prehospitalarias TAM | No identificado en evidencias detalladas actuales | INTERVENCION y relación SERVICIO–INTERVENCION representadas en MD-01 y MER-01 | Intervenciones: formulario representativo en prototipo v01 | Representación conceptual y visual existente; validación pendiente |
-| RF-31 | CU-22 | CU-22 detallado; DA-03 | CU-22 detallado; DA-03 | SERVICIO y REGISTRO_CIERRE en MER-01 | Cierres: formulario de cierre de servicio (CU-22) | Evidencia detallada disponible |
-## 4. Evidencias detalladas actualmente identificadas
+| Caso crítico | Requisitos | Plantilla extendida | Diagrama de actividades | Pantalla del prototipo |
+|---|---|---|---|---|
+| CU-08 – Registrar solicitud | RF-12 | [CU-08](../01-casos-uso-extendidos/CU-08-Registrar-Solicitud-Servicio.md) | [DA-01](../02-diagramas-actividades/DA-01-Registrar-Solicitud-CU08.md) | P-01 – Solicitudes |
+| CU-11 – Asignar ambulancia y personal | RF-17, RF-18 | [CU-11](../01-casos-uso-extendidos/CU-11-Asignar-Ambulancia-Personal.md) | [DA-02](../02-diagramas-actividades/DA-02-Asignar-Ambulancia-CU11.md) | P-02 – Asignaciones |
+| CU-22 – Cerrar servicio | RF-31 | [CU-22](../01-casos-uso-extendidos/CU-22-Cerrar-Servicio.md) | [DA-03](../02-diagramas-actividades/DA-03-Cerrar-Servicio-CU22.md) | P-03 – Cierres |
 
-| Artefacto | Requisitos / caso asociado | Estado |
-|---|---|---|
-| CU-08 – Registrar solicitud de servicio | RF-12 / CU-08 | Documento elaborado |
-| DA-01 – Registrar solicitud CU08 | RF-12 / CU-08 | Documento elaborado |
-| CU-11 – Asignar ambulancia y personal | RF-17, RF-18 / CU-11 | Documento elaborado |
-| DA-02 – Asignar ambulancia CU11 | RF-17, RF-18 / CU-11 | Documento elaborado |
-| CU-22 – Cerrar servicio | RF-31 / CU-22 | Documento elaborado |
-| DA-03 – Cerrar servicio CU22 | RF-31 / CU-22 | Documento elaborado |
-| MD-01 – Modelo de dominio | Modelo conceptual general | Documento elaborado |
-| MER-01 – Modelo entidad-relación | Modelo de datos general | Documento elaborado |
-| Prototipo UI v01 | Interfaz visual general | Artefacto existente; mapeo específico pendiente |
-| Mapa de navegación | Navegación del prototipo | Artefacto existente; verificación pendiente |
-| Especificación de diseño | Criterios visuales y de usabilidad | Documento elaborado |
-| Checklist P2 | Verificación documental | Seguimiento pendiente |
+## 4. Reglas de interpretación
 
-## 5. Interpretación de los estados
+1. Los CU-01 a CU-22 son identificadores de la línea base G1-P1. Que un caso figure en la matriz no significa que todos tengan una plantilla extendida en P2.
+2. Los RF-25 a RF-28 son funciones de consulta y agregación. Se trazan a las entidades que aportan sus datos; no se inventa una entidad persistente «Reporte» o «Indicador».
+3. Las pantallas del prototipo son representaciones visuales. No acreditan persistencia, integración backend ni ejecución real de los procesos.
+4. RF-21 queda parcial por la ausencia de una entidad de novedades independiente; requiere decisión de alcance antes de afirmar 100 %.
+5. Las asociaciones entre clases y entidades son propuestas de diseño que requieren validación con el responsable del proceso.
 
-- **Documentado:** existe un artefacto detallado identificable que representa directamente el caso o requisito señalado.
-- **Pendiente:** aún no se ha identificado una evidencia detallada específica para esa relación dentro del conjunto revisado.
-- **Pendiente de trazabilidad específica:** existe una relación de línea base, pero falta documentar y verificar la correspondencia concreta con artefactos P2.
-- **Relación conceptual por validar:** el modelo puede representar conceptos asociados, pero la correspondencia específica debe verificarse antes de declararla trazada.
+## 5. Referencias
 
-## 6. Limitaciones
-
-1. La matriz de G1-P1 relaciona los 31 requisitos funcionales consolidados con los casos de uso CU-01 a CU-22.
-2. La existencia de un caso de uso en la línea base no implica que exista un caso de uso extendido o diagrama de actividad desarrollado.
-3. Los diagramas DA-01, DA-02 y DA-03 se relacionan directamente con CU-08, CU-11 y CU-22, respectivamente.
-4. La existencia del MD-01 y MER-01 no implica que cada requisito funcional haya sido validado individualmente contra dichos modelos.
-5. El prototipo UI es una representación de diseño; no acredita implementación funcional.
-6. Las relaciones específicas entre requisito, pantalla, modelo y navegación requieren revisión y verificación.
-7. Esta matriz no afirma cobertura de pruebas, implementación ni validación con usuarios.
-
-## 7. Actividades de verificación pendientes
-
-- Revisar la correspondencia individual entre RF y MD-01.
-- Revisar la correspondencia individual entre RF y MER-01.
-- Identificar pantallas y elementos específicos del prototipo para cada RF representado.
-- Verificar las rutas de navegación relacionadas con los casos de uso.
-- Completar los casos de uso extendidos prioritarios restantes.
-- Completar diagramas de actividad adicionales según priorización.
-- Validar las correspondencias con la línea base G1-P1 y A7.
-- Incorporar observaciones del equipo y del instructor.
-- Actualizar estados conforme se obtenga evidencia verificable.
-
-## 8. Conclusión preliminar
-
-Se consolidó una estructura complementaria de trazabilidad entre los requisitos funcionales de G1-P1 y los artefactos de diseño identificados en P2. Se cuenta con evidencia detallada para CU-08, CU-11 y CU-22, acompañada de sus diagramas de actividad DA-01, DA-02 y DA-03.
-
-Los modelos MD-01 y MER-01, así como el prototipo UI y su documentación complementaria, constituyen artefactos disponibles para continuar la verificación individual de correspondencias. La cobertura restante deberá completarse mediante revisión documental y validación, sin atribuir resultados que aún no hayan sido comprobados.
+- [Matriz de requisitos y casos de uso G1-P1](../../../../01-analysis/03-conceptual-model/04-evidence-learning/G1-P1-Plan-Analisis/05-matriz-requisitos-casos-uso/Matriz-Requisitos-Casos-Uso.md)
+- [MD-01 – Modelo de dominio](../03-modelo-dominio/MD-01-Modelo-Dominio-SIGMAVITAL.md)
+- [MER-01 – Modelo entidad-relación](../04-modelo-entidad-relacion/MER-01-Modelo-Entidad-Relacion-SIGMAVITAL.md)
+- [Prototipo SIGMAVITAL](../05-prototipo-ui/01-mockups/SIGMAVITAL-Prototipo-v01.html)
 
 ---
 
-**Documento de seguimiento:** esta matriz debe actualizarse cuando se incorporen nuevas evidencias y verificaciones.
-
-
+**SENA – ADSO – Ficha 3413974**

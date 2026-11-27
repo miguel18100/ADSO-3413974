@@ -1,131 +1,61 @@
-﻿# CHECKLIST-01 – Verificación de evidencias P2
+# CHECKLIST-01 – Verificación de evidencias G1-P2 SIGMAVITAL
 
 **Proyecto:** SIGMAVITAL – Sistema Gestor de Ambulancias (SGA)
-**Programa:** Análisis y Desarrollo de Software (ADSO)
-**Ficha:** 3413974
-**Fase:** P2 – Planificación, análisis y diseño
-**Actividad:** 05 – Prototipo
-**Estado:** Checklist preliminar de seguimiento actualizado
+**Ficha:** 3413974 – ADSO
+**Producto:** G1-P2 – Modelo de análisis y verificación
+**Versión:** 1.1 – 27/11/2026
+**Alcance:** revisión documental de archivos del repositorio; no equivale a prueba con usuarios ni aprobación del instructor.
+
+## 1. Escala y criterio de diligenciamiento
+
+- **Sí:** el criterio puede comprobarse en el archivo citado.
+- **No:** el criterio no está acreditado por la evidencia disponible.
+- Cada fila tiene un criterio binario, archivo de evidencia y observación verificable.
+- Los criterios C-13 a C-16 son de cobertura o trazabilidad.
+
+## 2. Lista de chequeo diligenciada
+
+| ID | Criterio verificable | Respuesta (Sí/No) | Evidencia | Resultado / observación |
+|---|---|---|---|---|
+| C-01 | Existen al menos tres plantillas extendidas de casos de uso. | Sí | `01-casos-uso-extendidos/CU-08`, `CU-11`, `CU-22` | Se identifican tres archivos independientes. |
+| C-02 | Cada plantilla contiene precondiciones, flujo principal de seis o más pasos y postcondiciones. | Sí | CU-08, CU-11 y CU-22 | Los tres documentos contienen los apartados exigidos. |
+| C-03 | CU-11 documenta al menos un flujo alternativo y una excepción. | Sí | `01-casos-uso-extendidos/CU-11-Asignar-Ambulancia-Personal.md` | A1/A2 y E1 se relacionan con las ramas de DA-02. |
+| C-04 | CU-22 documenta información incompleta, cancelación y error de guardado. | Sí | `01-casos-uso-extendidos/CU-22-Cerrar-Servicio.md` | Los flujos A1, A2 y E1 cubren esos resultados. |
+| C-05 | DA-02 tiene inicio, fin y particiones explícitas para actor y sistema. | Sí | `02-diagramas-actividades/DA-02-Asignar-Ambulancia-CU11.puml` y `.svg` | Se identifican las calles Coordinador operativo y Sistema SIGMAVITAL. |
+| C-06 | DA-02 etiqueta las salidas de cada decisión con guardas entre corchetes. | Sí | DA-02 `.puml` / `.svg` | Las ramas se distinguen con `[sí]` y `[no]`; se documentan reintento y falta de recursos. |
+| C-07 | DA-03 tiene inicio, fin y particiones explícitas para actor y sistema. | Sí | `02-diagramas-actividades/DA-03-Cerrar-Servicio-CU22.puml` y `.svg` | Se identifican las dos calles requeridas. |
+| C-08 | DA-03 contempla información incompleta, cancelación y error de guardado. | Sí | DA-03 `.puml` / `.svg`; CU-22 | Las tres rutas están representadas y enlazadas con CU-22. |
+| C-09 | Los casos alternos y de excepción de CU-11/CU-22 tienen correspondencia en sus diagramas. | Sí | CU-11, CU-22, DA-02 y DA-03 | Correspondencia documentada en cada diagrama. |
+| C-10 | MD-01 contiene al menos ocho clases conceptuales sin métodos. | Sí | `03-modelo-dominio/MD-01-Modelo-Dominio-SIGMAVITAL.md` | Se documentan once clases con atributos de negocio. |
+| C-11 | MD-01 contiene asociaciones con verbos y multiplicidades. | Sí | MD-01, sección 5 y diagrama | Cada asociación declara rol, verbo y multiplicidad mínima/máxima. |
+| C-12 | MER-01 contiene al menos seis entidades identificadas y una relación N:M resuelta. | Sí | `04-modelo-entidad-relacion/MER-01-Modelo-Entidad-Relacion-SIGMAVITAL.md` | ASIGNACION_PERSONAL resuelve la relación entre asignación y personal. |
+| C-13 | RF-01 a RF-31 tienen identificador de caso de uso en la matriz P2. | Sí | `07-matriz-trazabilidad/MATRIZ-TRAZABILIDAD-P2-SIGMAVITAL.md` | 31/31 RF tienen referencia a CU de la línea base. |
+| C-14 | RF-01 a RF-31 están relacionados con al menos una clase del modelo de dominio. | Sí | Matriz P2, columna “Clases MD-01” | 31/31 RF tienen una o más clases asignadas a nivel de diseño. |
+| C-15 | Al menos 90 % de RF tiene relación directa con entidades del MER. | Sí | Matriz P2, sección 2 | 30/31 RF completos (96,8 %); RF-21 queda explícitamente parcial. |
+| C-16 | Los casos críticos CU-08, CU-11 y CU-22 tienen pantalla identificada. | Sí | Matriz P2 y prototipo HTML | P-01, P-02 y P-03; corresponden a RF-12, RF-17/RF-18 y RF-31. |
+| C-17 | El prototipo rotula visiblemente P-01 con CU-08 y RF-12. | Sí | `05-prototipo-ui/01-mockups/SIGMAVITAL-Prototipo-v01.html` | Etiqueta incorporada en la pantalla de solicitudes. |
+| C-18 | El prototipo rotula visiblemente P-02 con CU-11 y RF-17/RF-18. | Sí | Prototipo HTML | Etiqueta incorporada en la pantalla de asignaciones. |
+| C-19 | El prototipo rotula visiblemente P-03 con CU-22 y RF-31. | Sí | Prototipo HTML | Etiqueta incorporada en la pantalla de cierres. |
+| C-20 | Existe informe de 1–2 páginas con requisitos, enlaces a modelos, resultados y ajustes. | Sí | `08-informe-analisis/INFORME-ANALISIS-P2-SIGMAVITAL.md` | El informe resume las evidencias y declara las limitaciones pendientes. |
+| C-21 | Existe registro de al menos cinco hallazgos con antes/después y segunda verificación. | Sí | `05-prototipo-ui/03-especificacion-diseno/REG-01-Registro-Iteracion-Visual.md` | Se documentan seis hallazgos y su comprobación posterior. |
+| C-22 | README identifica reutilización, modificaciones, enlaces y uso de IA. | Sí | `README.md` de G1-P2 | El README actualizado sirve de índice y declara alcance/autoría. |
+| C-23 | Se ejecutó una prueba formal de usabilidad con usuarios y se adjuntó acta. | No | No se encontró acta ni protocolo diligenciado | Pendiente; no es válido inferir aprobación de usuarios desde el HTML. |
+| C-24 | Se ejecutó una prueba formal de accesibilidad y se adjuntó resultado. | No | No se encontró informe o evidencia de prueba | Pendiente; el prototipo no acredita conformidad de accesibilidad. |
+
+## 3. Resumen de verificación
+
+- **Criterios verificados Sí:** 22.
+- **Criterios verificados No:** 2.
+- **Criterios totales:** 24.
+- **Criterios de cobertura/trazabilidad:** C-13, C-14, C-15 y C-16.
+- **Cobertura de RF:** 31/31 a caso de uso y clase conceptual; 30/31 (96,8 %) a entidad del MER; RF-21 permanece parcial.
+
+Los dos resultados “No” corresponden a validaciones formales con usuarios y accesibilidad que no están acreditadas en el repositorio y no se presentan como realizadas. No sustituyen los mínimos documentales de la rúbrica.
+
+## 4. Limitaciones de la revisión
+
+La lista se diligenció por inspección de los archivos del repositorio. No representa una prueba de ejecución de los formularios ni de persistencia. Los datos del prototipo son ficticios, los mensajes son demostrativos y no existe integración backend. Las cardinalidades y reglas operativas deben confirmarse con el instructor o los responsables del proceso.
 
 ---
 
-## 1. Casos de uso extendidos
-
-| ID | Evidencia / actividad | Estado |
-|---|---|---|
-| CU-08 | Registrar solicitud de servicio | Elaborado – pendiente de validación integral |
-| CU-11 | Asignar ambulancia y personal | Elaborado – pendiente de validación integral |
-| CU-22 | Cerrar servicio | Elaborado – pendiente de validación integral |
-| Otros casos de uso requeridos | Revisar contra requisitos y guías | Pendiente |
-
-## 2. Diagramas de actividades
-
-| ID | Evidencia / actividad | Estado |
-|---|---|---|
-| DA-01 | Registrar solicitud (CU-08) | Elaborado – pendiente de validación |
-| DA-02 | Asignar ambulancia (CU-11) | Elaborado – pendiente de validación |
-| DA-03 | Cerrar servicio (CU-22) | Elaborado – pendiente de validación |
-| Diagramas adicionales | Revisar necesidades del proyecto | Pendiente |
-
-## 3. Modelado del sistema
-
-| ID | Evidencia / actividad | Estado |
-|---|---|---|
-| MD-01 | Modelo de dominio | Elaborado – pendiente de validación |
-| MER-01 | Modelo entidad-relación preliminar | Elaborado – pendiente de validación |
-| Correspondencia entre modelos y requisitos | Revisar consistencia | Pendiente |
-| Validación de cardinalidades y reglas de negocio | Revisar | Pendiente |
-
-## 4. Prototipo de interfaz
-
-| ID | Evidencia / actividad | Estado |
-|---|---|---|
-| Prototipo HTML | Interfaz representativa del sistema | Elaborado |
-| Versión de respaldo | Conservación de versión anterior | Disponible |
-| Navegación entre módulos | Representación mediante JavaScript | Elaborada – pendiente de prueba integral |
-| Formularios de demostración | Representación de operaciones del sistema | Elaborados – sin persistencia |
-| Correspondencia con casos de uso | Verificación integral | Pendiente |
-| Mapa de navegación | Documentación de estructura y recorrido | Elaborado – pendiente de validación |
-
-## 5. Registro de ajustes e iteraciones
-
-| ID | Evidencia / actividad | Estado |
-|---|---|---|
-| REG-01 | Registro de iteración visual | Elaborado |
-| Comparación entre versiones | Identificación de cambios visuales | Realizada mediante revisión documental |
-| Justificación integral de decisiones de diseño | Consolidar | Pendiente |
-| Trazabilidad de ajustes frente a requisitos | Revisar | Pendiente |
-
-## 6. Informe de análisis
-
-| ID | Evidencia / actividad | Estado |
-|---|---|---|
-| Informe consolidado de análisis y diseño | Elaboración | Pendiente |
-| Inclusión de modelos y diagramas | Integración | Pendiente |
-| Revisión documental integral | Validación | Pendiente |
-
-## 7. Matriz de trazabilidad
-
-| ID | Evidencia / actividad | Estado |
-|---|---|---|
-| Requisitos identificados | Consolidar | Pendiente de revisión integral |
-| Relación requisitos–casos de uso | Documentar y verificar | Pendiente |
-| Relación requisitos–diagramas–modelos | Documentar y verificar | Pendiente |
-| Relación requisitos–prototipo | Documentar y verificar | Pendiente |
-| Verificación de cobertura | Revisar | Pendiente |
-
-## 8. Documentación de UI, usabilidad y ergonomía
-
-| ID | Evidencia / actividad | Estado |
-|---|---|---|
-| Especificación preliminar de diseño de interfaz | Documentación | Elaborada |
-| Documentación de interfaces | Complementar | Parcial – pendiente revisión integral |
-| Criterios de usabilidad | Documentados preliminarmente en la especificación de diseño; pendientes de consolidación y validación integral | Parcial |
-| Evaluación ergonómica | Elaboración | Pendiente |
-| Revisión de consistencia visual | Comparación documental | Realizada preliminarmente |
-| Validación de accesibilidad | Evaluación formal | Pendiente |
-| Pruebas formales de usabilidad | Evaluación con usuarios | Pendiente |
-| Retroalimentación de stakeholders | Recopilación y documentación | Pendiente |
-| Registro de validación y ajustes | Consolidar | Pendiente |
-
-## 9. Control general
-
-- [x] Estructura de carpetas de evidencias P2 disponible.
-- [x] Casos de uso CU-08, CU-11 y CU-22 elaborados.
-- [x] Diagramas DA-01, DA-02 y DA-03 elaborados.
-- [x] Modelo de dominio MD-01 elaborado.
-- [x] MER-01 preliminar elaborado.
-- [x] Prototipo HTML elaborado.
-- [x] Versión de respaldo del prototipo disponible.
-- [x] Navegación entre módulos representada.
-- [x] Formularios de demostración representados.
-- [x] Mapa de navegación elaborado.
-- [x] Especificación preliminar de diseño elaborada.
-- [x] Registro de iteración visual REG-01 elaborado.
-- [x] README de evidencias actualizado.
-- [x] Checklist preliminar actualizado.
-- [ ] Validación integral del prototipo frente a requisitos y casos de uso.
-- [ ] Pruebas integrales de navegación.
-- [ ] Consolidación de criterios de usabilidad.
-- [ ] Evaluación ergonómica.
-- [ ] Validación formal de accesibilidad.
-- [ ] Pruebas formales con usuarios.
-- [ ] Retroalimentación de stakeholders.
-- [ ] Informe consolidado de análisis y diseño.
-- [ ] Matriz de trazabilidad P2 consolidada.
-- [ ] Validación integral frente a las guías oficiales de las actividades.
-
----
-
-## 10. Observación
-
-Este checklist constituye un instrumento preliminar de seguimiento de las evidencias de P2. Los elementos marcados como elaborados corresponden a artefactos identificados en el repositorio y revisados documentalmente en el alcance indicado.
-
-La existencia de un artefacto no implica su aprobación formal ni garantiza el cumplimiento integral de todos los requisitos, criterios de evaluación o lineamientos establecidos en las guías oficiales.
-
-Las actividades pendientes deberán revisarse y completarse con base en las guías de aprendizaje, los requisitos del proyecto, la matriz de trazabilidad y los criterios de calidad establecidos para la solución SIGMAVITAL.
-
----
-
-SENA – ADSO – Ficha 3413974
-
+**SENA – ADSO – Ficha 3413974**

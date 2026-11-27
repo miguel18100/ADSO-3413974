@@ -1,4 +1,4 @@
-﻿# A5 – Component View and Interface Specification
+# A5 – Component View and Interface Specification
 
 ## 1. Purpose
 
@@ -197,3 +197,27 @@ The component separation, interface contracts, and dependency organization provi
 
 This view complements the architectural and class design evidence and supports the subsequent implementation and validation of the software solution.
 
+## 9. Component-to-Class and Requirement Mapping
+
+The following mapping connects each component to the A2 classes it groups and the A1 functional requirements it supports. The mapping is at design level; it does not claim implementation completion.
+
+| Component | A2 classes grouped / principally coordinated | Functional requirements supported | Rationale |
+|---|---|---|---|
+| Web UI | `Usuario`, `Solicitud`, `Servicio`, `Ambulancia`, `Asignacion`, `RegistroCierre` (presentation representations) | RF-01, RF-03, RF-04, RF-05, RF-12, RF-16, RF-17, RF-20, RF-29, RF-30, RF-31 | Screens and interaction entry points for authorized operational users. |
+| Application Controller | `Usuario`, `Rol`, `Solicitud`, `Servicio` (request coordination) | RF-01, RF-03, RF-04, RF-12, RF-17, RF-20, RF-31 | Receives requests, applies application-level coordination and delegates to the facade. |
+| GestionServicioFacade | `Servicio`, `Solicitud`, `Asignacion`, `AsignacionPersonal`, `RegistroCierre` | RF-03, RF-04, RF-12, RF-17, RF-20, RF-31 | Coordinates multi-step service workflows without moving domain rules into the UI. |
+| Service Management | `Solicitud`, `Servicio`, `Paciente`, `Intervencion` | RF-04, RF-05, RF-12, RF-20, RF-29, RF-30, RF-31 | Manages service lifecycle and coordinates patient/intervention functions. |
+| Assignment Management | `Ambulancia`, `Personal`, `Asignacion`, `AsignacionPersonal` | RF-04, RF-09, RF-16, RF-17, RF-18, RF-20 | Coordinates resource availability and assignment records. |
+| Assignment Strategy | `EstrategiaAsignacion`, `EstrategiaAsignacionUrgente`, `EstrategiaAsignacionGeneral` | RF-16, RF-17 | Encapsulates variable assignment criteria as documented in A3. |
+| Patient Management | `Paciente`, `Servicio` | RF-29, RF-30, RF-31 | Organizes basic patient information related to a prehospital service. |
+| User and Role Management | `Usuario`, `Rol` | RF-01, RF-03, RF-04 | Supports authentication-related account and role responsibilities. |
+| Service Closure Management | `Servicio`, `Intervencion`, `RegistroCierre`, `Paciente` | RF-20, RF-31 | Validates and coordinates the closure record and service state change. |
+| Repository / Persistence | All persistent A2 entities: `Usuario`, `Rol`, `Solicitud`, `Servicio`, `Paciente`, `Ambulancia`, `Personal`, `Asignacion`, `AsignacionPersonal`, `Intervencion`, `RegistroCierre` | RF-01, RF-03, RF-05, RF-09, RF-12, RF-16, RF-17, RF-18, RF-20, RF-29, RF-30, RF-31 | Abstracts persistence for the business components and enforces data contracts. |
+| Database | Persistent entities and relations represented in B1/B2 | Data persistence for the requirements above | Implements relational persistence and database constraints when deployed. |
+
+### Mapping and interface consistency
+
+- `IServiceWorkflow` is consumed by Web UI / Application Controller and implemented by the application workflow boundary.
+- `IAssignment`, `IPatientManagement`, `IUserManagement` and `IServiceClosure` describe domain contracts used by the facade and specialized components.
+- `IDataPersistence` is the boundary between domain/application operations and Repository / Persistence.
+- Component boundaries align with A4 layers and A2 class responsibilities. Class groupings are conceptual and may be adjusted during implementation while preserving the requirement traceability.

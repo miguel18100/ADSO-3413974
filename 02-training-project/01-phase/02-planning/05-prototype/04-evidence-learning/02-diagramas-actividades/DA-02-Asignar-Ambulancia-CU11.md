@@ -1,53 +1,19 @@
-﻿# DA-02 – Asignar ambulancia y personal (CU-11)
+# DA-02 – Asignar ambulancia y personal (CU-11)
 
-**Proyecto:** SIGMAVITAL  
-**Requisito relacionado:** RF-17 / RF-18  
-**Caso de uso:** CU-11 – Asignar ambulancia y personal  
-**Actor principal:** Coordinador operativo  
-**Estado:** Diseño preliminar
+**Actores/carriles:** Coordinador operativo y Sistema SIGMAVITAL.
+**Inicio y fin:** inicio al seleccionar el servicio; termina con asignación confirmada o con servicio conservado como pendiente.
+**Decisiones y guardas:** `[sí]`, `[no]`, `[corregir]`, `[no corregir]`, `[reintento]`. Cada salida de decisión identifica su condición.
+**Flujos alternativos:** no hay recursos; reconsulta; recursos incompatibles/cambiados; modificación de selección.
+**Excepción:** fallo persistente al guardar; el sistema no confirma la asignación y conserva la solicitud pendiente.
 
-## Diagrama de actividades
+## Fuentes y exportaciones
 
-```mermaid
-flowchart TD
-    A([Inicio]) --> B[Consultar solicitud pendiente]
-    B --> C[Verificar disponibilidad CU-07]
-    C --> D{¿Hay recursos disponibles?}
-    D -->|No| E[Informar falta de recursos]
-    E --> F{¿Reintentar búsqueda?}
-    F -->|Sí| C
-    F -->|No| G([Fin sin asignación])
-    D -->|Sí| H[Seleccionar ambulancia]
-    H --> I[Seleccionar personal disponible]
-    I --> J{¿Asignación válida?}
-    J -->|No| K[Informar inconsistencia]
-    K --> H
-    J -->|Sí| L[Confirmar asignación]
-    L --> M{¿Se guardó correctamente?}
-    M -->|No| N[Informar error de registro]
-    N --> O{¿Reintentar?}
-    O -->|Sí| L
-    O -->|No| G
-    M -->|Sí| P[Actualizar estado de solicitud]
-    P --> Q[Mostrar confirmación]
-    Q --> R([Fin])
-```
-
-## Descripción
-
-El diagrama representa el proceso de asignación de ambulancia y personal a una solicitud de servicio. El coordinador consulta la solicitud pendiente y verifica la disponibilidad de recursos mediante el caso de uso CU-07. Si existen recursos disponibles, selecciona la ambulancia y el personal requerido, y el sistema valida que la asignación sea consistente.
-
-Si no hay recursos disponibles, el coordinador puede reintentar la búsqueda o finalizar sin asignación. Cuando la asignación es válida, se confirma y se guarda. Si ocurre un error de almacenamiento, se permite reintentar. Finalmente, el sistema actualiza el estado de la solicitud y presenta la confirmación.
+- `DA-02-Asignar-Ambulancia-CU11.puml`: fuente PlantUML editable con carriles explícitos.
+- `DA-02-Asignar-Ambulancia-CU11.dot`: fuente Graphviz de la representación de carriles y decisiones.
+- `DA-02-Asignar-Ambulancia-CU11.svg` y `.png`: exportaciones gráficas.
 
 ## Trazabilidad
 
-| Elemento | Referencia |
-|---|---|
-| Requisitos funcionales | RF-17 / RF-18 |
-| Caso de uso | CU-11 |
-| Caso de uso incluido | CU-07 |
-| Diagrama | DA-02 |
-| Pantalla asociada | P-02 |
-| Clase conceptual principal | Asignación / Ambulancia / Personal |
-| Actor principal | Coordinador operativo |
-| Estado | Diseño preliminar |
+CU-11; RF-17 y RF-18; modelo de dominio `Ambulancia`, `Personal`, `Servicio`, `Asignacion` y `AsignacionPersonal`; modelo de datos `Ambulancia`, `Personal`, `Servicio`, `Asignacion` y `AsignacionPersonal`; pantalla P-02.
+
+**Nota de alcance:** el diagrama describe el flujo esperado de diseño. No acredita que el flujo esté implementado o probado en un sistema desplegado.

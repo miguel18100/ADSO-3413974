@@ -1,11 +1,11 @@
-﻿# G2-P2 - Diseño de Datos | SIGMAVITAL
+# G2-P2 - Diseño de Datos | SIGMAVITAL
 
-**Aprendiz:** Juan Miguel Muñoz Castañeda  
-**Programa:** Análisis y Desarrollo de Software (ADSO)  
-**Ficha:** 3413974  
-**Proyecto:** SIGMAVITAL  
-**Fase:** Planeación - Arquitectura y diseño de datos  
-**Evidencia:** G2-P2 - Diseño de datos  
+**Aprendiz:** Juan Miguel Muñoz Castañeda
+**Programa:** Análisis y Desarrollo de Software (ADSO)
+**Ficha:** 3413974
+**Proyecto:** SIGMAVITAL
+**Fase:** Planeación - Arquitectura y diseño de datos
+**Evidencia:** G2-P2 - Diseño de datos
 
 ---
 
@@ -36,6 +36,8 @@ Los artefactos de P1 sirven como referencia para identificar entidades, responsa
 - [B1-Modelo-Conceptual-Datos.md](B1-Modelo-Conceptual-Datos.md)
 - [B1-Diagrama-Conceptual.drawio](B1-Diagrama-Conceptual.drawio)
 - [B1-Diagrama-Conceptual.drawio.png](B1-Diagrama-Conceptual.drawio.png)
+- [B1-Diagrama-Conceptual.drawio.svg](B1-Diagrama-Conceptual.drawio.svg)
+- [B1-Diagrama-Conceptual.dot](B1-Diagrama-Conceptual.dot)
 - [B1-Diagrama-Conceptual.html](B1-Diagrama-Conceptual.html)
 
 Se documenta el modelo conceptual, sus entidades, atributos, relaciones y cardinalidades.
@@ -46,6 +48,7 @@ Se documenta el modelo conceptual, sus entidades, atributos, relaciones y cardin
 - [B2-Diagrama-Relacional.drawio](B2-Diagrama-Relacional.drawio)
 - [B2-Diagrama-Relacional.drawio.png](B2-Diagrama-Relacional.drawio.png)
 - [B2-Diagrama-Relacional.drawio.svg](B2-Diagrama-Relacional.drawio.svg)
+- [B2-Diagrama-Relacional-Actualizado.dot](B2-Diagrama-Relacional-Actualizado.dot)
 
 Se presenta la transformación del modelo conceptual al modelo relacional, con tablas, claves primarias, claves foráneas y relaciones.
 
@@ -69,16 +72,18 @@ Define las tablas y sus atributos, tipos de datos, convenciones, restricciones y
 - [B5-Evidencia-Tablas.txt](B5-Evidencia-Tablas.txt)
 - [B5-Evidencia-Ejecucion-Tablas.png](B5-Evidencia-Ejecucion-Tablas.png)
 - [B5-Evidencia-Relaciones.png](B5-Evidencia-Relaciones.png)
+- [B5-Evidencia-Unicidad-Cierre.txt](B5-Evidencia-Unicidad-Cierre.txt) — evidencia histórica de VT-07 sobre una versión anterior del esquema.
+- [B5-Prueba-Unicidad-AsignacionPersonal.sql](B5-Prueba-Unicidad-AsignacionPersonal.sql) — prueba manual pendiente de ejecutar.
 
-Se incluye el script de creación de tablas, restricciones y relaciones, junto con evidencias de verificación.
+Se incluye el script de creación de tablas, restricciones y relaciones. Las evidencias de ejecución adjuntas documentan una versión anterior del DDL. La versión actual agrega la FK `RegistroCierre.id_usuario` y la restricción UNIQUE compuesta de `AsignacionPersonal`; por ello, las evidencias históricas no certifican por sí solas la ejecución del esquema actualizado.
 
-La validación técnica realizada incluyó la comprobación de las tablas creadas, las restricciones CHECK y las relaciones entre tablas, así como las acciones referenciales configuradas.
+**Pendiente antes de declarar validada esta versión:** ejecutar `B5-Creacion-Base-Datos.sql` y `B5-Prueba.sql` sobre MariaDB/MySQL, repetir las verificaciones de tablas, 12 claves foráneas y 7 restricciones CHECK, y ejecutar `B5-Prueba-Unicidad-AsignacionPersonal.sql`. Adjuntar el resultado real de la consola y la fecha del entorno utilizado.
 
 ### B6. Políticas de seguridad de datos
 
-- [B6-Politicas-Seguridad-Datos.md](B6-Politicas-Seguridad-Datos.md)
+- [B6-Politicas-Seguridad-Datos.md](B6-Politicas-Seguridad-Datos.md) — incluye procedimiento de simulacro de restauración y plantilla de registro.
 
-Documenta políticas de integridad, confidencialidad y disponibilidad, matriz de permisos, tratamiento de datos personales, protección de credenciales, comunicaciones seguras y estrategia de respaldo.
+Documenta políticas de integridad, confidencialidad y disponibilidad, matriz de permisos, tratamiento de datos personales, protección de credenciales, comunicaciones seguras y estrategia de respaldo. El simulacro de restauración está especificado, pero aún no ejecutado; debe registrarse el resultado real antes de marcar ese criterio como cumplido.
 
 ### B7. Checklist de aceptación
 
@@ -141,7 +146,21 @@ Declaro que revisé los artefactos que conforman esta evidencia, comprendí su c
 
 ---
 
-**Proyecto:** SIGMAVITAL  
-**Evidencia:** G2-P2 - Diseño de Datos  
+**Proyecto:** SIGMAVITAL
+**Evidencia:** G2-P2 - Diseño de Datos
 **Ficha:** 3413974 - ADSO
 
+
+## Ajustes de revisión
+
+- B1 expresa verbos y cardinalidades mínimas/máximas por extremo; el diagrama Draw.io se ajustó en la fuente editable.
+- B2 y los scripts B5 incluyen la restricción UNIQUE compuesta de `AsignacionPersonal`.
+- B3 presenta una clave candidata compuesta y dependencia parcial, además de una dependencia transitiva.
+- B4 declara el estándar de nomenclatura.
+- B6 incorpora un procedimiento para prueba de restauración y un registro de ejecución.
+- B7 verifica criterios medibles de P1/P2 y señala como pendientes las pruebas que todavía deben ejecutarse.
+
+**Importante:** la prueba de unicidad de la pareja Asignacion/Personal y el simulacro de restauración están preparados, pero deben ejecutarse en MariaDB/MySQL y registrarse antes de declararlos como pruebas superadas.
+
+- B2 ahora incluye `id_usuario` como FK de `RegistroCierre`, consistente con la relación de responsable definida en B1. La evidencia de ejecución anterior debe repetirse porque el esquema cambió.
+- Las exportaciones gráficas actualizadas de B1/B2 se acompañan de fuentes Graphviz `.dot`; los archivos `.drawio` siguen siendo fuentes editables de Draw.io.

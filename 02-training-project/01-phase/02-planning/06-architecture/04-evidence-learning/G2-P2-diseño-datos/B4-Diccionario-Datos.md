@@ -64,6 +64,7 @@ Documentar los atributos que componen el modelo relacional de SIGMAVITAL, especi
 |---|---|---|---|---|
 | id_cierre | INT | 4 bytes | PK, NOT NULL | Identificador del registro de cierre |
 | id_servicio | INT | 4 bytes | FK, UNIQUE, NOT NULL | Servicio relacionado; máximo un registro de cierre por servicio |
+| id_usuario | INT | 4 bytes | FK, NOT NULL | Usuario autorizado responsable de registrar el cierre |
 | fecha_cierre | DATETIME | 8 bytes aprox. | NOT NULL | Fecha y hora del cierre |
 | resumen_condicion | TEXT | Variable | NULL permitido | Resumen de la condición del paciente |
 | destino | VARCHAR | 255 caracteres | NULL permitido | Destino final del paciente |
@@ -106,8 +107,8 @@ Documentar los atributos que componen el modelo relacional de SIGMAVITAL, especi
 | Campo | Tipo | Tamaño | Restricciones | Dominio / Descripción |
 |---|---|---|---|---|
 | id_asignacion_personal | INT | 4 bytes | PK, NOT NULL | Identificador de la vinculación |
-| id_asignacion | INT | 4 bytes | FK, NOT NULL | Asignación relacionada |
-| id_personal | INT | 4 bytes | FK, NOT NULL | Integrante del personal vinculado |
+| id_asignacion | INT | 4 bytes | FK, NOT NULL; parte de UNIQUE compuesta | Asignación relacionada |
+| id_personal | INT | 4 bytes | FK, NOT NULL; parte de UNIQUE compuesta | Integrante del personal vinculado |
 | funcion | VARCHAR | 50 caracteres | NOT NULL | Función dentro de la asignación |
 | fecha_vinculacion | DATETIME | 8 bytes aprox. | NOT NULL | Fecha y hora de vinculación |
 
@@ -135,3 +136,18 @@ Los tamaños y tipos de datos documentados constituyen una propuesta técnica de
 ## 4. Consideraciones sobre protección de datos
 
 SIGMAVITAL contempla información relacionada con usuarios, pacientes, personal y servicios. Los datos personales y la información relacionada con la atención de pacientes deberán manejarse con controles de acceso, confidencialidad, almacenamiento seguro y uso limitado a las finalidades autorizadas.
+
+## Estándar de nomenclatura
+
+Se adopta un estándar consistente para facilitar lectura y mantenimiento:
+
+- **Tablas:** singular en `PascalCase` (por ejemplo, `Usuario`, `AsignacionPersonal`).
+- **Columnas:** `snake_case`, en minúsculas y sin tildes (por ejemplo, `fecha_vinculacion`).
+- **Claves primarias:** columna `id_<entidad>`; si la tabla usa PK sustituta, se mantiene `id_<tabla>`.
+- **Claves foráneas:** conservan el nombre de la clave referenciada (`id_usuario`, `id_servicio`).
+- **Restricciones:** prefijos `pk_`, `fk_`, `uq_` y `ck_` para primaria, foránea, única y comprobación.
+- **Índices:** prefijo `idx_` cuando se definan índices no implícitos.
+
+### Restricción compuesta de AsignacionPersonal
+
+La combinación `(id_asignacion, id_personal)` es una clave candidata alternativa y debe ser única. En B5 se implementa como `uq_asignacionpersonal_asignacion_personal`; la PK sustituta `id_asignacion_personal` se conserva como identificador técnico.

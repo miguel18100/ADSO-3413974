@@ -1,0 +1,28 @@
+digraph B1 {
+ graph [rankdir=TB, splines=polyline, overlap=false, nodesep=0.40, ranksep=0.75, bgcolor="white", pad=0.35, labelloc=t, label="B1 · Modelo conceptual de datos SIGMAVITAL", fontsize=20, fontname="Arial"];
+ node [shape=record, style="filled", fillcolor="#EAF2F8", color="#287A83", fontname="Arial", fontsize=11, margin="0.16,0.10"];
+ edge [color="#526879", fontname="Arial", fontsize=9, arrowsize=0.7];
+ Rol [label="{Rol|id_rol|nombre|descripcion}"];
+ Usuario [label="{Usuario|id_usuario|nombre|correo|estado|fecha_creacion}"];
+ Solicitud [label="{Solicitud|id_solicitud|fecha_recepcion|ubicacion_incidente|prioridad|descripcion|estado}"];
+ Servicio [label="{Servicio|id_servicio|id_solicitud|id_paciente|fecha_inicio|estado|fecha_finalizacion|destino}"];
+ Paciente [label="{Paciente|id_paciente|identificacion_referencia|nombre_referencia|informacion_basica}"];
+ Ambulancia [label="{Ambulancia|id_ambulancia|placa|tipo|estado_operativo|ubicacion_referencia}"];
+ Personal [label="{Personal|id_personal|nombre|identificacion_referencia|perfil_operativo|estado|contacto}"];
+ Asignacion [label="{Asignacion|id_asignacion|id_servicio|id_ambulancia|fecha_asignacion|estado|observaciones}"];
+ AsignacionPersonal [label="{AsignacionPersonal|id_asignacion_personal|id_asignacion|id_personal|funcion|fecha_vinculacion}",fillcolor="#FFF2CC"];
+ Intervencion [label="{Intervencion|id_intervencion|id_servicio|id_personal|fecha_hora|descripcion|observaciones}"];
+ RegistroCierre [label="{RegistroCierre|id_cierre|id_servicio|id_usuario|fecha_cierre|resumen_condicion|destino|observaciones_finales}"];
+ Rol -> Usuario [label="asigna · 0..* : 1..1"];
+ Usuario -> Solicitud [label="registra · 0..* : 1..1"];
+ Solicitud -> Servicio [label="origina · 0..1 : 1..1"];
+ Paciente -> Servicio [label="recibe · 0..* : 1..1"];
+ Servicio -> Asignacion [label="recibe · 0..* : 1..1"];
+ Ambulancia -> Asignacion [label="participa en · 0..* : 1..1"];
+ Asignacion -> AsignacionPersonal [label="incluye · 1..* : 1..1"];
+ Personal -> AsignacionPersonal [label="integra · 0..* : 1..1"];
+ Servicio -> Intervencion [label="registra · 0..* : 1..1"];
+ Personal -> Intervencion [label="realiza · 0..* : 1..1"];
+ Servicio -> RegistroCierre [label="documenta · 0..1 : 1..1"];
+ Usuario -> RegistroCierre [label="registra · 0..* : 1..1"];
+}

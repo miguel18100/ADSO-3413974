@@ -1,4 +1,4 @@
-﻿# MER-01 – Modelo Entidad-Relación SIGMAVITAL
+# MER-01 – Modelo Entidad-Relación SIGMAVITAL
 
 ## 1. Identificación del artefacto
 
@@ -122,17 +122,26 @@ Se emplea una representación de relaciones mediante cardinalidades, identificad
 |---|---|
 | registro_cierre_id (PK) | Identificador del cierre |
 | servicio_id (FK, UK) | Servicio cerrado |
+| usuario_id (FK) | Usuario autorizado responsable del cierre |
 | fecha_hora_cierre | Fecha y hora del cierre |
 | resumen_atencion | Resumen de atención |
 | observaciones_finales | Observaciones de cierre |
-### 4.10 USUARIO
+### 4.10 ROL
+
+| Atributo | Descripción |
+|---|---|
+| rol_id (PK) | Identificador del rol |
+| nombre (UK) | Nombre del perfil |
+| descripcion | Responsabilidades generales del perfil |
+
+## 4.11 USUARIO
 
 | Atributo | Descripción |
 |---|---|
 | usuario_id (PK) | Identificador del usuario |
 | nombre_usuario (UK) | Nombre de acceso |
 | nombre_completo | Nombre del usuario |
-| rol | Rol en el sistema |
+| rol_id (FK) | Rol asignado a la cuenta |
 | estado | Estado de la cuenta |
 
 ## 5. Diagrama entidad-relación
@@ -140,6 +149,7 @@ Se emplea una representación de relaciones mediante cardinalidades, identificad
 ```mermaid
 erDiagram
 
+    ROL ||--o{ USUARIO : asigna
     USUARIO ||--o{ SOLICITUD : registra
     SOLICITUD ||--o| SERVICIO : origina
     PACIENTE ||--o{ SERVICIO : recibe
@@ -151,11 +161,18 @@ erDiagram
 
     SERVICIO ||--o{ INTERVENCION : registra
     SERVICIO ||--o| REGISTRO_CIERRE : tiene
+    USUARIO ||--o{ REGISTRO_CIERRE : registra
+    ROL {
+        int rol_id PK
+        string nombre UK
+        string descripcion
+    }
+
     USUARIO {
         int usuario_id PK
         string nombre_usuario UK
         string nombre_completo
-        string rol
+        int rol_id FK
         string estado
     }
 
@@ -233,23 +250,33 @@ erDiagram
     REGISTRO_CIERRE {
         int registro_cierre_id PK
         int servicio_id FK
+        int usuario_id FK
         datetime fecha_hora_cierre
         string resumen_atencion
         string observaciones_finales
     }
+```
 
-## 6. Relaciones y cardinalidades
+## 6. Relaciones, verbos y cardinalidades mínimas/máximas
 
-| Relación | Cardinalidad | Descripción |
-|---|---|---|
-| USUARIO – SOLICITUD | 1:N | Un usuario puede registrar varias solicitudes; cada solicitud tiene un usuario registrador. |
-| SOLICITUD – SERVICIO | 1:0..1 | Una solicitud puede originar un servicio; un servicio corresponde a una solicitud. |
-| SERVICIO – ASIGNACION | 1:N | Un servicio puede tener una o varias asignaciones durante su gestión. |
-| AMBULANCIA – ASIGNACION | 1:N | Una ambulancia puede participar en diferentes asignaciones a lo largo del tiempo. |
-| ASIGNACION – ASIGNACION_PERSONAL | 1:N | Una asignación incluye uno o varios integrantes de personal. |
-| PERSONAL – ASIGNACION_PERSONAL | 1:N | Un integrante puede vincularse a múltiples asignaciones en diferentes servicios. |
-| SERVICIO – INTERVENCION | 1:N | Un servicio puede registrar diferentes intervenciones. |
-| SERVICIO – REGISTRO_CIERRE | 1:0..1 | Un servicio puede tener un registro de cierre, como máximo. |
+Las cardinalidades se expresan como mínimo..máximo vistas desde cada extremo de la relación. `0..*` indica participación opcional múltiple; `1..*`, participación obligatoria múltiple; `0..1`, opcional única; y `1..1`, obligatoria única.
+
+| Entidad origen | Verbo | Entidad destino | Origen (min..máx.) | Destino (min..máx.) | Interpretación |
+|---|---|---|---:|---:|---|
+| ROL | asigna | USUARIO | 0..* | 1..1 | Un rol puede estar asignado a varios usuarios; cada usuario tiene un rol. |
+| USUARIO | registra | SOLICITUD | 0..* | 1..1 | Un usuario puede registrar varias solicitudes; cada solicitud tiene un registrador. |
+| SOLICITUD | origina | SERVICIO | 0..1 | 1..1 | Una solicitud puede no originar servicio o generar uno; cada servicio procede de una solicitud. |
+| PACIENTE | recibe | SERVICIO | 0..* | 1..1 | Un paciente puede recibir varios servicios; cada servicio registra un paciente de referencia. |
+| SERVICIO | recibe | ASIGNACION | 0..* | 1..1 | Un servicio puede tener varias asignaciones; cada asignación pertenece a un servicio. |
+| AMBULANCIA | participa en | ASIGNACION | 0..* | 1..1 | Una ambulancia participa en varias asignaciones a lo largo del tiempo; cada asignación utiliza una ambulancia. |
+| ASIGNACION | incluye | ASIGNACION_PERSONAL | 1..* | 1..1 | Una asignación debe incluir al menos un vínculo de personal; cada vínculo pertenece a una asignación. |
+| PERSONAL | integra | ASIGNACION_PERSONAL | 0..* | 1..1 | Una persona puede integrar varias asignaciones; cada vínculo identifica una persona. |
+| SERVICIO | registra | INTERVENCION | 0..* | 1..1 | Un servicio puede registrar intervenciones; cada intervención pertenece a un servicio. |
+| PERSONAL | realiza | INTERVENCION | 0..* | 1..1 | Un integrante puede registrar intervenciones; cada intervención identifica al responsable. |
+| SERVICIO | documenta | REGISTRO_CIERRE | 0..1 | 1..1 | Un servicio puede no estar cerrado o tener un cierre; cada cierre corresponde a un servicio. |
+| USUARIO | autoriza/ registra | REGISTRO_CIERRE | 0..* | 1..1 | Un usuario autorizado puede registrar varios cierres; cada cierre identifica al responsable. |
+
+> Las multiplicidades representan las reglas del modelo conceptual. Las condiciones de transición y autorización deben validarse también en los casos de uso y reglas de negocio.
 
 ## 7. Resolución de relaciones N:M
 
@@ -288,9 +315,7 @@ Su incorporación queda condicionada a la identificación y validación de una r
 
 La relación PACIENTE–SERVICIO se establece como propuesta conceptual alineada con MD-01. Cada SERVICIO se relaciona con un PACIENTE y un PACIENTE puede estar asociado a múltiples SERVICIOS a lo largo del tiempo.
 
-Esta cardinalidad corresponde a la propuesta preliminar del modelo de dominio y deberá contrastarse con CU-20, CU-21 y las reglas de negocio antes de definir el esquema físico definitivo.
-
-La relación se mantiene como preliminar, pendiente de validación integral.
+La relación está representada explícitamente en el modelo conceptual y en la matriz de trazabilidad. La cardinalidad adoptada es una regla de diseño propuesta: debe confirmarse con el responsable del proceso y contrastarse con CU-20, CU-21 antes de congelar el esquema físico. Esta necesidad de confirmación no significa que la relación o su cardinalidad estén omitidas del artefacto.
 ## 11. Verificación preliminar del modelo
 
 | Criterio | Resultado preliminar |
@@ -323,7 +348,7 @@ El MER-01 constituye una propuesta preliminar de diseño derivada del modelo con
 
 La estructura presentada permite identificar entidades, atributos, relaciones y mecanismos de resolución de relaciones N:M.
 
-Este modelo aún requiere revisión de cardinalidades, restricciones de negocio, participación de PACIENTE y consistencia con los casos de uso extendidos. No se declara validación formal ni implementación física de la base de datos.
+El artefacto representa las cardinalidades mínimas/máximas, los verbos, la participación y la resolución de la relación N:M. Las reglas se presentan como decisiones de diseño derivadas de la línea base; su validación formal con usuarios o instructor y su implementación física siguen pendientes. La confirmación pendiente se concentra especialmente en la cardinalidad PACIENTE–SERVICIO y en las restricciones operativas, no en la ausencia de relaciones o cardinalidades en el modelo.
 
 ---
 

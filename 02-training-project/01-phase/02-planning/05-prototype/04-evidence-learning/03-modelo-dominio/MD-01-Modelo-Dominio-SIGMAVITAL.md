@@ -1,293 +1,240 @@
-﻿## 5. Clases conceptuales y atributos
+# MD-01 – Modelo de dominio SIGMAVITAL
 
-### 5.1 Solicitud
+**Proyecto:** Sistema Gestor de Ambulancias (SGA) – SIGMAVITAL
+**Ficha:** 3413974 – Análisis y Desarrollo de Software (ADSO)
+**Evidencia:** G1-P2 – Modelado y prototipado
+**Versión:** 1.1 – Ajuste de trazabilidad y consistencia conceptual
+**Estado:** Modelo conceptual de análisis; pendiente de validación con usuarios e instructor.
 
-Representa la solicitud de atenciÃ³n que origina la gestiÃ³n operativa del servicio de ambulancia.
+## 1. Objetivo
 
-| Atributo | DescripciÃ³n |
+Representar los conceptos principales del negocio de gestión de servicios de ambulancia, sus atributos de negocio, asociaciones y multiplicidades. El modelo se mantiene en el nivel conceptual: no incorpora métodos, tipos SQL, índices ni detalles propios de una implementación.
+
+## 2. Alcance
+
+El modelo cubre usuarios y roles, solicitudes, servicios, pacientes, ambulancias, personal operativo, asignaciones, intervenciones y registros de cierre. Los conceptos se derivan de la línea base de 31 requisitos funcionales de G1-P1. El modelo no representa una historia clínica electrónica integral.
+
+## 3. Convenciones
+
+- **Clase conceptual:** concepto del dominio con identidad y atributos de negocio.
+- **Asociación:** relación semántica expresada con un verbo.
+- **Mínimo y máximo:** `0..1` significa participación opcional de hasta una instancia; `1..1`, exactamente una; `0..*`, ninguna o varias; `1..*`, una o varias.
+- Las multiplicidades se leen desde cada extremo de la asociación y no deben confundirse con la cantidad de tablas.
+- No se incluyen operaciones o métodos.
+
+## 4. Clases conceptuales y atributos
+
+### 4.1 Rol
+
+Representa un perfil de autorización del sistema.
+
+| Atributo | Descripción |
+|---|---|
+| identificadorRol | Identificador del rol |
+| nombreRol | Nombre del perfil |
+| descripcionRol | Responsabilidades generales del perfil |
+
+### 4.2 Usuario
+
+Representa a una persona autorizada para utilizar SIGMAVITAL.
+
+| Atributo | Descripción |
+|---|---|
+| identificadorUsuario | Identificador del usuario |
+| nombreUsuario | Nombre de acceso |
+| nombreCompleto | Nombre de la persona |
+| correo | Correo de contacto o acceso |
+| estadoUsuario | Estado de la cuenta |
+
+### 4.3 Solicitud
+
+Representa la solicitud de atención que inicia la gestión operativa.
+
+| Atributo | Descripción |
 |---|---|
 | identificadorSolicitud | Identificador de la solicitud |
 | fechaHoraSolicitud | Fecha y hora de registro |
-| direccionOrigen | UbicaciÃ³n donde se requiere el servicio |
-| motivoSolicitud | Motivo reportado para la atenciÃ³n |
-| prioridad | Nivel de prioridad asignado |
+| direccionOrigen | Ubicación donde se requiere el servicio |
+| motivoSolicitud | Motivo reportado |
+| prioridad | Nivel de prioridad |
 | estadoSolicitud | Estado de la solicitud |
 
-### 5.2 Servicio
+### 4.4 Servicio
 
-Representa la atenciÃ³n operativa de ambulancia asociada a una solicitud.
+Representa la atención prehospitalaria asociada a una solicitud.
 
-| Atributo | DescripciÃ³n |
+| Atributo | Descripción |
 |---|---|
 | identificadorServicio | Identificador del servicio |
 | fechaHoraInicio | Fecha y hora de inicio |
-| fechaHoraFinalizacion | Fecha y hora de finalizaciÃ³n |
-| estadoServicio | Estado operativo del servicio |
-| observacionesCierre | Observaciones registradas al finalizar |
+| fechaHoraFinalizacion | Fecha y hora de finalización |
+| estadoServicio | Estado operativo |
+| destino | Destino asistencial o de traslado |
+| observacionesCierre | Observaciones de finalización |
 
-### 5.3 Paciente
+### 4.5 Paciente
 
-Representa a la persona que recibe la atenciÃ³n durante el servicio.
+Representa a la persona atendida, con datos limitados a la finalidad operativa.
 
-| Atributo | DescripciÃ³n |
+| Atributo | Descripción |
 |---|---|
-| identificadorPaciente | Identificador del paciente |
-| nombres | Nombres del paciente |
-| documentoIdentidad | Documento de identificaciÃ³n |
-| fechaNacimiento | Fecha de nacimiento |
-| sexo | Dato registrado para identificaciÃ³n clÃ­nica |
+| identificadorPaciente | Identificador interno |
+| nombres | Nombres disponibles |
+| documentoIdentidad | Identificación, cuando esté disponible y autorizada |
+| fechaNacimiento | Fecha de nacimiento, cuando sea necesaria |
+| informacionBasica | Información mínima pertinente para la atención inicial |
 
-### 5.4 Ambulancia
+### 4.6 Ambulancia
 
-Representa el vehÃ­culo destinado a la prestaciÃ³n de servicios de atenciÃ³n.
+Representa un vehículo destinado al transporte asistencial.
 
-| Atributo | DescripciÃ³n |
+| Atributo | Descripción |
 |---|---|
-| identificadorAmbulancia | Identificador de la ambulancia |
-| placa | Placa del vehÃ­culo |
-| tipoAmbulancia | Tipo o clasificaciÃ³n de ambulancia |
-| estadoDisponibilidad | Estado de disponibilidad operativa |
-| descripcion | DescripciÃ³n o informaciÃ³n complementaria |
+| identificadorAmbulancia | Identificador interno |
+| placa | Placa del vehículo |
+| tipoAmbulancia | Tipo o clasificación |
+| estadoDisponibilidad | Estado operativo |
+| ubicacionReferencia | Ubicación de referencia |
 
-### 5.5 Personal
+### 4.7 Personal
 
-Representa a los integrantes del equipo operativo que participan en la prestaciÃ³n del servicio.
+Representa a los integrantes del equipo operativo.
 
-| Atributo | DescripciÃ³n |
+| Atributo | Descripción |
 |---|---|
 | identificadorPersonal | Identificador del integrante |
-| nombres | Nombres del integrante |
-| documentoIdentidad | Documento de identificaciÃ³n |
-| rolOperativo | FunciÃ³n desempeÃ±ada |
+| nombres | Nombre del integrante |
+| documentoIdentidad | Identificación de referencia |
+| rolOperativo | Función operativa |
 | estadoDisponibilidad | Estado de disponibilidad |
+| contacto | Medio de contacto autorizado |
 
-### 5.6 AsignaciÃ³n
+### 4.8 Asignacion
 
-Representa la asignaciÃ³n operativa de una ambulancia a un servicio. Permite registrar informaciÃ³n propia del evento de asignaciÃ³n y relacionar la participaciÃ³n del personal mediante AsignacionPersonal.
+Representa la asignación de una ambulancia a un servicio.
 
-| Atributo | DescripciÃ³n |
+| Atributo | Descripción |
 |---|---|
-| identificadorAsignacion | Identificador de la asignaciÃ³n |
-| fechaHoraAsignacion | Fecha y hora de asignaciÃ³n |
-| estadoAsignacion | Estado de la asignaciÃ³n |
-| observaciones | Observaciones de la asignaciÃ³n |
+| identificadorAsignacion | Identificador de la asignación |
+| fechaHoraAsignacion | Fecha y hora de asignación |
+| estadoAsignacion | Estado de la asignación |
+| observaciones | Observaciones del proceso |
 
-### 5.7 IntervenciÃ³n
+### 4.9 AsignacionPersonal
 
-Representa las acciones o procedimientos realizados durante la atenciÃ³n del paciente.
+Representa la participación de un integrante del personal en una asignación. Es una **clase de asociación** entre Asignacion y Personal.
 
-| Atributo | DescripciÃ³n |
+| Atributo | Descripción |
 |---|---|
-| identificadorIntervencion | Identificador de la intervenciÃ³n |
+| identificadorParticipacion | Identificador de la participación |
+| rolEnAsignacion | Función desempeñada en esa asignación |
+| fechaHoraVinculacion | Fecha y hora de vinculación |
+
+### 4.10 Intervencion
+
+Representa una actuación registrada durante la atención del servicio.
+
+| Atributo | Descripción |
+|---|---|
+| identificadorIntervencion | Identificador de la intervención |
 | fechaHoraIntervencion | Fecha y hora de registro |
-| descripcion | DescripciÃ³n de la intervenciÃ³n |
-| observaciones | Observaciones asociadas |
+| descripcion | Descripción de la actuación |
+| observaciones | Observaciones relacionadas |
 
-### 5.8 Registro de cierre
+### 4.11 RegistroCierre
 
-Representa la informaciÃ³n documental asociada al cierre del servicio.
+Representa el resumen documental del cierre operativo.
 
-| Atributo | DescripciÃ³n |
+| Atributo | Descripción |
 |---|---|
 | identificadorCierre | Identificador del registro de cierre |
-| fechaHoraCierre | Fecha y hora de cierre |
-| resumenAtencion | Resumen de la atenciÃ³n realizada |
+| fechaHoraCierre | Fecha y hora del cierre |
+| resumenAtencion | Resumen de la atención |
+| destino | Destino asistencial reportado |
 | observacionesFinales | Observaciones finales |
 
-### 5.9 Usuario
+## 5. Asociaciones, verbos y multiplicidades mínimas/máximas
 
-Representa a la persona que utiliza el sistema para gestionar las operaciones.
+| Clase origen | Verbo de la asociación | Clase destino | Multiplicidad en origen | Multiplicidad en destino | Interpretación |
+|---|---|---|---:|---:|---|
+| Rol | asigna | Usuario | 0..* | 1..1 | Un rol puede asignarse a cero o muchos usuarios; cada usuario tiene exactamente un rol en esta versión. |
+| Usuario | registra | Solicitud | 0..* | 1..1 | Un usuario puede registrar varias solicitudes; cada solicitud tiene un usuario registrador. |
+| Solicitud | origina | Servicio | 0..1 | 1..1 | Una solicitud puede no generar servicio o generar uno; cada servicio procede de una solicitud. |
+| Paciente | recibe atención en | Servicio | 0..* | 1..1 | Un paciente puede recibir varios servicios; cada servicio se asocia con un paciente de referencia. |
+| Servicio | recibe | Asignacion | 0..* | 1..1 | Un servicio puede tener varias asignaciones históricas; cada asignación pertenece a un servicio. |
+| Ambulancia | participa en | Asignacion | 0..* | 1..1 | Una ambulancia puede participar en múltiples asignaciones a lo largo del tiempo; cada asignación identifica una ambulancia. |
+| Asignacion | incluye | AsignacionPersonal | 1..* | 1..1 | Cada asignación debe incluir al menos un registro de participación; cada participación corresponde a una asignación. |
+| Personal | participa mediante | AsignacionPersonal | 0..* | 1..1 | Una persona puede participar en diferentes asignaciones; cada participación identifica un integrante. |
+| Servicio | registra | Intervencion | 0..* | 1..1 | Un servicio puede registrar varias intervenciones; cada intervención pertenece a un servicio. |
+| Personal | realiza | Intervencion | 0..* | 1..1 | Un integrante puede realizar varias intervenciones; cada intervención identifica un responsable. |
+| Servicio | genera | RegistroCierre | 0..1 | 1..1 | Un servicio puede no tener cierre o tener uno; cada cierre corresponde a un único servicio. |
+| Usuario | registra | RegistroCierre | 0..* | 1..1 | Un usuario autorizado puede registrar varios cierres; cada cierre identifica al responsable. |
 
-| Atributo | DescripciÃ³n |
-|---|---|
-| identificadorUsuario | Identificador del usuario |
-| nombreUsuario | Nombre de usuario |
-| nombreCompleto | Nombre completo |
-| rol | Rol dentro del sistema |
-| estadoUsuario | Estado del usuario |
+## 6. Reglas conceptuales
 
-### 5.10 AsignacionPersonal
+1. Todo usuario debe estar asociado a un rol definido.
+2. Una solicitud puede permanecer sin servicio mientras esté pendiente.
+3. Un servicio debe originarse en una solicitud registrada.
+4. Las asignaciones deben asociarse a un servicio existente y a una ambulancia identificada.
+5. Una asignación debe incluir al menos un integrante del personal mediante AsignacionPersonal.
+6. Las intervenciones deben estar asociadas a un servicio y a un responsable.
+7. El cierre debe estar asociado a un servicio y a un usuario autorizado.
+8. Los datos de paciente deben limitarse a los necesarios para la operación y atención inicial.
+9. Los estados de solicitud, asignación y servicio deben mantener consistencia durante el ciclo operativo.
+10. Las cardinalidades representan la regla conceptual propuesta y deben confirmarse con el responsable del proceso antes de la implementación.
 
-Representa la participaciÃ³n de un integrante del personal en una asignaciÃ³n operativa. Esta clase de asociaciÃ³n permite registrar informaciÃ³n propia de la participaciÃ³n.
-
-| Atributo | DescripciÃ³n |
-|---|---|
-| identificadorParticipacion | Identificador de la participaciÃ³n |
-| rolEnAsignacion | FunciÃ³n desempeÃ±ada dentro de la asignaciÃ³n |
-| observaciones | Observaciones relacionadas con la participaciÃ³n |
-## 6. Asociaciones y multiplicidades
-
-Las siguientes asociaciones representan las relaciones conceptuales propuestas entre las clases del modelo.
-
-| Clase origen | AsociaciÃ³n | Clase destino | Multiplicidad origen | Multiplicidad destino | DescripciÃ³n |
-|---|---|---|---|---|---|
-| Solicitud | Origina | Servicio | 1 | 0..1 | Una solicitud puede originar un servicio y un servicio se origina en una solicitud. |
-| Servicio | Atiende | Paciente | 0..* | 1 | Un paciente puede recibir mÃºltiples servicios y cada servicio se relaciona con un paciente. |
-| Servicio | Tiene | AsignaciÃ³n | 1 | 0..* | Un servicio puede contar con ninguna o varias asignaciones operativas. |
-| AsignaciÃ³n | Vincula | Ambulancia | 0..* | 1 | Cada asignaciÃ³n vincula una ambulancia y una ambulancia puede participar en distintas asignaciones a travÃ©s del tiempo. |
-| AsignaciÃ³n | Vincula | AsignacionPersonal | 1 | 1..* | Una asignaciÃ³n puede incluir uno o varios registros de participaciÃ³n del personal. |
-| AsignacionPersonal | Vincula | Personal | 0..* | 1 | Cada registro de participaciÃ³n corresponde a un integrante del personal. |
-| Servicio | Registra | IntervenciÃ³n | 1 | 0..* | Un servicio puede registrar varias intervenciones. |
-| Servicio | Genera | Registro de cierre | 1 | 0..1 | Un servicio puede generar un registro de cierre. |
-| Usuario | Gestiona | Solicitud | 1 | 0..* | Un usuario puede registrar o gestionar varias solicitudes. |
-
-
-## 7. Consideraciones sobre las relaciones
-
-- La relaciÃ³n entre Solicitud y Servicio permite representar el origen operativo de la atenciÃ³n.
-- La relaciÃ³n entre Servicio y Paciente permite identificar a la persona atendida.
-- AsignaciÃ³n representa la vinculaciÃ³n operativa de una ambulancia con un servicio y contiene informaciÃ³n propia del evento de asignaciÃ³n.
-- La participaciÃ³n del personal se representa mediante AsignacionPersonal, asociada a AsignaciÃ³n y a Personal.
-- IntervenciÃ³n permite registrar acciones efectuadas durante la atenciÃ³n.
-- Registro de cierre representa el resultado documental del cierre operativo.
-- La disponibilidad de ambulancias y personal se representa mediante estados y reglas operativas, sin incorporar una clase conceptual independiente de disponibilidad en este modelo.
-- Las multiplicidades propuestas son preliminares y deben revisarse frente a las reglas de negocio y los requerimientos consolidados.
-## 8. Diagrama conceptual de dominio
-
-La siguiente representaciÃ³n visual muestra las clases conceptuales propuestas, sus atributos y las relaciones entre los conceptos del dominio SIGMAVITAL.
+## 7. Diagrama conceptual de dominio
 
 ```mermaid
 classDiagram
-    class Solicitud {
-        identificadorSolicitud
-        fechaHoraSolicitud
-        direccionOrigen
-        motivoSolicitud
-        prioridad
-        estadoSolicitud
-    }
+    class Rol { identificadorRol; nombreRol; descripcionRol }
+    class Usuario { identificadorUsuario; nombreUsuario; nombreCompleto; correo; estadoUsuario }
+    class Solicitud { identificadorSolicitud; fechaHoraSolicitud; direccionOrigen; motivoSolicitud; prioridad; estadoSolicitud }
+    class Servicio { identificadorServicio; fechaHoraInicio; fechaHoraFinalizacion; estadoServicio; destino; observacionesCierre }
+    class Paciente { identificadorPaciente; nombres; documentoIdentidad; fechaNacimiento; informacionBasica }
+    class Ambulancia { identificadorAmbulancia; placa; tipoAmbulancia; estadoDisponibilidad; ubicacionReferencia }
+    class Personal { identificadorPersonal; nombres; documentoIdentidad; rolOperativo; estadoDisponibilidad; contacto }
+    class Asignacion { identificadorAsignacion; fechaHoraAsignacion; estadoAsignacion; observaciones }
+    class AsignacionPersonal { identificadorParticipacion; rolEnAsignacion; fechaHoraVinculacion }
+    class Intervencion { identificadorIntervencion; fechaHoraIntervencion; descripcion; observaciones }
+    class RegistroCierre { identificadorCierre; fechaHoraCierre; resumenAtencion; destino; observacionesFinales }
 
-    class Servicio {
-        identificadorServicio
-        fechaHoraInicio
-        fechaHoraFinalizacion
-        estadoServicio
-        observacionesCierre
-    }
-
-    class Paciente {
-        identificadorPaciente
-        nombres
-        documentoIdentidad
-        fechaNacimiento
-        sexo
-    }
-
-    class Ambulancia {
-        identificadorAmbulancia
-        placa
-        tipoAmbulancia
-        estadoDisponibilidad
-        descripcion
-    }
-
-    class Personal {
-        identificadorPersonal
-        nombres
-        documentoIdentidad
-        rolOperativo
-        estadoDisponibilidad
-    }
-
-    class Asignacion {
-        identificadorAsignacion
-        fechaHoraAsignacion
-        estadoAsignacion
-        observaciones
-    }
-
-    class AsignacionPersonal {
-        identificadorParticipacion
-        rolEnAsignacion
-        observaciones
-    }
-    class Intervencion {
-        identificadorIntervencion
-        fechaHoraIntervencion
-        descripcion
-        observaciones
-    }
-
-    class RegistroCierre {
-        identificadorCierre
-        fechaHoraCierre
-        resumenAtencion
-        observacionesFinales
-    }
-
-    class Usuario {
-        identificadorUsuario
-        nombreUsuario
-        nombreCompleto
-        rol
-        estadoUsuario
-    }
-
-
-
+    Rol "1" --> "0..*" Usuario : asigna
+    Usuario "1" --> "0..*" Solicitud : registra
     Solicitud "1" --> "0..1" Servicio : origina
-    Servicio "0..*" --> "1" Paciente : atiende
-    Servicio "1" --> "0..*" Asignacion : tiene
-    Asignacion "0..*" --> "1" Ambulancia : vincula
+    Paciente "1" --> "0..*" Servicio : recibe atención en
+    Servicio "1" --> "0..*" Asignacion : recibe
+    Ambulancia "1" --> "0..*" Asignacion : participa en
     Asignacion "1" --> "1..*" AsignacionPersonal : incluye
-    AsignacionPersonal "0..*" --> "1" Personal : vincula
+    Personal "1" --> "0..*" AsignacionPersonal : participa mediante
     Servicio "1" --> "0..*" Intervencion : registra
+    Personal "1" --> "0..*" Intervencion : realiza
     Servicio "1" --> "0..1" RegistroCierre : genera
-    Usuario "1" --> "0..*" Solicitud : gestiona
-
+    Usuario "1" --> "0..*" RegistroCierre : registra
 ```
 
-## 9. GeneralizaciÃ³n y clase de asociaciÃ³n
+## 8. Clase de asociación
 
-### 9.1 Clase de asociaciÃ³n: AsignacionPersonal
+`AsignacionPersonal` es una clase de asociación porque describe el vínculo entre una Asignacion y una Persona concreta e incorpora atributos propios de esa participación (`rolEnAsignacion` y `fechaHoraVinculacion`). No se fuerza una jerarquía de generalización: las clases del dominio no representan especializaciones «es-un» que sean necesarias para estos procesos.
 
-AsignacionPersonal representa la participaciÃ³n individual de un integrante del personal en una asignaciÃ³n operativa. Se plantea como clase de asociaciÃ³n entre AsignaciÃ³n y Personal, permitiendo registrar informaciÃ³n propia de la participaciÃ³n, sin establecer una relaciÃ³n directa simple entre ambas clases.
-
-Sus atributos conceptuales, identificadorParticipacion, rolEnAsignacion y observaciones, permiten documentar las caracterÃ­sticas de la participaciÃ³n del personal dentro de una asignaciÃ³n.
-
-### 9.2 GeneralizaciÃ³n
-
-En esta versiÃ³n preliminar no se propone una jerarquÃ­a de generalizaciÃ³n entre las clases. Los conceptos identificados se representan como clases independientes y sus relaciones se expresan mediante asociaciones.
-
-AsignaciÃ³n y AsignacionPersonal permiten representar la vinculaciÃ³n de la ambulancia y la participaciÃ³n del personal en el servicio, sin introducir una jerarquÃ­a artificial de clases.
-
-## 10. VerificaciÃ³n preliminar del modelo
+## 9. Verificación del modelo
 
 | Criterio | Resultado | Evidencia |
 |---|---|---|
-| Se identifican al menos 8 clases conceptuales | Cumple preliminarmente | 10 clases conceptuales, incluida AsignacionPersonal |
-| Las clases contienen atributos de negocio | Cumple preliminarmente | Secciones 5.1 a 5.10 |
-| Se identifican asociaciones | Cumple | SecciÃ³n 6 |
-| Se documentan multiplicidades | Cumple | SecciÃ³n 6 y diagrama |
-| Se incluye una clase de asociaciÃ³n | Cumple preliminarmente | AsignacionPersonal |
-| Se evita incluir mÃ©todos | Cumple | Modelo conceptual |
-| Se relaciona con los casos de uso crÃ­ticos | Cumple preliminarmente | CU-08, CU-11 y CU-22 |
-| Se documentan consideraciones del modelo | Cumple | Secciones 7 y 9 |
-| Se declara el carÃ¡cter preliminar | Cumple | SecciÃ³n 1 |
+| Ocho o más clases conceptuales | Cumple | Se identifican once clases en la sección 4. |
+| Dos o más atributos de negocio en al menos cinco clases | Cumple | Tablas de atributos de las secciones 4.1 a 4.11. |
+| Asociaciones con verbos y multiplicidades | Cumple documentalmente | Tabla de la sección 5 y diagrama. |
+| Clase de asociación o generalización justificada | Cumple | AsignacionPersonal; sección 8. |
+| Sin métodos ni detalles físicos SQL | Cumple | Diagrama conceptual. |
+| Coherencia con CU-08, CU-11 y CU-22 | Cumple a nivel de diseño | Matriz P2 y casos de uso extendidos. |
+| Validación con usuarios/instructor | Pendiente | No se adjunta acta de validación externa. |
 
-## 11. Trazabilidad del modelo
+## 10. Trazabilidad y limitaciones
 
-| Elemento | Referencia |
-|---|---|
-| Requisito funcional de registro de solicitud | RF-12 |
-| Caso de uso de registro de solicitud | CU-08 |
-| Diagrama de actividad de registro | DA-01 |
-| Requisito funcional de asignaciÃ³n | RF-17 / RF-18 |
-| Caso de uso de asignaciÃ³n | CU-11 |
-| Diagrama de actividad de asignaciÃ³n | DA-02 |
-| Requisito funcional de cierre | RF-31 |
-| Caso de uso de cierre | CU-22 |
-| Diagrama de actividad de cierre | DA-03 |
-| Modelo conceptual | MD-01 |
-| Estado | Propuesta preliminar pendiente de validaciÃ³n |
+El modelo ofrece una base conceptual para las entidades SOLICITUD, SERVICIO, PACIENTE, AMBULANCIA, PERSONAL, ASIGNACION, ASIGNACION_PERSONAL, INTERVENCION, REGISTRO_CIERRE, USUARIO y ROL. El modelo no incluye una entidad independiente `NOVEDAD_OPERATIVA`; el RF-21 se relaciona de forma parcial con Servicio e Intervencion hasta que se confirme si las novedades deben persistirse como registros separados.
 
+La presencia de una clase en el modelo no acredita implementación ni validación con usuarios. Las cardinalidades son propuestas de análisis y requieren confirmación con el contexto operativo.
 
+---
 
-
-
-
-
-
-
-
-
+**SENA – ADSO – Ficha 3413974**

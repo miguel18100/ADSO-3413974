@@ -1,0 +1,28 @@
+digraph B2 {
+ graph [rankdir=TB, splines=polyline, nodesep=.45, ranksep=.75, bgcolor="white", pad=.3, labelloc=t, label="B2 · Modelo relacional SIGMAVITAL", fontsize=20, fontname="Arial"];
+ node [shape=record, style="filled", fillcolor="#EEF4F8", color="#287A83", fontname="Arial", fontsize=10, margin=".12,.08"];
+ edge [color="#526879", fontname="Arial", fontsize=9, arrowsize=.7];
+ Rol [label="{Rol|PK id_rol|nombre|descripcion}"];
+ Usuario [label="{Usuario|PK id_usuario|FK id_rol|nombre|correo|estado|fecha_creacion}"];
+ Solicitud [label="{Solicitud|PK id_solicitud|FK id_usuario|fecha_recepcion|ubicacion_incidente|prioridad|descripcion|estado}"];
+ Paciente [label="{Paciente|PK id_paciente|identificacion_referencia|nombre_referencia|informacion_basica}"];
+ Servicio [label="{Servicio|PK id_servicio|FK,UQ id_solicitud|FK id_paciente|fecha_inicio|estado|fecha_finalizacion|destino}"];
+ Ambulancia [label="{Ambulancia|PK id_ambulancia|placa UQ|tipo|estado_operativo|ubicacion_referencia}"];
+ Personal [label="{Personal|PK id_personal|nombre|identificacion_referencia|perfil_operativo|estado|contacto}"];
+ Asignacion [label="{Asignacion|PK id_asignacion|FK id_servicio|FK id_ambulancia|fecha_asignacion|estado|observaciones}"];
+ AsignacionPersonal [label="{AsignacionPersonal|PK id_asignacion_personal|FK id_asignacion|FK id_personal|UQ (id_asignacion,id_personal)|funcion|fecha_vinculacion}",fillcolor="#FFF2CC"];
+ Intervencion [label="{Intervencion|PK id_intervencion|FK id_servicio|FK id_personal|fecha_hora|descripcion|observaciones}"];
+ RegistroCierre [label="{RegistroCierre|PK id_cierre|FK,UQ id_servicio|FK id_usuario|fecha_cierre|resumen_condicion|destino|observaciones_finales}"];
+ Rol -> Usuario [label="1:N"];
+ Usuario -> Solicitud [label="1:N"];
+ Solicitud -> Servicio [label="1:0..1"];
+ Paciente -> Servicio [label="1:N"];
+ Servicio -> Asignacion [label="1:N"];
+ Ambulancia -> Asignacion [label="1:N"];
+ Asignacion -> AsignacionPersonal [label="1:N"];
+ Personal -> AsignacionPersonal [label="1:N"];
+ Servicio -> Intervencion [label="1:N"];
+ Personal -> Intervencion [label="1:N"];
+ Servicio -> RegistroCierre [label="1:0..1"];
+ Usuario -> RegistroCierre [label="1:N"];
+}

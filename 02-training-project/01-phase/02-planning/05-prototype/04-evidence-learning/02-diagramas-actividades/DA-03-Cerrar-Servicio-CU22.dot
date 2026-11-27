@@ -1,0 +1,42 @@
+digraph DA03 {
+ graph [rankdir=TB, compound=true, splines=ortho, nodesep=0.30, ranksep=0.42, bgcolor="white", label="DA-03 · Cerrar servicio (CU-22)", labelloc=t, fontsize=18, fontname="Arial", pad=0.25];
+ node [shape=box, style="rounded,filled", fillcolor="#F6FAFD", color="#315B78", fontname="Arial", fontsize=10, margin="0.12,0.08"];
+ edge [color="#526879", fontname="Arial", fontsize=9, arrowsize=0.7];
+ start [shape=circle,label="Inicio",fillcolor="#D5E8D4",width=.55];
+ stop1 [shape=doublecircle,label="Fin",fillcolor="#F8CECC",width=.55];
+ subgraph cluster_coord { label="Carril · Coordinador operativo"; color="#7EA6C4"; style="rounded";
+  c1 [label="Selecciona servicio finalizado"];
+  c2 [label="Revisa y completa resumen, destino y observaciones"];
+  c3 [label="Corrige datos faltantes / condición pendiente"];
+  c4 [label="Confirma el cierre"];
+  c5 [label="Decide si reintenta guardado"];
+ }
+ subgraph cluster_sys { label="Carril · Sistema SIGMAVITAL"; color="#87A878"; style="rounded";
+  s1 [label="Consulta servicio, asignaciones e intervenciones"];
+  s2 [label="Valida campos y consistencia"];
+  d1 [shape=diamond,label="¿Datos completos?",fillcolor="#FFF2CC"];
+  s3 [label="Verifica reglas y ausencia de cierre previo"];
+  d2 [shape=diamond,label="¿Se permite cerrar?",fillcolor="#FFF2CC"];
+  s4 [label="Informa datos / regla pendiente"];
+  s5 [label="Guarda cierre y actualiza estado"];
+  d3 [shape=diamond,label="¿Guardado?",fillcolor="#FFF2CC"];
+  s6 [label="Confirma cierre y habilita consulta"];
+  s7 [label="Conserva estado previo e informa error"];
+  s8 [label="Reintenta guardado"];
+ }
+ start -> c1 -> s1 -> c2 -> s2 -> d1;
+ d1 -> s3 [label="[sí]"];
+ d1 -> s4 [label="[no]"];
+ s4 -> c3 -> s2 [label="[corregir]"];
+ c3 -> stop1 [label="[cancelar]"];
+ s3 -> d2;
+ d2 -> c4 [label="[sí]"];
+ d2 -> s4 [label="[no]"];
+ c4 -> s5 -> d3;
+ d3 -> s6 [label="[sí]"];
+ d3 -> c5 [label="[no]"];
+ c5 -> s8 [label="[sí]"];
+ s8 -> d3 [label="[reintento]"];
+ c5 -> s7 [label="[no]"];
+ s6 -> stop1; s7 -> stop1;
+}

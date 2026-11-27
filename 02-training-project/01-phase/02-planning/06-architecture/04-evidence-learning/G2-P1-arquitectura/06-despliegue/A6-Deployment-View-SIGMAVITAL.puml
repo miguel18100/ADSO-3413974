@@ -1,4 +1,4 @@
-﻿@startuml
+@startuml
 title SIGMAVITAL - Deployment View
 
 skinparam componentStyle rectangle
@@ -19,11 +19,11 @@ node "Database Server" as dbserver {
   database "SIGMAVITAL Relational Database" as database
 }
 
-browser --> webapp : HTTPS
+browser --> webapp : HTTPS / TCP 443 (proposed)
 webapp --> controllers : Application interaction
 controllers --> facade : Workflow coordination
 facade --> domain : Domain operations
-domain --> database : SQL / Database connection
+domain --> database : MariaDB/MySQL / TCP 3306 (proposed)
 
 note right of client
   User interface access

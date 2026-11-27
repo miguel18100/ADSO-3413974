@@ -1,4 +1,4 @@
-﻿# A6 – Deployment View and Deployment Specification
+# A6 – Deployment View and Deployment Specification
 
 ## 1. Purpose
 
@@ -87,19 +87,36 @@ This separation supports logical isolation between the user interface, applicati
 | Domain Components | Application Server | Executes domain responsibilities and business operations. |
 | SIGMAVITAL Relational Database | Database Server | Provides persistent storage. |
 
-## 5. Communication Protocols
+## 5. Communication Protocols, Ports and Security
 
-| Communication | Protocol / Mechanism | Purpose |
+The ports below are **proposed default configuration values**, not evidence of a running or publicly exposed deployment. They must be confirmed against the selected server, firewall and environment configuration.
+
+| Source node / artifact | Destination node / artifact | Protocol / mechanism | Proposed port | Purpose / constraint |
+|---|---|---|---:|---|
+| Client Device / Browser | Application Server / Web Application | HTTPS over TCP | 443 | Encrypted browser-to-application communication; TLS certificate and modern TLS configuration required. |
+| Application Server / Repository | Database Server / MariaDB or MySQL | MySQL protocol over TCP | 3306 | Database access restricted to the application server network identity; never exposed directly to public clients. |
+| Web UI | Application Controllers (same application deployment) | In-process application call | N/A | Internal call within the application runtime; no separate network port is implied. |
+| Application Controller | GestionServicioFacade (same application deployment) | In-process application call | N/A | Workflow coordination inside the application process. |
+| Facade / Domain components | Repository contract (same application deployment) | In-process interface call | N/A | Dependency inversion; persistence calls use the repository boundary. |
+
+### Port and deployment assumptions
+
+- TCP/443 is the standard proposed HTTPS listener for the browser-facing application. HTTP on TCP/80, if enabled at all, should only redirect to HTTPS and must not carry authenticated or personal data.
+- TCP/3306 is the proposed database listener for MariaDB/MySQL, consistent with the SQL scripts in B5. Access must be limited to the application server or an approved administration network.
+- The application-to-database connection must use credentials with least privilege, secure transport where supported/configured, and secrets stored outside source control.
+- The internal application interactions are not separate network links; assigning ports to them would incorrectly suggest distributed services.
+
+### Deployment decisions mapped to non-functional requirements
+
+| NFR | Deployment decision | Verification to perform during implementation |
 |---|---|---|
-| Client Device to Application Server | HTTPS | Secure communication between the browser and application. |
-| Web Application to Application Controllers | Application interaction | Internal request processing and coordination. |
-| Application Controllers to GestionServicioFacade | Internal application interaction | Workflow coordination. |
-| Facade to Domain Components | Internal application interaction | Delegation of domain operations. |
-| Domain Components to Database Server | SQL / Database connection | Data access and persistence. |
-
-HTTPS is proposed for client-server communication to protect data in transit.
-
-The specific database protocol, port, server configuration, and deployment technology must be defined and validated during implementation.
+| RNF-03 / RNF-04 / RNF-12 | Authenticate and authorize at the application boundary; database is not public; least-privilege service account. | Verify role-based access, denied unauthorized requests, database network restriction and personal-data access logs. |
+| RNF-05 / RNF-06 | Persist through the application server and relational database with PK/FK/UNIQUE/CHECK constraints. | Execute integration tests for valid and invalid references, uniqueness and state transitions. |
+| RNF-08 | Backups are managed at the database/infrastructure layer; restoration occurs in a separate staging environment. | Perform and record a restore drill, compare table/row counts and run integrity checks. |
+| RNF-09 | Three-node deployment separation and layered application organization. | Verify components can be changed/tested through defined interfaces without bypassing layers. |
+| RNF-11 | Application/database resources sized and monitored independently. | Measure response time, concurrency and resource use under a documented workload. |
+| RNF-13 | Application workflow layer is the proposed point for audit events; database retains operational data. | Verify who/what/when audit events for sensitive operations and prevent unauthorized alteration. |
+| RNF-14 | Browser communication via HTTPS TCP/443; database port restricted to application server and secured. | Verify TLS certificate, protocol configuration, firewall rules and database connection security. |
 
 ## 6. Deployment Diagram
 

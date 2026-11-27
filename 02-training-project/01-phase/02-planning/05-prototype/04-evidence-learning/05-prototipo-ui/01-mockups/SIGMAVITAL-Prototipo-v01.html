@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
@@ -181,6 +181,9 @@ textarea { min-height: 100px; }
     .main { margin-left: 0; padding: 18px; }
 }
 .nav-icon svg,.card-icon svg,.brand svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;vertical-align:middle}.nav-icon{display:inline-flex;width:22px;align-items:center;justify-content:center;margin-right:6px}.brand svg{width:25px;height:25px;margin-right:6px}
+
+.case-tag{display:inline-flex;align-items:center;gap:6px;margin:0 0 14px;padding:6px 10px;border:1px solid #bfd7e8;border-radius:999px;background:#eef6fb;color:#174b70;font-size:12px;font-weight:700;letter-spacing:.02em}
+.case-tag small{font-weight:500;color:#45677d}
 </style>
 </head>
 <body>
@@ -265,6 +268,7 @@ textarea { min-height: 100px; }
 
     <section class="page" id="solicitudes">
         <div class="panel">
+            <div class="case-tag">P-01 <small>· CU-08 · RF-12</small></div>
             <h2>Registro y gestión de solicitudes</h2>
             <p>Representación de la recepción y registro inicial de solicitudes de emergencia.</p>
             <form onsubmit="demoSubmit(event,'Solicitud registrada en el prototipo.')">
@@ -313,6 +317,7 @@ textarea { min-height: 100px; }
 
     <section class="page" id="asignaciones">
         <div class="panel">
+            <div class="case-tag">P-02 <small>· CU-11 · RF-17 / RF-18</small></div>
             <h2>Asignación de recursos</h2>
             <form onsubmit="demoSubmit(event,'Asignación representada en el prototipo.')">
                 <div class="form-grid">
@@ -372,6 +377,7 @@ textarea { min-height: 100px; }
 
     <section class="page" id="cierres">
         <div class="panel">
+            <div class="case-tag">P-03 <small>· CU-22 · RF-31</small></div>
             <h2>Cierre del servicio</h2>
             <form onsubmit="demoSubmit(event,'Cierre representado en el prototipo.')">
                 <div class="form-grid">

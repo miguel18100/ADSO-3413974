@@ -1,4 +1,4 @@
-﻿# CU-08 – Registrar solicitud de servicio
+# CU-08 – Registrar solicitud de servicio
 
 ## 1. Identificación
 
@@ -97,8 +97,8 @@ Esta pantalla será elaborada en el artefacto de prototipo UI y deberá permitir
 | Caso de uso | CU-08 |
 | Diagrama de actividades | DA-01 – Registrar solicitud de servicio |
 | Pantalla | P-01 – Registro de solicitud de servicio |
-| Modelo de dominio | Solicitud / Servicio (conceptos por consolidar) |
-| Modelo ER | Entidades asociadas al registro de solicitudes (por consolidar) |
+| Modelo de dominio | Usuario, Solicitud y Servicio (MD-01, secciones 4 y 5) |
+| Modelo ER | USUARIO, SOLICITUD y SERVICIO (MER-01, secciones 4 a 6) |
 
 ## 13. Observaciones de verificación
 

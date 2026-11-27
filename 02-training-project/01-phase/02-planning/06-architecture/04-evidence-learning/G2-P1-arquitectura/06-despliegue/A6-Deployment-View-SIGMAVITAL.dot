@@ -1,0 +1,12 @@
+digraph A6 {
+ graph [rankdir=LR, splines=ortho, nodesep=.55, ranksep=.9, bgcolor="white", pad=.35, labelloc=t, label="A6 · Vista de despliegue SIGMAVITAL", fontsize=20, fontname="Arial"];
+ node [shape=box, style="rounded,filled", fillcolor="#EAF2F8", color="#287A83", fontname="Arial", fontsize=11, margin=".18,.12"];
+ edge [color="#526879", fontname="Arial", fontsize=10, arrowsize=.8];
+ subgraph cluster_client { label="Nodo 1 · Cliente"; color="#7EA6C4"; style="rounded"; browser [label="Web Browser\nInterfaz de usuario"] }
+ subgraph cluster_app { label="Nodo 2 · Servidor de aplicaciones"; color="#87A878"; style="rounded"; app [label="SIGMAVITAL Web Application\nApplication Controllers\nGestionServicioFacade\nDomain Components"] }
+ subgraph cluster_db { label="Nodo 3 · Servidor de base de datos"; color="#C49A6C"; style="rounded"; db [label="MariaDB / MySQL\nBase de datos relacional\nPK · FK · UNIQUE · CHECK"] }
+ browser -> app [label="HTTPS · TCP 443\nTLS · acceso externo seguro", penwidth=1.5];
+ app -> db [label="Protocolo MySQL/MariaDB · TCP 3306\nSolo desde servidor de aplicaciones", penwidth=1.5];
+ nfr [shape=note, fillcolor="#FFF2CC", color="#C49A6C", label="Decisiones RNF\nRNF-03/04/12: control de acceso y privacidad\nRNF-05/06: integridad y consistencia\nRNF-08: respaldo y restauración aislada\nRNF-09: separación por capas/nodos\nRNF-11: monitoreo y medición\nRNF-13: auditoría\nRNF-14: HTTPS/TLS y puertos restringidos"];
+ db -> nfr [style=dashed, arrowhead=none, label="controles de operación"];
+}

@@ -1,4 +1,4 @@
-﻿# CU-11 – Asignar ambulancia y personal
+# CU-11 – Asignar ambulancia y personal
 
 ## 1. Identificación
 
@@ -113,8 +113,8 @@ Esta pantalla deberá representar la consulta de recursos, la selección de ambu
 | Caso de uso incluido | CU-07 – Consultar disponibilidad de recursos |
 | Diagrama de actividades | DA-02 – Asignar ambulancia y personal |
 | Pantalla | P-02 – Asignación de ambulancia y personal |
-| Modelo de dominio | Ambulancia, PersonalOperativo, Servicio, Asignación (por consolidar) |
-| Modelo ER | Entidades relacionadas con la asignación (por consolidar) |
+| Modelo de dominio | Ambulancia, Personal, Servicio, Asignacion y AsignacionPersonal (MD-01, secciones 4 y 5) |
+| Modelo ER | AMBULANCIA, PERSONAL, SERVICIO, ASIGNACION y ASIGNACION_PERSONAL (MER-01, secciones 4 a 7) |
 
 ## 13. Observaciones de verificación
 

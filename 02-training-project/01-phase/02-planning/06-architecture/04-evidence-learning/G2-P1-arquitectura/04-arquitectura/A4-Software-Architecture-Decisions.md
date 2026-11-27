@@ -1,4 +1,4 @@
-﻿# A4 – Software Architecture and Architectural Decisions
+# A4 – Software Architecture and Architectural Decisions
 
 ## 1. Purpose
 
@@ -133,4 +133,18 @@ The layered design, domain modularization, Strategy pattern, Facade coordination
 
 This architectural proposal supports the subsequent development, integration, and validation activities of the SIGMAVITAL software solution.
 
+## 9. Rejected Architectural Alternative
 
+### AD-07 – Microservices architecture rejected for the current scope
+
+A microservices architecture was considered as an alternative to the selected layered architecture (modular monolith for the initial delivery).
+
+**Reasons for rejection:**
+- The current requirements describe one operational system with closely related workflows for requests, ambulance/personnel assignment, interventions and closure; they do not establish independently deployable business domains.
+- Distributed calls would introduce service discovery, network-failure handling, distributed tracing and deployment/monitoring overhead that is not justified by the documented scale or team capacity.
+- Transactions spanning assignment, resource availability and closure would require additional consistency mechanisms and would increase the risk of partial updates.
+- The selected layered architecture keeps deployment and data integrity simpler while preserving component boundaries and interfaces that can later support service extraction if scale or organizational needs justify it.
+
+**Decision:** retain the layered architecture for the current scope. Revisit microservices only if independently scalable modules, separate release cadences or measured load justify the added operational complexity.
+
+This is an architectural decision, not a claim that performance or scalability has already been measured.
