@@ -63,7 +63,7 @@ Representa a los integrantes del equipo operativo que participan en la prestaci�
 
 ### 5.6 AsignaciÃ³n
 
-Representa la asignaciÃ³n de recursos operativos a un servicio. Se propone como clase de asociaciÃ³n para registrar la participaciÃ³n de ambulancias y personal.
+Representa la asignaciÃ³n operativa de una ambulancia a un servicio. Permite registrar informaciÃ³n propia del evento de asignaciÃ³n y relacionar la participaciÃ³n del personal mediante AsignacionPersonal.
 
 | Atributo | DescripciÃ³n |
 |---|---|
@@ -106,16 +106,15 @@ Representa a la persona que utiliza el sistema para gestionar las operaciones.
 | rol | Rol dentro del sistema |
 | estadoUsuario | Estado del usuario |
 
-### 5.10 Disponibilidad de recurso
+### 5.10 AsignacionPersonal
 
-Representa la informaciÃ³n de disponibilidad de un recurso operativo para la gestiÃ³n de asignaciones.
+Representa la participaciÃ³n de un integrante del personal en una asignaciÃ³n operativa. Esta clase de asociaciÃ³n permite registrar informaciÃ³n propia de la participaciÃ³n.
 
 | Atributo | DescripciÃ³n |
 |---|---|
-| identificadorDisponibilidad | Identificador del registro |
-| fechaHoraActualizacion | Fecha y hora de actualizaciÃ³n |
-| estadoDisponibilidad | Estado registrado |
-| observaciones | Observaciones sobre la disponibilidad |
+| identificadorParticipacion | Identificador de la participaciÃ³n |
+| rolEnAsignacion | FunciÃ³n desempeÃ±ada dentro de la asignaciÃ³n |
+| observaciones | Observaciones relacionadas con la participaciÃ³n |
 ## 6. Asociaciones y multiplicidades
 
 Las siguientes asociaciones representan las relaciones conceptuales propuestas entre las clases del modelo.
@@ -124,24 +123,24 @@ Las siguientes asociaciones representan las relaciones conceptuales propuestas e
 |---|---|---|---|---|---|
 | Solicitud | Origina | Servicio | 1 | 0..1 | Una solicitud puede originar un servicio y un servicio se origina en una solicitud. |
 | Servicio | Atiende | Paciente | 0..* | 1 | Un paciente puede recibir mÃºltiples servicios y cada servicio se relaciona con un paciente. |
-| Servicio | Tiene | AsignaciÃ³n | 1 | 1..* | Un servicio puede contar con una o varias asignaciones operativas. |
+| Servicio | Tiene | AsignaciÃ³n | 1 | 0..* | Un servicio puede contar con ninguna o varias asignaciones operativas. |
 | AsignaciÃ³n | Vincula | Ambulancia | 0..* | 1 | Cada asignaciÃ³n vincula una ambulancia y una ambulancia puede participar en distintas asignaciones a travÃ©s del tiempo. |
-| AsignaciÃ³n | Vincula | Personal | 0..* | 1..* | Una asignaciÃ³n relaciona integrantes del personal con un servicio. |
+| AsignaciÃ³n | Vincula | AsignacionPersonal | 1 | 1..* | Una asignaciÃ³n puede incluir uno o varios registros de participaciÃ³n del personal. |
+| AsignacionPersonal | Vincula | Personal | 0..* | 1 | Cada registro de participaciÃ³n corresponde a un integrante del personal. |
 | Servicio | Registra | IntervenciÃ³n | 1 | 0..* | Un servicio puede registrar varias intervenciones. |
 | Servicio | Genera | Registro de cierre | 1 | 0..1 | Un servicio puede generar un registro de cierre. |
 | Usuario | Gestiona | Solicitud | 1 | 0..* | Un usuario puede registrar o gestionar varias solicitudes. |
-| Ambulancia | Consulta | Disponibilidad de recurso | 1 | 0..* | Una ambulancia puede contar con registros de disponibilidad a lo largo del tiempo. |
-| Personal | Consulta | Disponibilidad de recurso | 1 | 0..* | Un integrante del personal puede contar con registros de disponibilidad a lo largo del tiempo. |
+
 
 ## 7. Consideraciones sobre las relaciones
 
 - La relaciÃ³n entre Solicitud y Servicio permite representar el origen operativo de la atenciÃ³n.
 - La relaciÃ³n entre Servicio y Paciente permite identificar a la persona atendida.
-- AsignaciÃ³n se plantea como clase de asociaciÃ³n para representar la vinculaciÃ³n de recursos operativos con el servicio.
-- La asignaciÃ³n permite representar la participaciÃ³n de una ambulancia y uno o varios integrantes del personal.
+- AsignaciÃ³n representa la vinculaciÃ³n operativa de una ambulancia con un servicio y contiene informaciÃ³n propia del evento de asignaciÃ³n.
+- La participaciÃ³n del personal se representa mediante AsignacionPersonal, asociada a AsignaciÃ³n y a Personal.
 - IntervenciÃ³n permite registrar acciones efectuadas durante la atenciÃ³n.
 - Registro de cierre representa el resultado documental del cierre operativo.
-- Disponibilidad de recurso permite representar cambios de disponibilidad asociados a ambulancias y personal.
+- La disponibilidad de ambulancias y personal se representa mediante estados y reglas operativas, sin incorporar una clase conceptual independiente de disponibilidad en este modelo.
 - Las multiplicidades propuestas son preliminares y deben revisarse frente a las reglas de negocio y los requerimientos consolidados.
 ## 8. Diagrama conceptual de dominio
 
@@ -197,6 +196,11 @@ classDiagram
         observaciones
     }
 
+    class AsignacionPersonal {
+        identificadorParticipacion
+        rolEnAsignacion
+        observaciones
+    }
     class Intervencion {
         identificadorIntervencion
         fechaHoraIntervencion
@@ -219,48 +223,43 @@ classDiagram
         estadoUsuario
     }
 
-    class DisponibilidadRecurso {
-        identificadorDisponibilidad
-        fechaHoraActualizacion
-        estadoDisponibilidad
-        observaciones
-    }
+
 
     Solicitud "1" --> "0..1" Servicio : origina
     Servicio "0..*" --> "1" Paciente : atiende
-    Servicio "1" --> "1..*" Asignacion : tiene
+    Servicio "1" --> "0..*" Asignacion : tiene
     Asignacion "0..*" --> "1" Ambulancia : vincula
-    Asignacion "0..*" --> "1..*" Personal : incluye
+    Asignacion "1" --> "1..*" AsignacionPersonal : incluye
+    AsignacionPersonal "0..*" --> "1" Personal : vincula
     Servicio "1" --> "0..*" Intervencion : registra
     Servicio "1" --> "0..1" RegistroCierre : genera
     Usuario "1" --> "0..*" Solicitud : gestiona
-    Ambulancia "1" --> "0..*" DisponibilidadRecurso : registra
-    Personal "1" --> "0..*" DisponibilidadRecurso : registra
+
 ```
 
 ## 9. GeneralizaciÃ³n y clase de asociaciÃ³n
 
-### 9.1 Clase de asociaciÃ³n: AsignaciÃ³n
+### 9.1 Clase de asociaciÃ³n: AsignacionPersonal
 
-Se propone la clase conceptual AsignaciÃ³n para representar la relaciÃ³n entre un servicio, una ambulancia y el personal operativo involucrado.
+AsignacionPersonal representa la participaciÃ³n individual de un integrante del personal en una asignaciÃ³n operativa. Se plantea como clase de asociaciÃ³n entre AsignaciÃ³n y Personal, permitiendo registrar informaciÃ³n propia de la participaciÃ³n, sin establecer una relaciÃ³n directa simple entre ambas clases.
 
-Esta clase permite representar informaciÃ³n propia de la asignaciÃ³n, como la fecha y hora, el estado y las observaciones. La propuesta evita representar la asignaciÃ³n Ãºnicamente como una relaciÃ³n simple, debido a que constituye un evento operativo con informaciÃ³n de negocio propia.
+Sus atributos conceptuales, identificadorParticipacion, rolEnAsignacion y observaciones, permiten documentar las caracterÃ­sticas de la participaciÃ³n del personal dentro de una asignaciÃ³n.
 
 ### 9.2 GeneralizaciÃ³n
 
 En esta versiÃ³n preliminar no se propone una jerarquÃ­a de generalizaciÃ³n entre las clases. Los conceptos identificados se representan como clases independientes y sus relaciones se expresan mediante asociaciones.
 
-La clase de asociaciÃ³n AsignaciÃ³n se considera suficiente para representar la relaciÃ³n de recursos operativos en el alcance seleccionado, sin introducir una jerarquÃ­a artificial de clases.
+AsignaciÃ³n y AsignacionPersonal permiten representar la vinculaciÃ³n de la ambulancia y la participaciÃ³n del personal en el servicio, sin introducir una jerarquÃ­a artificial de clases.
 
 ## 10. VerificaciÃ³n preliminar del modelo
 
 | Criterio | Resultado | Evidencia |
 |---|---|---|
-| Se identifican al menos 8 clases conceptuales | Cumple | 10 clases documentadas |
-| Las clases contienen atributos de negocio | Cumple | Secciones 5.1 a 5.10 |
+| Se identifican al menos 8 clases conceptuales | Cumple preliminarmente | 10 clases conceptuales, incluida AsignacionPersonal |
+| Las clases contienen atributos de negocio | Cumple preliminarmente | Secciones 5.1 a 5.10 |
 | Se identifican asociaciones | Cumple | SecciÃ³n 6 |
 | Se documentan multiplicidades | Cumple | SecciÃ³n 6 y diagrama |
-| Se incluye una clase de asociaciÃ³n | Cumple | AsignaciÃ³n |
+| Se incluye una clase de asociaciÃ³n | Cumple preliminarmente | AsignacionPersonal |
 | Se evita incluir mÃ©todos | Cumple | Modelo conceptual |
 | Se relaciona con los casos de uso crÃ­ticos | Cumple preliminarmente | CU-08, CU-11 y CU-22 |
 | Se documentan consideraciones del modelo | Cumple | Secciones 7 y 9 |
@@ -281,6 +280,13 @@ La clase de asociaciÃ³n AsignaciÃ³n se considera suficiente para representar
 | Diagrama de actividad de cierre | DA-03 |
 | Modelo conceptual | MD-01 |
 | Estado | Propuesta preliminar pendiente de validaciÃ³n |
+
+
+
+
+
+
+
 
 
 

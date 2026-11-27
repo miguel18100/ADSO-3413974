@@ -125,8 +125,6 @@ Se emplea una representación de relaciones mediante cardinalidades, identificad
 | fecha_hora_cierre | Fecha y hora del cierre |
 | resumen_atencion | Resumen de atención |
 | observaciones_finales | Observaciones de cierre |
-| usuario_id (FK) | Usuario responsable del cierre |
-
 ### 4.10 USUARIO
 
 | Atributo | Descripción |
@@ -153,10 +151,6 @@ erDiagram
 
     SERVICIO ||--o{ INTERVENCION : registra
     SERVICIO ||--o| REGISTRO_CIERRE : tiene
-    USUARIO ||--o{ REGISTRO_CIERRE : documenta
-
-    PERSONAL o|--o{ PERSONAL : supervisa
-
     USUARIO {
         int usuario_id PK
         string nombre_usuario UK
@@ -242,7 +236,6 @@ erDiagram
         datetime fecha_hora_cierre
         string resumen_atencion
         string observaciones_finales
-        int usuario_id FK
     }
     }
 
@@ -258,8 +251,6 @@ erDiagram
 | PERSONAL – ASIGNACION_PERSONAL | 1:N | Un integrante puede vincularse a múltiples asignaciones en diferentes servicios. |
 | SERVICIO – INTERVENCION | 1:N | Un servicio puede registrar diferentes intervenciones. |
 | SERVICIO – REGISTRO_CIERRE | 1:0..1 | Un servicio puede tener un registro de cierre, como máximo. |
-| USUARIO – REGISTRO_CIERRE | 1:N | Un usuario puede documentar múltiples cierres. |
-| PERSONAL – PERSONAL | 1:N opcional | Un integrante puede supervisar a otros integrantes del personal. |
 
 ## 7. Resolución de relaciones N:M
 
@@ -277,16 +268,11 @@ La relación entre SERVICIO y AMBULANCIA se gestiona mediante ASIGNACION, que co
 
 Esto permite registrar cambios de asignación y conservar información de las asignaciones efectuadas.
 
-## 8. Relación recursiva
+## 8. Relaciones adicionales no incorporadas
 
-La entidad PERSONAL presenta una relación recursiva denominada supervisa.
+La relación recursiva de supervisión entre integrantes de PERSONAL no se incorpora en esta versión del MER-01, debido a que no se encuentra consolidada en el modelo conceptual MD-01 ni sustentada de forma explícita en los casos de uso revisados.
 
-Esta relación permite representar de forma preliminar la posibilidad de que un integrante del personal supervise a otros integrantes.
-
-La relación se considera opcional porque no todos los integrantes deben necesariamente tener un supervisor registrado.
-
-La implementación de esta relación deberá confirmarse con las reglas organizacionales del proyecto.
-
+Su incorporación queda condicionada a la identificación y validación de una regla organizacional o requisito funcional que la justifique.
 ## 9. Participación y restricciones preliminares
 
 1. Una solicitud debe tener un usuario responsable de su registro.
@@ -297,19 +283,15 @@ La implementación de esta relación deberá confirmarse con las reglas organiza
 6. El registro de cierre debe estar asociado a un servicio.
 7. El servicio debe contar con las condiciones operativas requeridas antes de permitir su cierre.
 8. Las asignaciones deben considerar la disponibilidad de los recursos.
-9. La relación recursiva de supervisión es opcional.
 10. Las restricciones definitivas deben contrastarse con los casos de uso y las reglas de negocio antes de implementar el modelo físico.
 
 ## 10. Entidad PACIENTE y su relación con SERVICIO
 
-La relación PACIENTE–SERVICIO representada en el diagrama corresponde a una propuesta de asociación. Su cardinalidad y obligatoriedad permanecen pendientes de validación con CU-20, CU-21 y las reglas de negocio.
+La relación PACIENTE–SERVICIO se establece como propuesta conceptual alineada con MD-01. Cada SERVICIO se relaciona con un PACIENTE y un PACIENTE puede estar asociado a múltiples SERVICIOS a lo largo del tiempo.
 
-La entidad PACIENTE se identifica en el modelo conceptual MD-01 como parte de la gestión de información de atención.
+Esta cardinalidad corresponde a la propuesta preliminar del modelo de dominio y deberá contrastarse con CU-20, CU-21 y las reglas de negocio antes de definir el esquema físico definitivo.
 
-Su asociación con SERVICIO deberá formalizarse durante la revisión de reglas de negocio, especialmente para determinar si un servicio puede registrar uno o varios pacientes y si el registro de paciente es obligatorio en todos los casos.
-
-No se fuerza una cardinalidad en esta versión porque debe verificarse con el alcance de los casos de uso CU-20 y CU-21.
-
+La relación se mantiene como preliminar, pendiente de validación integral.
 ## 11. Verificación preliminar del modelo
 
 | Criterio | Resultado preliminar |
@@ -321,7 +303,6 @@ No se fuerza una cardinalidad en esta versión porque debe verificarse con el al
 | Se incluyen cardinalidades | Cumple |
 | Se resuelve una relación N:M | Cumple |
 | Se identifica entidad asociativa | Cumple |
-| Se contempla relación recursiva | Cumple, pendiente revisión |
 | Se declaran restricciones preliminares | Cumple |
 | Se mantiene relación con MD-01 | Cumple, derivación preliminar |
 | Validación formal con instructor o usuarios | Pendiente |
@@ -349,4 +330,6 @@ Este modelo aún requiere revisión de cardinalidades, restricciones de negocio,
 
 **SENA – ADSO – Ficha 3413974**
 **G1-P2 – Actividad 05: Prototipo**
+
+
 
