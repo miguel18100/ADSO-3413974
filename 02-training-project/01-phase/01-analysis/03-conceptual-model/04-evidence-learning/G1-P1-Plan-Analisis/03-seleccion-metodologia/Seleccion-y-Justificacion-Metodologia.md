@@ -111,3 +111,5 @@ La selección de Scrum constituye una propuesta de organización para el proyect
 - Schwaber, K., & Sutherland, J. (2020). *The Scrum Guide*. Scrum Guides.
 - Sommerville, I. (2011). *Ingeniería de software* (9.ª ed.). Pearson.
 - Pressman, R. S., & Maxim, B. R. (2015). *Ingeniería de software: Un enfoque práctico*. McGraw-Hill.
+
+<!-- Actualizacion de evidencia G1-P1 SIGMAVITAL -->

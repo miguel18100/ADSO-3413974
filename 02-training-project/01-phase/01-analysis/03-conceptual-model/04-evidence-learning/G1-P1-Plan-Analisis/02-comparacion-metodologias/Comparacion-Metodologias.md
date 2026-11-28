@@ -119,3 +119,5 @@ La selección definitiva de la metodología se documenta en el archivo de selecc
 ---
 
 Documento correspondiente a la evidencia G1-P1 – Plan de análisis.
+
+<!-- Actualizacion de evidencia G1-P1 SIGMAVITAL -->
