@@ -55,15 +55,8 @@ rectangle "Sistema Gestor de Ambulancias (SGA)" {
   }
 }
 
-Admin --> CU01
-Admin --> CU03
-Admin --> CU04
-Admin --> CU05
-Admin --> CU06
-Admin --> CU07
-Admin --> CU08
-
 Coordinador --> CU01
+Coordinador --> CU02
 Coordinador --> CU03
 Coordinador --> CU08
 Coordinador --> CU09
@@ -74,21 +67,30 @@ Coordinador --> CU13
 Coordinador --> CU16
 Coordinador --> CU17
 
+Admin --> CU01
+Admin --> CU02
+Admin --> CU03
+Admin --> CU04
+Admin --> CU05
+Admin --> CU06
+Admin --> CU07
+Admin --> CU08
+
 Operativo --> CU01
+Operativo --> CU02
 Operativo --> CU13
 Operativo --> CU14
 Operativo --> CU15
 Operativo --> CU16
 
 Director --> CU01
+Director --> CU02
 Director --> CU03
 Director --> CU16
 Director --> CU17
 Director --> CU18
 
 CU12 ..> CU08 : <<include>>
-CU12 ..> CU11 : <<include>>
-CU14 ..> CU13 : <<extend>>
 CU15 ..> CU14 : <<extend>>
 
 note bottom of CU09

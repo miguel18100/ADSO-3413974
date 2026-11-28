@@ -1,200 +1,69 @@
-<?xml version='1.0' encoding='utf-8'?>
-<mxfile host="app.diagrams.net">
-  <diagram name="G1-P1 Casos de Uso SGA">
-    <mxGraphModel dx="1600" dy="1000" grid="1" gridSize="10" page="1" pageWidth="1800" pageHeight="1200">
-      <root>
-        <mxCell id="0" />
-        <mxCell id="1" parent="0" />
-        <mxCell id="sys" value="Sistema Gestor de Ambulancias (SGA)" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;fontSize=20;verticalAlign=top;align=center;spacingTop=15;" vertex="1" parent="1">
-          <mxGeometry x="220" y="60" width="1400" height="1060" as="geometry" />
-        </mxCell>
-        <mxCell id="Admin" value="Administrador" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;fontSize=16;" vertex="1" parent="1">
-          <mxGeometry x="70" y="250" width="100" height="100" as="geometry" />
-        </mxCell>
-        <mxCell id="Coordinador" value="Coordinador Operativo" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;fontSize=16;" vertex="1" parent="1">
-          <mxGeometry x="70" y="470" width="100" height="100" as="geometry" />
-        </mxCell>
-        <mxCell id="Operativo" value="Personal Operativo (TES/Paramédico)" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;fontSize=16;" vertex="1" parent="1">
-          <mxGeometry x="70" y="700" width="100" height="100" as="geometry" />
-        </mxCell>
-        <mxCell id="Director" value="Director / Gerencia" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;fontSize=16;" vertex="1" parent="1">
-          <mxGeometry x="70" y="930" width="100" height="100" as="geometry" />
-        </mxCell>
-        <mxCell id="p1" value="Administración y acceso" style="swimlane;html=1;rounded=1;startSize=30;fontStyle=1;horizontal=1;" vertex="1" parent="1">
-          <mxGeometry x="250" y="130" width="340" height="300" as="geometry" />
-        </mxCell>
-        <mxCell id="CU01" value="CU-01 Iniciar sesión" style="ellipse;whiteSpace=wrap;html=1;fontSize=12;" vertex="1" parent="p1">
-          <mxGeometry x="25" y="45" width="290" height="42" as="geometry" />
-        </mxCell>
-        <mxCell id="CU02" value="CU-02 Cerrar sesión" style="ellipse;whiteSpace=wrap;html=1;fontSize=12;" vertex="1" parent="p1">
-          <mxGeometry x="25" y="95" width="290" height="42" as="geometry" />
-        </mxCell>
-        <mxCell id="CU03" value="CU-03 Consultar dashboard" style="ellipse;whiteSpace=wrap;html=1;fontSize=12;" vertex="1" parent="p1">
-          <mxGeometry x="25" y="145" width="290" height="42" as="geometry" />
-        </mxCell>
-        <mxCell id="CU04" value="CU-04 Gestionar usuarios" style="ellipse;whiteSpace=wrap;html=1;fontSize=12;" vertex="1" parent="p1">
-          <mxGeometry x="25" y="195" width="290" height="42" as="geometry" />
-        </mxCell>
-        <mxCell id="CU05" value="CU-05 Configurar sistema" style="ellipse;whiteSpace=wrap;html=1;fontSize=12;" vertex="1" parent="p1">
-          <mxGeometry x="25" y="245" width="290" height="42" as="geometry" />
-        </mxCell>
-        <mxCell id="p2" value="Gestión de recursos" style="swimlane;html=1;rounded=1;startSize=30;fontStyle=1;horizontal=1;" vertex="1" parent="1">
-          <mxGeometry x="650" y="130" width="360" height="240" as="geometry" />
-        </mxCell>
-        <mxCell id="CU06" value="CU-06 Gestionar ambulancias" style="ellipse;whiteSpace=wrap;html=1;fontSize=12;" vertex="1" parent="p2">
-          <mxGeometry x="25" y="45" width="310" height="42" as="geometry" />
-        </mxCell>
-        <mxCell id="CU07" value="CU-07 Gestionar personal operativo" style="ellipse;whiteSpace=wrap;html=1;fontSize=12;" vertex="1" parent="p2">
-          <mxGeometry x="25" y="95" width="310" height="42" as="geometry" />
-        </mxCell>
-        <mxCell id="CU08" value="CU-08 Consultar disponibilidad de recursos" style="ellipse;whiteSpace=wrap;html=1;fontSize=12;" vertex="1" parent="p2">
-          <mxGeometry x="25" y="145" width="310" height="42" as="geometry" />
-        </mxCell>
-        <mxCell id="p3" value="Gestión de solicitudes" style="swimlane;html=1;rounded=1;startSize=30;fontStyle=1;horizontal=1;" vertex="1" parent="1">
-          <mxGeometry x="1050" y="130" width="500" height="420" as="geometry" />
-        </mxCell>
-        <mxCell id="CU09" value="CU-09 Registrar solicitud de servicio" style="ellipse;whiteSpace=wrap;html=1;fontSize=12;" vertex="1" parent="p3">
-          <mxGeometry x="25" y="45" width="450" height="42" as="geometry" />
-        </mxCell>
-        <mxCell id="CU10" value="CU-10 Consultar solicitudes" style="ellipse;whiteSpace=wrap;html=1;fontSize=12;" vertex="1" parent="p3">
-          <mxGeometry x="25" y="95" width="450" height="42" as="geometry" />
-        </mxCell>
-        <mxCell id="CU11" value="CU-11 Clasificar solicitud" style="ellipse;whiteSpace=wrap;html=1;fontSize=12;" vertex="1" parent="p3">
-          <mxGeometry x="25" y="145" width="450" height="42" as="geometry" />
-        </mxCell>
-        <mxCell id="CU12" value="CU-12 Asignar ambulancia y personal" style="ellipse;whiteSpace=wrap;html=1;fontSize=12;" vertex="1" parent="p3">
-          <mxGeometry x="25" y="195" width="450" height="42" as="geometry" />
-        </mxCell>
-        <mxCell id="CU13" value="CU-13 Consultar asignaciones" style="ellipse;whiteSpace=wrap;html=1;fontSize=12;" vertex="1" parent="p3">
-          <mxGeometry x="25" y="245" width="450" height="42" as="geometry" />
-        </mxCell>
-        <mxCell id="p4" value="Seguimiento operativo" style="swimlane;html=1;rounded=1;startSize=30;fontStyle=1;horizontal=1;" vertex="1" parent="1">
-          <mxGeometry x="650" y="650" width="450" height="300" as="geometry" />
-        </mxCell>
-        <mxCell id="CU14" value="CU-14 Actualizar estado del servicio" style="ellipse;whiteSpace=wrap;html=1;fontSize=12;" vertex="1" parent="p4">
-          <mxGeometry x="25" y="45" width="400" height="42" as="geometry" />
-        </mxCell>
-        <mxCell id="CU15" value="CU-15 Registrar novedad del servicio" style="ellipse;whiteSpace=wrap;html=1;fontSize=12;" vertex="1" parent="p4">
-          <mxGeometry x="25" y="95" width="400" height="42" as="geometry" />
-        </mxCell>
-        <mxCell id="CU16" value="CU-16 Consultar historial de servicios" style="ellipse;whiteSpace=wrap;html=1;fontSize=12;" vertex="1" parent="p4">
-          <mxGeometry x="25" y="145" width="400" height="42" as="geometry" />
-        </mxCell>
-        <mxCell id="p5" value="Informes y gestión" style="swimlane;html=1;rounded=1;startSize=30;fontStyle=1;horizontal=1;" vertex="1" parent="1">
-          <mxGeometry x="1100" y="650" width="400" height="300" as="geometry" />
-        </mxCell>
-        <mxCell id="CU17" value="CU-17 Generar reportes operativos" style="ellipse;whiteSpace=wrap;html=1;fontSize=12;" vertex="1" parent="p5">
-          <mxGeometry x="25" y="45" width="350" height="42" as="geometry" />
-        </mxCell>
-        <mxCell id="CU18" value="CU-18 Consultar indicadores de gestión" style="ellipse;whiteSpace=wrap;html=1;fontSize=12;" vertex="1" parent="p5">
-          <mxGeometry x="25" y="95" width="350" height="42" as="geometry" />
-        </mxCell>
-        <mxCell id="a_Admin_CU01" value="" style="endArrow=none;html=1;" edge="1" parent="1" source="Admin" target="CU01">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="a_Admin_CU02" value="" style="endArrow=none;html=1;" edge="1" parent="1" source="Admin" target="CU02">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="a_Admin_CU03" value="" style="endArrow=none;html=1;" edge="1" parent="1" source="Admin" target="CU03">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="a_Admin_CU04" value="" style="endArrow=none;html=1;" edge="1" parent="1" source="Admin" target="CU04">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="a_Admin_CU05" value="" style="endArrow=none;html=1;" edge="1" parent="1" source="Admin" target="CU05">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="a_Admin_CU06" value="" style="endArrow=none;html=1;" edge="1" parent="1" source="Admin" target="CU06">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="a_Admin_CU07" value="" style="endArrow=none;html=1;" edge="1" parent="1" source="Admin" target="CU07">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="a_Admin_CU08" value="" style="endArrow=none;html=1;" edge="1" parent="1" source="Admin" target="CU08">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="a_Coordinador_CU01" value="" style="endArrow=none;html=1;" edge="1" parent="1" source="Coordinador" target="CU01">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="a_Coordinador_CU02" value="" style="endArrow=none;html=1;" edge="1" parent="1" source="Coordinador" target="CU02">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="a_Coordinador_CU03" value="" style="endArrow=none;html=1;" edge="1" parent="1" source="Coordinador" target="CU03">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="a_Coordinador_CU08" value="" style="endArrow=none;html=1;" edge="1" parent="1" source="Coordinador" target="CU08">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="a_Coordinador_CU09" value="" style="endArrow=none;html=1;" edge="1" parent="1" source="Coordinador" target="CU09">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="a_Coordinador_CU10" value="" style="endArrow=none;html=1;" edge="1" parent="1" source="Coordinador" target="CU10">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="a_Coordinador_CU11" value="" style="endArrow=none;html=1;" edge="1" parent="1" source="Coordinador" target="CU11">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="a_Coordinador_CU12" value="" style="endArrow=none;html=1;" edge="1" parent="1" source="Coordinador" target="CU12">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="a_Coordinador_CU13" value="" style="endArrow=none;html=1;" edge="1" parent="1" source="Coordinador" target="CU13">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="a_Coordinador_CU16" value="" style="endArrow=none;html=1;" edge="1" parent="1" source="Coordinador" target="CU16">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="a_Coordinador_CU17" value="" style="endArrow=none;html=1;" edge="1" parent="1" source="Coordinador" target="CU17">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="a_Operativo_CU01" value="" style="endArrow=none;html=1;" edge="1" parent="1" source="Operativo" target="CU01">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="a_Operativo_CU02" value="" style="endArrow=none;html=1;" edge="1" parent="1" source="Operativo" target="CU02">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="a_Operativo_CU13" value="" style="endArrow=none;html=1;" edge="1" parent="1" source="Operativo" target="CU13">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="a_Operativo_CU14" value="" style="endArrow=none;html=1;" edge="1" parent="1" source="Operativo" target="CU14">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="a_Operativo_CU15" value="" style="endArrow=none;html=1;" edge="1" parent="1" source="Operativo" target="CU15">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="a_Operativo_CU16" value="" style="endArrow=none;html=1;" edge="1" parent="1" source="Operativo" target="CU16">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="a_Director_CU01" value="" style="endArrow=none;html=1;" edge="1" parent="1" source="Director" target="CU01">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="a_Director_CU02" value="" style="endArrow=none;html=1;" edge="1" parent="1" source="Director" target="CU02">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="a_Director_CU03" value="" style="endArrow=none;html=1;" edge="1" parent="1" source="Director" target="CU03">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="a_Director_CU16" value="" style="endArrow=none;html=1;" edge="1" parent="1" source="Director" target="CU16">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="a_Director_CU17" value="" style="endArrow=none;html=1;" edge="1" parent="1" source="Director" target="CU17">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="a_Director_CU18" value="" style="endArrow=none;html=1;" edge="1" parent="1" source="Director" target="CU18">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="r_CU12_CU08" value="&lt;&lt;include&gt;&gt;" style="dashed=1;endArrow=open;html=1;" edge="1" parent="1" source="CU12" target="CU08">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="r_CU12_CU11" value="&lt;&lt;include&gt;&gt;" style="dashed=1;endArrow=open;html=1;" edge="1" parent="1" source="CU12" target="CU11">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="r_CU14_CU13" value="&lt;&lt;extend&gt;&gt;" style="dashed=1;endArrow=open;html=1;" edge="1" parent="1" source="CU14" target="CU13">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="r_CU15_CU14" value="&lt;&lt;extend&gt;&gt;" style="dashed=1;endArrow=open;html=1;" edge="1" parent="1" source="CU15" target="CU14">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-      </root>
-    </mxGraphModel>
-  </diagram>
-</mxfile>
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net" version="24.7.17" type="device"><diagram id="CU" name="Casos de uso"><mxGraphModel dx="1600" dy="1000" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1700" pageHeight="1800" math="0" shadow="0"><root><mxCell id="0"/><mxCell id="1" parent="0"/>
+<mxCell id="sys" value="Sistema Gestor de Ambulancias (SGA)" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;fontSize=20;verticalAlign=top;align=center;spacingTop=15;fillColor=none;strokeWidth=2;strokeColor=#333333;" parent="1" vertex="1"><mxGeometry x="200" y="60" width="900" height="1660" as="geometry"/></mxCell>
+<mxCell id="Coordinador" value="Coordinador Operativo" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;fontSize=14;fillColor=#bbdefb;strokeColor=#1565c0;strokeWidth=2;fontColor=#1565c0;fontStyle=1;" parent="1" vertex="1"><mxGeometry x="60" y="450" width="60" height="90" as="geometry"/></mxCell>
+<mxCell id="Admin" value="Administrador" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;fontSize=14;fillColor=#ffe0b2;strokeColor=#e65100;strokeWidth=2;fontColor=#e65100;fontStyle=1;" parent="1" vertex="1"><mxGeometry x="60" y="900" width="60" height="90" as="geometry"/></mxCell>
+<mxCell id="Operativo" value="Personal Operativo (TES/Paramédico)" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;fontSize=14;fillColor=#c8e6c9;strokeColor=#2e7d32;strokeWidth=2;fontColor=#2e7d32;fontStyle=1;" parent="1" vertex="1"><mxGeometry x="1200" y="900" width="60" height="90" as="geometry"/></mxCell>
+<mxCell id="Director" value="Director / Gerencia" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;fontSize=14;fillColor=#e1bee7;strokeColor=#6a1b9a;strokeWidth=2;fontColor=#6a1b9a;fontStyle=1;" parent="1" vertex="1"><mxGeometry x="1200" y="1300" width="60" height="90" as="geometry"/></mxCell>
+<mxCell id="p3" value="Gestión de solicitudes" style="swimlane;html=1;rounded=1;startSize=30;fontStyle=1;horizontal=1;fillColor=#dae8fc;strokeColor=#6c8ebf;swimlaneFillColor=#dae8fc;fontColor=#333333;" parent="1" vertex="1"><mxGeometry x="420" y="130" width="420" height="370" as="geometry"/></mxCell>
+<mxCell id="CU10" value="CU-10 Consultar solicitudes" style="ellipse;whiteSpace=wrap;html=1;fontSize=12;fillColor=#ffffff;strokeColor=#6c8ebf;strokeWidth=2;" parent="p3" vertex="1"><mxGeometry x="40" y="45" width="340" height="44" as="geometry"/></mxCell>
+<mxCell id="CU13" value="CU-13 Consultar asignaciones" style="ellipse;whiteSpace=wrap;html=1;fontSize=12;fillColor=#ffffff;strokeColor=#6c8ebf;strokeWidth=2;" parent="p3" vertex="1"><mxGeometry x="40" y="107" width="340" height="44" as="geometry"/></mxCell>
+<mxCell id="CU09" value="CU-09 Registrar solicitud de servicio" style="ellipse;whiteSpace=wrap;html=1;fontSize=12;fillColor=#ffffff;strokeColor=#6c8ebf;strokeWidth=2;" parent="p3" vertex="1"><mxGeometry x="40" y="169" width="340" height="44" as="geometry"/></mxCell>
+<mxCell id="CU11" value="CU-11 Clasificar solicitud" style="ellipse;whiteSpace=wrap;html=1;fontSize=12;fillColor=#ffffff;strokeColor=#6c8ebf;strokeWidth=2;" parent="p3" vertex="1"><mxGeometry x="40" y="231" width="340" height="44" as="geometry"/></mxCell>
+<mxCell id="CU12" value="CU-12 Asignar ambulancia y personal" style="ellipse;whiteSpace=wrap;html=1;fontSize=12;fillColor=#ffffff;strokeColor=#6c8ebf;strokeWidth=2;" parent="p3" vertex="1"><mxGeometry x="40" y="305" width="340" height="44" as="geometry"/></mxCell>
+<mxCell id="p2" value="Gestión de recursos" style="swimlane;html=1;rounded=1;startSize=30;fontStyle=1;horizontal=1;fillColor=#d5e8d4;strokeColor=#82b366;swimlaneFillColor=#d5e8d4;fontColor=#333333;" parent="1" vertex="1"><mxGeometry x="420" y="540" width="420" height="226" as="geometry"/></mxCell>
+<mxCell id="CU08" value="CU-08 Consultar disponibilidad de recursos" style="ellipse;whiteSpace=wrap;html=1;fontSize=12;fillColor=#ffffff;strokeColor=#82b366;strokeWidth=2;" parent="p2" vertex="1"><mxGeometry x="40" y="45" width="340" height="44" as="geometry"/></mxCell>
+<mxCell id="CU06" value="CU-06 Gestionar ambulancias" style="ellipse;whiteSpace=wrap;html=1;fontSize=12;fillColor=#ffffff;strokeColor=#82b366;strokeWidth=2;" parent="p2" vertex="1"><mxGeometry x="40" y="107" width="340" height="44" as="geometry"/></mxCell>
+<mxCell id="CU07" value="CU-07 Gestionar personal operativo" style="ellipse;whiteSpace=wrap;html=1;fontSize=12;fillColor=#ffffff;strokeColor=#82b366;strokeWidth=2;" parent="p2" vertex="1"><mxGeometry x="40" y="169" width="340" height="44" as="geometry"/></mxCell>
+<mxCell id="p1" value="Administración y acceso" style="swimlane;html=1;rounded=1;startSize=30;fontStyle=1;horizontal=1;fillColor=#ffe6cc;strokeColor=#d79b00;swimlaneFillColor=#ffe6cc;fontColor=#333333;" parent="1" vertex="1"><mxGeometry x="420" y="806" width="420" height="350" as="geometry"/></mxCell>
+<mxCell id="CU01" value="CU-01 Iniciar sesión" style="ellipse;whiteSpace=wrap;html=1;fontSize=12;fillColor=#ffffff;strokeColor=#d79b00;strokeWidth=2;" parent="p1" vertex="1"><mxGeometry x="40" y="45" width="340" height="44" as="geometry"/></mxCell>
+<mxCell id="CU02" value="CU-02 Cerrar sesión" style="ellipse;whiteSpace=wrap;html=1;fontSize=12;fillColor=#ffffff;strokeColor=#d79b00;strokeWidth=2;" parent="p1" vertex="1"><mxGeometry x="40" y="107" width="340" height="44" as="geometry"/></mxCell>
+<mxCell id="CU03" value="CU-03 Consultar dashboard" style="ellipse;whiteSpace=wrap;html=1;fontSize=12;fillColor=#ffffff;strokeColor=#d79b00;strokeWidth=2;" parent="p1" vertex="1"><mxGeometry x="40" y="169" width="340" height="44" as="geometry"/></mxCell>
+<mxCell id="CU04" value="CU-04 Gestionar usuarios" style="ellipse;whiteSpace=wrap;html=1;fontSize=12;fillColor=#ffffff;strokeColor=#d79b00;strokeWidth=2;" parent="p1" vertex="1"><mxGeometry x="40" y="231" width="340" height="44" as="geometry"/></mxCell>
+<mxCell id="CU05" value="CU-05 Configurar sistema" style="ellipse;whiteSpace=wrap;html=1;fontSize=12;fillColor=#ffffff;strokeColor=#d79b00;strokeWidth=2;" parent="p1" vertex="1"><mxGeometry x="40" y="293" width="340" height="44" as="geometry"/></mxCell>
+<mxCell id="p4" value="Seguimiento operativo" style="swimlane;html=1;rounded=1;startSize=30;fontStyle=1;horizontal=1;fillColor=#e1d5e7;strokeColor=#9673a6;swimlaneFillColor=#e1d5e7;fontColor=#333333;" parent="1" vertex="1"><mxGeometry x="420" y="1196" width="420" height="240" as="geometry"/></mxCell>
+<mxCell id="CU14" value="CU-14 Actualizar estado del servicio" style="ellipse;whiteSpace=wrap;html=1;fontSize=12;fillColor=#ffffff;strokeColor=#9673a6;strokeWidth=2;" parent="p4" vertex="1"><mxGeometry x="40" y="45" width="340" height="44" as="geometry"/></mxCell>
+<mxCell id="CU15" value="CU-15 Registrar novedad del servicio" style="ellipse;whiteSpace=wrap;html=1;fontSize=12;fillColor=#ffffff;strokeColor=#9673a6;strokeWidth=2;" parent="p4" vertex="1"><mxGeometry x="40" y="119" width="340" height="44" as="geometry"/></mxCell>
+<mxCell id="CU16" value="CU-16 Consultar historial de servicios" style="ellipse;whiteSpace=wrap;html=1;fontSize=12;fillColor=#ffffff;strokeColor=#9673a6;strokeWidth=2;" parent="p4" vertex="1"><mxGeometry x="40" y="181" width="340" height="44" as="geometry"/></mxCell>
+<mxCell id="p5" value="Informes y gestión" style="swimlane;html=1;rounded=1;startSize=30;fontStyle=1;horizontal=1;fillColor=#f8cecc;strokeColor=#b85450;swimlaneFillColor=#f8cecc;fontColor=#333333;" parent="1" vertex="1"><mxGeometry x="420" y="1476" width="420" height="164" as="geometry"/></mxCell>
+<mxCell id="CU17" value="CU-17 Generar reportes operativos" style="ellipse;whiteSpace=wrap;html=1;fontSize=12;fillColor=#ffffff;strokeColor=#b85450;strokeWidth=2;" parent="p5" vertex="1"><mxGeometry x="40" y="45" width="340" height="44" as="geometry"/></mxCell>
+<mxCell id="CU18" value="CU-18 Consultar indicadores de gestión" style="ellipse;whiteSpace=wrap;html=1;fontSize=12;fillColor=#ffffff;strokeColor=#b85450;strokeWidth=2;" parent="p5" vertex="1"><mxGeometry x="40" y="107" width="340" height="44" as="geometry"/></mxCell>
+
+<mxCell id="a_Coordinador_CU01" style="endArrow=none;html=1;edgeStyle=orthogonalEdgeStyle;rounded=0;jumpStyle=arc;jumpSize=10;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#1565c0;strokeWidth=1.5;" parent="1" edge="1" source="Coordinador" target="CU01"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="330" y="495"/><mxPoint x="330" y="873"/></Array></mxGeometry></mxCell>
+<mxCell id="a_Coordinador_CU02" style="endArrow=none;html=1;edgeStyle=orthogonalEdgeStyle;rounded=0;jumpStyle=arc;jumpSize=10;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#1565c0;strokeWidth=1.5;" parent="1" edge="1" source="Coordinador" target="CU02"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="330" y="495"/><mxPoint x="330" y="935"/></Array></mxGeometry></mxCell>
+<mxCell id="a_Coordinador_CU03" style="endArrow=none;html=1;edgeStyle=orthogonalEdgeStyle;rounded=0;jumpStyle=arc;jumpSize=10;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#1565c0;strokeWidth=1.5;" parent="1" edge="1" source="Coordinador" target="CU03"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="330" y="495"/><mxPoint x="330" y="997"/></Array></mxGeometry></mxCell>
+<mxCell id="a_Coordinador_CU08" style="endArrow=none;html=1;edgeStyle=orthogonalEdgeStyle;rounded=0;jumpStyle=arc;jumpSize=10;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#1565c0;strokeWidth=1.5;" parent="1" edge="1" source="Coordinador" target="CU08"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="330" y="495"/><mxPoint x="330" y="607"/></Array></mxGeometry></mxCell>
+<mxCell id="a_Coordinador_CU09" style="endArrow=none;html=1;edgeStyle=orthogonalEdgeStyle;rounded=0;jumpStyle=arc;jumpSize=10;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#1565c0;strokeWidth=1.5;" parent="1" edge="1" source="Coordinador" target="CU09"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="330" y="495"/><mxPoint x="330" y="321"/></Array></mxGeometry></mxCell>
+<mxCell id="a_Coordinador_CU10" style="endArrow=none;html=1;edgeStyle=orthogonalEdgeStyle;rounded=0;jumpStyle=arc;jumpSize=10;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#1565c0;strokeWidth=1.5;" parent="1" edge="1" source="Coordinador" target="CU10"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="330" y="495"/><mxPoint x="330" y="197"/></Array></mxGeometry></mxCell>
+<mxCell id="a_Coordinador_CU11" style="endArrow=none;html=1;edgeStyle=orthogonalEdgeStyle;rounded=0;jumpStyle=arc;jumpSize=10;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#1565c0;strokeWidth=1.5;" parent="1" edge="1" source="Coordinador" target="CU11"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="330" y="495"/><mxPoint x="330" y="383"/></Array></mxGeometry></mxCell>
+<mxCell id="a_Coordinador_CU12" style="endArrow=none;html=1;edgeStyle=orthogonalEdgeStyle;rounded=0;jumpStyle=arc;jumpSize=10;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#1565c0;strokeWidth=1.5;" parent="1" edge="1" source="Coordinador" target="CU12"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="330" y="495"/><mxPoint x="330" y="457"/></Array></mxGeometry></mxCell>
+<mxCell id="a_Coordinador_CU13" style="endArrow=none;html=1;edgeStyle=orthogonalEdgeStyle;rounded=0;jumpStyle=arc;jumpSize=10;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#1565c0;strokeWidth=1.5;" parent="1" edge="1" source="Coordinador" target="CU13"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="330" y="495"/><mxPoint x="330" y="259"/></Array></mxGeometry></mxCell>
+<mxCell id="a_Coordinador_CU16" style="endArrow=none;html=1;edgeStyle=orthogonalEdgeStyle;rounded=0;jumpStyle=arc;jumpSize=10;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#1565c0;strokeWidth=1.5;" parent="1" edge="1" source="Coordinador" target="CU16"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="330" y="495"/><mxPoint x="330" y="1399"/></Array></mxGeometry></mxCell>
+<mxCell id="a_Coordinador_CU17" style="endArrow=none;html=1;edgeStyle=orthogonalEdgeStyle;rounded=0;jumpStyle=arc;jumpSize=10;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#1565c0;strokeWidth=1.5;" parent="1" edge="1" source="Coordinador" target="CU17"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="330" y="495"/><mxPoint x="330" y="1543"/></Array></mxGeometry></mxCell>
+
+<mxCell id="a_Admin_CU01" style="endArrow=none;html=1;edgeStyle=orthogonalEdgeStyle;rounded=0;jumpStyle=arc;jumpSize=10;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#e65100;strokeWidth=1.5;" parent="1" edge="1" source="Admin" target="CU01"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="390" y="945"/><mxPoint x="390" y="873"/></Array></mxGeometry></mxCell>
+<mxCell id="a_Admin_CU02" style="endArrow=none;html=1;edgeStyle=orthogonalEdgeStyle;rounded=0;jumpStyle=arc;jumpSize=10;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#e65100;strokeWidth=1.5;" parent="1" edge="1" source="Admin" target="CU02"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="390" y="945"/><mxPoint x="390" y="935"/></Array></mxGeometry></mxCell>
+<mxCell id="a_Admin_CU03" style="endArrow=none;html=1;edgeStyle=orthogonalEdgeStyle;rounded=0;jumpStyle=arc;jumpSize=10;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#e65100;strokeWidth=1.5;" parent="1" edge="1" source="Admin" target="CU03"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="390" y="945"/><mxPoint x="390" y="997"/></Array></mxGeometry></mxCell>
+<mxCell id="a_Admin_CU04" style="endArrow=none;html=1;edgeStyle=orthogonalEdgeStyle;rounded=0;jumpStyle=arc;jumpSize=10;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#e65100;strokeWidth=1.5;" parent="1" edge="1" source="Admin" target="CU04"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="390" y="945"/><mxPoint x="390" y="1059"/></Array></mxGeometry></mxCell>
+<mxCell id="a_Admin_CU05" style="endArrow=none;html=1;edgeStyle=orthogonalEdgeStyle;rounded=0;jumpStyle=arc;jumpSize=10;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#e65100;strokeWidth=1.5;" parent="1" edge="1" source="Admin" target="CU05"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="390" y="945"/><mxPoint x="390" y="1121"/></Array></mxGeometry></mxCell>
+<mxCell id="a_Admin_CU06" style="endArrow=none;html=1;edgeStyle=orthogonalEdgeStyle;rounded=0;jumpStyle=arc;jumpSize=10;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#e65100;strokeWidth=1.5;" parent="1" edge="1" source="Admin" target="CU06"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="390" y="945"/><mxPoint x="390" y="669"/></Array></mxGeometry></mxCell>
+<mxCell id="a_Admin_CU07" style="endArrow=none;html=1;edgeStyle=orthogonalEdgeStyle;rounded=0;jumpStyle=arc;jumpSize=10;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#e65100;strokeWidth=1.5;" parent="1" edge="1" source="Admin" target="CU07"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="390" y="945"/><mxPoint x="390" y="731"/></Array></mxGeometry></mxCell>
+<mxCell id="a_Admin_CU08" style="endArrow=none;html=1;edgeStyle=orthogonalEdgeStyle;rounded=0;jumpStyle=arc;jumpSize=10;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#e65100;strokeWidth=1.5;" parent="1" edge="1" source="Admin" target="CU08"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="390" y="945"/><mxPoint x="390" y="607"/></Array></mxGeometry></mxCell>
+
+<mxCell id="a_Operativo_CU01" style="endArrow=none;html=1;edgeStyle=orthogonalEdgeStyle;rounded=0;jumpStyle=arc;jumpSize=10;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#2e7d32;strokeWidth=1.5;" parent="1" edge="1" source="Operativo" target="CU01"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="870" y="945"/><mxPoint x="870" y="873"/></Array></mxGeometry></mxCell>
+<mxCell id="a_Operativo_CU02" style="endArrow=none;html=1;edgeStyle=orthogonalEdgeStyle;rounded=0;jumpStyle=arc;jumpSize=10;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#2e7d32;strokeWidth=1.5;" parent="1" edge="1" source="Operativo" target="CU02"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="870" y="945"/><mxPoint x="870" y="935"/></Array></mxGeometry></mxCell>
+<mxCell id="a_Operativo_CU13" style="endArrow=none;html=1;edgeStyle=orthogonalEdgeStyle;rounded=0;jumpStyle=arc;jumpSize=10;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#2e7d32;strokeWidth=1.5;" parent="1" edge="1" source="Operativo" target="CU13"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="870" y="945"/><mxPoint x="870" y="259"/></Array></mxGeometry></mxCell>
+<mxCell id="a_Operativo_CU14" style="endArrow=none;html=1;edgeStyle=orthogonalEdgeStyle;rounded=0;jumpStyle=arc;jumpSize=10;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#2e7d32;strokeWidth=1.5;" parent="1" edge="1" source="Operativo" target="CU14"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="870" y="945"/><mxPoint x="870" y="1263"/></Array></mxGeometry></mxCell>
+<mxCell id="a_Operativo_CU15" style="endArrow=none;html=1;edgeStyle=orthogonalEdgeStyle;rounded=0;jumpStyle=arc;jumpSize=10;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#2e7d32;strokeWidth=1.5;" parent="1" edge="1" source="Operativo" target="CU15"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="870" y="945"/><mxPoint x="870" y="1337"/></Array></mxGeometry></mxCell>
+<mxCell id="a_Operativo_CU16" style="endArrow=none;html=1;edgeStyle=orthogonalEdgeStyle;rounded=0;jumpStyle=arc;jumpSize=10;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#2e7d32;strokeWidth=1.5;" parent="1" edge="1" source="Operativo" target="CU16"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="870" y="945"/><mxPoint x="870" y="1399"/></Array></mxGeometry></mxCell>
+
+<mxCell id="a_Director_CU01" style="endArrow=none;html=1;edgeStyle=orthogonalEdgeStyle;rounded=0;jumpStyle=arc;jumpSize=10;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#6a1b9a;strokeWidth=1.5;" parent="1" edge="1" source="Director" target="CU01"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="910" y="1345"/><mxPoint x="910" y="873"/></Array></mxGeometry></mxCell>
+<mxCell id="a_Director_CU02" style="endArrow=none;html=1;edgeStyle=orthogonalEdgeStyle;rounded=0;jumpStyle=arc;jumpSize=10;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#6a1b9a;strokeWidth=1.5;" parent="1" edge="1" source="Director" target="CU02"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="910" y="1345"/><mxPoint x="910" y="935"/></Array></mxGeometry></mxCell>
+<mxCell id="a_Director_CU03" style="endArrow=none;html=1;edgeStyle=orthogonalEdgeStyle;rounded=0;jumpStyle=arc;jumpSize=10;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#6a1b9a;strokeWidth=1.5;" parent="1" edge="1" source="Director" target="CU03"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="910" y="1345"/><mxPoint x="910" y="997"/></Array></mxGeometry></mxCell>
+<mxCell id="a_Director_CU16" style="endArrow=none;html=1;edgeStyle=orthogonalEdgeStyle;rounded=0;jumpStyle=arc;jumpSize=10;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#6a1b9a;strokeWidth=1.5;" parent="1" edge="1" source="Director" target="CU16"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="910" y="1345"/><mxPoint x="910" y="1399"/></Array></mxGeometry></mxCell>
+<mxCell id="a_Director_CU17" style="endArrow=none;html=1;edgeStyle=orthogonalEdgeStyle;rounded=0;jumpStyle=arc;jumpSize=10;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#6a1b9a;strokeWidth=1.5;" parent="1" edge="1" source="Director" target="CU17"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="910" y="1345"/><mxPoint x="910" y="1543"/></Array></mxGeometry></mxCell>
+<mxCell id="a_Director_CU18" style="endArrow=none;html=1;edgeStyle=orthogonalEdgeStyle;rounded=0;jumpStyle=arc;jumpSize=10;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#6a1b9a;strokeWidth=1.5;" parent="1" edge="1" source="Director" target="CU18"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="910" y="1345"/><mxPoint x="910" y="1605"/></Array></mxGeometry></mxCell>
+
+<mxCell id="r_CU12_CU08" value="«include»" style="dashed=1;endArrow=open;html=1;labelBackgroundColor=#ffffff;fontSize=11;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#c62828;strokeWidth=1.5;fontColor=#c62828;fontStyle=1;" parent="1" edge="1" source="CU12" target="CU08"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="r_CU15_CU14" value="«extend»" style="dashed=1;endArrow=open;html=1;labelBackgroundColor=#ffffff;fontSize=11;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;strokeColor=#c62828;strokeWidth=1.5;fontColor=#c62828;fontStyle=1;" parent="1" edge="1" source="CU15" target="CU14"><mxGeometry relative="1" as="geometry"/></mxCell>
+</root></mxGraphModel></diagram></mxfile>

@@ -57,3 +57,38 @@ Los contenidos generados o sugeridos fueron objeto de revisión y ajuste, y su u
 
 **Servicio Nacional de Aprendizaje – SENA**  
 **ADSO – Ficha 3413974**
+
+## Diagrama de casos de uso
+
+El diagrama de casos de uso del Sistema Gestor de Ambulancias (SGA) representa la interacción de los actores identificados con las funcionalidades principales del sistema.
+
+El artefacto contempla 18 casos de uso, organizados en cinco paquetes funcionales:
+
+- Administración y acceso.
+- Gestión de recursos.
+- Gestión de solicitudes.
+- Seguimiento operativo.
+- Informes y gestión.
+
+Se identifican cuatro actores principales:
+
+- Administrador.
+- Coordinador Operativo.
+- Personal Operativo (TES/Paramédico).
+- Director / Gerencia.
+
+El diagrama contempla relaciones UML de inclusión (`<<include>>`) y extensión (`<<extend>>`) para representar dependencias funcionales entre casos de uso.
+
+### Archivos del diagrama
+
+Dentro de `06-diagrama-casos-uso` se conservan los siguientes artefactos:
+
+- `Diagrama-Casos-Uso.drawio`: archivo fuente editable del diagrama.
+- `Diagrama-Casos-Uso.drawio.png`: representación gráfica exportada.
+- `Diagrama-Casos-Uso.puml`: representación textual mediante PlantUML.
+
+Los archivos fuente permiten revisar y modificar la representación del modelo.
+
+### Observación de trazabilidad
+
+El diagrama contiene 18 casos de uso. La matriz de requisitos y casos de uso debe revisarse de manera independiente para verificar la correspondencia, numeración y trazabilidad entre ambos artefactos. La cantidad de casos representada en el diagrama no se considera automáticamente equivalente a la matriz hasta completar dicha validación.
