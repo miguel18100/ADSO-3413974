@@ -74,7 +74,7 @@ Esta comparación documenta una evolución visual del prototipo; no representa p
 
 ## Verificación de evidencias
 
-Se dispone de un checklist de revisión preliminar que permite identificar los artefactos elaborados, los elementos pendientes y el estado de revisión de las evidencias.
+Se dispone de un checklist de verificación de evidencias de P2, diligenciado para identificar los artefactos elaborados, los criterios verificados, las observaciones y los aspectos que permanecen pendientes de validación formal.
 
 La revisión documental y técnica preliminar no equivale a aprobación formal por parte de stakeholders o usuarios finales.
 
@@ -85,7 +85,7 @@ La revisión documental y técnica preliminar no equivale a aprobación formal p
 - Documentar una evaluación preliminar de interfaz.
 - Revisar aspectos de ergonomía y hábitos saludables aplicables al trabajo de desarrollo.
 - Consolidar los ajustes identificados.
-- Completar la matriz de trazabilidad de P2.
+- Revisar y actualizar la matriz de trazabilidad cuando se realicen ajustes posteriores en los requisitos, casos de uso o artefactos de diseño.
 - Continuar con las actividades de arquitectura y propuesta técnica.
 
 ## Trazabilidad
@@ -135,3 +135,4 @@ La confirmación de los hallazgos, la ejecución de pruebas y la aprobación de 
 ---
 
 SENA – ADSO – Ficha 3413974
+

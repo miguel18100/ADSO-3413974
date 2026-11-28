@@ -1,0 +1,420 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SIGMAVITAL | Prototipo</title>
+<style>
+:root {
+    --primary: #123b5d;
+    --secondary: #176b87;
+    --accent: #16a085;
+    --bg: #f3f6f9;
+    --text: #263746;
+    --muted: #738397;
+    --white: #ffffff;
+}
+* { box-sizing: border-box; }
+body {
+    margin: 0;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+}
+.sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: 250px;
+    background: var(--primary);
+    color: white;
+    padding: 24px 16px;
+    overflow-y: auto;
+}
+.brand {
+    font-size: 23px;
+    font-weight: bold;
+    margin-bottom: 4px;
+}
+.brand-sub {
+    font-size: 12px;
+    color: #b8d1e2;
+    margin-bottom: 30px;
+}
+.nav-label {
+    font-size: 11px;
+    color: #9fb8ca;
+    text-transform: uppercase;
+    margin: 20px 10px 8px;
+}
+.nav-btn {
+    display: block;
+    width: 100%;
+    border: none;
+    background: transparent;
+    color: #dce8f0;
+    padding: 12px;
+    text-align: left;
+    cursor: pointer;
+    border-radius: 8px;
+    font-size: 14px;
+    margin-bottom: 4px;
+}
+.nav-btn:hover, .nav-btn.active {
+    background: #225779;
+    color: white;
+}
+.main {
+    margin-left: 250px;
+    padding: 28px 34px;
+}
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+.topbar h1 { margin: 0; font-size: 25px; }
+.user {
+    background: white;
+    padding: 10px 16px;
+    border-radius: 12px;
+    font-size: 13px;
+    box-shadow: 0 2px 8px #00000008;
+}
+.page { display: none; }
+.page.active { display: block; }
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 18px;
+    margin-bottom: 25px;
+}
+.card {
+    background: white;
+    border-radius: 14px;
+    padding: 22px;
+    box-shadow: 0 3px 12px #00000008;
+}
+.card-label { color: var(--muted); font-size: 13px; }
+.card-value { font-size: 30px; font-weight: bold; margin-top: 12px; }
+.card-icon { font-size: 22px; margin-bottom: 12px; }
+.panel {
+    background: white;
+    border-radius: 14px;
+    padding: 22px;
+    margin-bottom: 22px;
+    box-shadow: 0 3px 12px #00000008;
+}
+.panel h2 { margin-top: 0; font-size: 18px; }
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+th, td {
+    padding: 13px 10px;
+    text-align: left;
+    border-bottom: 1px solid #edf1f5;
+}
+th { color: var(--muted); font-weight: 600; }
+.badge {
+    display: inline-block;
+    padding: 5px 9px;
+    border-radius: 20px;
+    font-size: 11px;
+    background: #e8f2f7;
+    color: #176b87;
+}
+.badge.red { background: #fdeaea; color: #b53b3b; }
+.badge.green { background: #e5f6ed; color: #218354; }
+.badge.orange { background: #fff2df; color: #a96715; }
+button.action {
+    background: var(--secondary);
+    color: white;
+    border: none;
+    padding: 11px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+button.action:hover { opacity: .9; }
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+}
+label { font-size: 13px; font-weight: 600; }
+input, select, textarea {
+    display: block;
+    width: 100%;
+    margin-top: 7px;
+    padding: 11px;
+    border: 1px solid #d9e1e8;
+    border-radius: 8px;
+    font: inherit;
+}
+textarea { min-height: 100px; }
+.notice {
+    padding: 14px;
+    background: #eaf4fa;
+    border-radius: 10px;
+    margin-bottom: 18px;
+    font-size: 13px;
+}
+.footer {
+    margin-top: 30px;
+    font-size: 12px;
+    color: var(--muted);
+}
+@media(max-width:850px) {
+    .sidebar { width: 190px; }
+    .main { margin-left: 190px; padding: 20px; }
+}
+@media(max-width:600px) {
+    .sidebar {
+        position: relative;
+        width: 100%;
+        height: auto;
+    }
+    .main { margin-left: 0; padding: 18px; }
+}
+</style>
+</head>
+<body>
+
+<aside class="sidebar">
+    <div class="brand">🚑 SIGMAVITAL</div>
+    <div class="brand-sub">Sistema de gestión de emergencias</div>
+
+    <div class="nav-label">Principal</div>
+    <button class="nav-btn active" onclick="showPage('dashboard',this)">▦ Dashboard</button>
+
+    <div class="nav-label">Operaciones</div>
+    <button class="nav-btn" onclick="showPage('solicitudes',this)">☎ Solicitudes</button>
+    <button class="nav-btn" onclick="showPage('pacientes',this)">♙ Pacientes</button>
+    <button class="nav-btn" onclick="showPage('servicios',this)">✚ Servicios</button>
+    <button class="nav-btn" onclick="showPage('asignaciones',this)">🚑 Asignaciones</button>
+
+    <div class="nav-label">Recursos</div>
+    <button class="nav-btn" onclick="showPage('ambulancias',this)">🚐 Ambulancias</button>
+    <button class="nav-btn" onclick="showPage('personal',this)">♟ Personal</button>
+
+    <div class="nav-label">Registros</div>
+    <button class="nav-btn" onclick="showPage('intervenciones',this)">▤ Intervenciones</button>
+    <button class="nav-btn" onclick="showPage('cierres',this)">✓ Cierre de servicios</button>
+</aside>
+
+<main class="main">
+    <header class="topbar">
+        <h1 id="pageTitle">Panel principal</h1>
+        <div class="user">👤 Administrador | SIGMAVITAL</div>
+    </header>
+
+    <section class="page active" id="dashboard">
+        <div class="notice">
+            <strong>Prototipo académico:</strong> los datos mostrados son ficticios y se utilizan únicamente para representar la interfaz del sistema.
+        </div>
+
+        <div class="cards">
+            <div class="card">
+                <div class="card-icon">☎</div>
+                <div class="card-label">Solicitudes registradas</div>
+                <div class="card-value">24</div>
+            </div>
+            <div class="card">
+                <div class="card-icon">🚑</div>
+                <div class="card-label">Servicios activos</div>
+                <div class="card-value">6</div>
+            </div>
+            <div class="card">
+                <div class="card-icon">🚐</div>
+                <div class="card-label">Ambulancias disponibles</div>
+                <div class="card-value">4</div>
+            </div>
+            <div class="card">
+                <div class="card-icon">♟</div>
+                <div class="card-label">Personal operativo</div>
+                <div class="card-value">18</div>
+            </div>
+        </div>
+
+        <div class="panel">
+            <h2>Servicios recientes</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th><th>Paciente</th><th>Tipo</th><th>Estado</th><th>Fecha</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>S-001</td><td>Paciente ficticio 01</td><td>Emergencia</td><td><span class="badge red">En atención</span></td><td>26/11/2026</td></tr>
+                    <tr><td>S-002</td><td>Paciente ficticio 02</td><td>Traslado</td><td><span class="badge orange">Asignado</span></td><td>26/11/2026</td></tr>
+                    <tr><td>S-003</td><td>Paciente ficticio 03</td><td>Emergencia</td><td><span class="badge green">Finalizado</span></td><td>25/11/2026</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="panel">
+            <h2>Resumen operativo</h2>
+            <p>Esta pantalla permite visualizar de forma resumida la información operativa, las solicitudes y la disponibilidad de recursos.</p>
+        </div>
+    </section>
+
+    <section class="page" id="solicitudes">
+        <div class="panel">
+            <h2>Registro y gestión de solicitudes</h2>
+            <p>Representación de la recepción y registro inicial de solicitudes de emergencia.</p>
+            <form onsubmit="demoSubmit(event,'Solicitud registrada en el prototipo.')">
+                <div class="form-grid">
+                    <label>Nombre del solicitante<input required placeholder="Nombre del solicitante"></label>
+                    <label>Teléfono<input required type="tel" placeholder="Número de contacto"></label>
+                    <label>Tipo de solicitud<select><option>Emergencia</option><option>Traslado</option><option>Consulta</option></select></label>
+                    <label>Prioridad<select><option>Alta</option><option>Media</option><option>Baja</option></select></label>
+                    <label>Ubicación<input required placeholder="Dirección o referencia"></label>
+                    <label>Fecha y hora<input type="datetime-local"></label>
+                </div>
+                <br>
+                <label>Descripción<textarea placeholder="Descripción de la situación"></textarea></label>
+                <br><button class="action">Registrar solicitud</button>
+            </form>
+        </div>
+    </section>
+
+    <section class="page" id="pacientes">
+        <div class="panel">
+            <h2>Gestión de pacientes</h2>
+            <table>
+                <thead><tr><th>ID</th><th>Paciente</th><th>Documento</th><th>Contacto</th><th>Estado</th></tr></thead>
+                <tbody>
+                    <tr><td>P-001</td><td>Paciente ficticio 01</td><td>00000001</td><td>0000000000</td><td><span class="badge">Registrado</span></td></tr>
+                    <tr><td>P-002</td><td>Paciente ficticio 02</td><td>00000002</td><td>0000000000</td><td><span class="badge">Registrado</span></td></tr>
+                </tbody>
+            </table>
+            <br>
+            <button class="action" onclick="alert('Formulario representativo de registro de paciente.')">Registrar paciente</button>
+        </div>
+    </section>
+
+    <section class="page" id="servicios">
+        <div class="panel">
+            <h2>Gestión de servicios</h2>
+            <table>
+                <thead><tr><th>Servicio</th><th>Tipo</th><th>Paciente</th><th>Estado</th></tr></thead>
+                <tbody>
+                    <tr><td>S-001</td><td>Emergencia</td><td>Paciente ficticio 01</td><td><span class="badge red">En atención</span></td></tr>
+                    <tr><td>S-002</td><td>Traslado</td><td>Paciente ficticio 02</td><td><span class="badge orange">Pendiente</span></td></tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section class="page" id="asignaciones">
+        <div class="panel">
+            <h2>Asignación de recursos</h2>
+            <form onsubmit="demoSubmit(event,'Asignación representada en el prototipo.')">
+                <div class="form-grid">
+                    <label>Servicio<select><option>S-001</option><option>S-002</option></select></label>
+                    <label>Ambulancia<select><option>AMB-01</option><option>AMB-02</option></select></label>
+                    <label>Personal<select><option>Equipo A</option><option>Equipo B</option></select></label>
+                    <label>Fecha de asignación<input type="datetime-local"></label>
+                </div>
+                <br><button class="action">Asignar recursos</button>
+            </form>
+        </div>
+    </section>
+
+    <section class="page" id="ambulancias">
+        <div class="panel">
+            <h2>Disponibilidad de ambulancias</h2>
+            <table>
+                <thead><tr><th>ID</th><th>Vehículo</th><th>Estado</th><th>Observación</th></tr></thead>
+                <tbody>
+                    <tr><td>AMB-01</td><td>Ambulancia A</td><td><span class="badge green">Disponible</span></td><td>Operativa</td></tr>
+                    <tr><td>AMB-02</td><td>Ambulancia B</td><td><span class="badge red">En servicio</span></td><td>Asignada</td></tr>
+                    <tr><td>AMB-03</td><td>Ambulancia C</td><td><span class="badge orange">Mantenimiento</span></td><td>Revisión técnica</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section class="page" id="personal">
+        <div class="panel">
+            <h2>Gestión del personal</h2>
+            <table>
+                <thead><tr><th>ID</th><th>Nombre</th><th>Rol</th><th>Disponibilidad</th></tr></thead>
+                <tbody>
+                    <tr><td>PER-01</td><td>Personal ficticio 01</td><td>Conductor</td><td><span class="badge green">Disponible</span></td></tr>
+                    <tr><td>PER-02</td><td>Personal ficticio 02</td><td>Paramédico</td><td><span class="badge green">Disponible</span></td></tr>
+                    <tr><td>PER-03</td><td>Personal ficticio 03</td><td>Enfermería</td><td><span class="badge orange">Asignado</span></td></tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section class="page" id="intervenciones">
+        <div class="panel">
+            <h2>Registro de intervenciones</h2>
+            <form onsubmit="demoSubmit(event,'Intervención representada en el prototipo.')">
+                <div class="form-grid">
+                    <label>Servicio<select><option>S-001</option><option>S-002</option></select></label>
+                    <label>Fecha y hora<input type="datetime-local"></label>
+                    <label>Responsable<input placeholder="Responsable de intervención"></label>
+                </div>
+                <br>
+                <label>Descripción de la intervención<textarea required placeholder="Detalles de la intervención"></textarea></label>
+                <br><button class="action">Registrar intervención</button>
+            </form>
+        </div>
+    </section>
+
+    <section class="page" id="cierres">
+        <div class="panel">
+            <h2>Cierre del servicio</h2>
+            <form onsubmit="demoSubmit(event,'Cierre representado en el prototipo.')">
+                <div class="form-grid">
+                    <label>Servicio<select><option>S-001</option><option>S-002</option></select></label>
+                    <label>Fecha de cierre<input type="datetime-local"></label>
+                    <label>Resultado<select><option>Atención completada</option><option>Traslado realizado</option><option>Servicio cancelado</option></select></label>
+                </div>
+                <br>
+                <label>Observaciones<textarea placeholder="Observaciones finales"></textarea></label>
+                <br><button class="action">Registrar cierre</button>
+            </form>
+        </div>
+    </section>
+
+    <div class="footer">
+        SIGMAVITAL · Prototipo académico preliminar · Datos ficticios · Versión 0.1
+    </div>
+</main>
+
+<script>
+const titles = {
+    dashboard:"Panel principal",
+    solicitudes:"Solicitudes",
+    pacientes:"Pacientes",
+    servicios:"Servicios",
+    asignaciones:"Asignaciones",
+    ambulancias:"Ambulancias",
+    personal:"Personal",
+    intervenciones:"Intervenciones",
+    cierres:"Cierre de servicios"
+};
+
+function showPage(id,btn) {
+    document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
+    document.getElementById(id).classList.add("active");
+    document.querySelectorAll(".nav-btn").forEach(b => b.classList.remove("active"));
+    if(btn) btn.classList.add("active");
+    document.getElementById("pageTitle").textContent = titles[id] || id;
+}
+
+function demoSubmit(event,message) {
+    event.preventDefault();
+    alert(message + " (Demo académica: no se guardan datos.)");
+}
+</script>
+</body>
+</html>

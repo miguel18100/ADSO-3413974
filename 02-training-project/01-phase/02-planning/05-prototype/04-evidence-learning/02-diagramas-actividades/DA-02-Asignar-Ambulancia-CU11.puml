@@ -1,4 +1,4 @@
-@startuml
+﻿@startuml
  title DA-02 - Asignar ambulancia y personal (CU-11)
  skinparam shadowing false
  skinparam activity {
@@ -60,29 +60,26 @@
  |Coordinador operativo|
  :Confirmar la asignación;
  |Sistema SIGMAVITAL|
- :Registrar asignación y participaciones del personal;
- if (¿El registro se guardó?) then ([sí])
-   :Actualizar estado de solicitud y recursos;
-   :Mostrar confirmación de asignación;
-   stop
- else ([no])
-   :Informar que no fue posible guardar la asignación;
-   |Coordinador operativo|
-   if (¿Reintentar el registro?) then ([sí])
-     |Sistema SIGMAVITAL|
-     :Reintentar el registro de la asignación;
-     if (¿El reintento se guardó?) then ([sí])
-       :Actualizar estado de solicitud y recursos;
-       :Mostrar confirmación de asignación;
-       stop
-     else ([no])
-       :Mantener solicitud pendiente y registrar el error;
-       stop
-     endif
-   else ([no])
-     |Sistema SIGMAVITAL|
-     :Mantener solicitud pendiente sin confirmación;
-     stop
-   endif
- endif
+ repeat
+  |Sistema SIGMAVITAL|
+  :Registrar asignación y participaciones del personal;
+  if (¿El registro se guardó?) then ([sí])
+    :Actualizar estado de solicitud y recursos;
+    :Mostrar confirmación de asignación;
+    stop
+  else ([no])
+    :Informar que no fue posible guardar la asignación;
+    |Coordinador operativo|
+    if (¿Reintentar el registro?) then ([sí])
+      :Decidir reintentar;
+    else ([no])
+      |Sistema SIGMAVITAL|
+      :Mantener solicitud pendiente sin confirmación;
+      stop
+    endif
+  endif
+repeat while (Reintentar registro) is (sí)
 @enduml
+
+
+
