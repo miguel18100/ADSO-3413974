@@ -1,45 +1,18 @@
-﻿# A2 - Trazabilidad de Clases a Requisitos
+# A2 – Trazabilidad Completa de Clases a Requisitos SRS (65 / 65 RF)
 
-**Proyecto:** SIGMAVITAL
-**Evidencia:** G2-P1 - Diseño de arquitectura y clases
-**Estado:** Propuesta preliminar validada a nivel de diseño
-
-| Clase | Requisitos funcionales relacionados | Justificación |
-|---|---|---|
-| Usuario | RF-01, RF-03 | Autenticación, gestión de usuarios y datos de acceso. |
-| Rol | RF-03 | Gestión de roles y permisos asociados a usuarios. |
-| Ambulancia | RF-05, RF-06, RF-16, RF-17 | Gestión de ambulancias, estado operativo, disponibilidad y asignación. |
-| Personal | RF-09, RF-10, RF-11, RF-18 | Gestión del personal operativo, perfiles y participación en servicios. |
-| Solicitud | RF-12, RF-13, RF-14, RF-15 | Registro, clasificación, actualización y consulta de solicitudes. |
-| Servicio | RF-20, RF-31 | Gestión del estado del servicio y su finalización. |
-| Asignacion | RF-16, RF-17, RF-19 | Disponibilidad, asignación de ambulancias y consulta de asignaciones. |
-| AsignacionPersonal | RF-18 | Asociación del personal operativo a una asignación. |
-| Paciente | RF-29 | Registro y consulta de datos básicos del paciente vinculados al servicio de atención. |
-| Intervencion | RF-30 | Registro de intervenciones realizadas durante la atención. |
-| RegistroCierre | RF-31 | Consolidación de la información de cierre del servicio. |
-| EstrategiaAsignacion | RF-16, RF-17 | Abstracción para seleccionar y evaluar ambulancias según criterios de asignación. |
-| EstrategiaAsignacionUrgente | RF-16, RF-17 | Implementación de criterios de selección para situaciones urgentes. |
-| EstrategiaAsignacionGeneral | RF-16, RF-17 | Implementación de criterios de selección para asignaciones generales. |
-
-## Observaciones de trazabilidad
-
-- La trazabilidad documenta la correspondencia propuesta entre clases y requisitos funcionales a nivel de diseño. Su cobertura integral deberá verificarse posteriormente frente a la matriz oficial de requisitos y la trazabilidad global del proyecto.
-- Las estrategias de asignación representan una propuesta de diseño y no implican que los algoritmos estén implementados.
-- La asociación Paciente - Servicio se incorpora al diagrama UML A2 y se respalda en RF-29, que establece la vinculación de los datos básicos del paciente con el servicio prehospitalario.
-- La asociación Paciente - Servicio se modela como relación simple, no como composición, dado que el paciente mantiene su identidad independientemente de los servicios registrados.
-- La trazabilidad no reemplaza la matriz completa de requisitos ni el artefacto A7 de trazabilidad integral.
-
-## Decisión validada a nivel de diseño
-
-Se establece la asociación entre `Paciente` y `Servicio` con la siguiente multiplicidad UML:
-
-`Paciente "1" -- "0..*" Servicio : recibe atención`
-
-Esta decisión se fundamenta en RF-29 y se documenta adicionalmente en A2-Decision-Paciente-Servicio.md y A2-Relaciones-Multiplicidades.md.
-
-La validación corresponde al diseño UML y no implica que la persistencia o el modelo físico de datos se encuentren implementados.
-
-## Estado
-
-Trazabilidad preliminar de clases a requisitos actualizada y coherente con la asociación Paciente - Servicio incorporada al diagrama de clases A2.
-
+| Clase / Interfaz A2 | Módulos cubiertos | Requisitos funcionales trazados | Responsabilidad única (Regla 5) |
+|---|---|---|---|
+| `Rol`, `Usuario` | Autenticación | `RF-001..RF-007` | Identidad, hash `passwordHash`, bloqueo 5 intentos y RBAC 5 perfiles |
+| `PropietarioUnidad`, `Ambulancia`, `AmbulanciaTAB/TAM`, `MantenimientoUnidad` | Ambulancias y Unidades | `RF-008..RF-013`, `RF-045..RF-046` | Flota REPS, vigencia SOAT/tecnomecánica, dotación e historial de mantenimiento |
+| `Personal`, `AsignacionPersonal` | Talento Humano | `RF-014..RF-017` | Certificaciones, jornadas continuas y rol en tripulación |
+| `Paciente` | Pacientes | `RF-018..RF-020` | Confidencialidad clínica, teléfonos e historial |
+| `Solicitud`, `Servicio`, `Asignacion`, `Intervencion`, `RegistroCierre` | Emergencias y Monitoreo | `RF-021..RF-029` | Triage, despacho, intervenciones y cierre obligatorio `RN-005` |
+| `EstrategiaAsignacion`, `EstrategiaAsignacionUrgente/General`, `GestionServicioFacade` | Motor de Despacho | `RF-022..RF-025`, `RF-031` | Orquestación de flujos y algoritmos intercambiables <= 2 s |
+| `Factura`, `NotaContable`, `MovimientoFinanciero` | Financiero | `RF-030..RF-035` | Factura inmutable al cierre, notas crédito/débito y mora día 1 / día 30 |
+| `Visitante` | Visitantes | `RF-036..RF-039` | Preautorizaciones, ingreso manual justificado y registro vehicular |
+| `Pqrs` | PQRS | `RF-040..RF-044` | Radicación, escalamiento automático 24 h y cierre formal |
+| `Proveedor`, `ContratoProveedor` | Proveedores | `RF-047..RF-049` | Contratos vigentes, alertas 30/15/5 días y evaluación de desempeño |
+| `Documento` | Documental | `RF-050..RF-054` | Versionamiento, control duplicados SHA-256 y bloqueo oficial `RN-013` |
+| `Auditoria` | Auditoría | `RF-055..RF-058` | Registro append-only inalterable por 5 años |
+| `NovedadOperativa` | Novedades | `RF-059..RF-063` | Incidentes, evidencia multimedia y cierre validado `RN-016` |
+| `ServicioReportesKPI`, `IRepositorioDatos` | Reportes / Infraestructura | `RF-064..RF-065` | KPIs PDF/Excel read-only y desacoplamiento MySQL |

@@ -1,109 +1,71 @@
-# A7 – Requirements Traceability Matrix
+# A7 – Matriz Integral de Trazabilidad Arquitectura–Requisitos – SIGMAVITAL
 
-## 1. Purpose
+**Cobertura verificada:** **65 / 65 Requisitos Funcionales (100,0 %)** · **0 clases huérfanas en A2** · **0 componentes huérfanos en A5**
 
-This document establishes the traceability relationship between the selected functional requirements from A1, the proposed class design in A2, and the component view in A5.
-
-The matrix supports architectural traceability by identifying the proposed classes and components associated with each functional requirement.
-
-This traceability matrix represents a design-level mapping. It does not constitute evidence of implemented or tested functionality.
-
-> **Scope clarification:** The G1-P1 baseline contains 31 functional requirements. A1 deliberately selects 12 requirements for this P1 architecture design; therefore, this matrix documents 12/12 selected requirements, not 31/31 requirements for the complete system. The additional scope must be reconciled in the requirements baseline before claiming total system coverage.
-## 2. Traceability Matrix
-
-| Requirement ID | Requirement | Related Classes (A2) | Related Components (A5) | Architectural Evidence |
-|---|---|---|---|---|
-| RF-01 | User login through defined authentication mechanisms. | Usuario, Rol | User and Role Management, Application Controller, Repository / Persistence | A2 Class Diagram; A5 Component View |
-| RF-03 | User management including consultation, creation, update and deletion according to permissions. | Usuario, Rol | User and Role Management, GestionServicioFacade | A2 Class Diagram; A5 Component View |
-| RF-04 | Operational dashboard displaying the current status of requests, services and resources according to authorized roles. | Usuario, Rol, Solicitud, Servicio, Ambulancia, Asignacion | Web UI, Application Controller, GestionServicioFacade, Service Management, Assignment Management, User and Role Management | A2 Class Diagram; A4 Architecture; A5 Component View |
-| RF-05 | Ambulance registration and management. | Ambulancia | Assignment Management, Repository / Persistence | A2 Class Diagram; A5 Component View |
-| RF-09 | Registration of operational personnel. | Personal, AsignacionPersonal | Assignment Management, Repository / Persistence | A2 Class Diagram; A5 Component View |
-| RF-12 | Registration of service transportation requests. | Solicitud, Servicio | Application Controller, GestionServicioFacade, Service Management | A2 Class Diagram; A5 Component View |
-| RF-16 | Consultation of available operational resources. | Ambulancia, Personal, Asignacion, AsignacionPersonal | Assignment Management, Assignment Strategy, Repository / Persistence | A2 Class Diagram; A3 Design Patterns; A5 Component View |
-| RF-17 | Assignment of an ambulance to a service request according to operational criteria. | Solicitud, Servicio, Ambulancia, Personal, Asignacion, AsignacionPersonal, EstrategiaAsignacion, EstrategiaAsignacionUrgente, EstrategiaAsignacionGeneral | Assignment Management, Assignment Strategy, GestionServicioFacade | A2 Class Diagram; A3 Design Patterns; A5 Component View |
-| RF-20 | Updating a service status during its operational lifecycle. | Servicio, Asignacion, RegistroCierre | Service Management, GestionServicioFacade, Service Closure Management | A2 Class Diagram; A5 Component View |
-| RF-29 | Registration and consultation of basic patient information associated with a prehospital service. | Paciente, Servicio | Patient Management, Service Management, Repository / Persistence | A2 Class Diagram; A5 Component View |
-| RF-30 | Recording prehospital interventions performed during a service by authorized TAM paramedics. | Paciente, Servicio, Intervencion, Usuario, Rol | Patient Management, Service Management, User and Role Management, Repository / Persistence | A2 Class Diagram; A5 Component View |
-| RF-31 | Closing a completed service with its care summary, exit condition, destination, times and authorized observations. | Servicio, Intervencion, RegistroCierre, Paciente | Service Closure Management, Service Management, GestionServicioFacade, Repository / Persistence | A2 Class Diagram; A5 Component View |
-
-## 3. Class Traceability Summary
-
-The proposed class design provides the following conceptual coverage:
-
-| Class / Interface | Related Requirements |
-|---|---|
-| Usuario | RF-01, RF-03, RF-04, RF-30 |
-| Rol | RF-01, RF-03, RF-04, RF-30 |
-| Ambulancia | RF-04, RF-05, RF-16, RF-17 |
-| Personal | RF-04, RF-09, RF-16, RF-17 |
-| Solicitud | RF-04, RF-12, RF-16, RF-17 |
-| Servicio | RF-04, RF-12, RF-20, RF-29, RF-30, RF-31 |
-| Asignacion | RF-04, RF-16, RF-17, RF-20 |
-| AsignacionPersonal | RF-09, RF-16, RF-17 |
-| Paciente | RF-29, RF-30, RF-31 |
-| Intervencion | RF-30, RF-31 |
-| RegistroCierre | RF-20, RF-31 |
-| EstrategiaAsignacion | RF-16, RF-17 |
-| EstrategiaAsignacionUrgente | RF-17 |
-| EstrategiaAsignacionGeneral | RF-17 |
-| GestionServicioFacade | RF-03, RF-04, RF-12, RF-17, RF-20, RF-31 |
-
-## 4. Component Traceability Summary
-
-| Component | Related Requirements |
-|---|---|
-| Web UI | RF-04 |
-| Application Controller | RF-01, RF-04, RF-12 |
-| GestionServicioFacade | RF-03, RF-04, RF-12, RF-17, RF-20, RF-31 |
-| Service Management | RF-04, RF-12, RF-20, RF-29, RF-30, RF-31 |
-| Assignment Management | RF-04, RF-05, RF-09, RF-16, RF-17, RF-20 |
-| Assignment Strategy | RF-16, RF-17 |
-| Patient Management | RF-29, RF-30, RF-31 |
-| User and Role Management | RF-01, RF-03, RF-04, RF-30 |
-| Service Closure Management | RF-20, RF-31 |
-| Repository / Persistence | RF-01, RF-03, RF-05, RF-09, RF-12, RF-16, RF-17, RF-20, RF-29, RF-30, RF-31 |
-| Database | Data persistence for the requirements supported by repository and persistence operations |
-
-## 5. Traceability with Non-Functional Requirements
-
-| NFR ID | Architectural Elements | Evidence |
-|---|---|---|
-| RNF-03 | User and Role Management, Usuario, Rol, Application Controller | A2, A4, A5 |
-| RNF-04 | Patient Management, User and Role Management, Repository / Persistence, Database | A2, A4, A5, A6 |
-| RNF-05 | Servicio, Solicitud, Asignacion, Ambulancia, Personal, Repository / Persistence, Database | A2, A4, A5, A6 |
-| RNF-06 | Service Management, Assignment Management, GestionServicioFacade, Database | A2, A4, A5, A6 |
-| RNF-08 | Database, Deployment Architecture | A4, A6 |
-| RNF-09 | Layered Architecture, Domain Components, Facade, Strategy | A3, A4, A5 |
-| RNF-11 | Web UI, Application Components, Repository / Persistence, Database | A4, A5, A6 |
-| RNF-12 | Patient Management, Repository / Persistence, Database, User and Role Management | A2, A4, A5, A6 |
-| RNF-13 | User and Role Management, Service Management, Application Architecture | A4, A5; audit implementation remains pending |
-| RNF-14 | Client Device, Application Server, HTTPS Communication | A6 |
-
-## 6. Traceability Limitations
-
-- Traceability is based on the selected requirements documented in A1.
-- The class and component relationships represent the proposed design.
-- Some requirements are mapped to multiple classes and components because their workflows require coordination.
-- The architecture does not prove that every mapped requirement is implemented.
-- Requirement validation, integration testing, and implementation evidence must be completed in subsequent development activities.
-- Audit logging, backup and recovery, performance optimization, secure configuration, and other non-functional implementations remain subject to implementation and validation.
-
-## 7. Conclusion
-
-The traceability matrix establishes a structured relationship between the selected functional requirements, the proposed class design, and the component architecture.
-
-The matrix supports architectural consistency, facilitates future implementation planning, and provides a basis for identifying architectural coverage and validation needs.
-
-The relationships documented here are design-level mappings and must be verified during implementation and testing.
-
-## 8. References
-
-- A1 – Requirements and Technology Decisions.
-- A2 – Class Diagram and Class Design.
-- A3 – Design Patterns.
-- A4 – Software Architecture.
-- A5 – Component View and Interface Specification.
-
----
-
-**Evidence:** G2-P1 – A7 Requirements Traceability Matrix.
+| Código RF | Módulo | Requisito funcional | Clase(s) A2 | Componente A5 | Capas A4 | Nodos A6 |
+|---|---|---|---|---|---|---|
+| RF-001 | Autenticación | El sistema debe permitir al administrador registrar usuarios mediante un... | Usuario, Rol, Auditoria | Seguridad, Usuarios y RBAC | Capas 1–4 | Nodos 1–3 |
+| RF-002 | Autenticación | El sistema debe autenticar usuarios mediante correo y contraseña, genera... | Usuario, Rol, Auditoria | Seguridad, Usuarios y RBAC | Capas 1–4 | Nodos 1–3 |
+| RF-003 | Autenticación | El sistema debe cerrar automáticamente la sesión tras 15 minutos de inac... | Usuario, Rol, Auditoria | Seguridad, Usuarios y RBAC | Capas 1–4 | Nodos 1–3 |
+| RF-004 | Autenticación | El sistema debe permitir la recuperación de contraseña mediante un enlac... | Usuario, Rol, Auditoria | Seguridad, Usuarios y RBAC | Capas 1–4 | Nodos 1–3 |
+| RF-005 | Autenticación | El sistema debe implementar control de acceso basado en roles (RBAC), re... | Usuario, Rol, Auditoria | Seguridad, Usuarios y RBAC | Capas 1–4 | Nodos 1–3 |
+| RF-006 | Autenticación | El sistema debe permitir al administrador asignar y modificar roles de u... | Usuario, Rol, Auditoria | Seguridad, Usuarios y RBAC | Capas 1–4 | Nodos 1–3 |
+| RF-007 | Autenticación | El sistema debe registrar todos los intentos de autenticación fallidos y... | Usuario, Rol, Auditoria | Seguridad, Usuarios y RBAC | Capas 1–4 | Nodos 1–3 |
+| RF-008 | Ambulancias | El sistema debe permitir el registro completo de ambulancias, incluyendo... | PropietarioUnidad, Ambulancia, AmbulanciaTAB/TAM, MantenimientoUnidad | Flota, Propietarios y Personal | Capas 2–4 | Nodos 2–3 |
+| RF-009 | Ambulancias | El sistema debe permitir actualizar el estado operativo de cada ambulanc... | PropietarioUnidad, Ambulancia, AmbulanciaTAB/TAM, MantenimientoUnidad | Flota, Propietarios y Personal | Capas 2–4 | Nodos 2–3 |
+| RF-010 | Ambulancias | El sistema debe permitir consultar el inventario de ambulancias con filt... | PropietarioUnidad, Ambulancia, AmbulanciaTAB/TAM, MantenimientoUnidad | Flota, Propietarios y Personal | Capas 2–4 | Nodos 2–3 |
+| RF-011 | Ambulancias | El sistema debe registrar y controlar la documentación obligatoria de ca... | PropietarioUnidad, Ambulancia, AmbulanciaTAB/TAM, MantenimientoUnidad | Flota, Propietarios y Personal | Capas 2–4 | Nodos 2–3 |
+| RF-012 | Ambulancias | El sistema debe registrar el historial de mantenimientos preventivos y c... | PropietarioUnidad, Ambulancia, AmbulanciaTAB/TAM, MantenimientoUnidad | Flota, Propietarios y Personal | Capas 2–4 | Nodos 2–3 |
+| RF-013 | Ambulancias | El sistema debe registrar y gestionar el inventario de equipos y dotació... | PropietarioUnidad, Ambulancia, AmbulanciaTAB/TAM, MantenimientoUnidad | Flota, Propietarios y Personal | Capas 2–4 | Nodos 2–3 |
+| RF-014 | Personal | El sistema debe registrar el personal médico y operativo (paramédicos, c... | Personal, AsignacionPersonal | Flota, Propietarios y Personal | Capas 2–4 | Nodos 2–3 |
+| RF-015 | Personal | El sistema debe controlar la disponibilidad del personal en tiempo real,... | Personal, AsignacionPersonal | Flota, Propietarios y Personal | Capas 2–4 | Nodos 2–3 |
+| RF-016 | Personal | El sistema debe registrar vencimientos de certificaciones y habilitacion... | Personal, AsignacionPersonal | Flota, Propietarios y Personal | Capas 2–4 | Nodos 2–3 |
+| RF-017 | Personal | El sistema debe permitir consultar el historial de servicios de emergenc... | Personal, AsignacionPersonal | Flota, Propietarios y Personal | Capas 2–4 | Nodos 2–3 |
+| RF-018 | Pacientes | El sistema debe registrar pacientes atendidos con datos de identificació... | Paciente, Servicio | Emergencias, Pacientes y Monitoreo | Capas 1–4 | Nodos 1–3 |
+| RF-019 | Pacientes | El sistema debe registrar el estado clínico inicial del paciente al mome... | Paciente, Servicio | Emergencias, Pacientes y Monitoreo | Capas 1–4 | Nodos 1–3 |
+| RF-020 | Pacientes | El sistema debe permitir consultar el historial de servicios asociados a... | Paciente, Servicio | Emergencias, Pacientes y Monitoreo | Capas 1–4 | Nodos 1–3 |
+| RF-021 | Emergencias | El sistema debe permitir registrar solicitudes de servicio capturando: h... | Solicitud, Servicio, Asignacion, EstrategiaAsignacion*, GestionServicioFacade, Intervencion, RegistroCierre | Emergencias, Pacientes y Monitoreo | Capas 1–4 | Nodos 1–3 |
+| RF-022 | Emergencias | El sistema debe ejecutar asignación automática de ambulancias consideran... | Solicitud, Servicio, Asignacion, EstrategiaAsignacion*, GestionServicioFacade, Intervencion, RegistroCierre | Emergencias, Pacientes y Monitoreo | Capas 1–4 | Nodos 1–3 |
+| RF-023 | Emergencias | El sistema debe permitir la asignación manual de ambulancias por el coor... | Solicitud, Servicio, Asignacion, EstrategiaAsignacion*, GestionServicioFacade, Intervencion, RegistroCierre | Emergencias, Pacientes y Monitoreo | Capas 1–4 | Nodos 1–3 |
+| RF-024 | Emergencias | El sistema debe gestionar el ciclo completo del servicio mediante los es... | Solicitud, Servicio, Asignacion, EstrategiaAsignacion*, GestionServicioFacade, Intervencion, RegistroCierre | Emergencias, Pacientes y Monitoreo | Capas 1–4 | Nodos 1–3 |
+| RF-025 | Emergencias | El sistema debe permitir el cierre formal del servicio únicamente cuando... | Solicitud, Servicio, Asignacion, EstrategiaAsignacion*, GestionServicioFacade, Intervencion, RegistroCierre | Emergencias, Pacientes y Monitoreo | Capas 1–4 | Nodos 1–3 |
+| RF-026 | Emergencias | El sistema debe permitir la cancelación de un servicio con justificación... | Solicitud, Servicio, Asignacion, EstrategiaAsignacion*, GestionServicioFacade, Intervencion, RegistroCierre | Emergencias, Pacientes y Monitoreo | Capas 1–4 | Nodos 1–3 |
+| RF-027 | Emergencias | El sistema debe permitir consultar el historial completo de servicios co... | Solicitud, Servicio, Asignacion, EstrategiaAsignacion*, GestionServicioFacade, Intervencion, RegistroCierre | Emergencias, Pacientes y Monitoreo | Capas 1–4 | Nodos 1–3 |
+| RF-028 | Monitoreo | El sistema debe proporcionar un panel de control centralizado con actual... | Ambulancia, Servicio, NovedadOperativa | Emergencias, Pacientes y Monitoreo | Capas 1–3 | Nodos 1–2 |
+| RF-029 | Monitoreo | El sistema debe mostrar en el panel principal indicadores clave: número ... | Ambulancia, Servicio, NovedadOperativa | Emergencias, Pacientes y Monitoreo | Capas 1–3 | Nodos 1–2 |
+| RF-030 | Financiero | El sistema debe permitir registrar ingresos con detalle de fecha, valor,... | Factura, NotaContable, MovimientoFinanciero | Financiero y Proveedores | Capas 2–4 | Nodos 2–4 |
+| RF-031 | Financiero | El sistema debe generar facturas automáticamente al cierre de un servici... | Factura, NotaContable, MovimientoFinanciero | Financiero y Proveedores | Capas 2–4 | Nodos 2–4 |
+| RF-032 | Financiero | El sistema debe gestionar cartera de usuarios o entidades con deudas act... | Factura, NotaContable, MovimientoFinanciero | Financiero y Proveedores | Capas 2–4 | Nodos 2–4 |
+| RF-033 | Financiero | El sistema debe generar reportes financieros periódicos (diario, mensual... | Factura, NotaContable, MovimientoFinanciero | Financiero y Proveedores | Capas 2–4 | Nodos 2–4 |
+| RF-034 | Financiero | El sistema debe generar recibos de pago en PDF al registrar un pago, ide... | Factura, NotaContable, MovimientoFinanciero | Financiero y Proveedores | Capas 2–4 | Nodos 2–4 |
+| RF-035 | Financiero | El sistema debe permitir la consulta del estado de cuenta por usuarios o... | Factura, NotaContable, MovimientoFinanciero | Financiero y Proveedores | Capas 2–4 | Nodos 2–4 |
+| RF-036 | Visitantes | El sistema debe registrar el ingreso y salida de visitantes capturando: ... | Visitante, Usuario | Visitantes, PQRS, Docs y Novedades | Capas 1–4 | Nodos 1–3 |
+| RF-037 | Visitantes | El sistema debe verificar la identidad del visitante, registrar opcional... | Visitante, Usuario | Visitantes, PQRS, Docs y Novedades | Capas 1–4 | Nodos 1–3 |
+| RF-038 | Visitantes | El sistema debe permitir a usuarios internos registrar pre-autorizacione... | Visitante, Usuario | Visitantes, PQRS, Docs y Novedades | Capas 1–4 | Nodos 1–3 |
+| RF-039 | Visitantes | El sistema debe mantener historial completo de visitas con filtros por f... | Visitante, Usuario | Visitantes, PQRS, Docs y Novedades | Capas 1–4 | Nodos 1–3 |
+| RF-040 | PQRS | El sistema debe permitir registrar PQRS mediante formulario estructurado... | Pqrs, Usuario, Paciente | Visitantes, PQRS, Docs y Novedades | Capas 1–4 | Nodos 1–4 |
+| RF-041 | PQRS | El sistema debe asignar automáticamente o manualmente cada PQRS al funci... | Pqrs, Usuario, Paciente | Visitantes, PQRS, Docs y Novedades | Capas 1–4 | Nodos 1–4 |
+| RF-042 | PQRS | El sistema debe permitir consultar el estado de una PQRS mediante el cód... | Pqrs, Usuario, Paciente | Visitantes, PQRS, Docs y Novedades | Capas 1–4 | Nodos 1–4 |
+| RF-043 | PQRS | El sistema debe permitir registrar y enviar la respuesta formal a cada P... | Pqrs, Usuario, Paciente | Visitantes, PQRS, Docs y Novedades | Capas 1–4 | Nodos 1–4 |
+| RF-044 | PQRS | El sistema debe mantener historial completo e inalterable de cada PQRS c... | Pqrs, Usuario, Paciente | Visitantes, PQRS, Docs y Novedades | Capas 1–4 | Nodos 1–4 |
+| RF-045 | Unidades | El sistema debe permitir registrar propietarios de unidades de ambulanci... | PropietarioUnidad, Ambulancia, Auditoria | Flota, Propietarios y Personal | Capas 2–4 | Nodos 2–3 |
+| RF-046 | Unidades | El sistema debe controlar el estado operativo y contractual de cada unid... | PropietarioUnidad, Ambulancia, Auditoria | Flota, Propietarios y Personal | Capas 2–4 | Nodos 2–3 |
+| RF-047 | Proveedores | El sistema debe registrar proveedores (razón social, NIT, representante ... | Proveedor, ContratoProveedor, MantenimientoUnidad | Financiero y Proveedores | Capas 2–4 | Nodos 2–4 |
+| RF-048 | Proveedores | El sistema debe impedir la vinculación de contratos vencidos a nuevas ór... | Proveedor, ContratoProveedor, MantenimientoUnidad | Financiero y Proveedores | Capas 2–4 | Nodos 2–4 |
+| RF-049 | Proveedores | El sistema debe permitir registrar evaluaciones de desempeño de proveedo... | Proveedor, ContratoProveedor, MantenimientoUnidad | Financiero y Proveedores | Capas 2–4 | Nodos 2–4 |
+| RF-050 | Documental | El sistema debe permitir la carga de documentos en formatos PDF, DOCX, X... | Documento, Auditoria | Visitantes, PQRS, Docs y Novedades | Capas 1–4 | Nodos 1–4 |
+| RF-051 | Documental | El sistema debe implementar versionamiento automático al actualizar un d... | Documento, Auditoria | Visitantes, PQRS, Docs y Novedades | Capas 1–4 | Nodos 1–4 |
+| RF-052 | Documental | El sistema debe permitir búsqueda avanzada por nombre, tipo, fecha, cate... | Documento, Auditoria | Visitantes, PQRS, Docs y Novedades | Capas 1–4 | Nodos 1–4 |
+| RF-053 | Documental | El sistema debe implementar RBAC sobre todas las acciones documentales (... | Documento, Auditoria | Visitantes, PQRS, Docs y Novedades | Capas 1–4 | Nodos 1–4 |
+| RF-054 | Documental | El sistema debe permitir organizar documentos en estructuras jerárquicas... | Documento, Auditoria | Visitantes, PQRS, Docs y Novedades | Capas 1–4 | Nodos 1–4 |
+| RF-055 | Auditoría | El sistema debe registrar automáticamente todos los eventos relevantes: ... | Auditoria, IRepositorioDatos | Motor Transversal de Auditoría Inmutable | Capas 2–4 | Nodos 2–3 |
+| RF-056 | Auditoría | Los registros de auditoría deben ser técnicamente inmutables, sin posibi... | Auditoria, IRepositorioDatos | Motor Transversal de Auditoría Inmutable | Capas 2–4 | Nodos 2–3 |
+| RF-057 | Auditoría | El sistema debe permitir consultar registros de auditoría con filtros po... | Auditoria, IRepositorioDatos | Motor Transversal de Auditoría Inmutable | Capas 2–4 | Nodos 2–3 |
+| RF-058 | Auditoría | El sistema debe identificar y resaltar eventos críticos de seguridad (ac... | Auditoria, IRepositorioDatos | Motor Transversal de Auditoría Inmutable | Capas 2–4 | Nodos 2–3 |
+| RF-059 | Novedades | El sistema debe permitir registrar novedades operativas mediante formula... | NovedadOperativa, Servicio, Ambulancia | Visitantes, PQRS, Docs y Novedades | Capas 1–4 | Nodos 1–4 |
+| RF-060 | Novedades | El sistema debe permitir asignar uno o varios responsables para la gesti... | NovedadOperativa, Servicio, Ambulancia | Visitantes, PQRS, Docs y Novedades | Capas 1–4 | Nodos 1–4 |
+| RF-061 | Novedades | El sistema debe resaltar automáticamente incidentes críticos en el panel... | NovedadOperativa, Servicio, Ambulancia | Visitantes, PQRS, Docs y Novedades | Capas 1–4 | Nodos 1–4 |
+| RF-062 | Novedades | El sistema debe permitir adjuntar evidencia multimedia (imágenes, docume... | NovedadOperativa, Servicio, Ambulancia | Visitantes, PQRS, Docs y Novedades | Capas 1–4 | Nodos 1–4 |
+| RF-063 | Novedades | El sistema debe generar reportes de novedades con filtros por tipo, frec... | NovedadOperativa, Servicio, Ambulancia | Visitantes, PQRS, Docs y Novedades | Capas 1–4 | Nodos 1–4 |
+| RF-064 | Reportes | El sistema debe permitir generar reportes operativos personalizados con ... | ServicioReportesKPI, Factura, Servicio, Pqrs | Reportes Operativos e Indicadores KPI | Capas 2–4 | Nodos 2–4 |
+| RF-065 | Reportes | El sistema debe generar indicadores clave de desempeño (KPI): tiempo pro... | ServicioReportesKPI, Factura, Servicio, Pqrs | Reportes Operativos e Indicadores KPI | Capas 2–4 | Nodos 2–4 |

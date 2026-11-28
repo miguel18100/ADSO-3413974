@@ -1,153 +1,24 @@
-<mxfile host="app.diagrams.net">
-  <diagram id="A5component" name="A5 Component View">
-    <mxGraphModel dx="2115" dy="937" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1000" math="0" shadow="0">
-      <root>
-        <mxCell id="0" />
-        <mxCell id="1" parent="0" />
-        <mxCell id="presentation" parent="1" style="swimlane;startSize=30;horizontal=1;rounded=1;whiteSpace=wrap;html=1;fontStyle=1;fillColor=#dae8fc;strokeColor=#6c8ebf;swimlaneFillColor=none;" value="Presentación" vertex="1">
-          <mxGeometry height="130" width="300" x="40" y="40" as="geometry" />
-        </mxCell>
-        <mxCell id="application" parent="1" style="swimlane;startSize=30;horizontal=1;rounded=1;whiteSpace=wrap;html=1;fontStyle=1;fillColor=#d5e8d4;strokeColor=#82b366;swimlaneFillColor=none;" value="Aplicación" vertex="1">
-          <mxGeometry height="130" width="500" x="470" y="40" as="geometry" />
-        </mxCell>
-        <mxCell id="domain" parent="1" style="swimlane;startSize=30;horizontal=1;rounded=1;whiteSpace=wrap;html=1;fontStyle=1;fillColor=#fff2cc;strokeColor=#d6b656;swimlaneFillColor=none;" value="Componentes de Dominio" vertex="1">
-          <mxGeometry height="170" width="1480" x="40" y="230" as="geometry" />
-        </mxCell>
-        <mxCell id="contracts" parent="1" style="swimlane;startSize=30;horizontal=1;rounded=1;whiteSpace=wrap;html=1;fontStyle=1;fillColor=#f5f5f5;strokeColor=#666666;swimlaneFillColor=none;" value="Contratos de interfaz" vertex="1">
-          <mxGeometry height="230" width="1480" x="40" y="430" as="geometry" />
-        </mxCell>
-        <mxCell id="infra" parent="1" style="swimlane;startSize=30;horizontal=1;rounded=1;whiteSpace=wrap;html=1;fontStyle=1;fillColor=#f8cecc;strokeColor=#b85450;swimlaneFillColor=none;" value="Infraestructura" vertex="1">
-          <mxGeometry height="220" width="540" x="380" y="690" as="geometry" />
-        </mxCell>
-        <mxCell id="webui" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#4d4d4d;fontSize=13;" value="Interfaz Web (UI)" vertex="1">
-          <mxGeometry height="55" width="200" x="90" y="90" as="geometry" />
-        </mxCell>
-        <mxCell id="controller" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#4d4d4d;fontSize=13;" value="Controlador de Aplicación" vertex="1">
-          <mxGeometry height="55" width="150" x="520" y="90" as="geometry" />
-        </mxCell>
-        <mxCell id="facade" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#4d4d4d;fontSize=13;" value="GestionServicioFacade" vertex="1">
-          <mxGeometry height="55" width="150" x="770" y="90" as="geometry" />
-        </mxCell>
-        <mxCell id="patient" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#4d4d4d;fontSize=13;" value="Gestión de Pacientes" vertex="1">
-          <mxGeometry height="60" width="170" x="210" y="290" as="geometry" />
-        </mxCell>
-        <mxCell id="service" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#4d4d4d;fontSize=13;" value="Gestión de Servicios" vertex="1">
-          <mxGeometry height="60" width="170" x="460" y="290" as="geometry" />
-        </mxCell>
-        <mxCell id="closure" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#4d4d4d;fontSize=13;" value="Gestión de Cierre" vertex="1">
-          <mxGeometry height="60" width="170" x="660" y="290" as="geometry" />
-        </mxCell>
-        <mxCell id="userrole" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#4d4d4d;fontSize=13;" value="Gestión de Usuarios y Roles" vertex="1">
-          <mxGeometry height="60" width="170" x="860" y="290" as="geometry" />
-        </mxCell>
-        <mxCell id="assign" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#4d4d4d;fontSize=13;" value="Gestión de Asignaciones" vertex="1">
-          <mxGeometry height="60" width="170" x="1060" y="290" as="geometry" />
-        </mxCell>
-        <mxCell id="strategy" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#4d4d4d;fontSize=13;" value="Estrategia de Asignación" vertex="1">
-          <mxGeometry height="60" width="170" x="1310" y="290" as="geometry" />
-        </mxCell>
-        <mxCell id="iw" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#4d4d4d;fontSize=12;" value="IServiceWorkflow" vertex="1">
-          <mxGeometry height="44" width="130" x="70" y="480" as="geometry" />
-        </mxCell>
-        <mxCell id="ip" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#4d4d4d;fontSize=12;" value="IPatientManagement" vertex="1">
-          <mxGeometry height="44" width="130" x="230" y="480" as="geometry" />
-        </mxCell>
-        <mxCell id="isc" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#4d4d4d;fontSize=12;" value="IServiceClosure" vertex="1">
-          <mxGeometry height="44" width="130" x="680" y="480" as="geometry" />
-        </mxCell>
-        <mxCell id="iu" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#4d4d4d;fontSize=12;" value="IUserManagement" vertex="1">
-          <mxGeometry height="44" width="130" x="880" y="480" as="geometry" />
-        </mxCell>
-        <mxCell id="ia" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#4d4d4d;fontSize=12;" value="IAssignment" vertex="1">
-          <mxGeometry height="44" width="130" x="1080" y="480" as="geometry" />
-        </mxCell>
-        <mxCell id="idp" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#4d4d4d;fontSize=13;" value="IDataPersistence" vertex="1">
-          <mxGeometry height="40" width="900" x="200" y="580" as="geometry" />
-        </mxCell>
-        <mxCell id="repo" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#4d4d4d;fontSize=13;" value="Repositorio / Persistencia" vertex="1">
-          <mxGeometry height="60" width="300" x="500" y="740" as="geometry" />
-        </mxCell>
-        <mxCell id="db" parent="1" style="shape=cylinder3;boundedLbl=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#4d4d4d;fontSize=13;" value="Base de Datos Relacional" vertex="1">
-          <mxGeometry height="60" width="300" x="500" y="830" as="geometry" />
-        </mxCell>
-        <mxCell id="note" parent="1" style="shape=note;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" value="Diseño propuesto. Los contratos representan interfaces conceptuales; implementación, integración y validación permanecen pendientes." vertex="1">
-          <mxGeometry height="100" width="360" x="1000" y="740" as="geometry" />
-        </mxCell>
-        <mxCell id="e1" edge="1" parent="1" source="webui" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;labelBackgroundColor=#ffffff;endArrow=block;endFill=1;strokeWidth=1.5;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" target="controller" value="solicitudes">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="e2" edge="1" parent="1" source="controller" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;labelBackgroundColor=#ffffff;endArrow=block;endFill=1;strokeWidth=1.5;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" target="facade" value="coordina">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="e3" edge="1" parent="1" source="facade" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;labelBackgroundColor=#ffffff;endArrow=block;endFill=1;strokeWidth=1.5;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="service" value="">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="e4" edge="1" parent="1" source="facade" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;labelBackgroundColor=#ffffff;endArrow=block;endFill=1;strokeWidth=1.5;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="closure" value="">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="e5" edge="1" parent="1" source="facade" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;labelBackgroundColor=#ffffff;endArrow=block;endFill=1;strokeWidth=1.5;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="userrole" value="">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="e6" edge="1" parent="1" source="facade" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;labelBackgroundColor=#ffffff;endArrow=block;endFill=1;strokeWidth=1.5;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="assign" value="">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="e7" edge="1" parent="1" source="service" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;labelBackgroundColor=#ffffff;endArrow=block;endFill=1;strokeWidth=1.5;exitX=0;exitY=0.5;entryX=1;entryY=0.5;" target="patient" value="consulta">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="e8" edge="1" parent="1" source="assign" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;labelBackgroundColor=#ffffff;endArrow=block;endFill=1;strokeWidth=1.5;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" target="strategy" value="delegación">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="e9" edge="1" parent="1" source="repo" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;labelBackgroundColor=#ffffff;endArrow=block;endFill=1;strokeWidth=1.5;exitX=0.5;exitY=1;entryX=0.5;entryY=0;entryDx=0;entryDy=10;" target="db" value="">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="persist0" edge="1" parent="1" source="patient" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;labelBackgroundColor=#ffffff;dashed=1;endArrow=open;exitX=0.058823529411764705;exitY=1;entryX=0.0222;entryY=0;" target="idp" value="">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="persist1" edge="1" parent="1" source="service" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;labelBackgroundColor=#ffffff;dashed=1;endArrow=open;exitX=0.5;exitY=1;entryX=0.3833;entryY=0;" target="idp" value="">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="persist2" edge="1" parent="1" source="closure" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;labelBackgroundColor=#ffffff;dashed=1;endArrow=open;exitX=0.058823529411764705;exitY=1;entryX=0.5222;entryY=0;" target="idp" value="">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="persist3" edge="1" parent="1" source="userrole" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;labelBackgroundColor=#ffffff;dashed=1;endArrow=open;exitX=0.058823529411764705;exitY=1;entryX=0.7444;entryY=0;" target="idp" value="">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="persist4" edge="1" parent="1" source="assign" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;labelBackgroundColor=#ffffff;dashed=1;endArrow=open;exitX=0.058823529411764705;exitY=1;entryX=0.9667;entryY=0;" target="idp" value="">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="contract0" edge="1" parent="1" source="patient" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;labelBackgroundColor=#ffffff;dashed=1;endArrow=open;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="ip" value="">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="contract1" edge="1" parent="1" source="closure" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;labelBackgroundColor=#ffffff;dashed=1;endArrow=open;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="isc" value="">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="contract2" edge="1" parent="1" source="assign" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;labelBackgroundColor=#ffffff;dashed=1;endArrow=open;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="ia" value="">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="contract3" edge="1" parent="1" source="userrole" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;labelBackgroundColor=#ffffff;dashed=1;endArrow=open;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="iu" value="">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="repoContract" edge="1" parent="1" source="idp" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;labelBackgroundColor=#ffffff;dashed=1;endArrow=open;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="repo" value="">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="uiContract" edge="1" parent="1" source="webui" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;labelBackgroundColor=#ffffff;dashed=1;endArrow=open;exitX=0;exitY=0.5;entryX=0;entryY=0.3;" target="iw" value="">
-          <mxGeometry relative="1" as="geometry">
-            <Array as="points">
-              <mxPoint x="30" y="117" />
-              <mxPoint x="30" y="493" />
-            </Array>
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="ctrlContract" edge="1" parent="1" source="controller" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;labelBackgroundColor=#ffffff;dashed=1;endArrow=open;exitX=0.5;exitY=0;entryX=0;entryY=0.7;" target="iw" value="">
-          <mxGeometry relative="1" as="geometry">
-            <Array as="points">
-              <mxPoint x="595" y="15" />
-              <mxPoint x="15" y="15" />
-              <mxPoint x="15" y="511" />
-            </Array>
-          </mxGeometry>
-        </mxCell>
-      </root>
-    </mxGraphModel>
-  </diagram>
-</mxfile>
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net" version="24.7.17" type="device"><diagram id="A5-SIGMAVITAL" name="A5 Vista de Componentes"><mxGraphModel dx="1600" dy="1000" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1340" pageHeight="800" math="0" shadow="0"><root><mxCell id="0"/><mxCell id="1" parent="0"/>
+<mxCell id="a5_t" value="SIGMAVITAL – A5 Diagrama de Componentes Modulares y Contratos de Interfaz (100 % SRS)" style="text;html=1;fontSize=16;fontStyle=1;align=left;fontColor=#0f172a;" parent="1" vertex="1"><mxGeometry x="50" y="10" width="1100" height="28" as="geometry"/></mxCell>
+<mxCell id="c_ui" value="&lt;div style=&quot;font-family:Helvetica;color:#0f172a;padding:6px 10px 6px 26px;text-align:center;&quot;&gt;&lt;div style=&quot;font-weight:700;font-size:11.5px;&quot;&gt;«component» Frontend SPA React + Echo WS&lt;/div&gt;&lt;div style=&quot;font-size:10.5px;color:#334155;margin-top:6px;&quot;&gt;Tablero tiempo real, P-01..P-03 y módulos admin&lt;/div&gt;&lt;/div&gt;" style="shape=component;align=center;verticalAlign=middle;html=1;fillColor=#dbeafe;strokeColor=#2563eb;strokeWidth=1.8;whiteSpace=wrap;" parent="1" vertex="1"><mxGeometry x="50" y="65" width="325" height="112" as="geometry"/></mxCell>
+<mxCell id="c_sec" value="&lt;div style=&quot;font-family:Helvetica;color:#0f172a;padding:6px 10px 6px 26px;text-align:center;&quot;&gt;&lt;div style=&quot;font-weight:700;font-size:11.5px;&quot;&gt;«component» Seguridad, Usuarios y RBAC&lt;/div&gt;&lt;div style=&quot;font-size:10.5px;color:#334155;margin-top:6px;&quot;&gt;Provee IAutenticacionRBAC (RF-001..007)&lt;/div&gt;&lt;/div&gt;" style="shape=component;align=center;verticalAlign=middle;html=1;fillColor=#ffedd5;strokeColor=#ea580c;strokeWidth=1.8;whiteSpace=wrap;" parent="1" vertex="1"><mxGeometry x="505" y="65" width="330" height="112" as="geometry"/></mxCell>
+<mxCell id="c_emg" value="&lt;div style=&quot;font-family:Helvetica;color:#0f172a;padding:6px 10px 6px 26px;text-align:center;&quot;&gt;&lt;div style=&quot;font-weight:700;font-size:11.5px;&quot;&gt;«component» Emergencias, Pacientes y Monitoreo&lt;/div&gt;&lt;div style=&quot;font-size:10.5px;color:#334155;margin-top:6px;&quot;&gt;Provee IDespachoEmergencias (RF-018..029)&lt;/div&gt;&lt;/div&gt;" style="shape=component;align=center;verticalAlign=middle;html=1;fillColor=#eff6ff;strokeColor=#2563eb;strokeWidth=1.8;whiteSpace=wrap;" parent="1" vertex="1"><mxGeometry x="505" y="245" width="330" height="122" as="geometry"/></mxCell>
+<mxCell id="c_flt" value="&lt;div style=&quot;font-family:Helvetica;color:#0f172a;padding:6px 10px 6px 26px;text-align:center;&quot;&gt;&lt;div style=&quot;font-weight:700;font-size:11.5px;&quot;&gt;«component» Flota, Propietarios y Personal&lt;/div&gt;&lt;div style=&quot;font-size:10.5px;color:#334155;margin-top:6px;&quot;&gt;Provee IGestionFlotaTalento (RF-008..017, 045..046)&lt;/div&gt;&lt;/div&gt;" style="shape=component;align=center;verticalAlign=middle;html=1;fillColor=#f0fdf4;strokeColor=#16a34a;strokeWidth=1.8;whiteSpace=wrap;" parent="1" vertex="1"><mxGeometry x="955" y="245" width="330" height="122" as="geometry"/></mxCell>
+<mxCell id="c_fin" value="&lt;div style=&quot;font-family:Helvetica;color:#0f172a;padding:6px 10px 6px 26px;text-align:center;&quot;&gt;&lt;div style=&quot;font-weight:700;font-size:11.5px;&quot;&gt;«component» Financiero y Proveedores&lt;/div&gt;&lt;div style=&quot;font-size:10.5px;color:#334155;margin-top:6px;&quot;&gt;Provee IFacturacionInmutable (RF-030..035, 047..049)&lt;/div&gt;&lt;/div&gt;" style="shape=component;align=center;verticalAlign=middle;html=1;fillColor=#faf5ff;strokeColor=#9333ea;strokeWidth=1.8;whiteSpace=wrap;" parent="1" vertex="1"><mxGeometry x="50" y="445" width="325" height="120" as="geometry"/></mxCell>
+<mxCell id="c_inst" value="&lt;div style=&quot;font-family:Helvetica;color:#0f172a;padding:6px 10px 6px 26px;text-align:center;&quot;&gt;&lt;div style=&quot;font-weight:700;font-size:11.5px;&quot;&gt;«component» Visitantes, PQRS, Docs y Novedades&lt;/div&gt;&lt;div style=&quot;font-size:10.5px;color:#334155;margin-top:6px;&quot;&gt;Provee IGestionInstitucional (RF-036..044, 050..054, 059..063)&lt;/div&gt;&lt;/div&gt;" style="shape=component;align=center;verticalAlign=middle;html=1;fillColor=#f8fafc;strokeColor=#475569;strokeWidth=1.8;whiteSpace=wrap;" parent="1" vertex="1"><mxGeometry x="505" y="445" width="330" height="120" as="geometry"/></mxCell>
+<mxCell id="c_rep" value="&lt;div style=&quot;font-family:Helvetica;color:#0f172a;padding:6px 10px 6px 26px;text-align:center;&quot;&gt;&lt;div style=&quot;font-weight:700;font-size:11.5px;&quot;&gt;«component» Reportes Operativos e Indicadores KPI&lt;/div&gt;&lt;div style=&quot;font-size:10.5px;color:#334155;margin-top:6px;&quot;&gt;Provee IGeneradorReportes (RF-064..065)&lt;/div&gt;&lt;/div&gt;" style="shape=component;align=center;verticalAlign=middle;html=1;fillColor=#f1f5f9;strokeColor=#475569;strokeWidth=1.8;whiteSpace=wrap;" parent="1" vertex="1"><mxGeometry x="955" y="445" width="330" height="120" as="geometry"/></mxCell>
+<mxCell id="c_aud" value="&lt;div style=&quot;font-family:Helvetica;color:#0f172a;padding:6px 10px 6px 26px;text-align:center;&quot;&gt;&lt;div style=&quot;font-weight:700;font-size:11.5px;&quot;&gt;«component» Motor Transversal de Auditoría Inmutable&lt;/div&gt;&lt;div style=&quot;font-size:10.5px;color:#334155;margin-top:6px;&quot;&gt;Provee IAuditoriaInmutable (RF-055..058 · RN-010 append-only 5 años)&lt;/div&gt;&lt;/div&gt;" style="shape=component;align=center;verticalAlign=middle;html=1;fillColor=#fef2f2;strokeColor=#dc2626;strokeWidth=1.8;whiteSpace=wrap;" parent="1" vertex="1"><mxGeometry x="50" y="650" width="500" height="108" as="geometry"/></mxCell>
+<mxCell id="c_db" value="&lt;div style=&quot;font-family:Helvetica;color:#0f172a;padding:6px 10px 6px 26px;text-align:center;&quot;&gt;&lt;div style=&quot;font-weight:700;font-size:11.5px;&quot;&gt;«component» Capa de Persistencia MySQL 8 / InnoDB + Repositorio Docs&lt;/div&gt;&lt;div style=&quot;font-size:10.5px;color:#334155;margin-top:6px;&quot;&gt;Provee IRepositorioDatos (25 tablas 3FN · RNF-021/029)&lt;/div&gt;&lt;/div&gt;" style="shape=component;align=center;verticalAlign=middle;html=1;fillColor=#e2e8f0;strokeColor=#1e293b;strokeWidth=1.8;whiteSpace=wrap;" parent="1" vertex="1"><mxGeometry x="755" y="650" width="530" height="108" as="geometry"/></mxCell>
+<mxCell id="k1" value="«usa» IAutenticacionRBAC" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;endArrow=open;endFill=0;strokeColor=#334155;strokeWidth=1.5;fontSize=10;fontStyle=1;fontColor=#0f172a;labelBackgroundColor=#ffffff;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" edge="1" source="c_ui" target="c_sec"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
+<mxCell id="k2" value="«usa» IDespachoEmergencias" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;endArrow=open;endFill=0;strokeColor=#334155;strokeWidth=1.5;fontSize=10;fontStyle=1;fontColor=#0f172a;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0;entryY=0.5;" parent="1" edge="1" source="c_ui" target="c_emg"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="212" y="306"/></Array></mxGeometry></mxCell>
+<mxCell id="k3" value="«usa» IGestionFlotaTalento" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;endArrow=open;endFill=0;strokeColor=#334155;strokeWidth=1.5;fontSize=10;fontStyle=1;fontColor=#0f172a;labelBackgroundColor=#ffffff;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" edge="1" source="c_emg" target="c_flt"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
+<mxCell id="k4" value="«usa» IFacturacionInmutable" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;endArrow=open;endFill=0;strokeColor=#334155;strokeWidth=1.5;fontSize=10;fontStyle=1;fontColor=#0f172a;labelBackgroundColor=#ffffff;exitX=0.25;exitY=1;entryX=0.5;entryY=0;" parent="1" edge="1" source="c_emg" target="c_fin"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="587" y="405"/><mxPoint x="212" y="405"/></Array></mxGeometry></mxCell>
+<mxCell id="k5" value="«usa» IGestionInstitucional" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;endArrow=open;endFill=0;strokeColor=#334155;strokeWidth=1.5;fontSize=10;fontStyle=1;fontColor=#0f172a;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" parent="1" edge="1" source="c_emg" target="c_inst"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
+<mxCell id="k6" value="«usa» IRepositorioDatos" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;endArrow=open;endFill=0;strokeColor=#334155;strokeWidth=1.5;fontSize=10;fontStyle=1;fontColor=#0f172a;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.7;entryY=0;" parent="1" edge="1" source="c_rep" target="c_db"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
+<mxCell id="k7" value="«alimenta» IGeneradorReportes" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;endArrow=open;endFill=0;strokeColor=#334155;strokeWidth=1.5;fontSize=10;fontStyle=1;fontColor=#0f172a;labelBackgroundColor=#ffffff;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" edge="1" source="c_inst" target="c_rep"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
+<mxCell id="k8" value="«reg.» IAuditoriaInmutable" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;endArrow=open;endFill=0;strokeColor=#334155;strokeWidth=1.5;fontSize=10;fontStyle=1;fontColor=#0f172a;labelBackgroundColor=#ffffff;exitX=0.35;exitY=1;entryX=0.25;entryY=0;" parent="1" edge="1" source="c_fin" target="c_aud"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
+<mxCell id="k9" value="«reg.» IAuditoriaInmutable" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;endArrow=open;endFill=0;strokeColor=#334155;strokeWidth=1.5;fontSize=10;fontStyle=1;fontColor=#0f172a;labelBackgroundColor=#ffffff;exitX=0.3;exitY=1;entryX=0.75;entryY=0;" parent="1" edge="1" source="c_inst" target="c_aud"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="604" y="608"/><mxPoint x="425" y="608"/></Array></mxGeometry></mxCell>
+<mxCell id="k10" value="«usa» IRepositorioDatos" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;endArrow=open;endFill=0;strokeColor=#334155;strokeWidth=1.5;fontSize=10;fontStyle=1;fontColor=#0f172a;labelBackgroundColor=#ffffff;exitX=0.8;exitY=1;entryX=0.25;entryY=0;" parent="1" edge="1" source="c_fin" target="c_db"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="310" y="620"/><mxPoint x="887" y="620"/></Array></mxGeometry></mxCell>
+<mxCell id="k11" value="«persiste» IRepositorioDatos" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;endArrow=open;endFill=0;strokeColor=#334155;strokeWidth=1.5;fontSize=10;fontStyle=1;fontColor=#0f172a;labelBackgroundColor=#ffffff;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" edge="1" source="c_aud" target="c_db"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
+</root></mxGraphModel></diagram></mxfile>

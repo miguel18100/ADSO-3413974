@@ -1,84 +1,13 @@
-﻿# A2 - Detalle de clases, atributos y operaciones (Parte 1)
+﻿# A2 – Detalle de Clases y Operaciones (Parte 1: Núcleo Acceso, Flota y Solicitudes)
 
-## Clase: Usuario
+## \`Rol\` y \`Usuario\` (\`RF-001..RF-007\`)
+- **\`Rol\`:** \`-idRol: int\`, \`-nombre: string\`, \`-descripcion: string\` | \`+validarPermiso(modulo): bool\`, \`+listarPermisos(): array\`.
+- **\`Usuario\`:** \`-idUsuario: int\`, \`-idRol: int\`, \`-nombre: string\`, \`-correo: string\`, \`-passwordHash: string\`, \`-intentosFallidos: int\` | \`+autenticar(clave): bool\`, \`+bloquearPorIntentos(): void\`, \`+cambiarClave(nueva): bool\`.
 
-**Responsabilidad:** Gestionar la identidad básica y estado de una cuenta del sistema.
+## \`PropietarioUnidad\`, \`Ambulancia\` (\`«abstract»\`), \`AmbulanciaTAB\`, \`AmbulanciaTAM\` (\`RF-008..013, 045..046\`)
+- **\`Ambulancia\`:** \`#idAmbulancia: int\`, \`#numeroUnidad: string\`, \`#placa: string\`, \`#tipo: string\`, \`#numHabilitacionReps: string\`, \`#vigenciaSoat: date\`, \`#estadoOperativo: string\` | \`+tieneDocsVigentes(): bool\`, \`+cambiarEstado(estado): void\`.
+- **\`AmbulanciaTAB\` / \`AmbulanciaTAM\`:** especializan \`Ambulancia\` validando dotación mínima Res. 3100 (\`+validarDotacionTAB()\`, \`+validarDotacionTAM()\`).
 
-### Atributos
-- -idUsuario: int
-- -nombre: String
-- -correo: String
-- -hashContrasena: String
-- -activo: Boolean
-
-### Operaciones
-- +autenticar(correo: String, contrasena: String): Boolean
-- +actualizarDatos(nombre: String, correo: String): void
-- +desactivar(): void
-
-## Clase: Rol
-
-**Responsabilidad:** Representar un rol de acceso del sistema.
-
-### Atributos
-- -idRol: int
-- -nombre: String
-- -descripcion: String
-
-### Operaciones
-- +asignarA(usuario: Usuario): void
-- +revocarA(usuario: Usuario): void
-- +consultarPermisos(): List<String>
-
-## Clase: Ambulancia
-
-**Responsabilidad:** Representar una ambulancia registrada y sus condiciones operativas.
-
-### Atributos
-- -idAmbulancia: int
-- -placa: String
-- -tipo: String
-- -estadoOperativo: String
-- -ubicacion: String
-
-### Operaciones
-- +actualizarEstado(estado: String): void
-- +consultarDisponibilidad(): Boolean
-- +actualizarUbicacion(ubicacion: String): void
-
-## Clase: Personal
-
-**Responsabilidad:** Representar al personal operativo habilitado para participar en servicios.
-
-### Atributos
-- -idPersonal: int
-- -nombre: String
-- -documento: String
-- -cargo: String
-- -estado: String
-
-### Operaciones
-- +actualizarEstado(estado: String): void
-- +consultarDisponibilidad(): Boolean
-- +validarParticipacion(): Boolean
-
-## Clase: Solicitud
-
-**Responsabilidad:** Registrar y administrar la entrada de solicitudes de transporte asistencial.
-
-### Atributos
-- -idSolicitud: int
-- -fechaHora: DateTime
-- -descripcion: String
-- -prioridad: String
-- -estado: String
-
-### Operaciones
-- +registrar(): void
-- +actualizarEstado(estado: String): void
-- +consultarDetalle(): String
-
-## Estado
-
-Este documento detalla las clases Usuario, Rol, Ambulancia, Personal y Solicitud, con sus atributos, tipos de datos, visibilidad y operaciones. El diseño fue revisado a nivel UML y mantiene su correspondencia con los requisitos seleccionados. La validación definitiva de las reglas de negocio corresponde a etapas posteriores del desarrollo.
-
+## \`Personal\` y \`Solicitud\` (\`RF-014..017, RF-021\`)
+- **\`Personal\`:** \`-idPersonal: int\`, \`-documento: string\`, \`-tarjetaProfesional: string\`, \`-vigenciaCertificacion: date\`, \`-estadoDisponibilidad: string\` | \`+estaHabilitado(): bool\`, \`+validarJornadaMax(): bool\`.
+- **\`Solicitud\`:** \`-idSolicitud: int\`, \`-fechaHoraSolicitud: datetime\`, \`-prioridadClinica: string\`, \`-direccionEvento: string\`, \`-estado: string\` | \`+validarTriageClinico(): bool\`, \`+originarServicio(): Servicio\`.

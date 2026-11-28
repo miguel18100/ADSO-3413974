@@ -1,141 +1,125 @@
-# A1 - Requisitos seleccionados y decisión tecnológica
+# A1 – Alcance Arquitectónico, Requisitos Priorizados y Decisiones Tecnológicas – SIGMAVITAL
 
-**Proyecto:** Sistema Gestor de Ambulancias (SGA) - SIGMAVITAL  
-**Evidencia:** G2-P1 Arquitectura  
-**Criterio:** A1  
-**Estado:** Propuesta de diseño basada en la línea base de G1-P1; pendiente de validación.
-
-## 1. Propósito
-
-Este documento identifica requisitos funcionales y no funcionales relevantes para el diseño arquitectónico del Sistema Gestor de Ambulancias (SGA), conservando sus identificadores originales de la línea base de análisis G1-P1. También presenta una propuesta tecnológica preliminar para orientar la arquitectura del sistema.
-
-## 2. Actores, alcance y restricciones del diseño
-
-La línea base de análisis G1-P1 identifica cinco perfiles concretos de usuario. Se conservan sus nombres para que las decisiones de autorización y las responsabilidades funcionales puedan rastrearse hasta el análisis:
-
-| Actor | Participación considerada en el diseño |
-|---|---|
-| Administrador | Ejecuta las operaciones administrativas que le habiliten sus permisos. |
-| Coordinador operativo | Participa en la coordinación de solicitudes, recursos, asignaciones y seguimiento operativo. |
-| Paramédico TAB | Participa en la operación del servicio prehospitalario de acuerdo con las funciones autorizadas. |
-| Paramédico TAM | Participa en la operación del servicio y registra las intervenciones prehospitalarias previstas en RF-30. |
-| Analista/directivo | Consulta información operativa para seguimiento y análisis, conforme a sus permisos. |
-
-Los perfiles describen actores del análisis, no una matriz final de permisos implementada. La autorización detallada deberá validarse con las reglas de acceso del sistema.
-
-**Alcance seleccionado:** A1 contiene 12 requisitos funcionales y 10 requisitos no funcionales seleccionados para orientar el diseño de P1. Los 12 RF representan un subconjunto de los 31 RF de la línea base G1-P1; por tanto, la trazabilidad 12/12 de A7 se refiere exclusivamente al alcance seleccionado de esta evidencia y no demuestra cobertura del 100 % de todos los requisitos del sistema.
-
-**Restricciones y límites:**
-- RF-29 se limita a datos básicos del paciente asociados a un servicio prehospitalario.
-- RF-30 contempla el registro de intervenciones prehospitalarias del Paramédico TAM; no representa una historia clínica electrónica completa.
-- La arquitectura y las tecnologías descritas son propuestas de diseño. No se afirma que estén desplegadas, implementadas o validadas en producción.
-- Los controles de acceso, privacidad, auditoría, rendimiento, respaldo y recuperación deben verificarse durante la implementación y las pruebas.
-
-## 3. Requisitos funcionales seleccionados
-
-| ID | Requisito | Justificación arquitectónica |
-|---|---|---|
-| RF-01 | El sistema debe permitir el inicio de sesión de los usuarios mediante mecanismos de autenticación definidos. | Define el componente de autenticación y control de acceso. |
-| RF-03 | El sistema debe permitir gestionar usuarios, incluyendo consulta, creación, actualización y eliminación según permisos. | Requiere gestión de usuarios, roles y permisos. |
-| RF-04 | El sistema debe permitir consultar un tablero operativo con el estado actual de solicitudes, servicios y recursos, de acuerdo con el rol autorizado. | Requiere consolidación de datos operativos y presentación diferenciada por rol. |
-| RF-05 | El sistema debe permitir registrar ambulancias con la información requerida para su identificación y gestión. | Define la gestión de ambulancias como responsabilidad de un módulo. |
-| RF-09 | El sistema debe permitir registrar personal operativo relacionado con la prestación de servicios de transporte asistencial. | Requiere gestión de personal operativo. |
-| RF-12 | El sistema debe permitir registrar solicitudes de servicios de transporte asistencial con la información requerida. | Define el proceso de entrada y registro de solicitudes. |
-| RF-16 | El sistema debe permitir consultar los recursos operativos disponibles para la asignación de servicios. | Requiere consulta coordinada de disponibilidad de recursos. |
-| RF-17 | El sistema debe permitir asignar una ambulancia a una solicitud de servicio, de acuerdo con los criterios operativos definidos. | Define la lógica central de asignación de recursos. |
-| RF-20 | El sistema debe permitir actualizar el estado de un servicio durante su ciclo operativo. | Requiere control del ciclo de vida del servicio. |
-| RF-29 | El sistema debe permitir registrar y consultar los datos básicos del paciente asociados a un servicio prehospitalario, limitados a la información necesaria para la gestión operativa y la atención inicial. | Requiere manejo restringido de datos personales del paciente. |
-| RF-30 | El sistema debe permitir al Paramédico TAM registrar las intervenciones prehospitalarias realizadas durante un servicio, sin constituir una historia clínica electrónica completa. | Define un módulo de registro de intervenciones sujeto a permisos. |
-| RF-31 | El sistema debe permitir cerrar un servicio finalizado registrando el resumen de atención, condición de salida, destino asistencial, tiempos y observaciones autorizadas. | Define el proceso de cierre y consolidación del servicio. |
-
-## 4. Requisitos no funcionales seleccionados
-
-| ID | Requisito | Categoría | Implicación arquitectónica |
-|---|---|---|---|
-| RNF-03 | El sistema debería controlar el acceso a las funcionalidades de acuerdo con los roles y permisos definidos. | Seguridad | Control de acceso centralizado y autorización por rol. |
-| RNF-04 | El sistema debería proteger la información almacenada frente a accesos no autorizados. | Seguridad y privacidad | Protección de datos, validación de accesos y restricciones. |
-| RNF-05 | El sistema debería preservar la integridad de la información relacionada con solicitudes, asignaciones, ambulancias y servicios. | Integridad | Validaciones, restricciones y transacciones de datos. |
-| RNF-06 | El sistema debería mantener consistencia entre las solicitudes, las asignaciones de recursos y los estados de los servicios. | Consistencia | Reglas de negocio y control transaccional. |
-| RNF-08 | El sistema debería contar con mecanismos que permitan respaldar y recuperar la información, de acuerdo con la estrategia de administración de datos definida. | Confiabilidad | Estrategia de respaldo y recuperación. |
-| RNF-09 | El sistema debería facilitar el mantenimiento y la evolución de sus componentes mediante una organización modular. | Mantenibilidad | Separación de responsabilidades y módulos. |
-| RNF-11 | El sistema debería procurar tiempos de respuesta adecuados para las operaciones habituales de consulta y gestión. | Rendimiento | Optimización de consultas y operaciones. |
-| RNF-12 | El sistema debería manejar la información personal y los datos relacionados con la atención de acuerdo con las disposiciones legales aplicables. | Privacidad y cumplimiento | Minimización, protección y acceso restringido a datos. |
-| RNF-13 | El sistema debería facilitar la trazabilidad de las operaciones relevantes realizadas por usuarios autorizados. | Auditoría | Registro de eventos y seguimiento de operaciones. |
-| RNF-14 | El sistema debería utilizar mecanismos seguros de comunicación y configuración cuando sea desplegado en un entorno de producción. | Seguridad | Comunicación cifrada y configuración segura. |
-
-## 5. Propuesta tecnológica
-
-Las siguientes tecnologías constituyen una propuesta para el diseño de SIGMAVITAL. Su selección se justifica por la naturaleza web del sistema, las necesidades de modularidad, persistencia de datos y control de acceso.
-
-| Elemento | Tecnología propuesta | Justificación |
-|---|---|---|
-| Plataforma | Aplicación web | Permite el acceso desde diferentes equipos mediante navegadores compatibles. |
-| Backend | PHP con Laravel | Facilita organización modular, controladores, servicios, validaciones, autenticación y acceso a datos. |
-| Frontend | React | Permite construir interfaces reutilizables para tablero, gestión y operación. |
-| Base de datos | MySQL | Permite almacenamiento relacional, integridad referencial y transacciones. |
-| Comunicación | API REST sobre HTTPS | Facilita la comunicación entre frontend y backend y protege la comunicación en producción. |
-| Control de versiones | Git y GitHub | Facilita seguimiento de cambios, revisión de artefactos y trazabilidad del desarrollo. |
-| Modelado | UML y diagrams.net | Permite representar y mantener los artefactos de diseño. |
-
-## 6. Justificación de la selección
-
-### 6.1 Condiciones concretas del caso que justifican la plataforma
-
-La selección tecnológica responde a condiciones identificables en los requisitos y actores de SIGMAVITAL:
-
-1. **Cinco perfiles de usuario con responsabilidades diferentes:** Administrador, Coordinador operativo, Paramédico TAB, Paramédico TAM y Analista/directivo. Esto requiere autenticación centralizada y autorización en el backend; la interfaz puede presentar vistas por rol, pero no debe ser la única barrera de seguridad.
-2. **Flujo operativo con entidades relacionadas:** solicitudes, servicios, ambulancias, personal, asignaciones y cierres deben mantener estados y relaciones consistentes. Laravel y una base relacional permiten organizar reglas de negocio y aplicar transacciones, claves foráneas y restricciones.
-3. **Datos personales y de atención prehospitalaria:** RF-29 y RF-30 requieren acceso restringido, minimización de datos y protección de la comunicación y del almacenamiento; estas medidas deben implementarse y probarse, no se consideran satisfechas solo por elegir una tecnología.
-4. **Acceso desde distintos equipos de operación:** una plataforma web permite utilizar navegadores compatibles sin instalar un cliente de escritorio en cada puesto; React separa vistas y Laravel expone operaciones mediante una API.
-
-### 6.2 PHP y Laravel
-
-Laravel se propone como framework backend porque permite organizar el sistema en componentes con responsabilidades diferenciadas, manejar validaciones, rutas, autenticación y acceso a datos. Esta organización favorece el RNF-09 de mantenibilidad y permite centralizar las reglas operativas.
-
-### 6.3 React
-
-React se propone para construir una interfaz web modular, facilitando la separación de vistas como tablero operativo, solicitudes, ambulancias, personal, asignaciones y seguimiento de servicios.
-
-### 6.4 MySQL
-
-MySQL se propone como motor relacional porque permite definir claves primarias, claves foráneas, restricciones y transacciones, necesarias para preservar la integridad y consistencia de las relaciones entre solicitudes, servicios, ambulancias, personal y asignaciones.
-
-### 6.5 API REST y HTTPS
-
-La comunicación mediante API REST permite desacoplar la interfaz de usuario de la lógica de negocio. HTTPS se plantea como mecanismo de protección de la comunicación en el entorno de producción, en concordancia con RNF-14.
-
-## 7. Relación entre requisitos y tecnología
-
-| Requisito | Decisión tecnológica o arquitectónica |
-|---|---|
-| RF-01, RF-03, RNF-03 | Autenticación y autorización en backend. |
-| RF-04 | Interfaz web de tablero y API para datos consolidados. |
-| RF-05, RF-09 | Módulos de gestión de ambulancias y personal. |
-| RF-12, RF-16, RF-17 | Servicios de negocio para solicitudes, disponibilidad y asignaciones. |
-| RF-20, RF-31 | Control del ciclo de vida y cierre del servicio. |
-| RF-29, RF-30, RNF-04, RNF-12 | Acceso restringido y protección de datos personales y de atención. |
-| RNF-05, RNF-06 | Persistencia relacional, restricciones y transacciones. |
-| RNF-08 | Estrategia de copias de seguridad y recuperación. |
-| RNF-09 | Separación modular de responsabilidades. |
-| RNF-11 | Optimización de consultas y análisis de rendimiento. |
-| RNF-13 | Registro de auditoría de operaciones relevantes. |
-| RNF-14 | HTTPS y configuración segura en producción. |
-
-## 8. Limitaciones y validación
-
-Los requisitos utilizados provienen de la línea base preliminar de G1-P1. No se afirma que hayan sido validados mediante pruebas con usuarios reales.
-
-La tecnología descrita corresponde a una propuesta de diseño arquitectónico y deberá verificarse con los demás artefactos de P1, especialmente el diagrama de clases, patrones, arquitectura, componentes y despliegue.
-
-La selección tecnológica no representa una implementación funcional comprobada.
-
-## 9. Fuente
-
-Matriz de requisitos y casos de uso - G1-P1 Plan de análisis, SIGMAVITAL/SGA. Se reutilizan los identificadores originales RF y RNF, sin alterar sus definiciones.
-
-**Ruta exacta en el repositorio:** 02-training-project/01-phase/01-analysis/03-conceptual-model/04-evidence-learning/G1-P1-Plan-Analisis/05-matriz-requisitos-casos-uso/Matriz-Requisitos-Casos-Uso.md.
+**Proyecto:** SIGMAVITAL – Sistema Gestor de Ambulancias (SGA)  
+**Autor:** `miguel18100` · **Fecha:** 2026-11-28 · **Cobertura SRS:** **65 / 65 RF (100 %)** · **29 / 29 RNF (100 %)** · **18 / 18 RN (100 %)**
 
 ---
 
-**Evidencia:** G2-P1 - A1 Requisitos seleccionados y decisión tecnológica.  
-**Autoría:** Documento elaborado individualmente como artefacto de diseño, tomando como fuente la línea base de análisis del proyecto.
+## 1. Alcance arquitectónico completo (RF-001 a RF-065)
+
+La arquitectura de **SIGMAVITAL** da soporte integral a los **15 módulos funcionales del SRS**, desde el control de acceso RBAC hasta el cierre clínico REPS, facturación inmutable, trazabilidad documental y auditoría append-only:
+
+| Código | Módulo | Prioridad | Actor / Rol | Descripción funcional del SRS |
+|---|---|---|---|---|
+| RF-001 | Autenticación | Alta | Administrador | El sistema debe permitir al administrador registrar usuarios mediante un formulario que valide nombre completo, correo electrónico único, contraseña con políticas de complejidad y rol asignado; así como crear, editar, activar, desactivar y eliminar lógicamente usuarios, con trazabilidad completa de cada operación en el módulo de auditoría. |
+| RF-002 | Autenticación | Alta | Todos los usuarios | El sistema debe autenticar usuarios mediante correo y contraseña, generando un token JWT con tiempo de expiración configurable (máximo 8 horas) que controle el acceso a los módulos autorizados según el rol asignado. |
+| RF-003 | Autenticación | Alta | Sistema | El sistema debe cerrar automáticamente la sesión tras 15 minutos de inactividad y, cuando el token JWT expire durante una sesión activa, redirigir al inicio de sesión mostrando una advertencia previa para preservar información no guardada. |
+| RF-004 | Autenticación | Alta | Usuario | El sistema debe permitir la recuperación de contraseña mediante un enlace seguro enviado al correo electrónico registrado, con vigencia máxima de 30 minutos. |
+| RF-005 | Autenticación | Alta | Sistema | El sistema debe implementar control de acceso basado en roles (RBAC), restringiendo módulos, formularios, reportes y acciones según el perfil: Administrador, Coordinador, Paramédico, Conductor o Vigilante. |
+| RF-006 | Autenticación | Alta | Administrador | El sistema debe permitir al administrador asignar y modificar roles de usuario, registrando automáticamente cada cambio de privilegios en el módulo de auditoría. |
+| RF-007 | Autenticación | Alta | Sistema | El sistema debe registrar todos los intentos de autenticación fallidos y bloquear automáticamente la cuenta durante 30 minutos al superar 5 intentos consecutivos, generando alerta inmediata al administrador con posibilidad de desbloqueo manual. |
+| RF-008 | Ambulancias | Alta | Administrador | El sistema debe permitir el registro completo de ambulancias, incluyendo número de unidad, placa, tipo (TAB o TAM), marca, modelo, año, número de habilitación REPS y documentación asociada. |
+| RF-009 | Ambulancias | Alta | Coordinador / Sistema | El sistema debe permitir actualizar el estado operativo de cada ambulancia (Disponible, En servicio, En mantenimiento, Fuera de servicio), reflejando el cambio en tiempo real en el panel de monitoreo mediante WebSockets. |
+| RF-010 | Ambulancias | Alta | Coordinador / Administrador | El sistema debe permitir consultar el inventario de ambulancias con filtros por tipo, estado, sede y disponibilidad, mostrando información detallada de cada unidad. |
+| RF-011 | Ambulancias | Alta | Administrador / Sistema | El sistema debe registrar y controlar la documentación obligatoria de cada ambulancia (SOAT, revisión técnico-mecánica, habilitación REPS), generando alertas automáticas ante vencimientos próximos o ya ocurridos, e impidiendo la asignación de unidades con documentación vencida. |
+| RF-012 | Ambulancias | Alta | Administrador | El sistema debe registrar el historial de mantenimientos preventivos y correctivos de cada unidad, incluyendo fecha, tipo, proveedor, costo y estado operativo de la unidad durante el proceso. |
+| RF-013 | Ambulancias | Alta | Administrador | El sistema debe registrar y gestionar el inventario de equipos y dotación médica de cada ambulancia, diferenciando los requerimientos mínimos según tipo TAB o TAM conforme a la Resolución 3100 de 2017. |
+| RF-014 | Personal | Alta | Administrador | El sistema debe registrar el personal médico y operativo (paramédicos, conductores, auxiliares) con datos personales, tipo de formación, tarjeta profesional, certificaciones vigentes y unidad asignada. |
+| RF-015 | Personal | Alta | Coordinador | El sistema debe controlar la disponibilidad del personal en tiempo real, reflejando su estado (Disponible, En servicio, En descanso, Incapacitado) en el panel de asignación. |
+| RF-016 | Personal | Alta | Sistema | El sistema debe registrar vencimientos de certificaciones y habilitaciones del personal, alertar con anticipación suficiente e impedir la asignación a servicios activos cuando la documentación crítica haya expirado. |
+| RF-017 | Personal | Media | Administrador / Coordinador | El sistema debe permitir consultar el historial de servicios de emergencia atendidos por cada miembro del personal, y controlar jornadas laborales registrando horas trabajadas, turnos asignados y generando alertas al superar límites de horas continuas permitidas. |
+| RF-018 | Pacientes | Alta | Paramédico / Coordinador | El sistema debe registrar pacientes atendidos con datos de identificación, fecha de nacimiento, tipo de documento, contacto de familiar responsable y antecedentes médicos relevantes, garantizando la confidencialidad mediante RBAC y acceso exclusivo al personal autorizado. |
+| RF-019 | Pacientes | Alta | Paramédico | El sistema debe registrar el estado clínico inicial del paciente al momento de la atención prehospitalaria (estable, crítico, fallecido), vinculando el dato al servicio de emergencia correspondiente. |
+| RF-020 | Pacientes | Alta | Paramédico / Administrador | El sistema debe permitir consultar el historial de servicios asociados a un paciente específico, con filtros por fecha, tipo de servicio y unidad que lo atendió. |
+| RF-021 | Emergencias | Alta | Coordinador / Operador | El sistema debe permitir registrar solicitudes de servicio capturando: hora de solicitud, dirección o coordenadas del evento, tipo de emergencia, nivel de prioridad clínica (verde, amarillo, naranja, rojo) y datos del solicitante. |
+| RF-022 | Emergencias | Alta | Sistema | El sistema debe ejecutar asignación automática de ambulancias considerando disponibilidad, tipo requerido (TAB/TAM), prioridad clínica y proximidad geográfica cuando esté disponible, en un tiempo máximo de 2 segundos desde la recepción de la solicitud. |
+| RF-023 | Emergencias | Alta | Coordinador | El sistema debe permitir la asignación manual de ambulancias por el coordinador, superando la sugerencia automática cuando las condiciones operativas lo requieran, con registro obligatorio del motivo de la decisión. |
+| RF-024 | Emergencias | Alta | Coordinador / Sistema | El sistema debe gestionar el ciclo completo del servicio mediante los estados: Solicitado, Asignado, En ruta, En atención, Traslado, Finalizado y Cancelado, registrando fecha y hora en cada transición. |
+| RF-025 | Emergencias | Alta | Paramédico / Coordinador | El sistema debe permitir el cierre formal del servicio únicamente cuando se hayan completado todos los campos obligatorios: resultado de la atención, estado del paciente, destino de traslado y responsable de la atención. |
+| RF-026 | Emergencias | Media | Coordinador | El sistema debe permitir la cancelación de un servicio con justificación obligatoria registrada en el historial y en el módulo de auditoría, únicamente cuando su estado sea Solicitado o Asignado. |
+| RF-027 | Emergencias | Alta | Administrador / Coordinador | El sistema debe permitir consultar el historial completo de servicios con filtros por fecha, tipo, unidad, personal, estado y urgencia, con exportación en PDF y Excel. |
+| RF-028 | Monitoreo | Alta | Coordinador / Administrador | El sistema debe proporcionar un panel de control centralizado con actualización automática vía WebSockets que muestre en tiempo real el estado operativo de todas las ambulancias, diferenciando visualmente TAB y TAM mediante indicadores gráficos o códigos de color. |
+| RF-029 | Monitoreo | Alta | Coordinador / Administrador | El sistema debe mostrar en el panel principal indicadores clave: número de servicios activos, unidades disponibles por tipo, servicios finalizados en el día, y alertas críticas como unidades sin tripulación, vencimientos documentales, solicitudes sin asignación e incidentes sin gestionar. |
+| RF-030 | Financiero | Alta | Administrador | El sistema debe permitir registrar ingresos con detalle de fecha, valor, tipo de pago, entidad pagadora y servicio vinculado; y egresos con proveedor, concepto, monto, fecha y soporte documental adjunto, validando que el proveedor esté registrado previamente. |
+| RF-031 | Financiero | Alta | Sistema | El sistema debe generar facturas automáticamente al cierre de un servicio de emergencia, vinculando datos del paciente, la unidad, el personal interviniente y los valores tarifarios configurados, siendo estas inmutables una vez emitidas; cualquier corrección se realizará mediante nota crédito o débito con registro del motivo. |
+| RF-032 | Financiero | Alta | Administrador | El sistema debe gestionar cartera de usuarios o entidades con deudas activas, calculando automáticamente mora a partir del día 1 vencido, incluyendo a partir del día 30 en el listado de morosos y bloqueando nuevos servicios hasta regularización. |
+| RF-033 | Financiero | Alta | Administrador | El sistema debe generar reportes financieros periódicos (diario, mensual, anual) con indicadores de ingresos, egresos, cartera, facturación y mora; y enviar notificaciones automáticas ante pagos próximos a vencer o en mora con al menos 3 días de anticipación. |
+| RF-034 | Financiero | Media | Sistema | El sistema debe generar recibos de pago en PDF al registrar un pago, identificando el servicio cancelado, valor, fecha y responsable de la operación; y mantener historial financiero completo e inalterable con registro de usuario, fecha y valores de cada transacción. |
+| RF-035 | Financiero | Media | Usuario / Administrador | El sistema debe permitir la consulta del estado de cuenta por usuarios o entidades autorizadas, mostrando movimientos, saldos, facturas pendientes y pagos registrados. |
+| RF-036 | Visitantes | Alta | Vigilante | El sistema debe registrar el ingreso y salida de visitantes capturando: nombre completo, tipo y número de documento, persona o área visitada, y hora de ingreso y egreso; controlando que el visitante cuente con pre-autorización vigente o que el vigilante registre manualmente el acceso con justificación. |
+| RF-037 | Visitantes | Alta | Vigilante / Sistema | El sistema debe verificar la identidad del visitante, registrar opcionalmente fotografía, generar alertas si el documento está bloqueado o si el visitante permanece más tiempo del autorizado, y registrar el vehículo cuando aplique (placa, tipo, color). |
+| RF-038 | Visitantes | Media | Usuario Interno | El sistema debe permitir a usuarios internos registrar pre-autorizaciones de acceso para visitantes esperados, con fecha, hora, motivo y validez definida por el autorizante. |
+| RF-039 | Visitantes | Alta | Administrador / Vigilante | El sistema debe mantener historial completo de visitas con filtros por fecha, nombre, documento o área, y generar reportes con estadísticas de visitantes por periodo, áreas más visitadas y alertas por accesos no autorizados. |
+| RF-040 | PQRS | Alta | Usuario | El sistema debe permitir registrar PQRS mediante formulario estructurado, clasificarlas automáticamente por tipo (Petición, Queja, Reclamo, Sugerencia, Denuncia), asignar código único de radicado y definir plazo máximo de respuesta según normatividad. |
+| RF-041 | PQRS | Alta | Administrador / Sistema | El sistema debe asignar automáticamente o manualmente cada PQRS al funcionario o área responsable dentro de las primeras 24 horas; si supera este tiempo sin asignación, se asignará al coordinador por defecto con alerta al administrador. |
+| RF-042 | PQRS | Media | Usuario | El sistema debe permitir consultar el estado de una PQRS mediante el código de radicado sin necesidad de iniciar sesión, y enviar notificaciones automáticas al usuario cuando cambie de estado o se emita respuesta formal. |
+| RF-043 | PQRS | Alta | Administrador / Responsable | El sistema debe permitir registrar y enviar la respuesta formal a cada PQRS con soporte documental adjunto y confirmación de lectura; alertar al administrador con al menos 2 días de anticipación al vencimiento del plazo; y cerrar automáticamente la PQRS cuando haya sido respondida y confirmada o cuando el plazo haya expirado. |
+| RF-044 | PQRS | Alta | Sistema | El sistema debe mantener historial completo e inalterable de cada PQRS con todas las acciones, responsables y fechas desde creación hasta cierre, y generar reportes por tipo, estado, periodo y nivel de satisfacción con exportación en PDF o Excel. |
+| RF-045 | Unidades | Alta | Administrador | El sistema debe permitir registrar propietarios de unidades de ambulancia con datos de identificación y tipo de vinculación contractual, asociar cada unidad a un propietario activo validando que no tenga vinculación previa, y clasificar las unidades por tipo (TAB/TAM), categoría de habilitación y estado contractual (activa, suspendida, retirada). |
+| RF-046 | Unidades | Alta | Sistema | El sistema debe controlar el estado operativo y contractual de cada unidad, impidiendo la asignación de unidades en estados no operativos, y mantener historial completo de cambios con preservación de datos anteriores y actuales de cada modificación. |
+| RF-047 | Proveedores | Alta | Administrador | El sistema debe registrar proveedores (razón social, NIT, representante legal, contacto, tipo de servicio, estado) y contratos asociados (objeto, fechas, valor, responsable, documentación adjunta), controlando vigencia contractual y generando alertas a los 30, 15 y 5 días previos al vencimiento. |
+| RF-048 | Proveedores | Alta | Sistema | El sistema debe impedir la vinculación de contratos vencidos a nuevas órdenes de servicio, mantener historial de relaciones contractuales con evaluaciones y novedades, y enviar notificaciones automáticas ante vencimientos, incumplimientos y evaluaciones pendientes. |
+| RF-049 | Proveedores | Media | Administrador | El sistema debe permitir registrar evaluaciones de desempeño de proveedores al finalizar un servicio contratado usando criterios de calidad, cumplimiento y satisfacción, y generar reportes de proveedores activos, contratos vigentes y evaluaciones con exportación PDF o Excel. |
+| RF-050 | Documental | Alta | Administrador | El sistema debe permitir la carga de documentos en formatos PDF, DOCX, XLSX e imágenes, validando tipo MIME y tamaño máximo configurable; clasificarlos por categorías, subcategorías, etiquetas y niveles de confidencialidad (público, interno, restringido); y registrar automáticamente metadatos de cada documento. |
+| RF-051 | Documental | Alta | Administrador | El sistema debe implementar versionamiento automático al actualizar un documento sin eliminar versiones anteriores, bloquear la edición de documentos marcados como oficial o finalizado, y controlar duplicados mediante validación de hash antes de la carga. |
+| RF-052 | Documental | Alta | Usuarios autorizados | El sistema debe permitir búsqueda avanzada por nombre, tipo, fecha, categoría, etiquetas, autor, estado y confidencialidad; visualización integrada de PDF e imágenes sin descarga obligatoria; y controlar la descarga según permisos del rol con registro en auditoría. |
+| RF-053 | Documental | Alta | Sistema | El sistema debe implementar RBAC sobre todas las acciones documentales (visualización, creación, edición, eliminación, descarga), registrar en auditoría cada operación con usuario y fecha, y notificar a usuarios con acceso cuando un documento relevante a su rol sea cargado o actualizado. |
+| RF-054 | Documental | Media | Administrador | El sistema debe permitir organizar documentos en estructuras jerárquicas de carpetas, asociarlos a otros módulos (servicios, contratos, unidades, normativas), y generar estadísticas básicas del repositorio con exportación de listados en PDF y Excel para auditorías. |
+| RF-055 | Auditoría | Alta | Sistema | El sistema debe registrar automáticamente todos los eventos relevantes: operaciones CRUD sobre cualquier entidad, eventos de autenticación (inicios, cierres, intentos fallidos, bloqueos), asignaciones de ambulancias, cambios de estado en servicios de emergencia y modificaciones de roles, con identificación de usuario, módulo, fecha y hora. |
+| RF-056 | Auditoría | Alta | Sistema | Los registros de auditoría deben ser técnicamente inmutables, sin posibilidad de modificación o eliminación por ningún usuario incluido el administrador, con almacenamiento garantizado por un mínimo de 5 años. |
+| RF-057 | Auditoría | Alta | Administrador | El sistema debe permitir consultar registros de auditoría con filtros por usuario, tipo de acción, módulo, entidad y rango de fechas; visualizar el detalle completo de cada evento con valores anteriores y posteriores; y exportar registros en PDF y Excel para auditorías externas o procesos disciplinarios. |
+| RF-058 | Auditoría | Alta | Sistema | El sistema debe identificar y resaltar eventos críticos de seguridad (accesos no autorizados, modificaciones masivas, eliminaciones irreversibles, patrones anómalos como accesos en horarios inusuales) generando alertas inmediatas con clasificación por nivel de criticidad. |
+| RF-059 | Novedades | Alta | Usuarios autorizados | El sistema debe permitir registrar novedades operativas mediante formulario con campos obligatorios (tipo, descripción, fecha, hora, ubicación, reportante), clasificarlas por tipo (falla técnica, retraso, incidente con paciente, novedad de personal, accidente vehicular, evento crítico u otro configurable), asignarles prioridad (Baja, Media, Alta, Crítica) y asociarlas a una unidad, servicio o miembro del personal según corresponda. |
+| RF-060 | Novedades | Alta | Coordinador / Administrador | El sistema debe permitir asignar uno o varios responsables para la gestión de cada incidente con notificación automática al asignado, gestionar el ciclo de vida mediante estados (Pendiente, En proceso, Resuelto, Cerrado) con registro de cada transición en auditoría, y bloquear la edición de novedades cerradas. |
+| RF-061 | Novedades | Alta | Sistema | El sistema debe resaltar automáticamente incidentes críticos en el panel, establecer tiempos estimados de resolución, generar alertas cuando sean superados, enviar notificaciones ante nuevos registros, cambios de estado, comentarios o incumplimientos de tiempo, y permitir reasignación de responsables con registro del motivo. |
+| RF-062 | Novedades | Media | Usuarios autorizados | El sistema debe permitir adjuntar evidencia multimedia (imágenes, documentos, videos) con validación de formato y tamaño; agregar comentarios y observaciones de seguimiento manteniendo hilo cronológico; y consultar novedades con filtros combinados por tipo, fecha, estado, prioridad, unidad y servicio vinculado. |
+| RF-063 | Novedades | Media | Administrador / Analista | El sistema debe generar reportes de novedades con filtros por tipo, frecuencia, prioridad, estado y periodo con exportación PDF o Excel; mostrar indicadores de desempeño (total de incidentes, tiempos promedio de resolución, tipos más frecuentes); e integrarse con los módulos de reportes, auditoría y monitoreo para correlación de incidentes con servicios y personal. |
+| RF-064 | Reportes | Alta | Administrador / Analista | El sistema debe permitir generar reportes operativos personalizados con filtros por módulo, tipo de servicio, unidad, personal, periodo y estado, con exportación en PDF y Excel; y programar su generación automática periódica (diaria, semanal, mensual) distribuyéndolos por correo a destinatarios configurados por el administrador. |
+| RF-065 | Reportes | Alta | Administrador / Analista | El sistema debe generar indicadores clave de desempeño (KPI): tiempo promedio de respuesta, número de servicios por tipo (TAB/TAM), tasa de cancelación, incidentes por unidad y satisfacción de PQRS; y visualizarlos en el panel mediante gráficos interactivos (barras, líneas, tortas) que representen tendencias y comparativos. |
+
+---
+
+## 2. Atributos de calidad y requisitos no funcionales (RNF-001 a RNF-029)
+
+| Código | Prioridad | Norma / Atributo | Requisito verificable |
+|---|---|---|---|
+| RNF-001 | Alta | ISO/IEC 27001 — Res. 3100/2017 | El sistema debe almacenar contraseñas mediante hash seguro (bcrypt o Argon2 preferiblemente, mínimo SHA-256) con salt único por usuario. Queda prohibido el almacenamiento en texto plano o con cifrado simétrico reversible. |
+| RNF-002 | Alta | Seguridad en tránsito | Toda comunicación entre cliente y servidor debe realizarse exclusivamente mediante HTTPS con certificado SSL/TLS vigente; las solicitudes HTTP serán redirigidas automáticamente. |
+| RNF-003 | Alta | ISO/IEC 27001 — RBAC | El sistema debe implementar RBAC garantizando que cada usuario acceda únicamente a los módulos y acciones autorizados según su rol. |
+| RNF-004 | Alta | Ley 1581/2012 — Habeas Data | El sistema debe proteger datos sensibles de pacientes (identificación, estado clínico, historial) mediante cifrado en reposo en la base de datos, en cumplimiento de la Ley 1581/2012. |
+| RNF-005 | Alta | ISO/IEC 27001 | El sistema debe implementar políticas de complejidad de contraseñas: mínimo 8 caracteres, combinación de mayúsculas, minúsculas, dígitos y caracteres especiales, con renovación obligatoria cada 90 días. |
+| RNF-006 | Alta | OWASP Top 10 | El sistema debe validar y sanitizar todas las entradas de usuario para prevenir ataques SQL Injection, XSS y CSRF. |
+| RNF-007 | Alta | Integridad en sistemas de salud | Las acciones críticas (eliminación de registros, cambio de roles, anulación de facturas, cierre de servicios) deben requerir confirmación explícita del usuario autenticado, con registro obligatorio en auditoría. |
+| RNF-008 | Alta | Res. 3100/2017 | El sistema debe responder a consultas operativas críticas (solicitudes activas, estado de ambulancias, asignaciones) en un máximo de 3 segundos bajo carga estándar de operación. |
+| RNF-009 | Alta | Oportunidad de atención prehospitalaria | El proceso de asignación automática de ambulancias debe ejecutarse en un máximo de 2 segundos desde la recepción de la solicitud de emergencia. |
+| RNF-010 | Media | Capacidad operativa | El sistema debe soportar al menos 20 usuarios concurrentes sin degradación perceptible de rendimiento ni inestabilidad en el servidor. |
+| RNF-011 | Media | ISO/IEC 25010 | Las interfaces deben cargar completamente en máximo 5 segundos bajo condiciones normales de conexión, con optimización mediante caché de consultas frecuentes, paginación y compresión HTTP. |
+| RNF-012 | Alta | Continuidad operativa | El sistema debe priorizar operaciones críticas (asignación de ambulancias, actualización de estados en tiempo real) por encima de procesos de menor urgencia bajo condiciones de carga elevada. |
+| RNF-013 | Alta | Sistemas de misión crítica | El sistema debe garantizar disponibilidad mínima del 97% en operación continua 24/7, dado que soporta procesos críticos de atención prehospitalaria. |
+| RNF-014 | Alta | Res. 3100/2017 | Las actividades de mantenimiento deben planificarse en horarios de baja demanda operativa o con mecanismos que garanticen la continuidad de los servicios activos durante el proceso. |
+| RNF-015 | Alta | Gestión de incidentes críticos | El sistema debe contar con mecanismos de recuperación ante fallos (respaldo de base de datos, recuperación de sesiones, reinicio controlado de servicios) y monitoreo continuo que detecte caídas o degradación, generando alertas automáticas al equipo técnico. |
+| RNF-016 | Alta | Eficiencia operativa | El sistema debe permitir completar el registro y asignación de un servicio de emergencia en un máximo de 4 pasos desde la recepción de la solicitud. |
+| RNF-017 | Media | ISO/IEC 25010 | El sistema debe ser completamente responsivo y funcional en Chrome (v100+), Firefox (v100+), Edge (v100+) y Safari (v15+) en escritorio y tabletas, sin instalación de software adicional. |
+| RNF-018 | Media | ISO/IEC 25010 | El sistema debe proporcionar mensajes de error claros y orientados a la acción correctiva, indicando el campo específico con inconsistencias y, cuando aplique, la normatividad relacionada. |
+| RNF-019 | Media | ISO/IEC 25010 | La navegación debe ser intuitiva y consistente con menú estructurado por roles, sin requerir conocimientos técnicos avanzados ni capacitación extensa; manteniendo uniformidad visual (formularios, colores, tipografía, iconografía) en todas las interfaces. |
+| RNF-020 | Media | Usabilidad en sistemas críticos | El panel principal debe priorizar la visualización de datos críticos (emergencias activas, unidades disponibles, alertas) sobre información secundaria, minimizando la carga cognitiva del usuario. |
+| RNF-021 | Media | REPS — Conservación de registros | La base de datos debe estar diseñada para soportar el crecimiento progresivo del volumen de información sin modificaciones estructurales significativas, garantizando almacenamiento durante un mínimo de 5 años de operación. |
+| RNF-022 | Media | Capacidad operativa | El sistema debe soportar incremento en usuarios concurrentes, solicitudes de emergencia y registros almacenados mediante arquitectura escalable horizontal o verticalmente, con soporte de despliegue en contenedores Docker. |
+| RNF-023 | Media | Accesibilidad multiplataforma | El sistema debe ser compatible con sistemas operativos Windows 10/11, macOS 12+ y distribuciones Linux modernas en equipos cliente, sin instalación de software adicional más allá del navegador web. |
+| RNF-024 | Media | Interoperabilidad | Los reportes exportados en PDF y Excel deben ser compatibles con Microsoft Office 2016+ y LibreOffice 7+, garantizando legibilidad y estructura de los documentos generados. |
+| RNF-025 | Alta | Sostenibilidad tecnológica | El sistema debe desarrollarse bajo arquitectura modular y desacoplada que permita actualizar, modificar o reemplazar módulos específicos sin afectar el funcionamiento general. |
+| RNF-026 | Media | Mantenibilidad de software | El código fuente debe contar con documentación técnica completa (arquitectura, modelo de datos, APIs, flujos de proceso) e implementar estándares de codificación según la tecnología usada (PEP 8, PSR, ESLint). |
+| RNF-027 | Media | Evolución de software | El sistema debe permitir la incorporación futura de módulos adicionales (integración GPS, historia clínica electrónica, sistemas hospitalarios) sin comprometer la estabilidad de los módulos existentes. |
+| RNF-028 | Alta | Res. 3100/2017 | El sistema debe garantizar trazabilidad completa de todos los servicios de emergencia (desde solicitud hasta cierre) y de los cambios sobre entidades críticas (ambulancias, personal, pacientes, contratos), conservando estado anterior y posterior de cada modificación. |
+| RNF-029 | Alta | REPS — Preservación de información | El sistema debe implementar respaldo automático diario de la base de datos en ubicación segura diferente al servidor principal, con retención de al menos 30 copias consecutivas y capacidad de restauración con RTO máximo de 4 horas y RPO máximo de 24 horas. |
+
+---
+
+## 3. Decisiones tecnológicas justificadas para SIGMAVITAL
+
+| Capa / Decisión | Tecnología elegida | Justificación frente a condiciones concretas del proyecto SGA | Alternativa evaluada y descartada |
+|---|---|---|---|
+| **Backend y API REST** | **PHP 8.3 + Laravel 11** | Ofrece estructura modular MVC/capas alineada a `RNF-025`, validación centralizada contra SQLi/XSS/CSRF (`RNF-006`), hashing nativo `Argon2id`/`bcrypt` (`RNF-001`), workers de colas para alertas (`RF-011/033/041`) y estándar PSR-12 (`RNF-026`). | Node.js con microservicios separados: descartado porque fragmentaría transacciones ACID críticas entre despacho y facturación incrementando la complejidad operativa del equipo. |
+| **Frontend SPA y tiempo real** | **React 18 + Vite + WebSockets (Laravel Echo / Reverb)** | Permite renderizado ágil del tablero operativo TAB/TAM en tiempo real (`RF-028`, `RNF-008/020`), formularios validados en <= 4 pasos (`RNF-016`) y compatibilidad responsiva en escritorio y tableta (`RNF-017/023`). | Plantillas Blade puras sin estado en cliente: descartadas por mayor recarga completa de página ante eventos WebSocket concurrentes en sala CRUE. |
+| **Motor de Base de Datos** | **MySQL 8.0 / MariaDB 10.4+ (motor InnoDB)** | Garantiza integridad referencial estricta (`FOREIGN KEY`), restricciones `CHECK` y `UNIQUE` nativas para reglas `RN-001..018`, bloqueo transaccional para evitar doble asignación de ambulancias (`RN-001`) y retención de 5 años (`RNF-021`). | Base documental NoSQL (MongoDB): descartada por carecer de restricciones relacionales nativas para facturación inmutable (`RN-014`), cartera y control documental estrictamente normalizado. |
+| **Contenerización y despliegue** | **Docker + Docker Compose + Nginx TLS 1.3** | Aísla aplicación web, workers y motor relacional facilitando escalamiento horizontal/vertical (`RNF-022`), redirección HTTPS obligatoria (`RNF-002`) y recuperación rápida bajo `RTO <= 4h / RPO <= 24h` (`RNF-029`). | Despliegue manual sobre servidor compartido sin contenedores: descartado por baja reproducibilidad entre entornos de pruebas y producción. |
