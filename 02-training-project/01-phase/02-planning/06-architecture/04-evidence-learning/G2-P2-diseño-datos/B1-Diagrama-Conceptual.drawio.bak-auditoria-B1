@@ -1,0 +1,100 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Modelo Conceptual SIGMAVITAL" id="0">
+    <mxGraphModel dx="1481" dy="817" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1800" pageHeight="1200" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="t" parent="1" style="text;html=1;align=center;fontSize=22;fontStyle=1;" value="SIGMAVITAL - Modelo Conceptual de Datos" vertex="1">
+          <mxGeometry height="50" width="800" x="500" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="rol" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#EAF2F8;strokeColor=#287A83;" value="Rol&#xa;────────────&#xa;id_rol&#xa;nombre&#xa;descripcion" vertex="1">
+          <mxGeometry height="120" width="160" x="50" y="160" as="geometry" />
+        </mxCell>
+        <mxCell id="usuario" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#EAF2F8;strokeColor=#287A83;" value="Usuario&#xa;────────────&#xa;id_usuario&#xa;nombre&#xa;correo&#xa;estado&#xa;fecha_creacion" vertex="1">
+          <mxGeometry height="140" width="170" x="280" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="solicitud" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#EAF2F8;strokeColor=#287A83;" value="Solicitud&#xa;────────────&#xa;id_solicitud&#xa;fecha_recepcion&#xa;ubicacion_incidente&#xa;prioridad&#xa;descripcion&#xa;estado" vertex="1">
+          <mxGeometry height="150" width="180" x="540" y="135" as="geometry" />
+        </mxCell>
+        <mxCell id="servicio" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;" value="Servicio&#xa;────────────&#xa;id_servicio&#xa;fecha_inicio&#xa;estado&#xa;fecha_finalizacion&#xa;destino" vertex="1">
+          <mxGeometry height="140" width="180" x="780" y="145" as="geometry" />
+        </mxCell>
+        <mxCell id="asignacion" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#EAF2F8;strokeColor=#287A83;" value="Asignacion&#xa;────────────&#xa;id_asignacion&#xa;fecha_asignacion&#xa;estado&#xa;observaciones" vertex="1">
+          <mxGeometry height="140" width="180" x="1040" y="145" as="geometry" />
+        </mxCell>
+        <mxCell id="ap" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#EAF2F8;strokeColor=#287A83;" value="AsignacionPersonal&#xa;────────────&#xa;id_asignacion_personal&#xa;funcion&#xa;fecha_vinculacion" vertex="1">
+          <mxGeometry height="130" width="200" x="1300" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="personal" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#EAF2F8;strokeColor=#287A83;" value="Personal&#xa;────────────&#xa;id_personal&#xa;nombre&#xa;identificacion_referencia&#xa;perfil_operativo&#xa;estado&#xa;contacto" vertex="1">
+          <mxGeometry height="150" width="200" x="1580" y="140" as="geometry" />
+        </mxCell>
+        <mxCell id="paciente" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#EAF2F8;strokeColor=#287A83;" value="Paciente&#xa;────────────&#xa;id_paciente&#xa;identificacion_referencia&#xa;nombre_referencia&#xa;informacion_basica" vertex="1">
+          <mxGeometry height="130" width="180" x="520" y="430" as="geometry" />
+        </mxCell>
+        <mxCell id="ambulancia" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#EAF2F8;strokeColor=#287A83;" value="Ambulancia&#xa;────────────&#xa;id_ambulancia&#xa;placa&#xa;tipo&#xa;estado_operativo&#xa;ubicacion_referencia" vertex="1">
+          <mxGeometry height="140" width="180" x="1040" y="430" as="geometry" />
+        </mxCell>
+        <mxCell id="intervencion" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#EAF2F8;strokeColor=#287A83;" value="Intervencion&#xa;────────────&#xa;id_intervencion&#xa;fecha_hora&#xa;descripcion&#xa;observaciones" vertex="1">
+          <mxGeometry height="130" width="180" x="1590" y="430" as="geometry" />
+        </mxCell>
+        <mxCell id="cierre" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#EAF2F8;strokeColor=#287A83;" value="RegistroCierre&#xa;────────────&#xa;id_cierre&#xa;fecha_cierre&#xa;resumen_condicion&#xa;destino&#xa;observaciones_finales" vertex="1">
+          <mxGeometry height="140" width="180" x="280" y="430" as="geometry" />
+        </mxCell>
+        <mxCell id="r1" edge="1" parent="1" source="rol" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=none;startArrow=none;" target="usuario" value="1:N">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r2" edge="1" parent="1" source="solicitud" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=classicThin;startArrow=none;endFill=1;" target="servicio" value="1:0..1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r3" edge="1" parent="1" source="paciente" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=none;startArrow=none;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" target="servicio" value="1:N">
+          <mxGeometry relative="1" x="0.0026" as="geometry" />
+        </mxCell>
+        <mxCell id="r4" edge="1" parent="1" source="servicio" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=none;startArrow=none;" target="asignacion" value="1:N">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r5" edge="1" parent="1" source="ambulancia" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=none;startArrow=none;" target="asignacion" value="1:N">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r6" edge="1" parent="1" source="asignacion" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=none;startArrow=none;" target="ap" value="1:N">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r7" edge="1" parent="1" source="personal" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=none;startArrow=none;" target="ap" value="1:N">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r8" edge="1" parent="1" source="servicio" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=none;startArrow=none;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" target="intervencion" value="1:N">
+          <mxGeometry relative="1" x="-0.0129" as="geometry">
+            <Array as="points">
+              <mxPoint x="870" y="120" />
+              <mxPoint x="1790" y="120" />
+              <mxPoint x="1790" y="495" />
+            </Array>
+            <mxPoint x="960" y="360" as="sourcePoint" />
+            <mxPoint x="1670" y="570" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="r9" edge="1" parent="1" source="personal" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=none;startArrow=none;" target="intervencion" value="1:N">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r10" edge="1" parent="1" source="solicitud" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=none;startArrow=none;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="usuario" value="1:N">
+          <mxGeometry relative="1" x="0.0039" as="geometry">
+            <Array as="points">
+              <mxPoint x="450" y="215" />
+            </Array>
+            <mxPoint x="910" y="300" as="sourcePoint" />
+            <mxPoint x="450" y="260" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="r11" edge="1" parent="1" source="servicio" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=none;startArrow=none;exitX=0.25;exitY=1;exitDx=0;exitDy=0;" value="1:N">
+          <mxGeometry relative="1" x="0.7667" as="geometry">
+            <Array as="points">
+              <mxPoint x="825" y="320" />
+              <mxPoint x="375" y="320" />
+            </Array>
+            <mxPoint x="875" y="280" as="sourcePoint" />
+            <mxPoint x="375" y="430" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

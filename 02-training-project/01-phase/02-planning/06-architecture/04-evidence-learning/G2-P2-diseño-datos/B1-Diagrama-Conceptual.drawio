@@ -1,104 +1,240 @@
-<mxfile host="app.diagrams.net">
-  <diagram name="Modelo Conceptual SIGMAVITAL" id="0">
-    <mxGraphModel dx="1481" dy="817" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1800" pageHeight="1200" math="0" shadow="0">
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net" modified="2026-11-28T02:44:19Z" agent="ChatGPT" version="25.0.2" type="device">
+  <diagram id="SIGMAVITAL-B1-2026" name="B1 · Modelo conceptual de datos SIGMAVITAL">
+    <mxGraphModel dx="1451" dy="761" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1451" pageHeight="761" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="t" parent="1" style="text;html=1;align=center;fontSize=22;fontStyle=1;" value="SIGMAVITAL - Modelo Conceptual de Datos" vertex="1">
-          <mxGeometry height="50" width="800" x="500" y="30" as="geometry" />
+        <mxCell id="title" value="B1 · Modelo conceptual de datos SIGMAVITAL" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=22;fontStyle=1;fontColor=#173449;" parent="1" vertex="1">
+          <mxGeometry x="20" y="16" width="1411" height="34" as="geometry" />
         </mxCell>
-        <mxCell id="rol" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#EAF2F8;strokeColor=#287A83;" value="Rol&#10;────────────&#10;id_rol&#10;nombre&#10;descripcion" vertex="1">
-          <mxGeometry height="120" width="160" x="50" y="160" as="geometry" />
+        <mxCell id="subtitle" value="11 entidades · 12 relaciones · Las multiplicidades se leen origen → destino. Una asignación confirmada requiere al menos un vínculo en AsignacionPersonal." style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=10;fontColor=#53677A;" parent="1" vertex="1">
+          <mxGeometry x="25" y="54" width="1401" height="28" as="geometry" />
         </mxCell>
-        <mxCell id="usuario" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#EAF2F8;strokeColor=#287A83;" value="Usuario&#10;────────────&#10;id_usuario&#10;nombre&#10;correo&#10;estado&#10;fecha_creacion" vertex="1">
-          <mxGeometry height="140" width="170" x="280" y="150" as="geometry" />
+        <mxCell id="Rol" value="&lt;table border=&quot;0&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; style=&quot;border-collapse:collapse;font-family:Arial,sans-serif;font-size:11px;color:#183044;&quot;&gt;&lt;tr&gt;&lt;td style=&quot;background-color:#D4E9EE;border:1px solid #2C7884;padding:6px 7px;text-align:center;font-weight:bold;white-space:nowrap;&quot;&gt;Rol&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;background-color:#EEF6F8;border-left:1px solid #2C7884;border-right:1px solid #2C7884;padding:4px 7px;text-align:left;white-space:nowrap;&quot;&gt;id_rol&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;background-color:#EEF6F8;border-left:1px solid #2C7884;border-right:1px solid #2C7884;padding:4px 7px;text-align:left;white-space:nowrap;&quot;&gt;nombre&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;background-color:#EEF6F8;border-left:1px solid #2C7884;border-right:1px solid #2C7884;padding:4px 7px;text-align:left;white-space:nowrap;&quot;&gt;descripcion&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;height:2px;background-color:#EEF6F8;border-left:1px solid #2C7884;border-right:1px solid #2C7884;border-bottom:1px solid #2C7884;&quot;&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;" style="rounded=0;whiteSpace=wrap;html=1;overflow=fill;fillColor=none;strokeColor=#2C7884;strokeWidth=1.5;align=left;verticalAlign=middle;spacing=0;fontFamily=Arial;fontSize=11;fontColor=#183044;" parent="1" vertex="1">
+          <mxGeometry x="38" y="402.49" width="71" height="106" as="geometry" />
         </mxCell>
-        <mxCell id="solicitud" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#EAF2F8;strokeColor=#287A83;" value="Solicitud&#10;────────────&#10;id_solicitud&#10;fecha_recepcion&#10;ubicacion_incidente&#10;prioridad&#10;descripcion&#10;estado" vertex="1">
-          <mxGeometry height="150" width="180" x="540" y="135" as="geometry" />
+        <mxCell id="Usuario" value="&lt;table border=&quot;0&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; style=&quot;border-collapse:collapse;font-family:Arial,sans-serif;font-size:11px;color:#183044;&quot;&gt;&lt;tr&gt;&lt;td style=&quot;background-color:#D4E9EE;border:1px solid #2C7884;padding:6px 7px;text-align:center;font-weight:bold;white-space:nowrap;&quot;&gt;Usuario&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;background-color:#EEF6F8;border-left:1px solid #2C7884;border-right:1px solid #2C7884;padding:4px 7px;text-align:left;white-space:nowrap;&quot;&gt;id_usuario&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;background-color:#EEF6F8;border-left:1px solid #2C7884;border-right:1px solid #2C7884;padding:4px 7px;text-align:left;white-space:nowrap;&quot;&gt;nombre&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;background-color:#EEF6F8;border-left:1px solid #2C7884;border-right:1px solid #2C7884;padding:4px 7px;text-align:left;white-space:nowrap;&quot;&gt;correo&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;background-color:#EEF6F8;border-left:1px solid #2C7884;border-right:1px solid #2C7884;padding:4px 7px;text-align:left;white-space:nowrap;&quot;&gt;estado&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;background-color:#EEF6F8;border-left:1px solid #2C7884;border-right:1px solid #2C7884;padding:4px 7px;text-align:left;white-space:nowrap;&quot;&gt;fecha_creacion&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;height:2px;background-color:#EEF6F8;border-left:1px solid #2C7884;border-right:1px solid #2C7884;border-bottom:1px solid #2C7884;&quot;&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;" style="rounded=0;whiteSpace=wrap;html=1;overflow=fill;fillColor=none;strokeColor=#2C7884;strokeWidth=1.5;align=left;verticalAlign=middle;spacing=0;fontFamily=Arial;fontSize=11;fontColor=#183044;" parent="1" vertex="1">
+          <mxGeometry x="209.96" y="299.63" width="89" height="158" as="geometry" />
         </mxCell>
-        <mxCell id="servicio" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;" value="Servicio&#10;────────────&#10;id_servicio&#10;fecha_inicio&#10;estado&#10;fecha_finalizacion&#10;destino" vertex="1">
-          <mxGeometry height="140" width="180" x="780" y="145" as="geometry" />
+        <mxCell id="Solicitud" value="&lt;table border=&quot;0&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; style=&quot;border-collapse:collapse;font-family:Arial,sans-serif;font-size:11px;color:#183044;&quot;&gt;&lt;tr&gt;&lt;td style=&quot;background-color:#D4E9EE;border:1px solid #2C7884;padding:6px 7px;text-align:center;font-weight:bold;white-space:nowrap;&quot;&gt;Solicitud&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;background-color:#EEF6F8;border-left:1px solid #2C7884;border-right:1px solid #2C7884;padding:4px 7px;text-align:left;white-space:nowrap;&quot;&gt;id_solicitud&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;background-color:#EEF6F8;border-left:1px solid #2C7884;border-right:1px solid #2C7884;padding:4px 7px;text-align:left;white-space:nowrap;&quot;&gt;fecha_recepcion&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;background-color:#EEF6F8;border-left:1px solid #2C7884;border-right:1px solid #2C7884;padding:4px 7px;text-align:left;white-space:nowrap;&quot;&gt;ubicacion_incidente&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;background-color:#EEF6F8;border-left:1px solid #2C7884;border-right:1px solid #2C7884;padding:4px 7px;text-align:left;white-space:nowrap;&quot;&gt;prioridad&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;background-color:#EEF6F8;border-left:1px solid #2C7884;border-right:1px solid #2C7884;padding:4px 7px;text-align:left;white-space:nowrap;&quot;&gt;descripcion&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;background-color:#EEF6F8;border-left:1px solid #2C7884;border-right:1px solid #2C7884;padding:4px 7px;text-align:left;white-space:nowrap;&quot;&gt;estado&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;height:2px;background-color:#EEF6F8;border-left:1px solid #2C7884;border-right:1px solid #2C7884;border-bottom:1px solid #2C7884;&quot;&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;" style="rounded=0;whiteSpace=wrap;html=1;overflow=fill;fillColor=none;strokeColor=#2C7884;strokeWidth=1.5;align=left;verticalAlign=middle;spacing=0;fontFamily=Arial;fontSize=11;fontColor=#183044;" parent="1" vertex="1">
+          <mxGeometry x="408.18" y="184.26" width="110" height="184" as="geometry" />
         </mxCell>
-        <mxCell id="asignacion" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#EAF2F8;strokeColor=#287A83;" value="Asignacion&#10;────────────&#10;id_asignacion&#10;fecha_asignacion&#10;estado&#10;observaciones" vertex="1">
-          <mxGeometry height="140" width="180" x="1040" y="145" as="geometry" />
+        <mxCell id="Servicio" value="&lt;table border=&quot;0&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; style=&quot;border-collapse:collapse;font-family:Arial,sans-serif;font-size:11px;color:#183044;&quot;&gt;&lt;tr&gt;&lt;td style=&quot;background-color:#D4E9EE;border:1px solid #2C7884;padding:6px 7px;text-align:center;font-weight:bold;white-space:nowrap;&quot;&gt;Servicio&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;background-color:#EEF6F8;border-left:1px solid #2C7884;border-right:1px solid #2C7884;padding:4px 7px;text-align:left;white-space:nowrap;&quot;&gt;id_servicio&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;background-color:#EEF6F8;border-left:1px solid #2C7884;border-right:1px solid #2C7884;padding:4px 7px;text-align:left;white-space:nowrap;&quot;&gt;fecha_inicio&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;background-color:#EEF6F8;border-left:1px solid #2C7884;border-right:1px solid #2C7884;padding:4px 7px;text-align:left;white-space:nowrap;&quot;&gt;estado&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;background-color:#EEF6F8;border-left:1px solid #2C7884;border-right:1px solid #2C7884;padding:4px 7px;text-align:left;white-space:nowrap;&quot;&gt;fecha_finalizacion&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;background-color:#EEF6F8;border-left:1px solid #2C7884;border-right:1px solid #2C7884;padding:4px 7px;text-align:left;white-space:nowrap;&quot;&gt;destino&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;height:2px;background-color:#EEF6F8;border-left:1px solid #2C7884;border-right:1px solid #2C7884;border-bottom:1px solid #2C7884;&quot;&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;" style="rounded=0;whiteSpace=wrap;html=1;overflow=fill;fillColor=none;strokeColor=#2C7884;strokeWidth=1.5;align=left;verticalAlign=middle;spacing=0;fontFamily=Arial;fontSize=11;fontColor=#183044;" parent="1" vertex="1">
+          <mxGeometry x="690.03" y="299.04" width="101" height="158" as="geometry" />
         </mxCell>
-        <mxCell id="ap" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#EAF2F8;strokeColor=#287A83;" value="AsignacionPersonal&#10;────────────&#10;id_asignacion_personal&#10;funcion&#10;fecha_vinculacion" vertex="1">
-          <mxGeometry height="130" width="200" x="1300" y="150" as="geometry" />
+        <mxCell id="Paciente" value="&lt;table border=&quot;0&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; style=&quot;border-collapse:collapse;font-family:Arial,sans-serif;font-size:11px;color:#183044;&quot;&gt;&lt;tr&gt;&lt;td style=&quot;background-color:#D4E9EE;border:1px solid #2C7884;padding:6px 7px;text-align:center;font-weight:bold;white-space:nowrap;&quot;&gt;Paciente&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;background-color:#EEF6F8;border-left:1px solid #2C7884;border-right:1px solid #2C7884;padding:4px 7px;text-align:left;white-space:nowrap;&quot;&gt;id_paciente&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;background-color:#EEF6F8;border-left:1px solid #2C7884;border-right:1px solid #2C7884;padding:4px 7px;text-align:left;white-space:nowrap;&quot;&gt;identificacion_referencia&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;background-color:#EEF6F8;border-left:1px solid #2C7884;border-right:1px solid #2C7884;padding:4px 7px;text-align:left;white-space:nowrap;&quot;&gt;nombre_referencia&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;background-color:#EEF6F8;border-left:1px solid #2C7884;border-right:1px solid #2C7884;padding:4px 7px;text-align:left;white-space:nowrap;&quot;&gt;informacion_basica&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;height:2px;background-color:#EEF6F8;border-left:1px solid #2C7884;border-right:1px solid #2C7884;border-bottom:1px solid #2C7884;&quot;&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;" style="rounded=0;whiteSpace=wrap;html=1;overflow=fill;fillColor=none;strokeColor=#2C7884;strokeWidth=1.5;align=left;verticalAlign=middle;spacing=0;fontFamily=Arial;fontSize=11;fontColor=#183044;" parent="1" vertex="1">
+          <mxGeometry x="729.28" y="127" width="132" height="132" as="geometry" />
         </mxCell>
-        <mxCell id="personal" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#EAF2F8;strokeColor=#287A83;" value="Personal&#10;────────────&#10;id_personal&#10;nombre&#10;identificacion_referencia&#10;perfil_operativo&#10;estado&#10;contacto" vertex="1">
-          <mxGeometry height="150" width="200" x="1580" y="140" as="geometry" />
+        <mxCell id="RegistroCierre" value="&lt;table border=&quot;0&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; style=&quot;border-collapse:collapse;font-family:Arial,sans-serif;font-size:11px;color:#183044;&quot;&gt;&lt;tr&gt;&lt;td style=&quot;background-color:#D4E9EE;border:1px solid #2C7884;padding:6px 7px;text-align:center;font-weight:bold;white-space:nowrap;&quot;&gt;RegistroCierre&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;background-color:#EEF6F8;border-left:1px solid #2C7884;border-right:1px solid #2C7884;padding:4px 7px;text-align:left;white-space:nowrap;&quot;&gt;id_cierre&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;background-color:#EEF6F8;border-left:1px solid #2C7884;border-right:1px solid #2C7884;padding:4px 7px;text-align:left;white-space:nowrap;&quot;&gt;fecha_cierre&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;background-color:#EEF6F8;border-left:1px solid #2C7884;border-right:1px solid #2C7884;padding:4px 7px;text-align:left;white-space:nowrap;&quot;&gt;resumen_condicion&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;background-color:#EEF6F8;border-left:1px solid #2C7884;border-right:1px solid #2C7884;padding:4px 7px;text-align:left;white-space:nowrap;&quot;&gt;destino&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;background-color:#EEF6F8;border-left:1px solid #2C7884;border-right:1px solid #2C7884;padding:4px 7px;text-align:left;white-space:nowrap;&quot;&gt;observaciones_finales&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;height:2px;background-color:#EEF6F8;border-left:1px solid #2C7884;border-right:1px solid #2C7884;border-bottom:1px solid #2C7884;&quot;&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;" style="rounded=0;whiteSpace=wrap;html=1;overflow=fill;fillColor=none;strokeColor=#2C7884;strokeWidth=1.5;align=left;verticalAlign=middle;spacing=0;fontFamily=Arial;fontSize=11;fontColor=#183044;" parent="1" vertex="1">
+          <mxGeometry x="405.98" y="384.53" width="122" height="158" as="geometry" />
         </mxCell>
-        <mxCell id="paciente" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#EAF2F8;strokeColor=#287A83;" value="Paciente&#10;────────────&#10;id_paciente&#10;identificacion_referencia&#10;nombre_referencia&#10;informacion_basica" vertex="1">
-          <mxGeometry height="130" width="180" x="520" y="430" as="geometry" />
+        <mxCell id="Ambulancia" value="&lt;table border=&quot;0&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; style=&quot;border-collapse:collapse;font-family:Arial,sans-serif;font-size:11px;color:#183044;&quot;&gt;&lt;tr&gt;&lt;td style=&quot;background-color:#D4E9EE;border:1px solid #2C7884;padding:6px 7px;text-align:center;font-weight:bold;white-space:nowrap;&quot;&gt;Ambulancia&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;background-color:#EEF6F8;border-left:1px solid #2C7884;border-right:1px solid #2C7884;padding:4px 7px;text-align:left;white-space:nowrap;&quot;&gt;id_ambulancia&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;background-color:#EEF6F8;border-left:1px solid #2C7884;border-right:1px solid #2C7884;padding:4px 7px;text-align:left;white-space:nowrap;&quot;&gt;placa&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;background-color:#EEF6F8;border-left:1px solid #2C7884;border-right:1px solid #2C7884;padding:4px 7px;text-align:left;white-space:nowrap;&quot;&gt;tipo&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;background-color:#EEF6F8;border-left:1px solid #2C7884;border-right:1px solid #2C7884;padding:4px 7px;text-align:left;white-space:nowrap;&quot;&gt;estado_operativo&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;background-color:#EEF6F8;border-left:1px solid #2C7884;border-right:1px solid #2C7884;padding:4px 7px;text-align:left;white-space:nowrap;&quot;&gt;ubicacion_referencia&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;height:2px;background-color:#EEF6F8;border-left:1px solid #2C7884;border-right:1px solid #2C7884;border-bottom:1px solid #2C7884;&quot;&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;" style="rounded=0;whiteSpace=wrap;html=1;overflow=fill;fillColor=none;strokeColor=#2C7884;strokeWidth=1.5;align=left;verticalAlign=middle;spacing=0;fontFamily=Arial;fontSize=11;fontColor=#183044;" parent="1" vertex="1">
+          <mxGeometry x="1297.2" y="199.82" width="116" height="158" as="geometry" />
         </mxCell>
-        <mxCell id="ambulancia" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#EAF2F8;strokeColor=#287A83;" value="Ambulancia&#10;────────────&#10;id_ambulancia&#10;placa&#10;tipo&#10;estado_operativo&#10;ubicacion_referencia" vertex="1">
-          <mxGeometry height="140" width="180" x="1040" y="430" as="geometry" />
+        <mxCell id="Asignacion" value="&lt;table border=&quot;0&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; style=&quot;border-collapse:collapse;font-family:Arial,sans-serif;font-size:11px;color:#183044;&quot;&gt;&lt;tr&gt;&lt;td style=&quot;background-color:#D4E9EE;border:1px solid #2C7884;padding:6px 7px;text-align:center;font-weight:bold;white-space:nowrap;&quot;&gt;Asignacion&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;background-color:#EEF6F8;border-left:1px solid #2C7884;border-right:1px solid #2C7884;padding:4px 7px;text-align:left;white-space:nowrap;&quot;&gt;id_asignacion&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;background-color:#EEF6F8;border-left:1px solid #2C7884;border-right:1px solid #2C7884;padding:4px 7px;text-align:left;white-space:nowrap;&quot;&gt;fecha_asignacion&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;background-color:#EEF6F8;border-left:1px solid #2C7884;border-right:1px solid #2C7884;padding:4px 7px;text-align:left;white-space:nowrap;&quot;&gt;estado&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;background-color:#EEF6F8;border-left:1px solid #2C7884;border-right:1px solid #2C7884;padding:4px 7px;text-align:left;white-space:nowrap;&quot;&gt;observaciones&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;height:2px;background-color:#EEF6F8;border-left:1px solid #2C7884;border-right:1px solid #2C7884;border-bottom:1px solid #2C7884;&quot;&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;" style="rounded=0;whiteSpace=wrap;html=1;overflow=fill;fillColor=none;strokeColor=#2C7884;strokeWidth=1.5;align=left;verticalAlign=middle;spacing=0;fontFamily=Arial;fontSize=11;fontColor=#183044;" parent="1" vertex="1">
+          <mxGeometry x="1037.7" y="243.82" width="100" height="132" as="geometry" />
         </mxCell>
-        <mxCell id="intervencion" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#EAF2F8;strokeColor=#287A83;" value="Intervencion&#10;────────────&#10;id_intervencion&#10;fecha_hora&#10;descripcion&#10;observaciones" vertex="1">
-          <mxGeometry height="130" width="180" x="1590" y="430" as="geometry" />
+        <mxCell id="Personal" value="&lt;table border=&quot;0&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; style=&quot;border-collapse:collapse;font-family:Arial,sans-serif;font-size:11px;color:#183044;&quot;&gt;&lt;tr&gt;&lt;td style=&quot;background-color:#D4E9EE;border:1px solid #2C7884;padding:6px 7px;text-align:center;font-weight:bold;white-space:nowrap;&quot;&gt;Personal&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;background-color:#EEF6F8;border-left:1px solid #2C7884;border-right:1px solid #2C7884;padding:4px 7px;text-align:left;white-space:nowrap;&quot;&gt;id_personal&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;background-color:#EEF6F8;border-left:1px solid #2C7884;border-right:1px solid #2C7884;padding:4px 7px;text-align:left;white-space:nowrap;&quot;&gt;nombre&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;background-color:#EEF6F8;border-left:1px solid #2C7884;border-right:1px solid #2C7884;padding:4px 7px;text-align:left;white-space:nowrap;&quot;&gt;identificacion_referencia&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;background-color:#EEF6F8;border-left:1px solid #2C7884;border-right:1px solid #2C7884;padding:4px 7px;text-align:left;white-space:nowrap;&quot;&gt;perfil_operativo&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;background-color:#EEF6F8;border-left:1px solid #2C7884;border-right:1px solid #2C7884;padding:4px 7px;text-align:left;white-space:nowrap;&quot;&gt;estado&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;background-color:#EEF6F8;border-left:1px solid #2C7884;border-right:1px solid #2C7884;padding:4px 7px;text-align:left;white-space:nowrap;&quot;&gt;contacto&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;height:2px;background-color:#EEF6F8;border-left:1px solid #2C7884;border-right:1px solid #2C7884;border-bottom:1px solid #2C7884;&quot;&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;" style="rounded=0;whiteSpace=wrap;html=1;overflow=fill;fillColor=none;strokeColor=#2C7884;strokeWidth=1.5;align=left;verticalAlign=middle;spacing=0;fontFamily=Arial;fontSize=11;fontColor=#183044;" parent="1" vertex="1">
+          <mxGeometry x="1017" y="518.66" width="132" height="184" as="geometry" />
         </mxCell>
-        <mxCell id="cierre" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#EAF2F8;strokeColor=#287A83;" value="RegistroCierre&#10;────────────&#10;id_cierre&#10;fecha_cierre&#10;resumen_condicion&#10;destino&#10;observaciones_finales" vertex="1">
-          <mxGeometry height="140" width="180" x="280" y="430" as="geometry" />
+        <mxCell id="AsignacionPersonal" value="&lt;table border=&quot;0&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; style=&quot;border-collapse:collapse;font-family:Arial,sans-serif;font-size:11px;color:#183044;&quot;&gt;&lt;tr&gt;&lt;td style=&quot;background-color:#FBE8B7;border:1px solid #B7791F;padding:6px 7px;text-align:center;font-weight:bold;white-space:nowrap;&quot;&gt;AsignacionPersonal&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;background-color:#FFF7E4;border-left:1px solid #B7791F;border-right:1px solid #B7791F;padding:4px 7px;text-align:left;white-space:nowrap;&quot;&gt;id_asignacion_personal&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;background-color:#FFF7E4;border-left:1px solid #B7791F;border-right:1px solid #B7791F;padding:4px 7px;text-align:left;white-space:nowrap;&quot;&gt;funcion&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;background-color:#FFF7E4;border-left:1px solid #B7791F;border-right:1px solid #B7791F;padding:4px 7px;text-align:left;white-space:nowrap;&quot;&gt;fecha_vinculacion&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;height:2px;background-color:#FFF7E4;border-left:1px solid #B7791F;border-right:1px solid #B7791F;border-bottom:1px solid #B7791F;&quot;&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;" style="rounded=0;whiteSpace=wrap;html=1;overflow=fill;fillColor=none;strokeColor=#B7791F;strokeWidth=1.5;align=left;verticalAlign=middle;spacing=0;fontFamily=Arial;fontSize=11;fontColor=#183044;" parent="1" vertex="1">
+          <mxGeometry x="1145.4" y="404.64" width="129" height="106" as="geometry" />
         </mxCell>
-        <mxCell id="r1" edge="1" parent="1" source="rol" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=none;startArrow=none;" target="usuario" value="asigna · 0..* : 1..1">
-          <mxGeometry relative="1" as="geometry" />
+        <mxCell id="Intervencion" value="&lt;table border=&quot;0&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; style=&quot;border-collapse:collapse;font-family:Arial,sans-serif;font-size:11px;color:#183044;&quot;&gt;&lt;tr&gt;&lt;td style=&quot;background-color:#D4E9EE;border:1px solid #2C7884;padding:6px 7px;text-align:center;font-weight:bold;white-space:nowrap;&quot;&gt;Intervencion&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;background-color:#EEF6F8;border-left:1px solid #2C7884;border-right:1px solid #2C7884;padding:4px 7px;text-align:left;white-space:nowrap;&quot;&gt;id_intervencion&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;background-color:#EEF6F8;border-left:1px solid #2C7884;border-right:1px solid #2C7884;padding:4px 7px;text-align:left;white-space:nowrap;&quot;&gt;fecha_hora&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;background-color:#EEF6F8;border-left:1px solid #2C7884;border-right:1px solid #2C7884;padding:4px 7px;text-align:left;white-space:nowrap;&quot;&gt;descripcion&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;background-color:#EEF6F8;border-left:1px solid #2C7884;border-right:1px solid #2C7884;padding:4px 7px;text-align:left;white-space:nowrap;&quot;&gt;observaciones&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;height:2px;background-color:#EEF6F8;border-left:1px solid #2C7884;border-right:1px solid #2C7884;border-bottom:1px solid #2C7884;&quot;&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;" style="rounded=0;whiteSpace=wrap;html=1;overflow=fill;fillColor=none;strokeColor=#2C7884;strokeWidth=1.5;align=left;verticalAlign=middle;spacing=0;fontFamily=Arial;fontSize=11;fontColor=#183044;" parent="1" vertex="1">
+          <mxGeometry x="829.37" y="542.99" width="89" height="132" as="geometry" />
         </mxCell>
-        <mxCell id="r2" edge="1" parent="1" source="solicitud" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=classicThin;startArrow=none;endFill=1;" target="servicio" value="origina · 0..1 : 1..1">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="r3" edge="1" parent="1" source="paciente" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=none;startArrow=none;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" target="servicio" value="recibe · 0..* : 1..1">
-          <mxGeometry relative="1" x="0.0026" as="geometry" />
-        </mxCell>
-        <mxCell id="r4" edge="1" parent="1" source="servicio" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=none;startArrow=none;" target="asignacion" value="recibe · 0..* : 1..1">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="r5" edge="1" parent="1" source="ambulancia" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=none;startArrow=none;" target="asignacion" value="participa en · 0..* : 1..1">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="r6" edge="1" parent="1" source="asignacion" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=none;startArrow=none;" target="ap" value="incluye · 1..* : 1..1">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="r7" edge="1" parent="1" source="personal" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=none;startArrow=none;" target="ap" value="integra · 0..* : 1..1">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="r8" edge="1" parent="1" source="servicio" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=none;startArrow=none;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" target="intervencion" value="registra · 0..* : 1..1">
-          <mxGeometry relative="1" x="-0.0129" as="geometry">
-            <Array as="points">
-              <mxPoint x="870" y="120" />
-              <mxPoint x="1790" y="120" />
-              <mxPoint x="1790" y="495" />
-            </Array>
-            <mxPoint x="960" y="360" as="sourcePoint" />
-            <mxPoint x="1670" y="570" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="r9" edge="1" parent="1" source="personal" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=none;startArrow=none;" target="intervencion" value="realiza · 0..* : 1..1">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="r10" edge="1" parent="1" source="usuario" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=none;startArrow=none;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="solicitud" value="registra · 0..* : 1..1">
-          <mxGeometry relative="1" x="0.0039" as="geometry">
-            <Array as="points">
-              <mxPoint x="450" y="215" />
-            </Array>
-            <mxPoint x="910" y="300" as="sourcePoint" />
-            <mxPoint x="450" y="260" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="r11" edge="1" parent="1" source="servicio" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=none;startArrow=none;exitX=0.25;exitY=1;exitDx=0;exitDy=0;" value="documenta · 0..1 : 1..1" target="cierre">
-          <mxGeometry relative="1" x="0.7667" as="geometry">
-            <Array as="points">
-              <mxPoint x="825" y="320" />
-              <mxPoint x="375" y="320" />
-            </Array>
-            <mxPoint x="875" y="280" as="sourcePoint" />
-            <mxPoint x="375" y="430" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="r12" value="registra · 0..* : 1..1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;startArrow=none;strokeColor=#8A6B9A;" edge="1" parent="1" source="usuario" target="cierre">
+        <mxCell id="rel1" value="" style="edgeStyle=none;curved=1;rounded=1;html=1;strokeColor=#526A7D;strokeWidth=1.5;endArrow=block;endFill=1;startArrow=none;exitX=1.0000;exitY=0.3568;entryX=0.0000;entryY=0.6370;" parent="1" edge="1" source="Rol" target="Usuario">
           <mxGeometry relative="1" as="geometry">
-            <mxPoint x="450" y="320" as="sourcePoint" />
-            <mxPoint x="870" y="620" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="119.8" y="435.83" />
+              <mxPoint x="131.11" y="431.02" />
+              <mxPoint x="142.99" y="425.98" />
+              <mxPoint x="155.21" y="420.78" />
+              <mxPoint x="167.58" y="415.53" />
+              <mxPoint x="179.89" y="410.3" />
+              <mxPoint x="191.94" y="405.18" />
+            </Array>
           </mxGeometry>
+        </mxCell>
+        <mxCell id="label_rel1" value="&lt;div style=&quot;text-align:center;line-height:1.15;&quot;&gt;asigna&lt;br&gt;0..* : 1..1&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;strokeColor=none;fillColor=#FFFFFF;fillOpacity=88;fontFamily=Arial;fontSize=9;fontColor=#33485B;spacing=1;" parent="1" vertex="1">
+          <mxGeometry x="86.96" y="394.98" width="112" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="rel2" value="" style="edgeStyle=none;curved=1;rounded=1;html=1;strokeColor=#526A7D;strokeWidth=1.5;endArrow=block;endFill=1;startArrow=none;exitX=1.0000;exitY=0.3618;entryX=0.0000;entryY=0.6645;" parent="1" edge="1" source="Usuario" target="Solicitud">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="310.61" y="351.1" />
+              <mxPoint x="322.96" y="345.03" />
+              <mxPoint x="335.85" y="338.71" />
+              <mxPoint x="349.08" y="332.22" />
+              <mxPoint x="362.45" y="325.67" />
+              <mxPoint x="375.77" y="319.13" />
+              <mxPoint x="388.84" y="312.72" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="label_rel2" value="&lt;div style=&quot;text-align:center;line-height:1.15;&quot;&gt;registra&lt;br&gt;0..* : 1..1&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;strokeColor=none;fillColor=#FFFFFF;fillOpacity=88;fontFamily=Arial;fontSize=9;fontColor=#33485B;spacing=1;" parent="1" vertex="1">
+          <mxGeometry x="280.75" y="306.18" width="112" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="rel12" value="" style="edgeStyle=none;curved=1;rounded=1;html=1;strokeColor=#526A7D;strokeWidth=1.5;endArrow=block;endFill=1;startArrow=none;exitX=1.0000;exitY=0.6127;entryX=0.0000;entryY=0.3293;" parent="1" edge="1" source="Usuario" target="RegistroCierre">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="310.34" y="400.95" />
+              <mxPoint x="322.37" y="405.76" />
+              <mxPoint x="334.93" y="410.78" />
+              <mxPoint x="347.85" y="415.94" />
+              <mxPoint x="360.94" y="421.17" />
+              <mxPoint x="374.02" y="426.39" />
+              <mxPoint x="386.93" y="431.55" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="label_rel12" value="&lt;div style=&quot;text-align:center;line-height:1.15;&quot;&gt;registra&lt;br&gt;0..* : 1..1&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;strokeColor=none;fillColor=#FFFFFF;fillOpacity=88;fontFamily=Arial;fontSize=9;fontColor=#33485B;spacing=1;" parent="1" vertex="1">
+          <mxGeometry x="279.84" y="393.73" width="112" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="rel3" value="" style="edgeStyle=none;curved=1;rounded=1;html=1;strokeColor=#526A7D;strokeWidth=1.5;endArrow=block;endFill=1;startArrow=none;exitX=1.0000;exitY=0.6099;entryX=0.0000;entryY=0.3671;" parent="1" edge="1" source="Solicitud" target="Servicio">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="537.13" y="303.4" />
+              <mxPoint x="557.45" y="310.85" />
+              <mxPoint x="578.76" y="318.67" />
+              <mxPoint x="600.6" y="326.68" />
+              <mxPoint x="622.45" y="334.7" />
+              <mxPoint x="643.85" y="342.56" />
+              <mxPoint x="664.31" y="350.06" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="label_rel3" value="&lt;div style=&quot;text-align:center;line-height:1.15;&quot;&gt;origina&lt;br&gt;0..1 : 1..1&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;strokeColor=none;fillColor=#FFFFFF;fillOpacity=88;fontFamily=Arial;fontSize=9;fontColor=#33485B;spacing=1;" parent="1" vertex="1">
+          <mxGeometry x="531.02" y="303.94" width="112" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="rel11" value="" style="edgeStyle=none;curved=1;rounded=1;html=1;strokeColor=#526A7D;strokeWidth=1.5;endArrow=block;endFill=1;startArrow=none;exitX=0.0000;exitY=0.6005;entryX=1.0000;entryY=0.3660;" parent="1" edge="1" source="Servicio" target="RegistroCierre">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="672.49" y="399.31" />
+              <mxPoint x="653.82" y="405.14" />
+              <mxPoint x="634.13" y="411.29" />
+              <mxPoint x="613.82" y="417.64" />
+              <mxPoint x="593.32" y="424.04" />
+              <mxPoint x="573.02" y="430.39" />
+              <mxPoint x="553.34" y="436.53" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="label_rel11" value="&lt;div style=&quot;text-align:center;line-height:1.15;&quot;&gt;documenta&lt;br&gt;0..1 : 1..1&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;strokeColor=none;fillColor=#FFFFFF;fillOpacity=88;fontFamily=Arial;fontSize=9;fontColor=#33485B;spacing=1;" parent="1" vertex="1">
+          <mxGeometry x="533.02" y="395.14" width="112" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="rel5" value="" style="edgeStyle=none;curved=1;rounded=1;html=1;strokeColor=#526A7D;strokeWidth=1.5;endArrow=block;endFill=1;startArrow=none;exitX=1.0000;exitY=0.4367;entryX=0.0000;entryY=0.5846;" parent="1" edge="1" source="Servicio" target="Asignacion">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="817.26" y="362.96" />
+              <mxPoint x="846.36" y="357.24" />
+              <mxPoint x="877.64" y="351.09" />
+              <mxPoint x="910.09" y="344.72" />
+              <mxPoint x="942.66" y="338.32" />
+              <mxPoint x="974.32" y="332.09" />
+              <mxPoint x="1004.05" y="326.25" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="label_rel5" value="&lt;div style=&quot;text-align:center;line-height:1.15;&quot;&gt;recibe&lt;br&gt;0..* : 1..1&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;strokeColor=none;fillColor=#FFFFFF;fillOpacity=88;fontFamily=Arial;fontSize=9;fontColor=#33485B;spacing=1;" parent="1" vertex="1">
+          <mxGeometry x="842.18" y="319.81" width="112" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="rel9" value="" style="edgeStyle=none;curved=1;rounded=1;html=1;strokeColor=#526A7D;strokeWidth=1.5;endArrow=block;endFill=1;startArrow=none;exitX=0.9525;exitY=1.0000;entryX=0.0327;entryY=0.0000;" parent="1" edge="1" source="Servicio" target="Intervencion">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="791.9" y="467.01" />
+              <mxPoint x="797.67" y="477.01" />
+              <mxPoint x="803.51" y="487.12" />
+              <mxPoint x="809.38" y="497.28" />
+              <mxPoint x="815.23" y="507.41" />
+              <mxPoint x="821.02" y="517.45" />
+              <mxPoint x="826.72" y="527.32" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="label_rel9" value="&lt;div style=&quot;text-align:center;line-height:1.15;&quot;&gt;registra&lt;br&gt;0..* : 1..1&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;strokeColor=none;fillColor=#FFFFFF;fillOpacity=88;fontFamily=Arial;fontSize=9;fontColor=#33485B;spacing=1;" parent="1" vertex="1">
+          <mxGeometry x="738.53" y="476.14" width="112" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="rel4" value="" style="edgeStyle=none;curved=1;rounded=1;html=1;strokeColor=#526A7D;strokeWidth=1.5;endArrow=block;endFill=1;startArrow=none;exitX=0.3520;exitY=1.0000;entryX=0.7515;entryY=0.0000;" parent="1" edge="1" source="Paciente" target="Servicio">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="774.55" y="263.08" />
+              <mxPoint x="773.33" y="267.17" />
+              <mxPoint x="772.11" y="271.31" />
+              <mxPoint x="770.88" y="275.46" />
+              <mxPoint x="769.64" y="279.64" />
+              <mxPoint x="768.4" y="283.83" />
+              <mxPoint x="767.17" y="288.02" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="label_rel4" value="&lt;div style=&quot;text-align:center;line-height:1.15;&quot;&gt;recibe&lt;br&gt;0..* : 1..1&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;strokeColor=none;fillColor=#FFFFFF;fillOpacity=88;fontFamily=Arial;fontSize=9;fontColor=#33485B;spacing=1;" parent="1" vertex="1">
+          <mxGeometry x="697.3" y="255.12" width="112" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="rel6" value="" style="edgeStyle=none;curved=1;rounded=1;html=1;strokeColor=#526A7D;strokeWidth=1.5;endArrow=block;endFill=1;startArrow=none;exitX=0.0000;exitY=0.5426;entryX=1.0000;entryY=0.4499;" parent="1" edge="1" source="Ambulancia" target="Asignacion">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1279.49" y="287.6" />
+              <mxPoint x="1260.61" y="289.78" />
+              <mxPoint x="1240.92" y="292.06" />
+              <mxPoint x="1220.85" y="294.39" />
+              <mxPoint x="1200.78" y="296.72" />
+              <mxPoint x="1181.14" y="298.99" />
+              <mxPoint x="1162.31" y="301.17" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="label_rel6" value="&lt;div style=&quot;text-align:center;line-height:1.15;&quot;&gt;participa en&lt;br&gt;0..* : 1..1&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;strokeColor=none;fillColor=#FFFFFF;fillOpacity=88;fontFamily=Arial;fontSize=9;fontColor=#33485B;spacing=1;" parent="1" vertex="1">
+          <mxGeometry x="1140.7" y="270.76" width="112" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="rel7" value="" style="edgeStyle=none;curved=1;rounded=1;html=1;strokeColor=#526A7D;strokeWidth=1.5;endArrow=block;endFill=1;startArrow=none;exitX=1.0000;exitY=0.9588;entryX=0.1240;entryY=0.0000;" parent="1" edge="1" source="Asignacion" target="AsignacionPersonal">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1140.66" y="373.94" />
+              <mxPoint x="1143.62" y="377.52" />
+              <mxPoint x="1146.6" y="381.12" />
+              <mxPoint x="1149.57" y="384.72" />
+              <mxPoint x="1152.55" y="388.32" />
+              <mxPoint x="1155.51" y="391.91" />
+              <mxPoint x="1158.47" y="395.48" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="label_rel7" value="&lt;div style=&quot;text-align:center;line-height:1.15;&quot;&gt;incluye&lt;br&gt;1..* : 1..1&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;strokeColor=none;fillColor=#FFFFFF;fillOpacity=88;fontFamily=Arial;fontSize=9;fontColor=#33485B;spacing=1;" parent="1" vertex="1">
+          <mxGeometry x="1112.3" y="363.42" width="112" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="rel8" value="" style="edgeStyle=none;curved=1;rounded=1;html=1;strokeColor=#526A7D;strokeWidth=1.5;endArrow=block;endFill=1;startArrow=none;exitX=1.0000;exitY=0.0672;entryX=0.1240;entryY=1.0000;" parent="1" edge="1" source="Personal" target="AsignacionPersonal">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1150.6" y="529.14" />
+              <mxPoint x="1152.15" y="527.26" />
+              <mxPoint x="1153.7" y="525.39" />
+              <mxPoint x="1155.25" y="523.52" />
+              <mxPoint x="1156.8" y="521.66" />
+              <mxPoint x="1158.34" y="519.81" />
+              <mxPoint x="1159.87" y="517.96" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="label_rel8" value="&lt;div style=&quot;text-align:center;line-height:1.15;&quot;&gt;integra&lt;br&gt;0..* : 1..1&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;strokeColor=none;fillColor=#FFFFFF;fillOpacity=88;fontFamily=Arial;fontSize=9;fontColor=#33485B;spacing=1;" parent="1" vertex="1">
+          <mxGeometry x="1117.7" y="515.19" width="112" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="rel10" value="" style="edgeStyle=none;curved=1;rounded=1;html=1;strokeColor=#526A7D;strokeWidth=1.5;endArrow=block;endFill=1;startArrow=none;exitX=0.0000;exitY=0.4971;entryX=1.0000;entryY=0.5031;" parent="1" edge="1" source="Personal" target="Intervencion">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1005.55" y="610.04" />
+              <mxPoint x="993.95" y="609.95" />
+              <mxPoint x="982.17" y="609.85" />
+              <mxPoint x="970.36" y="609.76" />
+              <mxPoint x="958.63" y="609.66" />
+              <mxPoint x="947.13" y="609.57" />
+              <mxPoint x="935.99" y="609.48" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="label_rel10" value="&lt;div style=&quot;text-align:center;line-height:1.15;&quot;&gt;realiza&lt;br&gt;0..* : 1..1&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;strokeColor=none;fillColor=#FFFFFF;fillOpacity=88;fontFamily=Arial;fontSize=9;fontColor=#33485B;spacing=1;" parent="1" vertex="1">
+          <mxGeometry x="895.28" y="585.74" width="112" height="30" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>

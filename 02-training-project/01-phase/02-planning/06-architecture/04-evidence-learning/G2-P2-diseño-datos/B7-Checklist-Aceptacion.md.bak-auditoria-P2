@@ -1,0 +1,101 @@
+﻿# B7 - Checklist de Aceptación de Productos 1 y 2 - SIGMAVITAL
+
+**Proyecto:** SIGMAVITAL  
+**Ficha:** 3413974 - Análisis y Desarrollo de Software (ADSO)  
+**Fase:** Diseño  
+**Bloque:** G2-P2 - Diseño de datos  
+**Objetivo:** Validar los artefactos, requisitos y evidencias correspondientes a los Productos 1 y 2.
+
+## 1. Escala de severidad
+
+- **Critical (Crítica):** Incumplimiento que afecta requisitos esenciales, integridad, seguridad o funcionamiento.
+- **Major (Mayor):** Incumplimiento que afecta la calidad, consistencia o documentación del entregable.
+- **Minor (Menor):** Aspecto documental, presentación o mejora que no impide el funcionamiento principal.
+
+## 2. Checklist de aceptación
+
+| ID | Criterio de aceptación | Producto | Severidad | Estado | Evidencia / Observaciones |
+|---|---|---|---|---|---|
+| CA-01 | Los requisitos funcionales del sistema están documentados y organizados. | P1 | Critical | Pendiente de validación | Revisar matriz de requisitos. |
+| CA-02 | Los requisitos no funcionales están identificados y documentados. | P1 | Major | Pendiente de validación | Revisar documento de requisitos. |
+| CA-03 | Los requisitos tienen identificadores que permiten su trazabilidad. | P1 | Major | Pendiente de validación | Revisar matriz de trazabilidad. |
+| CA-04 | Los casos de uso representan las funcionalidades principales del sistema. | P1 | Critical | Pendiente de validación | Revisar diagramas y documentos. |
+| CA-05 | Los actores del sistema están identificados y relacionados con sus funciones. | P1 | Major | Pendiente de validación | Revisar diagramas de casos de uso. |
+| CA-06 | Los casos de uso cuentan con descripción o especificación suficiente. | P1 | Major | Pendiente de validación | Revisar especificaciones. |
+| CA-07 | La documentación de análisis y diseño mantiene consistencia entre requisitos y casos de uso. | P1 | Critical | Pendiente de validación | Comparar matriz y casos de uso. |
+| CA-08 | Los artefactos del Producto 1 están organizados en sus respectivas carpetas. | P1 | Minor | Pendiente de validación | Revisar estructura del repositorio. |
+| CA-09 | El modelo conceptual de datos representa las entidades principales del sistema. | P2 | Critical | Pendiente de validación | B1-Diagrama-Conceptual.drawio. |
+| CA-10 | El modelo conceptual incluye mínimo seis entidades. | P2 | Critical | Pendiente de validación | Revisar B1. |
+| CA-11 | El modelo conceptual representa relaciones y cardinalidades. | P2 | Critical | Pendiente de validación | Revisar B1. |
+| CA-12 | El modelo conceptual contempla relaciones 1:N y N:M. | P2 | Critical | Pendiente de validación | Revisar B1. |
+| CA-13 | El modelo relacional contempla mínimo ocho tablas. | P2 | Critical | Pendiente de validación | B2-Diagrama-Relacional.drawio. |
+| CA-14 | Las tablas del modelo relacional cuentan con claves primarias. | P2 | Critical | Pendiente de validación | Revisar B2. |
+| CA-15 | Las relaciones entre tablas están representadas mediante claves foráneas. | P2 | Critical | Pendiente de validación | Revisar B2. |
+| CA-16 | Las relaciones N:M están resueltas mediante tablas intermediarias. | P2 | Critical | Pendiente de validación | Revisar B2. |
+| CA-17 | El modelo relacional documenta reglas de transformación del modelo conceptual. | P2 | Major | Pendiente de validación | B2-Modelo-Relacional.md. |
+| CA-18 | El proceso de normalización documenta las etapas hasta 3FN. | P2 | Critical | Pendiente de validación | B3-Normalizacion.md. |
+| CA-19 | La normalización incluye dependencias funcionales y ejemplos de las tablas analizadas. | P2 | Major | Pendiente de validación | Revisar B3. |
+| CA-20 | El diccionario de datos documenta campos, tipos, tamaños, restricciones y dominios. | P2 | Critical | Pendiente de validación | B4-Diccionario-Datos.md. |
+| CA-21 | El script SQL permite crear la estructura de la base de datos. | P2 | Critical | Pendiente de validación | B5-Creacion-Base-Datos.sql. |
+| CA-22 | La ejecución del script SQL fue comprobada y se verificó la creación de las tablas. | P2 | Critical | Pendiente de validación | Captura B5 de tablas. |
+| CA-23 | Las claves foráneas de la base de datos fueron verificadas. | P2 | Critical | Pendiente de validación | Captura B5 de relaciones. |
+| CA-24 | Se documentaron políticas de integridad, confidencialidad, disponibilidad y protección de datos. | P2 | Critical | Pendiente de validación | B6-Politicas-Seguridad-Datos.md. |
+| CA-25 | Se documentó una matriz de acceso por roles y el tratamiento de datos personales. | P2 | Critical | Pendiente de validación | Revisar B6. |
+
+## 3. Registro de validación
+
+Los criterios se deberán revisar individualmente. Una vez comprobados, se actualizará el estado de cada criterio y se registrará la evidencia correspondiente.
+
+Estados propuestos:
+
+- **Pendiente de validación:** No se ha comprobado todavía.
+- **Cumple:** Se verificó el criterio y existe evidencia.
+- **No cumple:** El criterio no se satisface.
+- **En revisión:** Requiere ajustes o comprobaciones adicionales.
+
+## 4. Resultado general
+
+El resultado de la evaluación se determinará una vez revisados los 25 criterios y las evidencias correspondientes a los Productos 1 y 2.
+
+Este checklist constituye un instrumento de verificación de los artefactos de análisis y diseño del proyecto SIGMAVITAL.
+
+## 5. Validaciones técnicas comprobadas durante la revisión
+
+| ID de validación | Comprobación | Resultado | Evidencia |
+|---|---|---|---|
+| VT-01 | Creación de las 11 tablas del modelo relacional en ambiente de prueba. | Cumple | B5-Evidencia-Tablas.txt y B5-Evidencia-Ejecucion-Tablas.png |
+| VT-02 | Verificación de las 11 claves foráneas y sus reglas referenciales. | Cumple | B5-Evidencia-Relaciones.txt |
+| VT-03 | Verificación de reglas ON UPDATE y ON DELETE en las relaciones. | Cumple | B5-Evidencia-Relaciones.txt |
+| VT-04 | Verificación de las 7 restricciones CHECK del script SQL. | Cumple | B5-Evidencia-Checks.txt |
+| VT-05 | Evidencia visual de la estructura de las tablas. | Cumple | B5-Evidencia-Ejecucion-Tablas.png |
+| VT-06 | Evidencia visual del modelo de relaciones en phpMyAdmin. | Cumple | B5-Evidencia-Relaciones.png |
+
+## 6. Registro de hallazgos y correcciones
+
+| ID | Hallazgo identificado | Severidad | Corrección realizada | Evidencia |
+|---|---|---|---|---|
+| H-01 | El script SQL requería reglas de validación explícitas para determinados campos y fechas. | Major | Se incorporaron y verificaron 7 restricciones CHECK. | B5-Creacion-Base-Datos.sql y B5-Evidencia-Checks.txt |
+| H-02 | Las relaciones del script requerían especificación explícita de acciones referenciales. | Major | Se verificaron las reglas ON DELETE y ON UPDATE de las 11 claves foráneas. | B5-Evidencia-Relaciones.txt |
+| H-03 | El documento de políticas de seguridad no especificaba explícitamente el mecanismo de hash de contraseñas, TLS ni la periodicidad de respaldos y restauraciones. | Major | Se complementó B6 con hash seguro con salt, HTTPS/TLS, respaldos semanales, incrementales diarios y pruebas mensuales de restauración propuestas. | B6-Politicas-Seguridad-Datos.md |
+
+## 7. Equivalencia de severidad
+
+Para facilitar la correspondencia con la escala requerida en la guía:
+
+- **Critical (Crítica):** Incumplimiento que compromete requisitos esenciales, integridad, seguridad o funcionamiento.
+- **Major (Mayor):** Incumplimiento importante de consistencia, documentación, validación o funcionalidad que requiere corrección.
+- **Minor (Menor):** Aspecto documental, presentación o mejora que no afecta el funcionamiento principal.
+
+Los criterios de aceptación y hallazgos deberán evaluarse utilizando esta escala durante la revisión definitiva.
+
+## 8. Alcance de la revisión
+
+Las validaciones técnicas registradas corresponden a las comprobaciones realizadas sobre el modelo relacional y el script SQL en el ambiente de prueba, así como a los ajustes documentales efectuados en B6. Los criterios restantes de P1 y P2 deberán verificarse contra sus artefactos y evidencias antes de asignarles un estado definitivo.
+
+
+
+| VT-07 | Prueba real de unicidad de RegistroCierre.id_servicio: se insertó un cierre y se rechazó un segundo cierre para el mismo servicio; transacción revertida y registros temporales verificados. | Cumple | B5-Evidencia-Unicidad-Cierre.txt |
+
+
+| H-04 | La cardinalidad Servicio–RegistroCierre no estaba alineada entre los artefactos conceptual, relacional y SQL. | Major | Se alineó a 1:0..1, se incorporó UNIQUE a id_servicio y se verificó mediante prueba real en MariaDB. | B2-Modelo-Relacional.md, B2-Diagrama-Relacional.drawio, B4-Diccionario-Datos.md, B5-Creacion-Base-Datos.sql y B5-Evidencia-Unicidad-Cierre.txt |
+
