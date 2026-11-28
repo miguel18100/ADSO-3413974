@@ -1,0 +1,747 @@
+GFPI-F-135 V04
+PROCESO DE GESTIÓN DE FORMACIÓN PROFESIONAL INTEGRAL
+FORMATO GUÍA DE APRENDIZAJE
+1. IDENTIFICACIÓN DE LA GUIA DE APRENDIZAJE
+• Denominación del Programa de Formación: Análisis y desarrollo de software.
+• Código del Programa de Formación: 228118.
+• Nombre del Proyecto Formativo (si aplica): Desarrollo de software orientado a servicios V2.
+• Fase del Proyecto (si aplica): Planeación.
+• Actividad de Proyecto Formativo (si aplica): Determinar la estructura lógica y tecnológica del 
+software.
+• Competencia:  Diseñar la solución de software de acuerdo con procedimientos y requisitos 
+técnicos (Código de Norma 220501095 - Modelado de los artefactos del software).
+• Alcance:  Esta  guía  cubre  únicamente  la  competencia  220501095,  en  sus  resultados  de 
+aprendizaje 01, 02 y 04. No incluye las competencias de inglés ni de investigación formativa 
+asociadas a la misma actividad del proyecto, que se desarrollan en guías de otros instructores, 
+ni el resultado de aprendizaje 03 de la competencia (características técnicas de la interfaz 
+gráfica).
+• Resultados de Aprendizaje:
+• Elaborar  los  artefactos  de  diseño  del  software  siguiendo  las  prácticas  de  la  metodología 
+seleccionada (RAP 593103).
+• Estructurar el modelo de datos del software de acuerdo con las especificaciones del análisis 
+(RAP 593101).
+• Verificar los entregables de la fase de diseño del software de acuerdo con lo establecido en el 
+informe de análisis (RAP 593102).
+• Duración de la Guía de Aprendizaje (horas): 12 horas (8 horas directas con el instructor y 4 
+horas de trabajo independiente).
+2. PRESENTACIÓN
+GFPI-F-135 V04
+La presente guía de aprendizaje orienta el desarrollo de la competencia “Diseñar la solución de 
+software  de  acuerdo  con  procedimientos  y  requisitos  técnicos”,  correspondiente  a  la  norma 
+220501095 - Modelado de los artefactos del software del programa de formación Análisis y Desarrollo 
+de Software. Su propósito es que el aprendiz tome el informe de análisis de su proyecto y lo convierta 
+en un diseño coherente, verificable y listo para ser codificado: artefactos de diseño orientados a 
+objetos, arquitectura, modelo de datos y una verificación que demuestre que lo diseñado cumple lo 
+que el análisis exigió.
+Durante la semana de la guía, que va desde su publicación el sábado 21 de noviembre de 2026 hasta el 
+sábado 28 de noviembre de 2026 a las 6:00 a. m., el aprendiz interpretará el informe de análisis, 
+aplicará  los  conceptos  y  principios  del  diseño  orientado  a  objetos  (cohesión,  acoplamiento, 
+encapsulamiento,  polimorfismo,  herencia  y  composición),  elaborará  el  diagrama  de  clases 
+incorporando patrones de diseño, definirá la arquitectura del software y sus vistas de componentes y 
+de  despliegue,  estructurará  el  modelo  de  datos  (modelo  conceptual,  modelo  lógico  relacional, 
+normalización, diccionario de datos y políticas de seguridad) y elaborará la lista de chequeo con la que 
+verificará los entregables del diseño frente al informe de análisis.
+Esta guía no parte de cero: los dos productos consisten en reutilizar y ajustar lo que el aprendiz 
+construyó durante el año en su fork del repositorio (el informe de requisitos o SRS, los casos de uso, el 
+diagrama de clases, los mockups, el modelo entidad-relación y los scripts SQL de las actividades de 03-
+execute y de las carpetas de evidencia), llevándolo al estándar que exige la guía. De lo trabajado en el 
+año ya hay antecedente en el diagrama de clases, en el SRS y en el material de arquitectura mostrado  
+por el instructor; lo que se construye desde cero en esta guía son los principios y patrones de diseño, 
+la vista de componentes, la vista de despliegue, la normalización del modelo de datos, las políticas de 
+seguridad y la verificación del diseño contra el análisis.
+La guía tiene una duración total de 12 horas, de las cuales 8 son directas con el instructor y 4 son de  
+trabajo independiente.
+Los resultados de aprendizaje asociados a esta guía son:
+1. Elaborar los artefactos de diseño del software siguiendo las prácticas de la metodología seleccionada.
+2. Estructurar el modelo de datos del software de acuerdo con las especificaciones del análisis.
+GFPI-F-135 V04
+3. Verificar los entregables de la fase de diseño del software de acuerdo con lo establecido en el informe 
+de análisis.
+El desarrollo de esta guía permitirá que el aprendiz comprenda que diseñar no es dibujar diagramas 
+aislados,  sino  tomar  decisiones  trazables:  cada  clase,  componente  y  tabla  debe  responder  a  un 
+requisito del análisis, y cada decisión debe poder verificarse con criterios de aceptación. Las evidencias 
+valorarán la apropiación conceptual, la calidad de los productos elaborados a partir del trabajo previo 
+del aprendiz y el desempeño al verificar un diseño real.
+La guía contiene cuatro entregables, cada uno con un peso del 25 % sobre 100 puntos: una prueba de 
+conocimiento, dos productos y una prueba de desempeño. La nota de la guía es el promedio de los 
+cuatro y se aprueba con 70 puntos o más. Los dos productos se trabajan durante la semana y se  
+entregan, a más tardar, el sábado 28 de noviembre de 2026 a las 6:00 a. m. (antes de iniciar la sesión 
+presencial). Ese mismo sábado 28 de noviembre de 2026, de forma presencial e individual en el 
+ambiente de formación, se aplican la prueba de conocimiento (cuestionario en la plataforma Moodle 
+de Zajuna con calificación automática) y la prueba de desempeño (práctica en computador, con entrega 
+de los archivos en una tarea de Moodle). Esa misma semana el aprendiz trabaja también la guía 1, 
+cuyos productos vencen el mismo 28 de noviembre: conviene repartir el tiempo desde el primer día y 
+no dejar los productos de esta guía para las últimas horas.
+Los soportes se entregan con commit y push en el fork del aprendiz, dentro de la carpeta 02-training-
+project/01-phase/02-planning/06-architecture/04-evidence-learning/.  Las  condiciones  de  cada 
+entrega, los mínimos exigidos, los topes de calificación, el control de autoría y los niveles de cada 
+criterio están en el documento Rubricas_G2, que se publica junto con esta guía; el banco de 60 
+preguntas de estudio está en Banco_Estudio_G2 (.html o .pdf) y la plantilla del README de entrega, en 
+Plantilla_README_Entrega_G2.
+3. FORMULACIÓN DE LAS ACTIVIDADES DE APRENDIZAJE
+3.1 Actividades de reflexión inicial:
+Descripción de la actividad: El instructor presenta el caso de un equipo que recibió un informe de 
+análisis completo y, aun así, entregó un sistema con diagramas de clases que no correspondían a los 
+casos de uso, una base de datos con tablas duplicadas y sin llaves foráneas, y una arquitectura que no  
+GFPI-F-135 V04
+soportaba el acceso desde dispositivos móviles que el análisis exigía. Nadie verificó los entregables de 
+diseño antes de codificar, y al construir los módulos descubrieron que faltaban entidades y que había 
+que rehacer parte del trabajo.
+A partir de esta situación, los aprendices, organizados en equipos, responden preguntas orientadoras 
+como:
+• ¿qué decisiones de diseño se deben tomar antes de escribir la primera línea de código y de 
+dónde sale cada una?
+• ¿cómo se puede comprobar que un diagrama de clases o un modelo de datos responde 
+realmente a un requisito del análisis?
+• ¿qué consecuencias tiene para el proyecto no verificar el diseño y qué instrumento habría 
+detectado los errores a tiempo?
+• ¿qué parte de lo que ya hicimos durante el año en nuestro fork (SRS, casos de uso, diagrama de 
+clases, MER, scripts) se puede reutilizar y qué hay que ajustar para llegar al estándar de diseño?
+Cada equipo socializa sus respuestas y construye una conclusión grupal sobre la importancia de 
+elaborar, estructurar y verificar los artefactos de diseño a partir del informe de análisis. El instructor 
+presenta además el calendario de la semana, los cuatro entregables de la guía, la forma de calificación, 
+los mínimos de cada producto y el control de autoría (historial de commits, README de entrega y  
+verificación oral), y cada aprendiz elige el caso de su fork que usará en los dos productos.
+Ambiente  requerido:  Ambiente  de  formación  con  tablero,  computador,  video  beam  o  pantalla, 
+conexión a internet y espacio para trabajo colaborativo en equipos.
+Estrategias o técnicas didácticas activas:  Análisis de situación problema, preguntas orientadoras, 
+trabajo colaborativo y socialización grupal.
+Materiales  de  formación:  Guía  de  aprendizaje,  computador,  tablero,  marcadores,  cuaderno  de 
+apuntes y herramientas digitales para registro de ideas.
+Material de apoyo: Caso problema propuesto por el instructor, documento de rúbricas (Rubricas_G2), 
+documento  de  plantillas  (Plantillas_G2)  y  plantilla  del  README  de  entrega 
+(Plantilla_README_Entrega_G2).
+GFPI-F-135 V04
+Duración de la actividad: 1 hora.
+3.2  Actividades  de  contextualización  e  identificación  de  conocimientos  necesarios  para  el 
+aprendizaje:
+Descripción de la actividad:  El instructor orienta las sesiones magistrales de la semana sobre la 
+interpretación del informe de análisis y la toma de decisiones de diseño; el diseño orientado a objetos 
+(cohesión, acoplamiento, encapsulamiento, polimorfismo, herencia, composición e interfaces) y sus 
+principios  (adaptabilidad,  extensibilidad,  mantenibilidad,  reusabilidad,  desempeño,  escalabilidad, 
+confiabilidad y eficiencia); las plataformas tecnológicas (motores de bases de datos relacionales y no 
+relacionales, lenguajes con orientación a objetos); el diagrama de clases con atributos, métodos y 
+relaciones; los patrones de diseño GoF (estrategia, comando, iterador, singleton, fábrica abstracta y 
+fachada); la arquitectura de software (cliente/servidor en dos, tres y n capas, modelo vista controlador, 
+arquitecturas orientadas a servicios con SOA, REST y GraphQL, microservicios y serverless, DevOps e 
+integración continua) con sus cualidades sistémicas y sus vistas de componentes y de despliegue; el 
+modelo de datos (tipos de bases de datos, modelo conceptual, reglas de transformación al modelo 
+lógico relacional, cardinalidad, restricciones, formas normales, diccionario de datos, seguridad de la 
+información, tratamiento de datos personales y Big Data); y la verificación del diseño (técnicas de 
+inspección y revisión, listas de chequeo con criterios de aceptación, bajo acoplamiento y alta cohesión, 
+trazabilidad frente al informe de análisis e informe de diseño). Se parte de lo ya trabajado en el año (el 
+diagrama de clases, el SRS, el material de arquitectura de design-software y la plantilla de arquitectura 
+del framework) y se dedica el mayor tiempo a lo que no se ha practicado: principios y patrones, 
+componentes, despliegue, normalización y verificación.
+Actividad de aprendizaje:  Interpretar el informe de análisis y reconocer los conceptos, principios y 
+artefactos de diseño, el modelo de datos y los criterios de verificación necesarios para diseñar la 
+solución de software.
+Prueba de  conocimiento:  Se aplica  el sábado 28 de noviembre de 2026,  de forma  presencial e 
+individual en el ambiente de formación, como cuestionario en la plataforma Moodle (Zajuna) con 
+calificación automática, con una duración de 40 minutos y sin recursos de apoyo. Es un cuestionario de 
+20 preguntas de selección múltiple, de 5 puntos cada una: 14 tomadas del banco de preguntas de la 
+guía y 6 inéditas de nivel avanzado. Se pregunta por casos, por el diagrama o criterio que corresponde y 
+GFPI-F-135 V04
+por la detección de errores en diseños. El banco de 60 preguntas (15 básicas, 25 intermedias y 20  
+avanzadas, sin respuestas) está en el archivo Banco_Estudio_G2 (.html o .pdf) que se publica con la 
+guía como documento de estudio. La nota sobre 100 la calcula Moodle automáticamente al cerrar el 
+cuestionario y es la nota de la evidencia de conocimiento (25 % de la guía). Del tiempo de esta actividad, 
+2 horas y 20 minutos corresponden a las sesiones magistrales y de resolución de preguntas del banco 
+durante la semana del 21 al 28 de noviembre de 2026, y 40 minutos a la prueba del sábado 28 de 
+noviembre. Por el volumen del temario, las sesiones se concentran en lo que casi nadie ha practicado 
+(patrones, componentes, despliegue, normalización y verificación); el resto del temario es estudio 
+autónomo guiado con el banco de preguntas y Plantillas_G2, y cada tema del programa tiene preguntas 
+en el banco.
+Ambiente  requerido:  Ambiente  de  formación  con  equipos  de  cómputo,  video  beam  o  pantalla, 
+conectividad a internet y acceso a la plataforma Moodle (Zajuna) para presentar el cuestionario.
+Estrategias o técnicas didácticas activas:  Exposición magistral con ejemplos aplicados, análisis de 
+diagramas con errores, resolución de preguntas del banco en clase y estudio autónomo del banco de 
+preguntas.
+Materiales de formación: Computador, video beam, herramienta de modelado (editor de diagramas 
+UML), motor de bases de datos relacional, plataforma Moodle (Zajuna) y banco de preguntas de la 
+guía.
+Material de apoyo:  Presentación de las sesiones, banco de preguntas de la guía, documento de 
+plantillas  y  ejemplos  (Plantillas_G2)  con  diagramas  de  clases,  de  componentes,  de  despliegue  y 
+modelos  de  datos  normalizados,  y  la  carpeta  design-software  del  repositorio  como  ejemplo  de 
+arquitectura.
+Evidencias de aprendizaje: 
+• Evidencia de conocimiento: prueba de conocimiento individual de 20 preguntas sobre diseño 
+orientado a objetos, arquitectura, modelo de datos y verificación del diseño, aplicada el sábado 
+28 de noviembre de 2026 como cuestionario en la plataforma Moodle.
+Instrumentos  de  evaluación:  Cuestionario  en  plataforma  Moodle  con  calificación  automática, 
+calificado de 0 a 100 puntos (5 puntos por pregunta), con un peso del 25 % de la guía.
+GFPI-F-135 V04
+Duración de la actividad: 3 horas.
+3.3 Actividades de apropiación:
+Descripción de la actividad: Durante la semana los aprendices reutilizan y ajustan los artefactos que ya 
+construyeron durante el año en su fork (informe de requisitos o SRS, casos de uso, diagrama de clases, 
+mockups, modelo entidad-relación, procesos y scripts SQL de las actividades de 03-execute y de las 
+carpetas de evidencia) para producir los dos productos de la guía, con un único caso elegido por el 
+aprendiz y su informe de análisis como fuente de verdad. No se parte de cero: se completa, se corrige  
+y se lleva al estándar de la guía lo que ya existe, y se deja constancia en el README de qué se reutilizó, 
+de qué ruta del fork, qué se ajustó y qué se hizo nuevo. No se acepta como propio el material del  
+instructor (design-software de la semana 12, el laboratorio MER y su ejemplo de la semana 20, ni las 
+plantillas del framework sin diligenciar) ni el de otro aprendiz. Quien no tenga un informe de análisis 
+utilizable lo avisa al instructor a más tardar el miércoles 25 de noviembre y entrega un informe mínimo 
+de su proyecto (al menos 8 requisitos funcionales, 3 no funcionales y 4 casos de uso). De las 6 horas de 
+esta actividad, 2 son directas, con acompañamiento y revisión de avance del instructor, y 4 son de  
+trabajo independiente; cada producto se dimensiona para unas 3 horas de trabajo.
+Bloque 1 – Artefactos de diseño (Producto 1): el aprendiz elabora el diseño orientado a objetos del 
+caso. Entrega, como mínimo: (A1) la ficha de interpretación del análisis con al menos 8 requisitos 
+funcionales y 3 no funcionales, y la plataforma tecnológica (lenguaje orientado a objetos y tipo de base 
+de datos) con su justificación; (A2) el diagrama de clases con al menos 8 clases con atributos tipados y 
+métodos, multiplicidades, al menos una composición o agregación y al menos una herencia o interfaz; 
+(A3) al menos 2 patrones de diseño GoF distintos aplicados sobre clases del diagrama y justificados; 
+(A4) la arquitectura del software con diagrama y una tabla de al menos 3 requisitos no funcionales con 
+la decisión que atiende cada uno; (A5) la vista de componentes con al menos 5 componentes e 
+interfaces; (A6) la vista de despliegue con al menos 3 nodos, los artefactos que alojan y los protocolos; 
+y (A7) la matriz de trazabilidad que lleva cada requisito funcional a su clase y su componente. Cada 
+diagrama se entrega con su fuente editable y una imagen exportada.
+Duración: 3 horas.
+GFPI-F-135 V04
+Bloque 2 – Modelo de datos y verificación del diseño (Producto 2): el aprendiz estructura el modelo 
+de datos del caso. Entrega, como mínimo: (B1) el modelo conceptual con al menos 6 entidades, 
+cardinalidades y al menos una relación N:M y una 1:N; (B2) el modelo lógico relacional con al menos 8 
+tablas, llaves primarias y foráneas, tablas intermedias y el cuadro de las reglas de transformación 
+aplicadas; (B3) la normalización paso a paso de 0FN a 3FN de al menos 2 tablas de su propio modelo, 
+con  las  dependencias  funcionales  escritas;  (B4)  el  diccionario  de  datos  completo  (nombre,  tipo, 
+tamaño, restricciones y dominio); (B5) el script SQL de creación de las tablas, ejecutado sin errores con 
+su evidencia; (B6) al menos 6 políticas de seguridad de los datos (dos por cada principio de integridad, 
+confidencialidad y disponibilidad) y una matriz de al menos 3 roles contra las tablas, con el tratamiento 
+de datos personales; y (B7) la lista de chequeo de al menos 20 criterios de aceptación, diligenciada 
+sobre los artefactos de ambos productos, con severidad y evidencia por criterio.
+Duración: 3 horas.
+Actividad de aprendizaje (Bloque 1):  Elaborar los artefactos de diseño del software siguiendo las 
+prácticas de la metodología seleccionada.
+Actividad de aprendizaje (Bloque 2): Estructurar el modelo de datos del software de acuerdo con las 
+especificaciones del análisis y elaborar la lista de chequeo para verificar los entregables de diseño.
+Fecha de entrega: Hasta el sábado 28 de noviembre de 2026 a las 6:00 a. m., para los dos productos 
+(antes de iniciar la sesión presencial). Lo que se publique después de esa fecha no se evalúa.
+Ruta de entrega de los soportes: El aprendiz hace commit y push en su fork. El Producto 1 se entrega 
+en la carpeta 02-training-project/01-phase/02-planning/06-architecture/04-evidence-learning/G2-P1-
+<nombre-corto>/ y el Producto 2 en 02-training-project/01-phase/02-planning/06-architecture/04-
+evidence-learning/G2-P2-<nombre-corto>/. Cada carpeta incluye un README.md elaborado con la 
+plantilla Plantilla_README_Entrega_G2, con el enlace a cada artefacto, qué se reutilizó y de qué ruta 
+del fork, qué se ajustó, qué se hizo nuevo, el origen del insumo, el uso de inteligencia artificial declarado 
+y la declaración de autoría. No se aceptan soportes enviados por otro medio ni fuera de la fecha límite.
+Condiciones de calificación: Si falta un artefacto obligatorio, el producto tiene un tope de 60 puntos; 
+quedarse corto en la cantidad mínima de un artefacto entregado solo baja el nivel del criterio. La 
+autoría es individual y se verifica: se exigen commits propios, con cambios sustantivos en las carpetas 
+GFPI-F-135 V04
+G2, en al menos 2 días distintos entre la publicación de la guía (sábado 21 de noviembre de 2026) y la  
+entrega (el sábado 28 de noviembre de 2026 a las 6:00 a. m.) (con 1 solo día el tope es 70 y sin ningún 
+día con commits propios, 60), un README completo (si no, tope 70) y una verificación oral breve (una 
+pregunta por producto sobre los propios archivos, en un bloque aparte el sábado 28 de noviembre de 
+2026 o en la fecha de respaldo que el instructor comunique; si el aprendiz no puede explicar su 
+producto, ese producto queda con tope 50). Los demás topes y los niveles de cada criterio están en el 
+documento Rubricas_G2.
+Ambiente requerido:  Ambiente de formación con equipos de cómputo, herramienta de modelado 
+UML, motor de bases de datos relacional, conectividad a internet y acceso al fork de cada aprendiz en 
+GitHub.
+Estrategias  o  técnicas  didácticas  activas:  Aprendizaje  basado  en  proyectos,  taller  práctico  de 
+reutilización y ajuste de artefactos propios, revisión por pares con lista de chequeo y acompañamiento 
+del instructor.
+Materiales  de  formación:  Computador,  informe  de  análisis  o  SRS  del  caso  trabajado  en el  año, 
+herramienta de modelado UML, motor de bases de datos relacional, repositorio personal en GitHub, y 
+los formatos de Plantillas_G2 suministrados por el instructor.
+Material  de  apoyo:  Documento  de  rúbricas  (Rubricas_G2),  plantilla  del  README  de  entrega 
+(Plantilla_README_Entrega_G2), documento de plantillas y ejemplos pequeños (Plantillas_G2: lista de 
+chequeo,  matriz  de  trazabilidad,  cuadro  de  reglas  de  transformación,  tabla  de  decisiones  de 
+arquitectura, normalización, diccionario, políticas y registro de hallazgos, con ejemplos de diagramas 
+de clases, de componentes y de despliegue en un dominio distinto) y banco de preguntas de la guía.
+Evidencias de aprendizaje: 
+• Evidencia de producto 1: artefactos de diseño del caso ajustados desde el análisis (plataforma 
+tecnológica, diagrama de clases con patrones, arquitectura, vista de componentes, vista de 
+despliegue y matriz de trazabilidad), entregados en la carpeta G2-P1 del fork.
+• Evidencia de producto 2: modelo de datos del caso (modelo conceptual, lógico y normalizado, 
+diccionario de datos, script SQL y políticas de seguridad) y lista de chequeo de verificación del 
+diseño diligenciada, entregados en la carpeta G2-P2 del fork.
+GFPI-F-135 V04
+Instrumentos de evaluación: Lista de chequeo de mínimos y rúbrica de cada producto (Rubricas_G2), 
+calificada de 0 a 100 puntos, con un peso del 25 % de la guía para cada producto, más el control de  
+autoría.
+Duración de la actividad: 6 horas.
+3.4 Actividades de Transferencia el Conocimiento:
+Descripción de la actividad: El sábado 28 de noviembre de 2026, en el ambiente de formación, cada 
+aprendiz presenta de forma individual la prueba de desempeño en computador (equipo del ambiente 
+o portátil del aprendiz). El instructor entrega, como archivos digitales, un paquete de artefactos de 
+diseño de un caso nuevo que el aprendiz no conoce, con el informe de análisis correspondiente, en una 
+de dos versiones del caso repartidas por turno. El paquete contiene un diagrama de clases, una vista 
+de componentes, una vista de despliegue y un modelo de datos con defectos intencionales. En una 
+práctica de aproximadamente 90 minutos el aprendiz adapta y diligencia la lista de chequeo, registra 
+los hallazgos en una plantilla ya formateada con su trazabilidad al informe de análisis, normaliza el 
+modelo de datos y ajusta el diagrama de clases para reducir el acoplamiento y mejorar la cohesión, y 
+entrega los tres productos (lista de chequeo, registro de hallazgos y artefactos corregidos) al terminar, 
+subiendo los archivos a una tarea de Moodle (Zajuna). La verificación oral de autoría de los Productos 
+1 y 2 (una pregunta por producto sobre los propios archivos) se hace en un bloque aparte, para no 
+interrumpir la práctica. Los 30 minutos restantes de la sesión se destinan a la retroalimentación 
+individual y al cierre de la guía. Se permiten apuntes, la guía, el banco de preguntas y la propia lista de 
+chequeo del Producto 2; no se permiten internet (salvo el acceso a Moodle para descargar el paquete 
+y subir los archivos), mensajería, asistentes de inteligencia artificial ni ayuda de otras personas.
+Actividad de aprendizaje: Verificar los entregables de la fase de diseño del software de acuerdo con lo 
+establecido en el informe de análisis.
+Ambiente requerido:  Ambiente de formación con equipos de cómputo (o portátil del aprendiz), 
+herramienta de diagramación, ofimática, motor de bases de datos SQL relacional, acceso a Moodle 
+(Zajuna) y paquete de artefactos del caso de la prueba.
+Estrategias  o  técnicas  didácticas  activas:  Práctica  individual  en  clase,  inspección  y  revisión  de 
+artefactos de diseño con lista de chequeo y retroalimentación individual.
+GFPI-F-135 V04
+Materiales de formación: Computador, herramienta de diagramación, ofimática, motor de bases de 
+datos SQL relacional, paquete de artefactos del caso de la prueba (archivos digitales), informe de 
+análisis del caso y formato de lista de chequeo.
+Material de apoyo: Lista de chequeo de verificación del diseño elaborada en el Producto 2, apuntes, 
+guía de aprendizaje, banco de preguntas y documento de rúbricas (Rubricas_G2).
+Evidencias de aprendizaje: 
+• Evidencia de desempeño: lista de chequeo diligenciada, registro de hallazgos con trazabilidad 
+al informe de análisis y artefactos corregidos (modelo de datos normalizado y diagrama de 
+clases ajustado), producidos en computador durante la práctica del sábado 28 de noviembre de 
+2026 y entregados en una tarea de Moodle.
+Instrumentos de evaluación: Lista de chequeo y rúbrica de desempeño (Rubricas_G2) aplicadas sobre 
+los archivos entregados en Moodle, calificada de 0 a 100 puntos con un peso del 25 % de la guía, y 
+planilla de verificación oral de autoría.
+Duración de la actividad: 2 horas.
+4.  PLANTEAMIENTO  DE  EVIDENCIAS  DE  APRENDIZAJE  PARA  LA  EVALUACIÓN  EN  EL  PROCESO 
+FORMATIVO.
+Fase del 
+proyecto 
+formativo
+Actividad del 
+proyecto 
+formativo
+Actividad de 
+Aprendizaje
+Evidencias de 
+Aprendizaje
+Criterios de 
+Evaluación
+Técnicas e 
+Instrumentos 
+de 
+Evaluación
+Planeación
+Determinar la 
+estructura lógica 
+y tecnológica del 
+software.
+Interpretar el 
+informe de análisis y 
+reconocer los 
+conceptos, 
+principios y 
+artefactos de 
+diseño, el modelo de 
+datos y los criterios 
+de verificación 
+necesarios para 
+diseñar la solución 
+de software.
+Evidencia de 
+conocimiento: prueba 
+de conocimiento 
+individual de 20 
+preguntas (14 del 
+banco y 6 inéditas), de 
+40 minutos, sobre 
+diseño orientado a 
+objetos, arquitectura, 
+modelo de datos y 
+verificación del 
+diseño, aplicada como 
+cuestionario en la 
+plataforma Moodle el 
+sábado 28 de 
+noviembre de 2026.
+Interpreta el 
+informe de análisis 
+identificando las 
+características del 
+software a diseñar. 
+Define los 
+entregables de 
+diseño siguiendo los 
+conceptos y 
+principios de 
+orientación a 
+objetos. Define la 
+arquitectura del 
+software dando 
+cumplimiento a los 
+requisitos 
+Cuestionario en 
+plataforma 
+Moodle con 
+calificación 
+automática (25 
+%).
+GFPI-F-135 V04
+Fase del 
+proyecto 
+formativo
+Actividad del 
+proyecto 
+formativo
+Actividad de 
+Aprendizaje
+Evidencias de 
+Aprendizaje
+Criterios de 
+Evaluación
+Técnicas e 
+Instrumentos 
+de 
+Evaluación
+funcionales y no 
+funcionales. Crea la 
+vista de 
+componentes para 
+visualizar el software 
+en fases avanzadas 
+del ciclo de vida. 
+Genera el modelo 
+conceptual de 
+acuerdo con el tipo 
+de base de datos 
+seleccionada y las 
+especificaciones del 
+análisis. Normaliza 
+el modelo lógico de 
+acuerdo con el tipo 
+de base de datos. 
+Define políticas de 
+seguridad para 
+garantizar 
+integridad, 
+confidencialidad y 
+disponibilidad de los 
+datos. Elabora listas 
+de chequeo para 
+verificación de la 
+documentación de 
+diseño. Evalúa los 
+artefactos de diseño 
+teniendo en cuenta 
+el cumplimiento de 
+requisitos y la 
+calidad de los 
+entregables 
+generados.
+Planeación
+Determinar la 
+estructura lógica 
+y tecnológica del 
+software.
+Elaborar los 
+artefactos de diseño 
+del software 
+siguiendo las 
+prácticas de la 
+metodología 
+seleccionada.
+Evidencia de producto 
+1: artefactos de 
+diseño del caso 
+ajustados desde el 
+análisis (plataforma 
+tecnológica, diagrama 
+de clases con 
+patrones, 
+arquitectura, vista de 
+componentes, vista de 
+despliegue y matriz de 
+trazabilidad), 
+entregados en la 
+carpeta G2-P1 del fork 
+hasta el sábado 28 de 
+Interpreta el 
+informe de análisis 
+identificando las 
+características del 
+software a diseñar. 
+Define las 
+plataformas 
+tecnológicas a 
+emplear en el 
+desarrollo de 
+acuerdo con las 
+condiciones del 
+software a 
+desarrollar. Define 
+los entregables de 
+Revisión de 
+producto. Lista 
+de chequeo de 
+mínimos, rúbrica 
+y verificación 
+oral de autoría 
+(25 %).
+GFPI-F-135 V04
+Fase del 
+proyecto 
+formativo
+Actividad del 
+proyecto 
+formativo
+Actividad de 
+Aprendizaje
+Evidencias de 
+Aprendizaje
+Criterios de 
+Evaluación
+Técnicas e 
+Instrumentos 
+de 
+Evaluación
+noviembre de 2026 a 
+las 6:00 a. m.
+diseño siguiendo los 
+conceptos y 
+principios de 
+orientación a 
+objetos. Crea el 
+diagrama de clases 
+de acuerdo con los 
+requisitos, aplicando 
+buenas prácticas de 
+diseño orientado a 
+objetos. Incorpora 
+patrones de diseño 
+propendiendo en 
+mejores prácticas 
+para la codificación y 
+mantenibilidad del 
+software. Define la 
+arquitectura del 
+software dando 
+cumplimiento a los 
+requisitos 
+funcionales y no 
+funcionales. Crea la 
+vista de 
+componentes para 
+visualizar el software 
+en fases avanzadas 
+del ciclo de vida. 
+Crea la vista de 
+despliegue del 
+software para 
+determinar 
+condiciones de la 
+implantación de la 
+solución 
+informática.
+Planeación
+Determinar la 
+estructura lógica 
+y tecnológica del 
+software.
+Estructurar el 
+modelo de datos del 
+software de acuerdo 
+con las 
+especificaciones del 
+análisis y elaborar la 
+lista de chequeo 
+para verificar los 
+entregables de 
+diseño.
+Evidencia de producto 
+2: modelo de datos 
+del caso (modelo 
+conceptual, lógico y 
+normalizado, 
+diccionario de datos, 
+script SQL y políticas 
+de seguridad) y lista 
+de chequeo de 
+verificación del diseño 
+diligenciada, 
+entregados en la 
+carpeta G2-P2 del fork 
+hasta el sábado 28 de 
+Genera el modelo 
+conceptual de 
+acuerdo con el tipo 
+de base de datos 
+seleccionada y las 
+especificaciones del 
+análisis. Genera el 
+modelo lógico de 
+acuerdo con la 
+técnica 
+seleccionada. 
+Normaliza el modelo 
+lógico de acuerdo 
+con el tipo de base 
+Revisión de 
+producto. Lista 
+de chequeo de 
+mínimos, rúbrica 
+y verificación 
+oral de autoría 
+(25 %).
+GFPI-F-135 V04
+Fase del 
+proyecto 
+formativo
+Actividad del 
+proyecto 
+formativo
+Actividad de 
+Aprendizaje
+Evidencias de 
+Aprendizaje
+Criterios de 
+Evaluación
+Técnicas e 
+Instrumentos 
+de 
+Evaluación
+noviembre de 2026 a 
+las 6:00 a. m.
+de datos. Crea el 
+diccionario de datos 
+de acuerdo con el 
+modelo lógico. 
+Define políticas de 
+seguridad para 
+garantizar 
+integridad, 
+confidencialidad y 
+disponibilidad de los 
+datos. Elabora listas 
+de chequeo para 
+verificación de la 
+documentación de 
+diseño. Evalúa los 
+artefactos de diseño 
+teniendo en cuenta 
+el cumplimiento de 
+requisitos y la 
+calidad de los 
+entregables 
+generados.
+Planeación
+Determinar la 
+estructura lógica 
+y tecnológica del 
+software.
+Verificar los 
+entregables de la 
+fase de diseño del 
+software de acuerdo 
+con lo establecido 
+en el informe de 
+análisis.
+Evidencia de 
+desempeño: lista de 
+chequeo diligenciada, 
+registro de hallazgos 
+con trazabilidad al 
+informe de análisis y 
+artefactos corregidos, 
+producidos en 
+computador durante 
+la práctica individual 
+del sábado 28 de 
+noviembre de 2026 y 
+entregados en una 
+tarea de Moodle.
+Elabora listas de 
+chequeo para 
+verificación de la 
+documentación de 
+diseño. Evalúa los 
+artefactos de diseño 
+teniendo en cuenta 
+el cumplimiento de 
+requisitos y la 
+calidad de los 
+entregables 
+generados. 
+Normaliza el modelo 
+lógico de acuerdo 
+con el tipo de base 
+de datos.
+Práctica 
+individual en 
+computador con 
+entrega de 
+archivos en 
+Moodle 
+(observación del 
+desempeño). 
+Lista de chequeo 
+y rúbrica de 
+desempeño (25 
+%).
+5. GLOSARIO DE TÉRMINOS
+Acoplamiento: Grado de dependencia entre dos módulos o clases; en un buen diseño se procura que 
+sea bajo para que un cambio en uno afecte lo menos posible al otro.
+GFPI-F-135 V04
+Arquitectura de software: Estructura general del sistema: sus componentes, las relaciones entre ellos 
+y los principios que guían su diseño y evolución.
+Cardinalidad: Número mínimo y máximo de ocurrencias de una entidad que pueden asociarse con una 
+ocurrencia de otra en una relación (uno a uno, uno a muchos, muchos a muchos).
+Cohesión: Grado en que las responsabilidades de una clase o módulo están relacionadas entre sí; en 
+un buen diseño se procura que sea alta.
+Criterio de aceptación: Condición verificable que un artefacto debe cumplir para darse por aceptado; 
+se marca como cumplido o no cumplido en una lista de chequeo.
+Diagrama de clases: Diagrama UML que representa las clases del sistema con sus atributos, métodos y 
+las relaciones entre ellas (asociación, agregación, composición y herencia).
+Diccionario de datos: Documento que describe cada elemento del modelo de datos: nombre, tipo, 
+tamaño, restricciones y dominio de valores.
+Dependencia funcional: Relación entre columnas en la que el valor de una determina el valor de otra; 
+es la base para detectar violaciones de las formas normales.
+Informe de diseño: Documento que reúne los artefactos de la fase de diseño y las decisiones tomadas 
+a partir del informe de análisis, como entrada para la codificación.
+Lista de chequeo:  Instrumento con criterios de aceptación que se marcan como cumplidos o no 
+cumplidos para verificar un artefacto o entregable.
+Matriz de trazabilidad: Tabla que relaciona cada requisito del informe de análisis con los artefactos de 
+diseño que lo atienden, de modo que se pueda seguir en ambos sentidos.
+Modelo conceptual:  Representación de alto nivel de las entidades del  negocio y sus relaciones, 
+independiente del motor de base de datos.
+Modelo lógico: Representación de los datos en tablas, llaves primarias y foráneas y restricciones según 
+el modelo relacional, obtenida a partir del modelo conceptual.
+Modelo Vista Controlador (MVC): Patrón arquitectónico que separa los datos y la lógica de negocio 
+(modelo), la interfaz (vista) y la coordinación entre ambos (controlador).
+GFPI-F-135 V04
+Normalización:  Proceso de organizar las tablas del modelo lógico mediante formas normales para 
+eliminar redundancia y anomalías de actualización.
+Patrón de diseño: Solución reutilizable y probada a un problema recurrente de diseño de software, 
+como estrategia, singleton, fábrica abstracta o fachada.
+REST: Estilo arquitectónico para servicios web basado en recursos identificados por URL y operaciones 
+sobre ellos mediante los métodos del protocolo HTTP.
+Trazabilidad: Capacidad de seguir cada requisito del informe de análisis hasta el artefacto de diseño 
+que lo atiende, y viceversa.
+Vista de componentes: Diagrama UML que muestra los componentes del software, sus interfaces y sus 
+dependencias.
+Vista de despliegue: Diagrama UML que muestra la distribución física de los componentes en nodos 
+como servidores, bases de datos y dispositivos cliente.
+6. REFERENTES BIBLIOGRÁFICOS
+• Bass, L., Clements, P., & Kazman, R. (2021). Software architecture in practice (4th ed.). Addison-
+Wesley.
+• Congreso de la República de Colombia. (2012). Ley Estatutaria 1581 de 2012, por la cual se 
+dictan disposiciones generales para la protección de datos personales.
+• Elmasri, R., & Navathe, S. B. (2016). Fundamentals of database systems (7th ed.). Pearson.
+• Fielding,  R.  T.  (2000).  Architectural  styles  and  the  design  of  network-based  software 
+architectures [Tesis doctoral, University of California, Irvine].
+• Fowler, M. (2004). UML distilled: A brief guide to the standard object modeling language (3rd 
+ed.). Addison-Wesley.
+• Gamma, E., Helm, R., Johnson, R., & Vlissides, J. (1994). Design patterns: Elements of reusable 
+object-oriented software. Addison-Wesley.
+• Larman, C. (2004). Applying UML and patterns: An introduction to object-oriented analysis 
+and design and iterative development (3rd ed.). Prentice Hall.
+GFPI-F-135 V04
+• Object Management Group. (2017). Unified Modeling Language specification, version 2.5.1.
+• Silberschatz, A., Korth, H. F., & Sudarshan, S. (2019). Database system concepts (7th ed.). 
+McGraw-Hill.
+• Sommerville, I. (2016). Software engineering (10th ed.). Pearson.
+• SENA. (s. f.). Material de formación: Diseño de software, arquitectura y modelado de datos. 
+Servicio Nacional de Aprendizaje.
+• SENA. (s. f.). Formato guía de aprendizaje GFPI-F-135 V04. Servicio Nacional de Aprendizaje.
+7. CONTROL DEL DOCUMENTO
+Nombre Cargo Dependencia Fecha
+Autor (es) Jesús Ariel González Bonilla Instructor CIES Noviembre 2026
+8. CONTROL DE CAMBIOS (diligenciar únicamente si realiza ajustes a la guía)
+Nombre Cargo Dependencia Fecha Razón del Cambio
+Autor (es)

@@ -1,0 +1,198 @@
+--- PAGINA 1 ---
+GOR-F-084 V02
+ACTA No. 03 - 2026
+NOMBRE DEL COMITÉ O DE LA REUNIÓN:
+Plan de mejoramiento – competencia 220501046 (TIC) – ficha 3413974
+CIUDAD Y FECHA:
+Neiva, 19 de septiembre de 
+2026
+HORA INICIO:
+HORA FIN:
+LUGAR Y/O ENLACE:
+Ambiente de formación / 
+repositorio de la ficha
+DIRECCIÓN / REGIONAL / 
+CENTRO:
+Centro de la Industria, la Empresa 
+y los Servicios (CIES) – Regional 
+Huila
+AGENDA O PUNTOS PARA DESARROLLAR:
+1. Socializar la guía de aprendizaje de la competencia 220501046 - TIC y sus cuatro 
+resultados de aprendizaje.
+2. Revisar el estado de los juicios evaluativos de la competencia TIC en la ficha 3413974.
+3. Definir el plan de mejoramiento para el desarrollo y la entrega de las evidencias de la 
+competencia.
+4. Establecer la ruta de entrega en el repositorio de la ficha y la fecha límite.
+OBJETIVO(S) DE LA REUNIÓN:
+1. Orientar a los aprendices de la ficha 3413974 en el desarrollo de las cuatro evidencias de 
+la competencia TIC, a partir de la guía de aprendizaje entregada.
+2. Establecer una ruta de entrega verificable en el repositorio de la ficha, organizada por 
+fase y actividad de proyecto.
+3. Cerrar, dentro del plazo definido, los resultados de aprendizaje 593154, 593151, 593153 y 
+593152, únicos de la ficha que no registran ningún juicio evaluativo.
+DESARROLLO DE LA REUNIÓN
+1. El instructor Jesús Ariel González Bonilla socializó la guía de aprendizaje de la 
+competencia 220501046 - TIC (Utilizar herramientas informáticas de acuerdo con las 
+necesidades de manejo de información), elaborada sobre el formato GFPI-F-135 V04, con 
+una duración de 48 horas distribuidas en los cuatro momentos pedagógicos.
+2. Se revisó el reporte de juicios evaluativos de Sofía Plus con corte al 19 de septiembre de 
+2026. La ficha registra 527 juicios aprobados, cargados entre el 27 de febrero y el 21 de 
+agosto de 2026, y tiene cuatro competencias prácticamente cerradas con 29 de 32 
+aprendices aprobados. La competencia TIC, en cambio, no registra ningún juicio: los cuatro 
+resultados de aprendizaje están en estado POR EVALUAR para los 32 aprendices en 
+formación (128 juicios, 0 aprobados). No se registran resultados NO APROBADOS.
+3. En consecuencia, y dado que el contenido de la competencia ya se desarrolló durante el 
+
+
+--- PAGINA 2 ---
+GOR-F-084V02
+mes de mayo, se definió un plan de mejoramiento de una semana orientado a que los 
+aprendices entreguen las cuatro evidencias asociadas a la competencia y a que el instructor 
+pueda emitir el juicio evaluativo correspondiente.
+4. Se estableció que la ruta de entrega deja de organizarse por semanas y pasa a organizarse 
+por fase y actividad de proyecto dentro del repositorio de la ficha. Para esta competencia 
+corresponde la fase de Análisis, actividad de proyecto "Determinar las especificaciones 
+funcionales del software".
+5. Se definió que la guía de aprendizaje en PDF y el presente plan de mejoramiento en PDF 
+quedan publicados en la carpeta 02-training-project/01-phase/01-analysis/02-
+requirements/01-learning-guide, y que las evidencias del aprendiz se entregan en la carpeta 
+02-training-project/01-phase/01-analysis/02-requirements/04-evidence-learning.
+6. Se precisaron las cuatro evidencias a entregar, una por resultado de aprendizaje: el 
+cuadro comparativo de equipos y servicios TIC (593154), el documento ofimático publicado 
+en la plataforma colaborativa con su sustentación grupal (593151), el ensayo reflexivo de 
+cine-foro (593153) y la propuesta de solución tecnológica optimizada y sustentada (593152).
+7. Se acordó que cada evidencia se valora con los criterios de evaluación de la norma de 
+competencia, ya incorporados en la tabla de planteamiento de evidencias de la guía de 
+aprendizaje.
+8. Se fijó como fecha límite de entrega el sábado 26 de septiembre de 2026, y se aclaró que 
+las evidencias entregadas después de esa fecha se reciben pero se registran como 
+extemporáneas.
+CONCLUSIONES
+Se definió un plan de mejoramiento de una semana para la competencia 220501046 - TIC de 
+la ficha 3413974, única competencia de la ficha sin ningún juicio evaluativo registrado, con 
+cuatro evidencias, una por cada resultado de aprendizaje, y fecha límite de entrega el 
+sábado 26 de septiembre de 2026.
+La guía de aprendizaje y el presente plan quedan publicados en PDF dentro del repositorio 
+de la ficha, en la ruta correspondiente a la fase de Análisis y a la actividad de proyecto 
+"Determinar las especificaciones funcionales del software", y las evidencias se entregan en 
+la carpeta de evidencias de aprendizaje de esa misma actividad.
+ESTABLECIMIENTO Y ACEPTACIÓN DE COMPROMISOS
+ACTIVIDAD 
+/DECISIÓN
+FECHA
+RESPONSABLE
+FIRMA O 
+PARTICIPACIÓN 
+VIRTUAL
+Entregar el cuadro 
+comparativo de 
+equipos TIC, 
+periféricos, 
+26 de septiembre de 
+2026
+Aprendices ficha 
+3413974
+
+
+--- PAGINA 3 ---
+GOR-F-084 V02
+tecnologías de 
+almacenamiento, 
+sistemas operativos y 
+servicios de Internet 
+(RAP 593154).
+Entregar el 
+documento 
+producido con 
+herramientas 
+ofimáticas, publicado 
+en la plataforma 
+colaborativa, con su 
+sustentación oral 
+grupal (RAP 593151).
+26 de septiembre de 
+2026
+Aprendices ficha 
+3413974
+Entregar el ensayo 
+reflexivo de cine-foro 
+con la evaluación de 
+los resultados frente 
+a los requerimientos 
+del caso analizado 
+(RAP 593153).
+26 de septiembre de 
+2026
+Aprendices ficha 
+3413974
+Entregar la 
+propuesta de 
+solución tecnológica 
+optimizada tras 
+verificación, 
+presentada y 
+sustentada (RAP 
+593152).
+26 de septiembre de 
+2026
+Aprendices ficha 
+3413974
+Publicar la guía de 
+aprendizaje y este 
+plan de 
+mejoramiento en 
+PDF en 02-training-
+project/01-phase/01-
+analysis/02-
+requirements/01-
+19 de septiembre de 
+2026
+Jesús Ariel González 
+Bonilla
+
+
+--- PAGINA 4 ---
+GOR-F-084V02
+learning-guide.
+Registrar en Sofía 
+Plus el juicio 
+evaluativo de los 
+cuatro resultados de 
+aprendizaje una vez 
+verificadas las 
+evidencias.
+30 de septiembre de 
+2026
+Jesús Ariel González 
+Bonilla
+DE: ASISTENTES Y APROBACIÓN DECISIONES
+NOMBRE
+DEPENDENCIA/ 
+EMPRESA
+APRUEBA 
+(SI/NO)
+OBSERVACIÓN
+FIRMA O 
+PARTICIPACIÓN 
+VIRTUAL
+Jesús Ariel 
+González Bonilla
+Instructor – 
+Línea Desarrollo 
+de Software
+Aprendices ficha 
+3413974
+32 aprendices en 
+formación
+La aceptación 
+individual del 
+plan se registra 
+en la hoja de 
+firmas anexa.
+De acuerdo con La Ley 1581 de 2012, Protección de Datos Personales, el Servicio Nacional de Aprendizaje SENA, se 
+compromete a garantizar la seguridad y protección de los datos personales que se encuentran almacenados en este 
+documento, y les dará el tratamiento correspondiente en cumplimiento de lo establecido legalmente.
+ANEXOS
+Guía de aprendizaje de la competencia 220501046 - TIC (GFPI-F-135 V04), en PDF.
+Reporte de juicios evaluativos de la ficha 3413974, con corte al 19 de septiembre de 2026.
+Hoja de firmas con la aceptación individual del plan por cada aprendiz.

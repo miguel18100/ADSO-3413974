@@ -1,0 +1,456 @@
+--- PAGINA 1 ---
+GFPI-F-135 V04
+PROCESO DE GESTIÓN DE FORMACIÓN PROFESIONAL INTEGRAL
+FORMATO GUÍA DE APRENDIZAJE
+1. IDENTIFICACIÓN DE LA GUIA DE APRENDIZAJE
+•
+Denominación del Programa de Formación: Análisis y desarrollo de software.
+•
+Código del Programa de Formación: 228118.
+•
+Nombre del Proyecto Formativo (si aplica): Desarrollo de software orientado a servicios V2.
+•
+Fase del Proyecto (si aplica): Análisis.
+•
+Actividad de Proyecto Formativo (si aplica): Determinar las especificaciones funcionales del 
+software.
+•
+Competencia: Utilizar herramientas informáticas de acuerdo con las necesidades de manejo de 
+información (Código de Norma 220501046 - TIC).
+•
+Resultados de Aprendizaje:
+•
+Alistar herramientas de Tecnologías de la Información y la Comunicación (TIC), de acuerdo con 
+las necesidades de procesamiento de información y comunicación.
+•
+Aplicar funcionalidades de herramientas y servicios TIC, de acuerdo con manuales de uso, 
+procedimientos establecidos y buenas prácticas.
+•
+Evaluar los resultados, de acuerdo con los requerimientos.
+•
+Optimizar los resultados, de acuerdo con la verificación.
+•
+Duración de la Guía de Aprendizaje (horas): 48 horas.
+2. PRESENTACIÓN
+La presente guía de aprendizaje orienta el desarrollo de la competencia transversal “Utilizar 
+herramientas informáticas de acuerdo con las necesidades de manejo de información”, 
+correspondiente a la norma 220501046 - TIC del programa de formación Análisis y Desarrollo de 
+Software. Su propósito es que el aprendiz aliste, aplique, evalúe y optimice el uso de herramientas y 
+servicios TIC como base transversal para determinar las especificaciones funcionales del software del 
+proyecto formativo.
+
+
+--- PAGINA 2 ---
+GFPI-F-135 V04
+Durante el desarrollo de esta guía, el aprendiz reconocerá la historia de la computación y la 
+arquitectura del computador (hardware y software, CPU, memoria, placa base y buses), clasificará los 
+periféricos de entrada, salida y mixtos, comparará las tecnologías de almacenamiento disponibles 
+(HDD, SSD SATA, factor de forma M.2, protocolo NVMe y las generaciones de bus PCI Express), 
+identificará los tipos de software y los pilares de un sistema operativo, aplicará herramientas ofimáticas 
+y servicios de Internet y conectividad, evaluará los resultados obtenidos mediante el análisis de un caso 
+de innovación tecnológica, y optimizará una propuesta de solución tecnológica frente a una 
+problemática real del entorno comunitario.
+La guía tiene una duración total de 48 horas, distribuidas en actividades de reflexión inicial, 
+contextualización, apropiación del conocimiento y transferencia, permitiendo que el aprendiz avance 
+progresivamente desde el reconocimiento de los equipos y servicios TIC hasta la formulación y 
+sustentación de una propuesta tecnológica optimizada.
+Los resultados de aprendizaje asociados a esta guía son:
+1. Alistar herramientas de Tecnologías de la Información y la Comunicación (TIC), de acuerdo con las 
+necesidades de procesamiento de información y comunicación.
+2. Aplicar funcionalidades de herramientas y servicios TIC, de acuerdo con manuales de uso, 
+procedimientos establecidos y buenas prácticas.
+3. Evaluar los resultados, de acuerdo con los requerimientos.
+4. Optimizar los resultados, de acuerdo con la verificación.
+El desarrollo de esta guía permitirá que el aprendiz comprenda que el manejo de las TIC va más allá del 
+uso operativo de un equipo: implica reconocer la tecnología disponible, aplicarla con criterio técnico, 
+evaluar si responde a los requerimientos reales, y optimizarla a partir de la verificación, como base para 
+el trabajo técnico que desarrollará a lo largo del proyecto formativo.
+Asimismo, las evidencias planteadas permitirán valorar la apropiación conceptual, el desempeño 
+práctico y los productos elaborados por los aprendices, promoviendo la alfabetización digital, el 
+pensamiento crítico frente a la tecnología y la comunicación técnica.
+3. FORMULACIÓN DE LAS ACTIVIDADES DE APRENDIZAJE
+
+
+--- PAGINA 3 ---
+GFPI-F-135 V04
+3.1 Actividades de reflexión inicial:
+Descripción de la actividad: El instructor presenta el caso de una persona que, al no reconocer los 
+equipos y servicios TIC disponibles, eligió una herramienta inadecuada para procesar la información de 
+su proyecto y perdió tiempo y datos que hubiera podido evitar con un alistamiento previo.
+A partir de esta situación, los aprendices, organizados en equipos, responden preguntas orientadoras 
+como:
+•
+¿qué diferencia hay entre hardware y software, y por qué es importante reconocerla antes de 
+empezar a trabajar?
+•
+¿qué riesgos se corren al usar un equipo, periférico o servicio TIC sin conocer sus 
+funcionalidades?
+•
+¿cómo afecta el tipo de almacenamiento o de conexión a Internet disponible el resultado de 
+una tarea de procesamiento de información?
+Cada equipo socializa sus respuestas y construye una conclusión grupal sobre la importancia de alistar, 
+aplicar, evaluar y optimizar el uso de las herramientas TIC.
+Ambiente requerido: Ambiente de formación con tablero, computador, video beam o pantalla, 
+conexión a internet y espacio para trabajo colaborativo en equipos.
+Estrategias o técnicas didácticas activas: Lluvia de ideas, análisis de situación problema, trabajo 
+colaborativo, preguntas orientadoras y socialización grupal.
+Materiales de formación: Guía de aprendizaje, computador, tablero, marcadores, cuaderno de 
+apuntes y herramientas digitales para registro de ideas.
+Material de apoyo: Presentación introductoria sobre Tecnologías de la Información y la Comunicación, 
+caso problema propuesto por el instructor.
+Duración de la actividad: 2 horas.
+3.2 Actividades de contextualización e identificación de conocimientos necesarios para el 
+aprendizaje:
+
+
+--- PAGINA 4 ---
+GFPI-F-135 V04
+Descripción de la actividad: El instructor orienta una sesión magistral sobre la historia de la 
+computación y la arquitectura del computador (hardware y software, CPU, memoria principal, placa 
+base y buses); la tipología de computadores y dispositivos móviles; la clasificación de periféricos de 
+entrada, salida y mixtos; las tecnologías de almacenamiento (HDD, SSD SATA, M.2, NVMe y las 
+generaciones de bus PCI Express); los tipos de software (de sistema, de aplicación, de programación y 
+utilitario); los pilares de un sistema operativo (gestión de procesos, de memoria, del sistema de 
+archivos, de entrada/salida, y seguridad y control de acceso); y los fundamentos de Internet, la 
+evolución del ancho de banda y los medios de conectividad (fibra óptica, Wi-Fi, redes celulares y 
+satelital).
+Actividad de aprendizaje: Alistar herramientas de Tecnologías de la Información y la Comunicación 
+(TIC), reconociendo la arquitectura del computador, los periféricos, las tecnologías de 
+almacenamiento, el software, los sistemas operativos y los servicios de Internet disponibles para el 
+proyecto formativo.
+Ambiente requerido: Ambiente de formación con equipos de cómputo, periféricos de entrada, salida 
+y mixtos disponibles para manipulación directa, conectividad a internet, tablero y video beam.
+Estrategias o técnicas didácticas activas: Exposición magistral, clasificación práctica de periféricos 
+mediante análisis visual de estaciones de trabajo, dinámicas de aula y evaluación gamificada en vivo.
+Materiales de formación: Computador, periféricos, tablero, marcadores, video beam, acceso a 
+internet, aplicación de cuestionarios gamificados, material de apoyo suministrado por el instructor.
+Material de apoyo: Material de consulta sobre arquitectura del computador, periféricos, tecnologías 
+de almacenamiento, sistemas operativos y conectividad.
+Evidencias de aprendizaje: 
+•
+Cuadro comparativo de equipos TIC, periféricos, tecnologías de almacenamiento, sistemas 
+operativos y servicios de Internet, alistados para el proyecto formativo.
+Instrumentos de evaluación: Lista de chequeo para verificar la correcta identificación y clasificación de 
+los equipos, periféricos y servicios TIC alistados.
+Duración de la actividad: 8 horas.
+
+
+--- PAGINA 5 ---
+GFPI-F-135 V04
+3.3 Actividades de apropiación:
+Descripción de la actividad: Los aprendices aplicarán las herramientas y servicios TIC alistados en la 
+actividad anterior, y evaluarán los resultados obtenidos frente a los requerimientos del proyecto 
+formativo mediante el análisis de un caso de innovación tecnológica.
+Bloque 1 – Aplicación de herramientas y servicios TIC: los aprendices aplicarán funcionalidades del 
+sistema operativo, herramientas ofimáticas (procesador de texto, hoja de cálculo y software para 
+presentaciones) y servicios de Internet y conectividad (correo electrónico formal, almacenamiento 
+remoto y plataformas colaborativas), de acuerdo con manuales de uso y buenas prácticas, y expondrán 
+por grupos de trabajo el eje temático asignado.
+Duración: 18 horas.
+Bloque 2 – Evaluación de resultados: los aprendices analizarán, mediante cine-foro, un caso de 
+innovación tecnológica (el desarrollo del computador personal y la interfaz gráfica de usuario) y el 
+impacto contemporáneo de las TIC en la vida diaria, la salud, la educación y el transporte, evaluando 
+en un ensayo reflexivo si los resultados obtenidos responden a los requerimientos que les dieron 
+origen.
+Duración: 12 horas.
+Actividad de aprendizaje (Bloque 1): Aplicar funcionalidades de herramientas y servicios TIC, de 
+acuerdo con manuales de uso, procedimientos establecidos y buenas prácticas.
+Actividad de aprendizaje (Bloque 2): Evaluar los resultados, de acuerdo con los requerimientos.
+Ambiente requerido: Ambiente de formación con equipos de cómputo, suite ofimática, conectividad a 
+internet, plataforma de almacenamiento y trabajo colaborativo, y material audiovisual para el cine-
+foro.
+Estrategias o técnicas didácticas activas: Taller práctico, exposiciones temáticas por grupos de trabajo, 
+sustentación oral, cine-foro, estudio de caso y aprendizaje colaborativo.
+Materiales de formación: Computadores con sistema operativo instalado, suite ofimática, 
+conectividad a Internet, plataforma de trabajo colaborativo, material audiovisual del cine-foro y 
+formato de ensayo reflexivo.
+
+
+--- PAGINA 6 ---
+GFPI-F-135 V04
+Material de apoyo: Manuales de uso del sistema operativo y de las herramientas ofimáticas, guía de 
+servicios de Internet y conectividad, material del cine-foro sobre innovación tecnológica.
+Evidencias de aprendizaje: 
+•
+Documento producido con herramientas ofimáticas y publicado en la plataforma colaborativa, 
+con sustentación oral grupal del eje temático asignado.
+•
+Ensayo reflexivo de cine-foro con la evaluación de los resultados obtenidos frente a los 
+requerimientos del caso analizado.
+Instrumentos de evaluación: Lista de chequeo y rúbrica de sustentación oral.
+Duración de la actividad: 30 horas.
+3.4 Actividades de Transferencia el Conocimiento:
+Descripción de la actividad: Los aprendices identificarán una problemática real del entorno 
+comunitario (por ejemplo, la atención y comunicación ante emergencias médicas en adultos mayores 
+que viven solos) y formularán una propuesta de solución tecnológica combinando sensores, 
+geolocalización, conectividad inalámbrica e interfaces simplificadas, a partir de la verificación de las 
+herramientas TIC alistadas, aplicadas y evaluadas en las actividades anteriores.
+A partir de la retroalimentación recibida en la sustentación, los aprendices optimizarán la propuesta, 
+documentarán los ajustes realizados y defenderán sus decisiones con el vocabulario técnico apropiado.
+Actividad de aprendizaje: Optimizar los resultados, de acuerdo con la verificación.
+Ambiente requerido: Ambiente de formación con equipos de cómputo, herramientas ofimáticas y de 
+presentación, conectividad a Internet, plataforma de entrega de evidencias y espacio para 
+sustentación.
+Estrategias o técnicas didácticas activas: Aprendizaje basado en problemas, formulación de propuesta 
+de solución tecnológica y sustentación digital integrada.
+Materiales de formación: Computador, herramientas ofimáticas y de presentación, conectividad a 
+Internet, formato de propuesta técnica suministrado por el instructor.
+
+
+--- PAGINA 7 ---
+GFPI-F-135 V04
+Material de apoyo: Guía de formulación y sustentación de propuestas tecnológicas, vocabulario 
+técnico de apoyo (Inteligencia Artificial, sensores, GPS, conectividad inalámbrica, plataformas digitales 
+y aprendizaje adaptativo).
+Evidencias de aprendizaje: 
+•
+Propuesta de solución tecnológica optimizada tras la verificación, presentada y sustentada ante 
+el grupo.
+Instrumentos de evaluación: Lista de chequeo y sustentación para verificar que la propuesta responde 
+a la problemática identificada y a la verificación realizada.
+Duración de la actividad: 8 horas.
+4. PLANTEAMIENTO DE EVIDENCIAS DE APRENDIZAJE PARA LA EVALUACIÓN EN EL PROCESO 
+FORMATIVO.
+Fase del 
+proyecto 
+formativo
+Actividad del 
+proyecto 
+formativo
+Actividad de 
+Aprendizaje
+Evidencias de 
+Aprendizaje
+Criterios de 
+Evaluación
+Técnicas e 
+Instrumentos 
+de 
+Evaluación
+Análisis
+Determinar las 
+especificaciones 
+funcionales del 
+software.
+Alistar herramientas 
+de Tecnologías de la 
+Información y la 
+Comunicación (TIC), 
+de acuerdo con las 
+necesidades de 
+procesamiento de 
+información y 
+comunicación.
+Cuadro comparativo 
+de equipos TIC, 
+periféricos, 
+tecnologías de 
+almacenamiento, 
+sistemas operativos y 
+servicios de Internet, 
+alistados para el 
+proyecto formativo.
+Identifica equipos 
+TIC, tipos de 
+software y servicios 
+de Internet de 
+acuerdo con las 
+necesidades de uso. 
+Compara equipos 
+TIC, tipos de 
+software y servicios 
+de Internet de 
+acuerdo con sus 
+características. 
+Escoge equipos TIC, 
+tipos de software y 
+servicios de Internet 
+de acuerdo con las 
+necesidades de 
+procesamiento de 
+información.
+Lista de 
+chequeo.
+Análisis
+Determinar las 
+especificaciones 
+funcionales del 
+software.
+Aplicar 
+funcionalidades de 
+herramientas y 
+servicios TIC, de 
+acuerdo con 
+manuales de uso, 
+Documento producido 
+con herramientas 
+ofimáticas y publicado 
+en la plataforma 
+colaborativa, con 
+sustentación oral 
+Maneja 
+computadores, 
+periféricos y equipos 
+móviles de acuerdo 
+con sus 
+funcionalidades. 
+Lista de 
+chequeo.
+
+
+--- PAGINA 8 ---
+GFPI-F-135 V04
+Fase del 
+proyecto 
+formativo
+Actividad del 
+proyecto 
+formativo
+Actividad de 
+Aprendizaje
+Evidencias de 
+Aprendizaje
+Criterios de 
+Evaluación
+Técnicas e 
+Instrumentos 
+de 
+Evaluación
+procedimientos 
+establecidos y 
+buenas prácticas.
+grupal del eje 
+temático asignado.
+Aplica 
+funcionalidades de 
+sistemas operativos 
+de acuerdo con las 
+necesidades de 
+administración de 
+los recursos del 
+equipo. Utiliza 
+servicios de Internet 
+de acuerdo con las 
+necesidades de 
+información y 
+comunicación.
+Análisis
+Determinar las 
+especificaciones 
+funcionales del 
+software.
+Evaluar los 
+resultados, de 
+acuerdo con los 
+requerimientos.
+Ensayo reflexivo de 
+cine-foro con la 
+evaluación de los 
+resultados obtenidos 
+frente a los 
+requerimientos del 
+caso analizado.
+Comprueba el 
+funcionamiento de 
+los equipos, 
+productos o 
+servicios obtenidos 
+con el uso de 
+herramientas TIC, de 
+acuerdo con los 
+resultados 
+esperados.
+Lista de 
+chequeo.
+Análisis
+Determinar las 
+especificaciones 
+funcionales del 
+software.
+Optimizar los 
+resultados, de 
+acuerdo con la 
+verificación.
+Propuesta de solución 
+tecnológica 
+optimizada tras la 
+verificación, 
+presentada y 
+sustentada ante el 
+grupo.
+Aplica procesos de 
+mejora a los 
+productos, de 
+acuerdo con las 
+comprobaciones 
+realizadas.
+Lista de 
+chequeo, 
+sustentación.
+5. GLOSARIO DE TÉRMINOS
+5G: Quinta generación de redes móviles, con velocidades de hasta 10 Gbps.
+Fibra óptica: Medio de transmisión por impulsos de luz, de alta velocidad, baja atenuación y 
+estabilidad.
+Hardware: Componente físico y tangible de un sistema computacional (procesador, memoria, placa 
+base, periféricos).
+
+
+--- PAGINA 9 ---
+GFPI-F-135 V04
+HDD: Disco duro mecánico: almacenamiento magnético con platos giratorios y cabezales móviles, con 
+velocidades de 80 a 160 MB/s.
+NVMe: Non-Volatile Memory Express: protocolo de comunicación directa con la CPU para unidades de 
+estado sólido de alto rendimiento.
+PCIe: PCI Express: bus de comunicación de alta velocidad utilizado por las unidades NVMe y otros 
+componentes.
+Periférico: Dispositivo auxiliar conectado a la unidad central de procesamiento para ingresar, presentar 
+o intercambiar información (entrada, salida o mixto).
+Sistema operativo: Software intermediario entre el hardware, los programas de aplicación y el usuario 
+final.
+Software: Componente lógico e intangible de un sistema: conjunto de programas, instrucciones, 
+procedimientos, datos y documentación asociada.
+SSD: Unidad de estado sólido: almacenamiento electrónico basado en memorias Flash NAND, sin 
+partes móviles.
+TIC: Tecnologías de la Información y la Comunicación: conjunto de recursos para el procesamiento, 
+almacenamiento y transmisión de información.
+Wi-Fi: Red inalámbrica local para acceso a Internet en hogares y oficinas.
+6. REFERENTES BIBLIOGRÁFICOS
+•
+Stallings, W. (2019). Computer organization and architecture: Designing for performance (11th 
+ed.). Pearson.
+•
+Tanenbaum, A. S., & Wetherall, D. J. (2021). Computer networks (6th ed.). Pearson.
+•
+Silberschatz, A., Galvin, P. B., & Gagne, G. (2021). Operating system concepts (10th ed.). Wiley.
+•
+Norton, P. (2011). Introducción a la computación (6a ed.). McGraw-Hill.
+•
+Ministerio de Tecnologías de la Información y las Comunicaciones de Colombia (MinTIC). Portal 
+institucional sobre transformación digital y conectividad. https://www.mintic.gov.co
+
+
+--- PAGINA 10 ---
+GFPI-F-135 V04
+•
+SENA. (s. f.). Material de formación: Tecnologías de la Información y la Comunicación (TIC). 
+Servicio Nacional de Aprendizaje.
+•
+SENA. (s. f.). Formato guía de aprendizaje GFPI-F-135 V04. Servicio Nacional de Aprendizaje.
+7. CONTROL DEL DOCUMENTO
+Nombre
+Cargo
+Dependencia
+Fecha
+Autor (es)
+Jesús Ariel González 
+Bonilla
+Instructor
+CIES
+Septiembre 2026
+8. CONTROL DE CAMBIOS (diligenciar únicamente si realiza ajustes a la guía)
+Nombre
+Cargo
+Dependencia
+Fecha
+Razón del Cambio
+Autor (es)
