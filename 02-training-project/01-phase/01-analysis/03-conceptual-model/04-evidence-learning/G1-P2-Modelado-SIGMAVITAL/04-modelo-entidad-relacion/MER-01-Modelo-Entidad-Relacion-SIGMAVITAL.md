@@ -251,6 +251,7 @@ erDiagram
 | PERSONAL – ASIGNACION_PERSONAL | 1:N | Un integrante puede vincularse a múltiples asignaciones en diferentes servicios. |
 | SERVICIO – INTERVENCION | 1:N | Un servicio puede registrar diferentes intervenciones. |
 | SERVICIO – REGISTRO_CIERRE | 1:0..1 | Un servicio puede tener un registro de cierre, como máximo. |
+| PACIENTE – SERVICIO | 1:N | Un paciente puede estar asociado a múltiples servicios; cada servicio corresponde a un paciente. |
 
 ## 7. Resolución de relaciones N:M
 
@@ -283,7 +284,7 @@ Su incorporación queda condicionada a la identificación y validación de una r
 6. El registro de cierre debe estar asociado a un servicio.
 7. El servicio debe contar con las condiciones operativas requeridas antes de permitir su cierre.
 8. Las asignaciones deben considerar la disponibilidad de los recursos.
-10. Las restricciones definitivas deben contrastarse con los casos de uso y las reglas de negocio antes de implementar el modelo físico.
+9. Las restricciones definitivas deben contrastarse con los casos de uso y las reglas de negocio antes de implementar el modelo físico.
 
 ## 10. Entidad PACIENTE y su relación con SERVICIO
 
@@ -330,6 +331,7 @@ Este modelo aún requiere revisión de cardinalidades, restricciones de negocio,
 
 **SENA – ADSO – Ficha 3413974**
 **G1-P2 – Actividad 05: Prototipo**
+
 
 
 

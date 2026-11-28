@@ -9,7 +9,7 @@ Representa la solicitud de atenciÃ³n que origina la gestiÃ³n operativa del s
 | identificadorSolicitud | Identificador de la solicitud |
 | fechaHoraSolicitud | Fecha y hora de registro |
 | direccionOrigen | UbicaciÃ³n donde se requiere el servicio |
-| motivoSolicitud | Motivo reportado para la atenciÃ³n |
+| descripcion | Motivo reportado para la atenciÃ³n |
 | prioridad | Nivel de prioridad asignado |
 | estadoSolicitud | Estado de la solicitud |
 
@@ -23,31 +23,33 @@ Representa la atenciÃ³n operativa de ambulancia asociada a una solicitud.
 | fechaHoraInicio | Fecha y hora de inicio |
 | fechaHoraFinalizacion | Fecha y hora de finalizaciÃ³n |
 | estadoServicio | Estado operativo del servicio |
-| observacionesCierre | Observaciones registradas al finalizar |
+| observaciones | Observaciones registradas al finalizar |
 
 ### 5.3 Paciente
 
-Representa a la persona que recibe la atenciÃ³n durante el servicio.
+Representa a la persona que recibe la atención durante el servicio.
 
-| Atributo | DescripciÃ³n |
+| Atributo | Descripción |
 |---|---|
 | identificadorPaciente | Identificador del paciente |
 | nombres | Nombres del paciente |
-| documentoIdentidad | Documento de identificaciÃ³n |
+| apellidos | Apellidos del paciente |
+| documento | Documento de identificación |
 | fechaNacimiento | Fecha de nacimiento |
-| sexo | Dato registrado para identificaciÃ³n clÃ­nica |
+| datosContacto | Información de contacto |
 
 ### 5.4 Ambulancia
 
-Representa el vehÃ­culo destinado a la prestaciÃ³n de servicios de atenciÃ³n.
+Representa el vehículo destinado a la prestación de servicios de atención.
 
-| Atributo | DescripciÃ³n |
+| Atributo | Descripción |
 |---|---|
 | identificadorAmbulancia | Identificador de la ambulancia |
-| placa | Placa del vehÃ­culo |
-| tipoAmbulancia | Tipo o clasificaciÃ³n de ambulancia |
-| estadoDisponibilidad | Estado de disponibilidad operativa |
-| descripcion | DescripciÃ³n o informaciÃ³n complementaria |
+| placa | Placa del vehículo |
+| codigoInterno | Código interno de identificación |
+| tipoAmbulancia | Tipo o clasificación de ambulancia |
+| estadoOperativo | Estado de disponibilidad operativa |
+| kilometraje | Kilometraje registrado |
 
 ### 5.5 Personal
 
@@ -57,9 +59,9 @@ Representa a los integrantes del equipo operativo que participan en la prestaci�
 |---|---|
 | identificadorPersonal | Identificador del integrante |
 | nombres | Nombres del integrante |
-| documentoIdentidad | Documento de identificaciÃ³n |
-| rolOperativo | FunciÃ³n desempeÃ±ada |
-| estadoDisponibilidad | Estado de disponibilidad |
+| documento | Documento de identificaciÃ³n |
+| cargo | FunciÃ³n desempeÃ±ada |
+| estadoOperativo | Estado de disponibilidad |
 
 ### 5.6 AsignaciÃ³n
 
@@ -108,13 +110,14 @@ Representa a la persona que utiliza el sistema para gestionar las operaciones.
 
 ### 5.10 AsignacionPersonal
 
-Representa la participaciÃ³n de un integrante del personal en una asignaciÃ³n operativa. Esta clase de asociaciÃ³n permite registrar informaciÃ³n propia de la participaciÃ³n.
+Representa la participación de un integrante del personal en una asignación operativa. Esta clase de asociación permite registrar información propia de la participación.
 
-| Atributo | DescripciÃ³n |
+| Atributo | Descripción |
 |---|---|
-| identificadorParticipacion | Identificador de la participaciÃ³n |
-| rolEnAsignacion | FunciÃ³n desempeÃ±ada dentro de la asignaciÃ³n |
-| observaciones | Observaciones relacionadas con la participaciÃ³n |
+| identificadorParticipacion | Identificador de la participación |
+| rolEnServicio | Función desempeñada dentro de la asignación |
+| fechaHoraVinculacion | Fecha y hora de vinculación del integrante |
+
 ## 6. Asociaciones y multiplicidades
 
 Las siguientes asociaciones representan las relaciones conceptuales propuestas entre las clases del modelo.
@@ -152,7 +155,7 @@ classDiagram
         identificadorSolicitud
         fechaHoraSolicitud
         direccionOrigen
-        motivoSolicitud
+        descripcion
         prioridad
         estadoSolicitud
     }
@@ -162,13 +165,13 @@ classDiagram
         fechaHoraInicio
         fechaHoraFinalizacion
         estadoServicio
-        observacionesCierre
+        observaciones
     }
 
     class Paciente {
         identificadorPaciente
         nombres
-        documentoIdentidad
+        documento
         fechaNacimiento
         sexo
     }
@@ -177,16 +180,16 @@ classDiagram
         identificadorAmbulancia
         placa
         tipoAmbulancia
-        estadoDisponibilidad
+        estadoOperativo
         descripcion
     }
 
     class Personal {
         identificadorPersonal
         nombres
-        documentoIdentidad
-        rolOperativo
-        estadoDisponibilidad
+        documento
+        cargo
+        estadoOperativo
     }
 
     class Asignacion {
@@ -198,7 +201,7 @@ classDiagram
 
     class AsignacionPersonal {
         identificadorParticipacion
-        rolEnAsignacion
+        rolEnServicio
         observaciones
     }
     class Intervencion {
@@ -243,7 +246,7 @@ classDiagram
 
 AsignacionPersonal representa la participaciÃ³n individual de un integrante del personal en una asignaciÃ³n operativa. Se plantea como clase de asociaciÃ³n entre AsignaciÃ³n y Personal, permitiendo registrar informaciÃ³n propia de la participaciÃ³n, sin establecer una relaciÃ³n directa simple entre ambas clases.
 
-Sus atributos conceptuales, identificadorParticipacion, rolEnAsignacion y observaciones, permiten documentar las caracterÃ­sticas de la participaciÃ³n del personal dentro de una asignaciÃ³n.
+Sus atributos conceptuales, identificadorParticipacion, rolEnServicio y observaciones, permiten documentar las caracterÃ­sticas de la participaciÃ³n del personal dentro de una asignaciÃ³n.
 
 ### 9.2 GeneralizaciÃ³n
 
@@ -280,6 +283,8 @@ AsignaciÃ³n y AsignacionPersonal permiten representar la vinculaciÃ³n de la 
 | Diagrama de actividad de cierre | DA-03 |
 | Modelo conceptual | MD-01 |
 | Estado | Propuesta preliminar pendiente de validaciÃ³n |
+
+
 
 
 
