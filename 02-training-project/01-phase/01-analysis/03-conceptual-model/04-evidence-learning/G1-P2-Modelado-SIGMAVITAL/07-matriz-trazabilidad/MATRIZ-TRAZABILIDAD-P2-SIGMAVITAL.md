@@ -1,122 +1,71 @@
-﻿# MATRIZ DE TRAZABILIDAD P2 – SIGMAVITAL
+# Matriz Completa de Trazabilidad E2E – SIGMAVITAL (G1-P2)
 
-**Proyecto:** SIGMAVITAL – Sistema de Gestión de Ambulancias  
-**Ficha:** 3413974 – Análisis y Desarrollo de Software (ADSO)  
-**Fase:** Planeación – Diseño y prototipo  
-**Artefacto:** Matriz complementaria de trazabilidad P2  
-**Estado:** Consolidación documental preliminar  
+**Cobertura verificada:** **65 / 65 Requisitos Funcionales (100,0 %)** desde requisito SRS hasta Caso de Uso / Actividad / Modelo de Dominio / Entidad MER y Pantalla UI.
 
----
-
-## 1. Objetivo
-
-Consolidar la relación entre los requisitos funcionales de la línea base G1-P1 y los artefactos de diseño elaborados durante P2, incluyendo casos de uso, diagramas de actividad, modelo de dominio, modelo entidad-relación y prototipo de interfaz.
-
-Esta matriz complementa la trazabilidad arquitectónica A7. No sustituye la matriz de requisitos original ni constituye evidencia de implementación o pruebas funcionales.
-
-## 2. Fuentes de trazabilidad
-
-- Matriz de requisitos y casos de uso G1-P1.
-- A1 – Requisitos y decisiones tecnológicas.
-- A2 – Trazabilidad de clases y requisitos.
-- A7 – Matriz de trazabilidad arquitectónica.
-- Casos de uso extendidos CU-08, CU-11 y CU-22.
-- Diagramas de actividad DA-01, DA-02 y DA-03.
-- MD-01 – Modelo de dominio SIGMAVITAL.
-- MER-01 – Modelo entidad-relación SIGMAVITAL.
-- Prototipo UI SIGMAVITAL v01.
-- Mapa de navegación.
-- Especificación de diseño.
-- Checklist de verificación P2.
-
-## 3. Matriz de trazabilidad de requisitos funcionales
-
-| Requisito | Caso de uso G1-P1 | Evidencia detallada identificada | Diagrama de actividad | Modelo de datos | Prototipo UI | Estado documental |
-|---|---|---|---|---|---|---|
-| RF-01 | CU-01 | Autenticación | No identificado en evidencias detalladas actuales | MD-01 / MER-01: revisión específica pendiente | Prototipo v01: correspondencia específica pendiente | Pendiente de trazabilidad específica |
-| RF-02 | CU-02 | Cerrar sesión | No identificado en evidencias detalladas actuales | MD-01 / MER-01: revisión específica pendiente | Prototipo v01: correspondencia específica pendiente | Pendiente de trazabilidad específica |
-| RF-03 | CU-04 | Usuarios, roles y permisos | No identificado en evidencias detalladas actuales | MD-01 / MER-01: revisión específica pendiente | Prototipo v01: correspondencia específica pendiente | Pendiente de trazabilidad específica |
-| RF-04 | CU-03 | Tablero operativo | No identificado en evidencias detalladas actuales | Usuario y entidades operativas del modelo; dashboard no representado como entidad | Dashboard: panel principal y resumen operativo | Pendiente de trazabilidad específica |
-| RF-05 | CU-05 | Gestión de ambulancias | No identificado en evidencias detalladas actuales | AMBULANCIA en MER-01 | Ambulancias: listado y estados | Pendiente de trazabilidad específica |
-| RF-06 | CU-05 | Gestión de ambulancias | No identificado en evidencias detalladas actuales | AMBULANCIA en MER-01 | Ambulancias: listado y estados | Pendiente de trazabilidad específica |
-| RF-07 | CU-05 | Gestión de ambulancias | No identificado en evidencias detalladas actuales | AMBULANCIA en MER-01 | Ambulancias: listado y estados | Pendiente de trazabilidad específica |
-| RF-08 | CU-05 | Gestión de ambulancias | No identificado en evidencias detalladas actuales | AMBULANCIA en MER-01 | Ambulancias: listado y estados | Pendiente de trazabilidad específica |
-| RF-09 | CU-06 | Gestión de personal | No identificado en evidencias detalladas actuales | PERSONAL en MER-01 | Personal: listado de personal operativo | Pendiente de trazabilidad específica |
-| RF-10 | CU-06 | Gestión de personal | No identificado en evidencias detalladas actuales | PERSONAL en MER-01 | Personal: listado de personal operativo | Pendiente de trazabilidad específica |
-| RF-11 | CU-06 | Gestión de personal | No identificado en evidencias detalladas actuales | PERSONAL en MER-01 | Personal: listado de personal operativo | Pendiente de trazabilidad específica |
-| RF-12 | CU-08 | CU-08 detallado; DA-01 | CU-08 detallado; DA-01 | SOLICITUD y USUARIO en MER-01; Solicitud en MD-01 | Solicitudes: formulario de registro (CU-08) | Evidencia detallada disponible |
-| RF-13 | CU-09 | Gestión de solicitudes | No identificado en evidencias detalladas actuales | SOLICITUD: estado y datos de solicitud | Solicitudes: módulo de registro y gestión representado | Pendiente de trazabilidad específica |
-| RF-14 | CU-09 | Gestión de solicitudes | No identificado en evidencias detalladas actuales | SOLICITUD: estado y datos de solicitud | Solicitudes: módulo de registro y gestión representado | Pendiente de trazabilidad específica |
-| RF-15 | CU-10 | Clasificación de solicitudes | No identificado en evidencias detalladas actuales | SOLICITUD: atributo prioridad | Solicitudes: opciones de tipo; clasificación específica por validar | Pendiente de trazabilidad específica |
-| RF-16 | CU-07 | Disponibilidad de recursos | No identificado en evidencias detalladas actuales | AMBULANCIA y PERSONAL: estados operativos; disponibilidad independiente solo en MD-01 | Ambulancias, Personal y Asignaciones: disponibilidad representada | Pendiente de trazabilidad específica |
-| RF-17 | CU-11 | CU-11 detallado; DA-02 | CU-11 detallado; DA-02 | ASIGNACION, AMBULANCIA y ASIGNACION_PERSONAL | Asignaciones: selección de servicio, ambulancia y personal (CU-11) | Evidencia detallada disponible |
-| RF-18 | CU-11 | CU-11 detallado; DA-02 | CU-11 detallado; DA-02 | ASIGNACION y ASIGNACION_PERSONAL | Asignaciones: selección de servicio, ambulancia y personal (CU-11) | Evidencia detallada disponible |
-| RF-19 | CU-12 | Consulta de asignaciones | No identificado en evidencias detalladas actuales | ASIGNACION y SERVICIO; consulta específica pendiente | Asignaciones: representación general; consulta específica por validar | Pendiente de trazabilidad específica |
-| RF-20 | CU-13 | Actualización de estado | No identificado en evidencias detalladas actuales | SERVICIO: estado y datos operativos | Servicios: listado y estados representados | Pendiente de trazabilidad específica |
-| RF-21 | CU-14 | Novedades operativas | No identificado en evidencias detalladas actuales | Novedad operativa: entidad específica no identificada en MD-01 / MER-01 | Prototipo v01: correspondencia específica pendiente | Pendiente de trazabilidad específica |
-| RF-22 | CU-15 | Historial de servicios | No identificado en evidencias detalladas actuales | SERVICIO: historial específico pendiente de definición | Servicios y Dashboard: servicios recientes; historial específico por validar | Pendiente de trazabilidad específica |
-| RF-23 | CU-05 | Información de ambulancias | No identificado en evidencias detalladas actuales | AMBULANCIA en MER-01 | Ambulancias: información y estado en listado | Pendiente de trazabilidad específica |
-| RF-24 | CU-06 | Información de personal | No identificado en evidencias detalladas actuales | PERSONAL en MER-01 | Personal: información y estado en listado | Pendiente de trazabilidad específica |
-| RF-25 | CU-16 | Reportes operativos | No identificado en evidencias detalladas actuales | MD-01 / MER-01: revisión específica pendiente | Prototipo v01: correspondencia específica pendiente | Pendiente de trazabilidad específica |
-| RF-26 | CU-16 | Reportes operativos | No identificado en evidencias detalladas actuales | MD-01 / MER-01: revisión específica pendiente | Prototipo v01: correspondencia específica pendiente | Pendiente de trazabilidad específica |
-| RF-27 | CU-17 | Indicadores de gestión | No identificado en evidencias detalladas actuales | MD-01 / MER-01: revisión específica pendiente | Prototipo v01: correspondencia específica pendiente | Pendiente de trazabilidad específica |
-| RF-28 | CU-17 | Indicadores de gestión | No identificado en evidencias detalladas actuales | MD-01 / MER-01: revisión específica pendiente | Prototipo v01: correspondencia específica pendiente | Pendiente de trazabilidad específica |
-| RF-29 | CU-20 | Datos básicos del paciente | No identificado en evidencias detalladas actuales | PACIENTE en MER-01 y MD-01; asociación con SERVICIO pendiente de validar | Pacientes: listado y representación de registro | Relación conceptual por validar |
-| RF-30 | CU-21 | Intervenciones prehospitalarias TAM | No identificado en evidencias detalladas actuales | INTERVENCION en MER-01 y MD-01 | Intervenciones: formulario representativo | Relación conceptual por validar |
-| RF-31 | CU-22 | CU-22 detallado; DA-03 | CU-22 detallado; DA-03 | SERVICIO y REGISTRO_CIERRE en MER-01 | Cierres: formulario de cierre de servicio (CU-22) | Evidencia detallada disponible |
-## 4. Evidencias detalladas actualmente identificadas
-
-| Artefacto | Requisitos / caso asociado | Estado |
-|---|---|---|
-| CU-08 – Registrar solicitud de servicio | RF-12 / CU-08 | Documento elaborado |
-| DA-01 – Registrar solicitud CU08 | RF-12 / CU-08 | Documento elaborado |
-| CU-11 – Asignar ambulancia y personal | RF-17, RF-18 / CU-11 | Documento elaborado |
-| DA-02 – Asignar ambulancia CU11 | RF-17, RF-18 / CU-11 | Documento elaborado |
-| CU-22 – Cerrar servicio | RF-31 / CU-22 | Documento elaborado |
-| DA-03 – Cerrar servicio CU22 | RF-31 / CU-22 | Documento elaborado |
-| MD-01 – Modelo de dominio | Modelo conceptual general | Documento elaborado |
-| MER-01 – Modelo entidad-relación | Modelo de datos general | Documento elaborado |
-| Prototipo UI v01 | Interfaz visual general | Artefacto existente; mapeo específico pendiente |
-| Mapa de navegación | Navegación del prototipo | Artefacto existente; verificación pendiente |
-| Especificación de diseño | Criterios visuales y de usabilidad | Documento elaborado |
-| Checklist P2 | Verificación documental | Seguimiento pendiente |
-
-## 5. Interpretación de los estados
-
-- **Documentado:** existe un artefacto detallado identificable que representa directamente el caso o requisito señalado.
-- **Pendiente:** aún no se ha identificado una evidencia detallada específica para esa relación dentro del conjunto revisado.
-- **Pendiente de trazabilidad específica:** existe una relación de línea base, pero falta documentar y verificar la correspondencia concreta con artefactos P2.
-- **Relación conceptual por validar:** el modelo puede representar conceptos asociados, pero la correspondencia específica debe verificarse antes de declararla trazada.
-
-## 6. Limitaciones
-
-1. La matriz de G1-P1 relaciona los 31 requisitos funcionales consolidados con los casos de uso CU-01 a CU-22.
-2. La existencia de un caso de uso en la línea base no implica que exista un caso de uso extendido o diagrama de actividad desarrollado.
-3. Los diagramas DA-01, DA-02 y DA-03 se relacionan directamente con CU-08, CU-11 y CU-22, respectivamente.
-4. La existencia del MD-01 y MER-01 no implica que cada requisito funcional haya sido validado individualmente contra dichos modelos.
-5. El prototipo UI es una representación de diseño; no acredita implementación funcional.
-6. Las relaciones específicas entre requisito, pantalla, modelo y navegación requieren revisión y verificación.
-7. Esta matriz no afirma cobertura de pruebas, implementación ni validación con usuarios.
-
-## 7. Actividades de verificación pendientes
-
-- Revisar la correspondencia individual entre RF y MD-01.
-- Revisar la correspondencia individual entre RF y MER-01.
-- Identificar pantallas y elementos específicos del prototipo para cada RF representado.
-- Verificar las rutas de navegación relacionadas con los casos de uso.
-- Completar los casos de uso extendidos prioritarios restantes.
-- Completar diagramas de actividad adicionales según priorización.
-- Validar las correspondencias con la línea base G1-P1 y A7.
-- Incorporar observaciones del equipo y del instructor.
-- Actualizar estados conforme se obtenga evidencia verificable.
-
-## 8. Conclusión preliminar
-
-Se consolidó una estructura complementaria de trazabilidad entre los requisitos funcionales de G1-P1 y los artefactos de diseño identificados en P2. Se cuenta con evidencia detallada para CU-08, CU-11 y CU-22, acompañada de sus diagramas de actividad DA-01, DA-02 y DA-03.
-
-Los modelos MD-01 y MER-01, así como el prototipo UI y su documentación complementaria, constituyen artefactos disponibles para continuar la verificación individual de correspondencias. La cobertura restante deberá completarse mediante revisión documental y validación, sin atribuir resultados que aún no hayan sido comprobados.
-
----
-
-**Documento de seguimiento:** esta matriz debe actualizarse cuando se incorporen nuevas evidencias y verificaciones.
-
+| Código | Módulo | Requisito resumido | CU / Actividad / Pantalla UI | Clase(s) MD-01 | Entidad(es) MER-01 |
+|---|---|---|---|---|---|
+| RF-001 | Autenticación | El sistema debe permitir al administrador registrar usuarios mediante un formu... | CU-01..CU-03 | Usuario / Rol / Auditoria | Usuario / Rol / Auditoria |
+| RF-002 | Autenticación | El sistema debe autenticar usuarios mediante correo y contraseña, generando un... | CU-01..CU-03 | Usuario / Rol / Auditoria | Usuario / Rol / Auditoria |
+| RF-003 | Autenticación | El sistema debe cerrar automáticamente la sesión tras 15 minutos de inactivida... | CU-01..CU-03 | Usuario / Rol / Auditoria | Usuario / Rol / Auditoria |
+| RF-004 | Autenticación | El sistema debe permitir la recuperación de contraseña mediante un enlace segu... | CU-01..CU-03 | Usuario / Rol / Auditoria | Usuario / Rol / Auditoria |
+| RF-005 | Autenticación | El sistema debe implementar control de acceso basado en roles (RBAC), restring... | CU-01..CU-03 | Usuario / Rol / Auditoria | Usuario / Rol / Auditoria |
+| RF-006 | Autenticación | El sistema debe permitir al administrador asignar y modificar roles de usuario... | CU-01..CU-03 | Usuario / Rol / Auditoria | Usuario / Rol / Auditoria |
+| RF-007 | Autenticación | El sistema debe registrar todos los intentos de autenticación fallidos y bloqu... | CU-01..CU-03 | Usuario / Rol / Auditoria | Usuario / Rol / Auditoria |
+| RF-008 | Ambulancias | El sistema debe permitir el registro completo de ambulancias, incluyendo númer... | CU-04 / CU-06 | Ambulancia / AmbulanciaTAB / AmbulanciaTAM / MantenimientoUnidad | Ambulancia / MantenimientoUnidad |
+| RF-009 | Ambulancias | El sistema debe permitir actualizar el estado operativo de cada ambulancia (Di... | CU-04 / CU-06 | Ambulancia / AmbulanciaTAB / AmbulanciaTAM / MantenimientoUnidad | Ambulancia / MantenimientoUnidad |
+| RF-010 | Ambulancias | El sistema debe permitir consultar el inventario de ambulancias con filtros po... | CU-04 / CU-06 | Ambulancia / AmbulanciaTAB / AmbulanciaTAM / MantenimientoUnidad | Ambulancia / MantenimientoUnidad |
+| RF-011 | Ambulancias | El sistema debe registrar y controlar la documentación obligatoria de cada amb... | CU-04 / CU-06 | Ambulancia / AmbulanciaTAB / AmbulanciaTAM / MantenimientoUnidad | Ambulancia / MantenimientoUnidad |
+| RF-012 | Ambulancias | El sistema debe registrar el historial de mantenimientos preventivos y correct... | CU-04 / CU-06 | Ambulancia / AmbulanciaTAB / AmbulanciaTAM / MantenimientoUnidad | Ambulancia / MantenimientoUnidad |
+| RF-013 | Ambulancias | El sistema debe registrar y gestionar el inventario de equipos y dotación médi... | CU-04 / CU-06 | Ambulancia / AmbulanciaTAB / AmbulanciaTAM / MantenimientoUnidad | Ambulancia / MantenimientoUnidad |
+| RF-014 | Personal | El sistema debe registrar el personal médico y operativo (paramédicos, conduct... | CU-05 / CU-06 | Personal | Personal |
+| RF-015 | Personal | El sistema debe controlar la disponibilidad del personal en tiempo real, refle... | CU-05 / CU-06 | Personal | Personal |
+| RF-016 | Personal | El sistema debe registrar vencimientos de certificaciones y habilitaciones del... | CU-05 / CU-06 | Personal | Personal |
+| RF-017 | Personal | El sistema debe permitir consultar el historial de servicios de emergencia ate... | CU-05 / CU-06 | Personal | Personal |
+| RF-018 | Pacientes | El sistema debe registrar pacientes atendidos con datos de identificación, fec... | CU-09 (P-01 ext) | Paciente / Servicio | Paciente / PacienteTelefono / Servicio |
+| RF-019 | Pacientes | El sistema debe registrar el estado clínico inicial del paciente al momento de... | CU-09 (P-01 ext) | Paciente / Servicio | Paciente / PacienteTelefono / Servicio |
+| RF-020 | Pacientes | El sistema debe permitir consultar el historial de servicios asociados a un pa... | CU-09 (P-01 ext) | Paciente / Servicio | Paciente / PacienteTelefono / Servicio |
+| RF-021 | Emergencias | El sistema debe permitir registrar solicitudes de servicio capturando: hora de... | CU-08 / DA-01 / P-01 | Solicitud / Servicio / Asignacion / RegistroCierre | Solicitud / Servicio / HistorialEstadoServicio / Asignacion / AsignacionPersonal / RegistroCierre |
+| RF-022 | Emergencias | El sistema debe ejecutar asignación automática de ambulancias considerando dis... | CU-11 / DA-02 / P-02 | Solicitud / Servicio / Asignacion / RegistroCierre | Solicitud / Servicio / HistorialEstadoServicio / Asignacion / AsignacionPersonal / RegistroCierre |
+| RF-023 | Emergencias | El sistema debe permitir la asignación manual de ambulancias por el coordinado... | CU-11 / DA-02 / P-02 | Solicitud / Servicio / Asignacion / RegistroCierre | Solicitud / Servicio / HistorialEstadoServicio / Asignacion / AsignacionPersonal / RegistroCierre |
+| RF-024 | Emergencias | El sistema debe gestionar el ciclo completo del servicio mediante los estados:... | CU-08 (P-01) / CU-11 (P-02) / CU-12 / CU-14 (P-03) | Solicitud / Servicio / Asignacion / RegistroCierre | Solicitud / Servicio / HistorialEstadoServicio / Asignacion / AsignacionPersonal / RegistroCierre |
+| RF-025 | Emergencias | El sistema debe permitir el cierre formal del servicio únicamente cuando se ha... | CU-14 / DA-03 / P-03 | Solicitud / Servicio / Asignacion / RegistroCierre | Solicitud / Servicio / HistorialEstadoServicio / Asignacion / AsignacionPersonal / RegistroCierre |
+| RF-026 | Emergencias | El sistema debe permitir la cancelación de un servicio con justificación oblig... | CU-08 (P-01) / CU-11 (P-02) / CU-12 / CU-14 (P-03) | Solicitud / Servicio / Asignacion / RegistroCierre | Solicitud / Servicio / HistorialEstadoServicio / Asignacion / AsignacionPersonal / RegistroCierre |
+| RF-027 | Emergencias | El sistema debe permitir consultar el historial completo de servicios con filt... | CU-08 (P-01) / CU-11 (P-02) / CU-12 / CU-14 (P-03) | Solicitud / Servicio / Asignacion / RegistroCierre | Solicitud / Servicio / HistorialEstadoServicio / Asignacion / AsignacionPersonal / RegistroCierre |
+| RF-028 | Monitoreo | El sistema debe proporcionar un panel de control centralizado con actualizació... | CU-10 (Tablero) | Ambulancia / Servicio / NovedadOperativa | Ambulancia / Servicio / NovedadOperativa |
+| RF-029 | Monitoreo | El sistema debe mostrar en el panel principal indicadores clave: número de ser... | CU-10 (Tablero) | Ambulancia / Servicio / NovedadOperativa | Ambulancia / Servicio / NovedadOperativa |
+| RF-030 | Financiero | El sistema debe permitir registrar ingresos con detalle de fecha, valor, tipo ... | CU-15 | Factura / NotaContable / MovimientoFinanciero | Factura / NotaContable / MovimientoFinanciero |
+| RF-031 | Financiero | El sistema debe generar facturas automáticamente al cierre de un servicio de e... | CU-14 «include» CU-15 / DA-03 / P-03 | Factura / NotaContable / MovimientoFinanciero | Factura / NotaContable / MovimientoFinanciero |
+| RF-032 | Financiero | El sistema debe gestionar cartera de usuarios o entidades con deudas activas, ... | CU-15 | Factura / NotaContable / MovimientoFinanciero | Factura / NotaContable / MovimientoFinanciero |
+| RF-033 | Financiero | El sistema debe generar reportes financieros periódicos (diario, mensual, anua... | CU-15 | Factura / NotaContable / MovimientoFinanciero | Factura / NotaContable / MovimientoFinanciero |
+| RF-034 | Financiero | El sistema debe generar recibos de pago en PDF al registrar un pago, identific... | CU-15 | Factura / NotaContable / MovimientoFinanciero | Factura / NotaContable / MovimientoFinanciero |
+| RF-035 | Financiero | El sistema debe permitir la consulta del estado de cuenta por usuarios o entid... | CU-15 | Factura / NotaContable / MovimientoFinanciero | Factura / NotaContable / MovimientoFinanciero |
+| RF-036 | Visitantes | El sistema debe registrar el ingreso y salida de visitantes capturando: nombre... | CU-16 | Visitante / Usuario | Visitante / Usuario |
+| RF-037 | Visitantes | El sistema debe verificar la identidad del visitante, registrar opcionalmente ... | CU-16 | Visitante / Usuario | Visitante / Usuario |
+| RF-038 | Visitantes | El sistema debe permitir a usuarios internos registrar pre-autorizaciones de a... | CU-16 | Visitante / Usuario | Visitante / Usuario |
+| RF-039 | Visitantes | El sistema debe mantener historial completo de visitas con filtros por fecha, ... | CU-16 | Visitante / Usuario | Visitante / Usuario |
+| RF-040 | PQRS | El sistema debe permitir registrar PQRS mediante formulario estructurado, clas... | CU-17 | Pqrs / Paciente / Usuario | Pqrs / Paciente / Usuario |
+| RF-041 | PQRS | El sistema debe asignar automáticamente o manualmente cada PQRS al funcionario... | CU-17 | Pqrs / Paciente / Usuario | Pqrs / Paciente / Usuario |
+| RF-042 | PQRS | El sistema debe permitir consultar el estado de una PQRS mediante el código de... | CU-17 | Pqrs / Paciente / Usuario | Pqrs / Paciente / Usuario |
+| RF-043 | PQRS | El sistema debe permitir registrar y enviar la respuesta formal a cada PQRS co... | CU-17 | Pqrs / Paciente / Usuario | Pqrs / Paciente / Usuario |
+| RF-044 | PQRS | El sistema debe mantener historial completo e inalterable de cada PQRS con tod... | CU-17 | Pqrs / Paciente / Usuario | Pqrs / Paciente / Usuario |
+| RF-045 | Unidades | El sistema debe permitir registrar propietarios de unidades de ambulancia con ... | CU-04 | PropietarioUnidad / Ambulancia / Auditoria | PropietarioUnidad / Ambulancia / Auditoria |
+| RF-046 | Unidades | El sistema debe controlar el estado operativo y contractual de cada unidad, im... | CU-04 | PropietarioUnidad / Ambulancia / Auditoria | PropietarioUnidad / Ambulancia / Auditoria |
+| RF-047 | Proveedores | El sistema debe registrar proveedores (razón social, NIT, representante legal,... | CU-07 | Proveedor / ContratoProveedor | Proveedor / ContratoProveedor |
+| RF-048 | Proveedores | El sistema debe impedir la vinculación de contratos vencidos a nuevas órdenes ... | CU-07 | Proveedor / ContratoProveedor | Proveedor / ContratoProveedor |
+| RF-049 | Proveedores | El sistema debe permitir registrar evaluaciones de desempeño de proveedores al... | CU-07 | Proveedor / ContratoProveedor | Proveedor / ContratoProveedor |
+| RF-050 | Documental | El sistema debe permitir la carga de documentos en formatos PDF, DOCX, XLSX e ... | CU-18 | Documento / Auditoria | Documento / Auditoria |
+| RF-051 | Documental | El sistema debe implementar versionamiento automático al actualizar un documen... | CU-18 | Documento / Auditoria | Documento / Auditoria |
+| RF-052 | Documental | El sistema debe permitir búsqueda avanzada por nombre, tipo, fecha, categoría,... | CU-18 | Documento / Auditoria | Documento / Auditoria |
+| RF-053 | Documental | El sistema debe implementar RBAC sobre todas las acciones documentales (visual... | CU-18 | Documento / Auditoria | Documento / Auditoria |
+| RF-054 | Documental | El sistema debe permitir organizar documentos en estructuras jerárquicas de ca... | CU-18 | Documento / Auditoria | Documento / Auditoria |
+| RF-055 | Auditoría | El sistema debe registrar automáticamente todos los eventos relevantes: operac... | CU-19 | Auditoria / Usuario | Auditoria / Usuario |
+| RF-056 | Auditoría | Los registros de auditoría deben ser técnicamente inmutables, sin posibilidad ... | CU-19 | Auditoria / Usuario | Auditoria / Usuario |
+| RF-057 | Auditoría | El sistema debe permitir consultar registros de auditoría con filtros por usua... | CU-19 | Auditoria / Usuario | Auditoria / Usuario |
+| RF-058 | Auditoría | El sistema debe identificar y resaltar eventos críticos de seguridad (accesos ... | CU-19 | Auditoria / Usuario | Auditoria / Usuario |
+| RF-059 | Novedades | El sistema debe permitir registrar novedades operativas mediante formulario co... | CU-13 | NovedadOperativa / Servicio / Ambulancia | NovedadOperativa / Servicio / Ambulancia |
+| RF-060 | Novedades | El sistema debe permitir asignar uno o varios responsables para la gestión de ... | CU-13 | NovedadOperativa / Servicio / Ambulancia | NovedadOperativa / Servicio / Ambulancia |
+| RF-061 | Novedades | El sistema debe resaltar automáticamente incidentes críticos en el panel, esta... | CU-13 | NovedadOperativa / Servicio / Ambulancia | NovedadOperativa / Servicio / Ambulancia |
+| RF-062 | Novedades | El sistema debe permitir adjuntar evidencia multimedia (imágenes, documentos, ... | CU-13 | NovedadOperativa / Servicio / Ambulancia | NovedadOperativa / Servicio / Ambulancia |
+| RF-063 | Novedades | El sistema debe generar reportes de novedades con filtros por tipo, frecuencia... | CU-13 | NovedadOperativa / Servicio / Ambulancia | NovedadOperativa / Servicio / Ambulancia |
+| RF-064 | Reportes | El sistema debe permitir generar reportes operativos personalizados con filtro... | CU-20 | Servicio / Factura / NovedadOperativa / Pqrs | Servicio / Factura / NovedadOperativa / Pqrs |
+| RF-065 | Reportes | El sistema debe generar indicadores clave de desempeño (KPI): tiempo promedio ... | CU-20 | Servicio / Factura / NovedadOperativa / Pqrs | Servicio / Factura / NovedadOperativa / Pqrs |

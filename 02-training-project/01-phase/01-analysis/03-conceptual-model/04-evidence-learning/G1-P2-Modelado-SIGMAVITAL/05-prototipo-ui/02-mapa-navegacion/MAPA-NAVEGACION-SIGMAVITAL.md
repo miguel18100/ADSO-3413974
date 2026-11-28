@@ -1,62 +1,16 @@
-﻿# MAPA DE NAVEGACIÓN – SIGMAVITAL
+# Mapa de Navegación – Prototipo SIGMAVITAL
 
-**Proyecto:** SIGMAVITAL  
-**Artefacto:** Mapa de navegación del prototipo  
-**Versión:** 0.1  
-**Tipo:** Prototipo académico preliminar  
+**Artefacto:** Mapa de navegación  
+**Archivo HTML:** [SIGMAVITAL-Prototipo-v01.html](../01-mockups/SIGMAVITAL-Prototipo-v01.html)
 
-## 1. Objetivo
+## Estructura principal por rol
 
-Representar la estructura de navegación de la interfaz de SIGMAVITAL, identificando los módulos principales y las rutas de acceso disponibles desde el panel principal.
+1. **Tablero Operativo (`CU-10`)**: vista inicial con indicadores de unidades `TAB`/`TAM` disponibles, servicios activos y alertas de vencimientos (`RF-028`, `RF-029`).
+2. **`P-01` – Registro de Solicitudes (`CU-08`)**: recepción de evento, coordenadas GPS, prioridad clínica y acceso extendido a `Pacientes (CU-09)`.
+3. **`P-02` – Despacho y Asignación (`CU-11`)**: inclusión obligatoria de disponibilidad (`CU-06`), sugerencia <= 2 s y asignación manual con motivo obligatorio (`RN-007`).
+4. **`P-03` – Cierre Formal del Servicio (`CU-14`)**: validación de campos obligatorios `RN-005`, liberación de recursos y emisión de factura inmutable (`CU-15`).
+5. **Módulos complementarios**: Flota y Propietarios (`CU-04`), Personal y Jornadas (`CU-05`), Novedades (`CU-13`), Facturación y Cartera (`CU-15`), PQRS y Visitantes (`CU-16/CU-17`), Documentos y Auditoría (`CU-18/CU-19`).
 
-## 2. Estructura de navegación
+## Flujo crítico verificado
 
-- **Dashboard**
-  - Visualización de indicadores operativos.
-  - Resumen de servicios recientes.
-  - Disponibilidad de recursos.
-
-- **Solicitudes**
-  - Registro inicial de solicitudes de emergencia.
-  - Captura de datos de contacto, ubicación y descripción.
-
-- **Pacientes**
-  - Consulta y gestión de información de pacientes.
-
-- **Servicios**
-  - Visualización y seguimiento de los servicios registrados.
-
-- **Asignaciones**
-  - Asignación de recursos operativos a servicios.
-
-- **Ambulancias**
-  - Consulta de vehículos.
-  - Visualización de disponibilidad y estado operativo.
-
-- **Personal**
-  - Consulta del personal operativo.
-  - Visualización de disponibilidad.
-
-- **Intervenciones**
-  - Registro de actividades y detalles de intervención.
-
-- **Cierre de servicios**
-  - Registro del resultado y cierre de la operación.
-
-## 3. Flujo general
-
-Dashboard → Solicitudes → Pacientes → Servicios → Asignaciones → Ambulancias y Personal → Intervenciones → Cierre de servicios.
-
-Este flujo representa una secuencia operativa de referencia. Los módulos también pueden consultarse de forma independiente desde el menú lateral.
-
-## 4. Consideraciones
-
-- El prototipo corresponde a una representación visual preliminar.
-- Los datos utilizados son ficticios.
-- La interfaz no cuenta con persistencia de datos ni conexión a backend.
-- Los formularios representan visualmente procesos funcionales esperados.
-- La navegación entre módulos se realiza mediante el menú lateral.
-
-## 5. Estado
-
-**Estado del artefacto:** Elaborado – pendiente de validación integral.
+`Tablero (CU-10)` -> `P-01 Solicitudes (CU-08)` -> `P-02 Asignación (CU-11)` -> `P-03 Cierre Formal (CU-14)` -> `Factura / Auditoría (CU-15 / CU-19)`

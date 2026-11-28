@@ -1,121 +1,82 @@
-﻿# CU-11 – Asignar ambulancia y personal
+# CU-11 – Asignar ambulancia y personal al servicio
 
 ## 1. Identificación
 
 | Campo | Descripción |
 |---|---|
-| ID | CU-11 |
-| Nombre | Asignar ambulancia y personal |
-| Proyecto | Sistema Gestor de Ambulancias (SGA) |
-| Actor principal | Coordinador operativo |
-| Requisitos relacionados | RF-17, RF-18 |
-| Prioridad | Alta |
-| Tipo | Caso de uso funcional |
+| **ID** | CU-11 |
+| **Nombre** | Asignar ambulancia y personal al servicio |
+| **Proyecto** | SIGMAVITAL – Sistema Gestor de Ambulancias (SGA) |
+| **Actor principal** | Coordinador operativo |
+| **Actor secundario** | Sistema Automático SGA |
+| **Requisitos relacionados** | RF-022, RF-023, RN-001, RN-002, RN-003, RN-004, RN-007 |
+| **Relación estructural** | Incluye obligatoriamente `CU-06 Consultar disponibilidad y vigencia de recursos` (`«include»`) |
+| **Pantalla asociada** | `P-02` – Despacho y asignación de recursos |
+| **Diagrama de actividades** | [DA-02 – Asignar ambulancia](../02-diagramas-actividades/DA-02-Asignar-Ambulancia-CU11.md) |
+| **Prioridad** | Alta |
 
 ## 2. Objetivo
 
-Permitir al coordinador operativo asignar una ambulancia y el personal operativo correspondiente a un servicio, considerando la disponibilidad de los recursos y la información registrada en el SGA, para facilitar la ejecución de la atención solicitada.
+Asignar de manera ágil una ambulancia habilitada (TAB o TAM) y su tripulación operativa disponible a un servicio en curso, combinando sugerencia automática oportuna y posibilidad de selección manual justificada conforme a las reglas operativas y de habilitación REPS.
 
 ## 3. Actores
 
 - **Actor principal:** Coordinador operativo.
-- **Actor secundario:** Ninguno identificado en la línea base para este flujo.
+- **Actor secundario:** Sistema Automático SGA (cálculo de sugerencia en <= 2 s y bloqueo de unidades/personal no habilitados).
 
 ## 4. Precondiciones
 
-1. El coordinador operativo ha iniciado sesión en el SGA.
-2. Existe un servicio registrado que requiere asignación de recursos.
-3. El servicio se encuentra en una condición operativa que permite su asignación.
-4. El sistema dispone de información sobre ambulancias y personal operativo registrados.
+1. El coordinador operativo ha iniciado sesión con permisos de despacho.
+2. Existe un servicio en estado `Solicitado` listo para recibir asignación.
+3. Existen ambulancias y personal operativo registrados en SIGMAVITAL.
 
 ## 5. Disparador
 
-El coordinador operativo selecciona un servicio pendiente de asignación e inicia el proceso de asignación de ambulancia y personal operativo.
+El coordinador selecciona un servicio pendiente desde el tablero operativo o pantalla `P-02` y pulsa **Asignar recursos**.
 
 ## 6. Flujo principal
 
-| Paso | Actor / Sistema | Descripción |
+| Paso | Responsable | Acción |
 |---|---|---|
-| 1 | Coordinador operativo | Selecciona el servicio que requiere asignación de recursos. |
-| 2 | Sistema | Presenta la información disponible del servicio seleccionado. |
-| 3 | Coordinador operativo | Solicita consultar los recursos disponibles para realizar la asignación. |
-| 4 | Sistema | Ejecuta la consulta de disponibilidad de recursos mediante el caso de uso CU-07. |
-| 5 | Sistema | Presenta las ambulancias y el personal operativo que cumplen las condiciones de disponibilidad consultadas. |
-| 6 | Coordinador operativo | Selecciona la ambulancia apropiada para el servicio. |
-| 7 | Coordinador operativo | Selecciona el personal operativo correspondiente para la asignación. |
-| 8 | Sistema | Verifica la información de los recursos seleccionados y las condiciones de asignación. |
-| 9 | Coordinador operativo | Confirma la asignación de los recursos al servicio. |
-| 10 | Sistema | Registra la asignación de ambulancia y personal operativo asociada al servicio. |
-| 11 | Sistema | Informa que la asignación se registró correctamente. |
+| 1 | Coordinador operativo | Selecciona el servicio pendiente de despacho. |
+| 2 | Sistema | Ejecuta `CU-06 («include»)` filtrando ambulancias en estado `Disponible` con SOAT, revisión técnico-mecánica y REPS vigentes (RN-001, RN-003). |
+| 3 | Sistema | Filtra personal operativo `Disponible` con certificaciones vigentes y dentro del límite de jornada continua (RN-004). |
+| 4 | Sistema | Calcula y presenta en un máximo de 2 segundos la unidad TAB/TAM y tripulación sugerida según prioridad clínica y proximidad (RF-022, RNF-009). |
+| 5 | Coordinador operativo | Revisa la sugerencia automática y selecciona la tripulación complementaria requerida (conductor y paramédico). |
+| 6 | Coordinador operativo | Confirma la asignación sugerida. |
+| 7 | Sistema | Verifica nuevamente en transacción única que ni la unidad ni el personal hayan sido asignados a otro servicio simultáneo ni tengan vencimientos (RN-001, RN-003, RN-004). |
+| 8 | Sistema | Registra la asignación, vincula la tripulación, cambia la unidad y personal a `En servicio`, actualiza el servicio a `Asignado` y graba la auditoría inmutable (RN-010). |
+| 9 | Sistema | Emite la confirmación de despacho e informa al personal asignado. |
 
-## 7. Flujo alternativo
+## 7. Flujos alternativos
 
-### A1. No se encuentran recursos disponibles
+### A1. Asignación manual que reemplaza la sugerencia automática (RF-023, RN-007)
+- **A1.1** En el paso 5, el coordinador decide seleccionar otra unidad habilitada diferente a la propuesta automática por condiciones operativas en vía.
+- **A1.2** El sistema habilita el selector manual excluyendo unidades bloqueadas (RN-001, RN-003) y solicita el campo obligatorio **Motivo de asignación manual** (RN-007).
+- **A1.3** Si el tipo seleccionado difiere de la prioridad clínica, muestra advertencia preventiva (RN-002).
+- **A1.4** El coordinador ingresa el motivo y confirma; el flujo continúa en el paso 7.
 
-| Paso | Descripción |
-|---|---|
-| A1.1 | En el paso 5, el sistema no encuentra ambulancias o personal operativo disponibles que permitan completar la asignación. |
-| A1.2 | El sistema informa al coordinador operativo que no se encontraron recursos disponibles para completar la asignación. |
-| A1.3 | El coordinador operativo puede volver a consultar la disponibilidad o dejar pendiente el proceso de asignación. |
-| A1.4 | Si se realiza una nueva consulta, el flujo retoma el paso 3 del flujo principal. |
+### A2. No existen recursos habilitados disponibles en ese instante
+- **A2.1** En los pasos 2 o 3, todas las ambulancias compatibles o tripulantes se encuentran `En servicio`, `En mantenimiento` o con documentos vencidos.
+- **A2.2** El sistema muestra alerta crítica en el tablero indicando la carencia de flota/tripulación y mantiene el servicio en estado `Solicitado` para reintento o coordinación externa.
 
-### A2. El coordinador modifica la selección
+## 8. Flujos de excepción
 
-| Paso | Descripción |
-|---|---|
-| A2.1 | Antes de confirmar la asignación, el coordinador operativo decide cambiar alguno de los recursos seleccionados. |
-| A2.2 | El coordinador operativo selecciona otros recursos entre los disponibles. |
-| A2.3 | El sistema verifica nuevamente las condiciones de asignación. |
-| A2.4 | El flujo continúa en el paso 9 del flujo principal. |
+### E1. Confirmación manual sin motivo obligatorio (RN-007)
+- **E1.1** En el alternativo A1, el coordinador intenta confirmar una asignación manual dejando el motivo vacío.
+- **E1.2** El sistema bloquea el registro e indica que la justificación es obligatoria para auditoría.
 
-## 8. Flujo de excepción
-
-### E1. Error al registrar la asignación
-
-| Paso | Descripción |
-|---|---|
-| E1.1 | Durante el registro de la asignación, el sistema presenta un error que impide guardar la operación. |
-| E1.2 | El sistema informa que la asignación no pudo registrarse. |
-| E1.3 | El sistema no confirma la asignación como exitosa si no se ha guardado correctamente. |
-| E1.4 | El coordinador operativo puede revisar la situación e intentar nuevamente el proceso. |
+### E2. Conflicto de concurrencia al confirmar
+- **E2.1** En el paso 7, otro despacho asignó milisegundos antes la misma ambulancia o tripulante.
+- **E2.2** El sistema aborta la operación, preserva integridad sin duplicar asignaciones y recarga la lista actualizada desde el paso 2.
 
 ## 9. Postcondiciones
 
-### Postcondición de éxito
+- **Éxito:** la ambulancia y la tripulación quedan vinculados al servicio en estado `Asignado` con registro histórico e inalterable de auditoría.
+- **Fallo:** la unidad y el personal conservan su estado previo sin doble asignación.
 
-La asignación de ambulancia y personal operativo queda registrada y relacionada con el servicio correspondiente en el SGA.
+## 10. Reglas de negocio aplicables
 
-### Postcondición de fallo
-
-La asignación no se confirma como realizada y el sistema informa la situación al coordinador operativo.
-
-## 10. Reglas de negocio relacionadas
-
-- La asignación debe relacionarse con un servicio previamente registrado.
-- La asignación debe considerar la disponibilidad de los recursos consultada en el sistema.
-- La ambulancia y el personal operativo deben estar registrados en el SGA.
-- La asignación debe quedar asociada al servicio correspondiente.
-- La consulta de disponibilidad corresponde al caso de uso CU-07, relacionado mediante <<include>> con CU-11.
-- La consulta de disponibilidad no garantiza por sí sola que el recurso continúe disponible al momento de confirmar; el sistema deberá verificar las condiciones de asignación antes de registrar la operación.
-
-## 11. Referencia al prototipo
-
-**Pantalla asociada:** P-02 – Asignación de ambulancia y personal.
-
-Esta pantalla deberá representar la consulta de recursos, la selección de ambulancia, la selección del personal operativo y la confirmación de la asignación.
-
-## 12. Trazabilidad
-
-| Artefacto | Referencia |
-|---|---|
-| Requisitos funcionales | RF-17, RF-18 |
-| Caso de uso | CU-11 |
-| Caso de uso incluido | CU-07 – Consultar disponibilidad de recursos |
-| Diagrama de actividades | DA-02 – Asignar ambulancia y personal |
-| Pantalla | P-02 – Asignación de ambulancia y personal |
-| Modelo de dominio | Ambulancia, PersonalOperativo, Servicio, Asignación (por consolidar) |
-| Modelo ER | Entidades relacionadas con la asignación (por consolidar) |
-
-## 13. Observaciones de verificación
-
-Este caso de uso se elaboró tomando como referencia la línea base de requisitos y casos de uso de G1-P1. Las restricciones específicas de selección de ambulancias, composición del personal, validaciones de compatibilidad y reglas de asignación deberán contrastarse con los artefactos consolidados antes de considerar el caso de uso validado.
+- **RN-001, RN-003, RN-004:** bloqueo estricto de unidades y personal no disponibles o con documentos vencidos.
+- **RN-002:** advertencia cuando la categoría TAB/TAM no corresponde a la complejidad clínica.
+- **RN-007:** exigencia obligatoria de motivo registrado para toda asignación manual diferente a la sugerida.

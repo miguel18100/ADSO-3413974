@@ -1,105 +1,80 @@
-﻿# CU-08 – Registrar solicitud de servicio
+# CU-08 – Registrar solicitud de servicio y clasificar prioridad
 
 ## 1. Identificación
 
 | Campo | Descripción |
 |---|---|
-| ID | CU-08 |
-| Nombre | Registrar solicitud de servicio |
-| Proyecto | Sistema Gestor de Ambulancias (SGA) |
-| Actor principal | Coordinador operativo |
-| Requisitos relacionados | RF-12 |
-| Prioridad | Alta |
-| Tipo | Caso de uso funcional |
+| **ID** | CU-08 |
+| **Nombre** | Registrar solicitud de servicio y clasificar prioridad |
+| **Proyecto** | SIGMAVITAL – Sistema Gestor de Ambulancias (SGA) |
+| **Actor principal** | Coordinador operativo |
+| **Actor secundario** | Sistema Automático SGA |
+| **Requisitos relacionados** | RF-021, RN-002 |
+| **Pantalla asociada** | `P-01` – Registro y triage de solicitudes |
+| **Diagrama de actividades** | [DA-01 – Registrar solicitud](../02-diagramas-actividades/DA-01-Registrar-Solicitud-CU08.md) |
+| **Prioridad** | Alta |
 
 ## 2. Objetivo
 
-Permitir al coordinador operativo registrar una solicitud de atención de ambulancia en el Sistema Gestor de Ambulancias (SGA), ingresando la información inicial necesaria para que la solicitud pueda continuar con los procesos de clasificación, consulta de disponibilidad y asignación de recursos.
+Permitir al coordinador operativo registrar una nueva solicitud de servicio prehospitalario con la información del evento, los datos del solicitante y la clasificación de prioridad clínica inicial para habilitar la creación y despacho oportuno del servicio.
 
 ## 3. Actores
 
 - **Actor principal:** Coordinador operativo.
-- **Actor secundario:** Sistema SGA.
+- **Actor secundario:** Sistema Automático SGA (validación de completitud y consistencia clínica).
 
 ## 4. Precondiciones
 
-1. El coordinador operativo cuenta con acceso al sistema.
-2. El coordinador operativo ha iniciado sesión.
-3. El sistema se encuentra disponible para registrar solicitudes.
+1. El coordinador operativo ha iniciado sesión con un perfil autorizado.
+2. El módulo de gestión de solicitudes se encuentra operativo.
+3. Los catálogos de tipos de emergencia y niveles de prioridad clínica (`Verde`, `Amarillo`, `Naranja`, `Rojo`) están configurados.
 
 ## 5. Disparador
 
-El coordinador operativo recibe información sobre una necesidad de atención y selecciona la opción para registrar una nueva solicitud de servicio.
+Se recibe una llamada o requerimiento de traslado/emergencia y el coordinador selecciona **Nueva solicitud**.
 
 ## 6. Flujo principal
 
-| Paso | Actor / Sistema | Descripción |
+| Paso | Responsable | Acción |
 |---|---|---|
-| 1 | Coordinador operativo | Accede al módulo de solicitudes de servicio. |
-| 2 | Sistema | Presenta la interfaz para registrar una nueva solicitud. |
-| 3 | Coordinador operativo | Ingresa la información inicial recibida sobre la solicitud, incluyendo los datos de ubicación y descripción de la necesidad de atención. |
-| 4 | Sistema | Valida que los campos obligatorios hayan sido diligenciados y que la información cumpla las validaciones definidas. |
-| 5 | Coordinador operativo | Confirma el registro de la solicitud. |
-| 6 | Sistema | Registra la solicitud y genera el identificador correspondiente, de acuerdo con las reglas de operación del sistema. |
-| 7 | Sistema | Informa al coordinador operativo que la solicitud fue registrada correctamente. |
-| 8 | Coordinador operativo | Verifica la información registrada y continúa con el proceso operativo correspondiente. |
+| 1 | Coordinador operativo | Accede al módulo de registro de solicitudes (`P-01`). |
+| 2 | Sistema | Presenta el formulario estructurado de recepción de evento. |
+| 3 | Coordinador operativo | Ingresa fecha/hora de solicitud, dirección o coordenadas geográficas, tipo de emergencia y datos del solicitante. |
+| 4 | Coordinador operativo | Clasifica la prioridad clínica inicial (`Verde`, `Amarillo`, `Naranja` o `Rojo`) y solicita guardar. |
+| 5 | Sistema | Verifica que todos los campos obligatorios tengan información completa y coherente. |
+| 6 | Sistema | Evalúa la correspondencia preliminar entre la prioridad clínica y el nivel de atención requerido (RN-002). |
+| 7 | Sistema | Registra la solicitud con estado `Solicitado`, origina el servicio pendiente y guarda la trazabilidad inicial en auditoría. |
+| 8 | Sistema | Muestra el identificador generado de la solicitud y habilita el acceso al despacho (`CU-11`). |
 
-## 7. Flujo alternativo
+## 7. Flujos alternativos
 
-### A1. Información incompleta
+### A1. Asociación inmediata de datos del paciente (`«extend» CU-09`)
+- **A1.1** En el paso 4, si el informante suministra identificación o estado clínico inicial del paciente, el coordinador activa el registro de paciente.
+- **A1.2** Se invoca la extensión `CU-09` para vincular paciente con el servicio originado.
+- **A1.3** El flujo retorna al paso 7 del flujo principal.
 
-| Paso | Descripción |
-|---|---|
-| A1.1 | En el paso 4, el sistema detecta que uno o más campos obligatorios están incompletos. |
-| A1.2 | El sistema identifica los campos que requieren corrección. |
-| A1.3 | El coordinador operativo completa o corrige la información. |
-| A1.4 | El flujo retoma el paso 4 del flujo principal. |
+### A2. Advertencia por correspondencia prioridad vs unidad solicitada (RN-002)
+- **A2.1** En el paso 6, el sistema detecta que la prioridad clínica sugerida requiere atención medicalizada y el tipo preliminar indica traslado básico.
+- **A2.2** El sistema muestra una alerta preventiva al coordinador para confirmar o ajustar la prioridad antes de guardar.
+- **A2.3** Confirmado o ajustado el nivel, el flujo continúa en el paso 7.
 
-## 8. Flujo de excepción
+## 8. Flujos de excepción
 
-### E1. Error al guardar la solicitud
+### E1. Datos obligatorios incompletos o con formato incorrecto
+- **E1.1** En el paso 5, falta dirección/coordenadas, prioridad o datos mínimos del solicitante.
+- **E1.2** El sistema resalta los campos faltantes con mensajes claros de acción correctiva (RNF-018) sin guardar registros parciales.
+- **E1.3** El coordinador corrige la información y repite desde el paso 5.
 
-| Paso | Descripción |
-|---|---|
-| E1.1 | Durante el registro, el sistema presenta un error que impide guardar la solicitud. |
-| E1.2 | El sistema informa que el registro no pudo completarse. |
-| E1.3 | El sistema evita confirmar la solicitud como registrada si no se ha persistido correctamente. |
-| E1.4 | El coordinador operativo puede reintentar el registro después de verificar la información y las condiciones del sistema. |
+### E2. Error de almacenamiento del registro
+- **E2.1** En el paso 7, ocurre una falla que impide consolidar la solicitud.
+- **E2.2** El sistema informa al coordinador que no fue posible completar el registro y mantiene los datos en pantalla para reintento seguro.
 
 ## 9. Postcondiciones
 
-### Postcondición de éxito
+- **Éxito:** la solicitud queda registrada en estado `Solicitado`, vinculada al servicio originado y visible en el tablero de despacho.
+- **Fallo:** no se crea solicitud incompleta ni evento fantasma en la operación.
 
-La solicitud queda registrada en el SGA y disponible para los procesos operativos posteriores que correspondan.
+## 10. Reglas de negocio aplicables
 
-### Postcondición de fallo
-
-La solicitud no se confirma como registrada y el sistema informa la situación al coordinador operativo.
-
-## 10. Reglas de negocio relacionadas
-
-- La solicitud debe contener la información obligatoria definida para el registro.
-- El sistema debe validar los datos antes de confirmar el registro.
-- Una solicitud registrada debe poder identificarse para su gestión posterior.
-- El registro de una solicitud no implica por sí mismo la asignación de una ambulancia ni del personal operativo.
-
-## 11. Referencia al prototipo
-
-**Pantalla asociada:** P-01 – Registro de solicitud de servicio.
-
-Esta pantalla será elaborada en el artefacto de prototipo UI y deberá permitir visualizar la interacción correspondiente al CU-08.
-
-## 12. Trazabilidad
-
-| Artefacto | Referencia |
-|---|---|
-| Requisito funcional | RF-12 |
-| Caso de uso | CU-08 |
-| Diagrama de actividades | DA-01 – Registrar solicitud de servicio |
-| Pantalla | P-01 – Registro de solicitud de servicio |
-| Modelo de dominio | Solicitud / Servicio (conceptos por consolidar) |
-| Modelo ER | Entidades asociadas al registro de solicitudes (por consolidar) |
-
-## 13. Observaciones de verificación
-
-Este caso de uso se elaboró tomando como referencia la línea base de requisitos y casos de uso de G1-P1. Los campos específicos del formulario, las validaciones y las reglas detalladas deberán verificarse frente a la documentación consolidada y al alcance del SGA antes de considerar el artefacto validado.
+- **RN-002:** coherencia entre la complejidad clínica del paciente y la categoría asistencial requerida.
+- **RN-010 / RNF-028:** registro cronológico inalterable del usuario y momento exacto de creación.
