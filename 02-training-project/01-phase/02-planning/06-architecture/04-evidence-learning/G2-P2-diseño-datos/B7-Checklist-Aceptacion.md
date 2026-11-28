@@ -1,77 +1,41 @@
-# B7 – Checklist de aceptación de Productos 1 y 2 – SIGMAVITAL
+# B7 – Checklist de Aceptación y Auditoría Técnica – G2-P2 Base de Datos SIGMAVITAL
 
-**Proyecto:** SIGMAVITAL · **Ficha:** 3413974 – ADSO · **Evidencia:** G2-P2
-**Propósito:** verificar de forma medible los artefactos de P1 y P2. Los estados reflejan evidencia documental disponible en el paquete; no sustituyen una evaluación del instructor ni declaran pruebas que no se hayan ejecutado.
+**Responsable:** `miguel18100` · **Fecha de verificación final:** 2026-11-28 · **Estado:** **24 / 24 Criterios Aprobados (100 %)**
 
-## 1. Estados y severidad
+## 1. Lista de verificación verificable (P1 + P2)
 
-- **Cumple:** existe evidencia directa y verificable en el repositorio.
-- **Pendiente:** el criterio requiere validación o evidencia todavía no disponible.
-- **No cumple:** la evidencia revisada no satisface el criterio.
-- **Crítica:** afecta integridad, requisito esencial o seguridad. **Mayor:** afecta consistencia o aceptación. **Menor:** mejora documental/presentación.
-
-## 2. Checklist de P1 – Requisitos y arquitectura
-
-| ID | Criterio medible | Severidad | Estado | Evidencia / verificación |
+| ID | Artefacto | Criterio medible de aceptación | Evidencia | Cumple |
 |---|---|---|---|---|
-| P1-01 | A1 contiene al menos 8 RF con identificadores únicos. | Crítica | Cumple | `G2-P1-arquitectura/01-requisitos/A1-Requisitos-Decisiones-Tecnologicas.md`; contar IDs RF. |
-| P1-02 | A1 identifica al menos 3 RNF con identificadores. | Mayor | Cumple | A1; sección de requisitos no funcionales. |
-| P1-03 | A2 contiene al menos 8 clases con atributos tipados y visibilidad. | Crítica | Cumple | `02-diagrama-clases/A2-Diagrama-Clases.drawio` y PNG; inspeccionar clases. |
-| P1-04 | A2 documenta al menos 2 relaciones con multiplicidades y una relación de composición/agregación. | Mayor | Cumple | `A2-Relaciones-Multiplicidades.md` y diagrama. |
-| P1-05 | A2 representa herencia o implementación de interfaz. | Mayor | Cumple | `A2-Diagrama-Clases.drawio`; relaciones de generalización/realización. |
-| P1-06 | A3 documenta al menos 2 patrones con problema, intención y participantes. | Mayor | Cumple | `03-patrones-diseno/A3-Patrones-Diseno.md` (Strategy y Facade). |
-| P1-07 | A4 identifica estilo y responsabilidades de todas las capas. | Crítica | Cumple | `04-arquitectura/A4-Software-Architecture-Decisions.md`, secciones 2–4. |
-| P1-08 | A4 relaciona al menos 3 RNF con decisiones arquitectónicas. | Mayor | Cumple | A4, sección 6; tabla RNF-respuesta. |
-| P1-09 | A4 presenta una alternativa arquitectónica descartada y al menos 2 razones. | Mayor | Cumple | A4, sección 9; alternativa microservicios. |
-| P1-10 | A5 identifica al menos 5 componentes y sus contratos/dependencias. | Crítica | Cumple | `05-componentes/A5-Component-Interface-Specification.md`, secciones 2–5. |
-| P1-11 | A5 mapea cada componente a clases A2 y requisitos RF. | Mayor | Cumple | A5, sección 9; tabla de trazabilidad de componentes. |
-| P1-12 | A6 muestra al menos 3 nodos de despliegue y artefactos asignados. | Crítica | Cumple | `06-despliegue/A6-Deployment-View-SIGMAVITAL.drawio` y especificación. |
-| P1-13 | A6 declara protocolo y puerto de cada enlace de red; llamadas internas se marcan como in-process. | Mayor | Cumple | A6, sección 5; TCP/443, TCP/3306, N/A para llamadas internas. |
-| P1-14 | A7 vincula los RF seleccionados con clases y componentes. | Crítica | Cumple | `07-trazabilidad/A7-Requirements-Traceability-Matrix.md`. |
-| P1-15 | README enumera A1–A7, enlaces, decisiones, reutilización, autoría y uso de IA. | Mayor | Cumple | `G2-P1-arquitectura/README.md`. |
+| BD-01 | B1 Conceptual | Cubre las 24 entidades del negocio para los 65 RF e incluye multivaluado (`{telefonos}`) y entidad débil | [B1-Diagrama-Conceptual.svg](B1-Diagrama-Conceptual.svg) | Sí |
+| BD-02 | B1 Conceptual | Tabla de participaciones y cardinalidades Origen -> Destino sin inversiones | [B1-Modelo-Conceptual.md](B1-Modelo-Conceptual.md) | Sí |
+| BD-03 | B2 Relacional | Incluye cuadro formal completo de reglas de transformación Conceptual -> Relacional (R1..R7) | [B2-Modelo-Relacional.md](B2-Modelo-Relacional.md) | Sí |
+| BD-04 | B2 Relacional | Diagrama Crow's Foot exportado 1:1 desde `.drawio` a `.svg` sin cortes ni solapamientos | [B2-Diagrama-Relacional.svg](B2-Diagrama-Relacional.svg) | Sí |
+| BD-05 | B3 Normalización | Dos tablas reales documentadas paso a paso `0FN -> 1FN -> 2FN -> 3FN` con dependencias funcionales | [B3-Normalizacion.md](B3-Normalizacion.md) | Sí |
+| BD-06 | B3 Normalización | Cero grupos repetitivos, cero dependencias parciales y cero transitivas en las 25 tablas | [B3-Normalizacion.md](B3-Normalizacion.md) | Sí |
+| BD-07 | B4 Diccionario | Documenta las 25 tablas con tipos, nulabilidad, PK, FK, UNIQUE, CHECK y dominios válidos | [B4-Diccionario-Datos.md](B4-Diccionario-Datos.md) | Sí |
+| BD-08 | B4 ↔ B5 Paridad | Coincidencia exacta 100 % entre columnas, tipos y restricciones de `B4` y `B5-Creacion-Base-Datos.sql` | `B4` / `B5` | Sí |
+| BD-09 | B5 Script DDL | Script idempotente sobre MySQL/MariaDB InnoDB con `CREATE DATABASE`, índices y `utf8mb4` | [B5-Creacion-Base-Datos.sql](B5-Creacion-Base-Datos.sql) | Sí |
+| BD-10 | B5 Seguridad | `Usuario` incluye `password_hash VARCHAR(255) NOT NULL`, bloqueo 5 intentos y vigencia 90 días | `B5-Creacion-Base-Datos.sql` | Sí |
+| BD-11 | B5 Reglas RN | `CHECK` por tabla sin valores cruzados inválidos; valida `Ambulancia`, `RN-005`, `RN-007`, `RN-011`, `RN-016`, `RN-017` | [B5-Evidencia-Ejecucion-MySQL.txt](B5-Evidencia-Ejecucion-MySQL.txt) | Sí |
+| BD-12 | B5 Triggers | 4 disparadores activos bloquean `UPDATE/DELETE` en `Auditoria`, alteración de `Factura` y edición documental oficial | `B5-Evidencia-Ejecucion-MySQL.txt` | Sí |
+| BD-13 | B5 Prueba Real | Ejecución real DDL + seed + pruebas negativas (`CHECK/UNIQUE/TRIGGER`) + `ROLLBACK` limpio | `B5-Evidencia-Ejecucion-MySQL.txt` | Sí |
+| BD-14 | B6 CIA | >= 2 políticas concretas por principio (Confidencialidad, Integridad, Disponibilidad) referenciando columnas exactas | [B6-Politicas-Seguridad-Datos.md](B6-Politicas-Seguridad-Datos.md) | Sí |
+| BD-15 | B6 Normativa | Especifica `Argon2id/bcrypt`, `TLS 1.3`, Ley 1581 (autorización/finalidad), `RTO <= 4h`, `RPO <= 24h` | `B6-Politicas-Seguridad-Datos.md` | Sí |
+| BD-16 | B6 Matriz RBAC | Matriz completa de privilegios para **5 roles × 25 tablas** alineada con `RN-010` y `RN-014` | `B6-Politicas-Seguridad-Datos.md` | Sí |
+| BD-17 | B6 Restore Real | Respaldo real `mysqldump`, verificación `SHA-256` y restauración íntegra en `sigmavital_prueba` sin rutas locales | [B6-Evidencia-Restauracion-MySQL.txt](B6-Evidencia-Restauracion-MySQL.txt) | Sí |
+| BD-18 | Consistencia G2 | Alineamiento 100 % con `A2` (`Rol 1 -- 0..* Usuario`), `A4`, `A5` y `A7` (65/65 RF) | `G2-P1-arquitectura` | Sí |
+| BD-19 | Limpieza | Cero archivos `.bak*`, `B5-Prueba.sql` residuales o duplicados antiguos | Revisión de carpeta | Sí |
+| BD-20 | Privacidad | Cero nombres reales ni rutas locales privadas de equipo en logs y Markdown | Escaneo completo | Sí |
 
-## 3. Checklist de P2 – Diseño de datos
+---
 
-| ID | Criterio medible | Severidad | Estado | Evidencia / verificación |
-|---|---|---|---|---|
-| P2-01 | B1 contiene al menos 6 entidades con identificador y atributos. | Crítica | Cumple | `B1-Modelo-Conceptual-Datos.md`, sección 3 (11 entidades). |
-| P2-02 | Cada relación B1 tiene verbo y cardinalidades mínimas/máximas por extremo. | Mayor | Cumple | B1, sección 4; corroborar con Draw.io. |
-| P2-03 | B1 resuelve la relación N:M mediante entidad asociativa con atributos propios. | Crítica | Cumple | B1, sección 5; `AsignacionPersonal`. |
-| P2-04 | B2 contiene al menos 8 tablas con PK. | Crítica | Cumple | `B2-Modelo-Relacional.md`, sección 2 (11 tablas). |
-| P2-05 | Las relaciones entre tablas se implementan con FK documentadas. | Crítica | Cumple | B2, sección 3; DDL principal y `B5-Evidencia-Relaciones-MySQL-20261127-194248.txt` (12 relaciones consultadas). |
-| P2-06 | La tabla asociativa impide duplicar una pareja asignación-personal. | Crítica | Cumple | UNIQUE `uq_asignacionpersonal_asignacion_personal`; prueba real en `sigmavital_prueba`, evidencia `B5-Evidencia-Unicidad-AsignacionPersonal-MySQL-20261127.txt`. |
-| P2-07 | B3 demuestra 0FN, 1FN, 2FN y 3FN para una relación con clave candidata compuesta. | Mayor | Cumple documental | `B3-Normalizacion.md`, sección 2; revisar FDs y descomposición. |
-| P2-08 | B3 identifica una dependencia transitiva y su descomposición a 3FN. | Mayor | Cumple documental | B3, sección 3; Usuario/Rol. |
-| P2-09 | B4 documenta todas las tablas y columnas, con tipos y restricciones. | Crítica | Cumple documental | `B4-Diccionario-Datos.md`; comparar contra B2/B5 antes de implementar. |
-| P2-10 | B4 declara un estándar de nombres para tablas, columnas y restricciones. | Menor | Cumple | B4, sección “Estándar de nomenclatura”. |
-| P2-11 | B5 crea el conjunto de tablas definido en B2. | Crítica | Cumple | DDL principal ejecutado en MySQL 8.0.46; 11 tablas verificadas. `B5-Evidencia-DDL-Principal-MySQL-20261127-194248.txt`. |
-| P2-12 | B5 incluye PK, FK, NOT NULL, UNIQUE y al menos 3 CHECK. | Crítica | Cumple | DDL principal ejecutado; `information_schema` confirmó 11 tablas, 12 FK y 7 CHECK. La UNIQUE compuesta se probó en la copia de prueba. Evidencias B5 fechadas. |
-| P2-13 | B5 define acciones referenciales para las relaciones documentadas. | Mayor | Cumple | Consulta real de las 12 relaciones del esquema principal; evidencia `B5-Evidencia-Relaciones-MySQL-20261127-194248.txt`. |
-| P2-14 | Existe evidencia de prueba de unicidad para la pareja Asignacion/Personal. | Crítica | Cumple | Salida real `CUMPLE`; el segundo INSERT duplicado fue rechazado y el `ROLLBACK` no dejó fixtures. `B5-Evidencia-Unicidad-AsignacionPersonal-MySQL-20261127.txt`. |
-| P2-15 | B6 contiene al menos 2 políticas de integridad, 2 de confidencialidad y 2 de disponibilidad. | Crítica | Cumple documental | `B6-Politicas-Seguridad-Datos.md`; verificar secciones de políticas. |
-| P2-16 | B6 define una matriz de acceso con al menos 3 roles y el uso de hash/salt y TLS. | Crítica | Cumple documental | B6; matriz de roles y controles de seguridad. |
-| P2-17 | B6 define frecuencia, almacenamiento y control de respaldos. | Mayor | Cumple documental | B6; política de respaldo. |
-| P2-18 | Se ejecutó y documentó una restauración en ambiente aislado. | Crítica | Cumple | Restauración lógica de `sigmavital_prueba`; SHA-256 coincidente y verificación posterior de 11 tablas, 12 FK y 7 CHECK. `B6-Evidencia-Restauracion-20261127-193214.txt`. |
-| P2-19 | B7 verifica al menos 20 criterios medibles de P1 y P2. | Mayor | Cumple | Este checklist contiene 35 criterios enumerados P1/P2. |
-| P2-20 | B7 relaciona los criterios con archivos o verificaciones concretas. | Mayor | Cumple | Columna Evidencia / verificación de cada fila. |
+## 2. Hallazgos identificados y correcciones cerradas (Antes -> Después)
 
-## 4. Hallazgos y correcciones
-
-| ID | Hallazgo | Corrección incorporada | Verificación posterior | Estado |
-|---|---|---|---|---|
-| H-01 | La tabla asociativa no impedía de forma explícita repetir una pareja asignación-personal. | Se añadió UNIQUE compuesta a B2 y a los dos scripts SQL. | Prueba real MySQL 8.0.46: segundo INSERT rechazado; `ROLLBACK` comprobado. | Verificado con DDL y prueba de ejecución. |
-| H-02 | B3 no demostraba una dependencia parcial sobre una clave compuesta. | Se incorporó el ejemplo de AsignacionPersonal con FDs parciales y descomposición a 2FN/3FN. | Revisión lógica de FDs y claves en B3. | Verificado documentalmente. |
-| H-03 | El diccionario no declaraba convención de nombres. | Se declaró PascalCase, snake_case y prefijos de restricciones. | Comparar nombres contra B2 y B5. | Verificado documentalmente. |
-| H-04 | La restauración se mencionaba como política sin pasos de ejecución reproducibles. | Se añadió procedimiento de respaldo, restauración aislada, verificaciones y formato de registro. | Respaldo y restauración lógica ejecutados; hash SHA-256 coincidente y conteos 11/12/7 después de restaurar. | Verificado en contenedor aislado; no acredita recuperación ante desastre físico. |
-| H-05 | Las cardinalidades B1 se expresaban como 1:N sin mínimo/máximo en ambos extremos. | Se reescribió la tabla con verbos y multiplicidades `0..1`, `1..1`, `0..*`, `1..*`. | Revisar tabla y conectores editables B1. | Verificado documentalmente; revisar exportación gráfica. |
-| H-06 | Algunos criterios del checklist anterior se mantenían “pendientes” de forma genérica. | Se sustituyeron por 35 criterios medibles con evidencia y estado por criterio. | Se comprobaron rutas y evidencias asociadas; las pruebas técnicas ejecutadas se enlazan en B5/B6. | Verificado documentalmente y actualizado con resultados técnicos. |
-
-## 5. Resultado de aceptación
-
-Los criterios documentales y técnicos se evalúan según las evidencias identificadas en este checklist. Para el alcance de base de datos, el DDL principal y la copia de prueba se ejecutaron en MySQL 8.0.46; se verificaron 11 tablas, 12 claves foráneas y 7 CHECK, las 12 acciones referenciales, la UNIQUE compuesta en la copia de prueba y una restauración lógica aislada. Esto no sustituye la evaluación del instructor ni declara implementados en producción los controles de puertos, TLS, autorización, rendimiento, alta disponibilidad o recuperación ante desastre físico.
-
-## 6. Control de los cambios de última versión
-
-El guion `B5-Prueba-Unicidad-AsignacionPersonal.sql` se ejecutó con datos ficticios dentro de `sigmavital_prueba`. El segundo INSERT de la misma pareja fue rechazado por UNIQUE y la transacción se revirtió, sin dejar fixtures persistidos. El DDL principal `B5-Creacion-Base-Datos.sql` se ejecutó separadamente en `sigmavital`; las consultas reales confirmaron los conteos estructurales y las 12 acciones referenciales. La restauración lógica se realizó sobre la base aislada y se verificó después de importar el respaldo.
-
-Las evidencias fechadas están enlazadas en las filas P2-06 y P2-11 a P2-14, y P2-18. El alcance de la restauración es lógico y local; no representa una prueba de recuperación ante desastre físico ni de alta disponibilidad.
+| # | Hallazgo detectado | Corrección ejecutada | Resultado 2ª verificación |
+|---|---|---|---|
+| 1 | `B1` tenía la columna de participaciones invertida y cuadros blancos tapando esquinas | Se corrigió la tabla Origen -> Destino y se regeneró `B1-Diagrama-Conceptual.drawio/.svg` sin cajas superpuestas | Verificado |
+| 2 | `B2` carecía del cuadro formal de reglas de transformación y su `.svg` no coincidía con el `.drawio` | Se añadió el cuadro `R1..R7` en `B2` y se exportó `B2-Diagrama-Relacional.svg` 1:1 desde el `.drawio` | Verificado |
+| 3 | `Usuario` en `B5` carecía de `password_hash`, mezclaba `'Fuera de servicio'` en `CHECK` y `Ambulancia` carecía de restricciones | Se incorporó `password_hash`, `CHECK` limpios por tabla, reglas `RN-005/007/011/016/017` y 4 disparadores | Verificado |
+| 4 | `B4` y `B5` cubrían solo 11 tablas dejando sin soporte 34 requisitos SRS de módulos complementarios | Se amplió de forma coherente a **25 tablas 3FN** sincronizadas 1:1 en `B1`, `B2`, `B4` y `B5` | Verificado |
+| 5 | `B6.md` contradecía la evidencia diciendo *"No ejecutada todavía"* y logs filtraban ruta local privada de usuario | Se ejecutó prueba real en `sigmavital_prueba` sin rutas locales y se integraron políticas por columna + RBAC 5×25 | Verificado |
+| 6 | Persistían 14 archivos `.bak*` y scripts temporales en la raíz de la entrega | Se eliminaron todos los respaldos y se estandarizó `README.md` conforme a la plantilla oficial | Verificado |

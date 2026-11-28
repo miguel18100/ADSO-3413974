@@ -1,0 +1,190 @@
+==========================================================================
+SIGMAVITAL (SGA) - EVIDENCIA REAL DE EJECUCION SQL Y PRUEBAS DE INTEGRIDAD
+Motor: 10.4.32-MariaDB / InnoDB (STRICT_TRANS_TABLES, utf8mb4_unicode_ci)
+Fecha de ejecucion: 2026-11-28 | Responsable: miguel18100
+==========================================================================
+
+[1] Ejecucion de script maestro: B5-Creacion-Base-Datos.sql
+ExitCode: 0
+Salida DDL: OK (0 errores)
+
+[2] Carga de datos de prueba, listado de 25 tablas, FKs, CHECKs y Triggers
++-------------------------+
+| Tables_in_sigmavital    |
++-------------------------+
+| ambulancia              |
+| asignacion              |
+| asignacionpersonal      |
+| auditoria               |
+| contratoproveedor       |
+| documento               |
+| factura                 |
+| historialestadoservicio |
+| intervencion            |
+| mantenimientounidad     |
+| movimientofinanciero    |
+| notacontable            |
+| novedadoperativa        |
+| paciente                |
+| pacientetelefono        |
+| personal                |
+| pqrs                    |
+| propietariounidad       |
+| proveedor               |
+| registrocierre          |
+| rol                     |
+| servicio                |
+| solicitud               |
+| usuario                 |
+| visitante               |
++-------------------------+
++-------------------------+--------+------------+
+| TABLE_NAME              | ENGINE | TABLE_ROWS |
++-------------------------+--------+------------+
+| ambulancia              | InnoDB |          1 |
+| asignacion              | InnoDB |          1 |
+| asignacionpersonal      | InnoDB |          1 |
+| auditoria               | InnoDB |          1 |
+| contratoproveedor       | InnoDB |          0 |
+| documento               | InnoDB |          0 |
+| factura                 | InnoDB |          1 |
+| historialestadoservicio | InnoDB |          1 |
+| intervencion            | InnoDB |          0 |
+| mantenimientounidad     | InnoDB |          0 |
+| movimientofinanciero    | InnoDB |          0 |
+| notacontable            | InnoDB |          0 |
+| novedadoperativa        | InnoDB |          0 |
+| paciente                | InnoDB |          1 |
+| pacientetelefono        | InnoDB |          1 |
+| personal                | InnoDB |          1 |
+| pqrs                    | InnoDB |          0 |
+| propietariounidad       | InnoDB |          1 |
+| proveedor               | InnoDB |          0 |
+| registrocierre          | InnoDB |          1 |
+| rol                     | InnoDB |          3 |
+| servicio                | InnoDB |          1 |
+| solicitud               | InnoDB |          1 |
+| usuario                 | InnoDB |          2 |
+| visitante               | InnoDB |          0 |
++-------------------------+--------+------------+
++-----------------+-------------------------+-----------------------+
+| CONSTRAINT_NAME | TABLE_NAME              | REFERENCED_TABLE_NAME |
++-----------------+-------------------------+-----------------------+
+| fk_amb_prop     | ambulancia              | propietariounidad     |
+| fk_asig_amb     | asignacion              | ambulancia            |
+| fk_asig_srv     | asignacion              | servicio              |
+| fk_ap_asig      | asignacionpersonal      | asignacion            |
+| fk_ap_per       | asignacionpersonal      | personal              |
+| fk_aud_usr      | auditoria               | usuario               |
+| fk_con_prov     | contratoproveedor       | proveedor             |
+| fk_con_usr      | contratoproveedor       | usuario               |
+| fk_doc_orig     | documento               | documento             |
+| fk_doc_usr      | documento               | usuario               |
+| fk_fac_srv      | factura                 | servicio              |
+| fk_hist_srv     | historialestadoservicio | servicio              |
+| fk_hist_usr     | historialestadoservicio | usuario               |
+| fk_int_per      | intervencion            | personal              |
+| fk_int_srv      | intervencion            | servicio              |
+| fk_mant_amb     | mantenimientounidad     | ambulancia            |
+| fk_mant_prov    | mantenimientounidad     | proveedor             |
+| fk_mov_fac      | movimientofinanciero    | factura               |
+| fk_mov_prov     | movimientofinanciero    | proveedor             |
+| fk_mov_usr      | movimientofinanciero    | usuario               |
+| fk_nota_fac     | notacontable            | factura               |
+| fk_nota_usr     | notacontable            | usuario               |
+| fk_nov_amb      | novedadoperativa        | ambulancia            |
+| fk_nov_srv      | novedadoperativa        | servicio              |
+| fk_nov_usr      | novedadoperativa        | usuario               |
+| fk_pactel_pac   | pacientetelefono        | paciente              |
+| fk_pqrs_pac     | pqrs                    | paciente              |
+| fk_pqrs_usr     | pqrs                    | usuario               |
+| fk_cie_srv      | registrocierre          | servicio              |
+| fk_cie_usr      | registrocierre          | usuario               |
+| fk_srv_pac      | servicio                | paciente              |
+| fk_srv_sol      | servicio                | solicitud             |
+| fk_sol_usr      | solicitud               | usuario               |
+| fk_usuario_rol  | usuario                 | rol                   |
+| fk_vis_usr      | visitante               | usuario               |
++-----------------+-------------------------+-----------------------+
++----------------------+-------------------------+
+| CONSTRAINT_NAME      | TABLE_NAME              |
++----------------------+-------------------------+
+| chk_amb_tipo         | ambulancia              |
+| chk_amb_anio         | ambulancia              |
+| chk_amb_dot          | ambulancia              |
+| chk_amb_est_op       | ambulancia              |
+| chk_amb_est_con      | ambulancia              |
+| chk_asig_man_flag    | asignacion              |
+| chk_asig_rn007       | asignacion              |
+| chk_asig_est         | asignacion              |
+| chk_aud_nonempty     | auditoria               |
+| chk_con_fechas       | contratoproveedor       |
+| chk_con_valor        | contratoproveedor       |
+| chk_con_est          | contratoproveedor       |
+| chk_con_cal          | contratoproveedor       |
+| chk_doc_conf         | documento               |
+| chk_doc_ver          | documento               |
+| chk_fac_val          | factura                 |
+| chk_fac_fech         | factura                 |
+| chk_fac_mora         | factura                 |
+| chk_fac_est          | factura                 |
+| chk_fac_inm          | factura                 |
+| chk_hist_seq         | historialestadoservicio |
+| chk_hist_canc        | historialestadoservicio |
+| chk_mant_tipo        | mantenimientounidad     |
+| chk_mant_costo       | mantenimientounidad     |
+| chk_mov_tipo         | movimientofinanciero    |
+| chk_mov_monto        | movimientofinanciero    |
+| chk_mov_egreso       | movimientofinanciero    |
+| chk_nota_tipo        | notacontable            |
+| chk_nota_val         | notacontable            |
+| chk_nota_mot         | notacontable            |
+| chk_nov_prio         | novedadoperativa        |
+| chk_nov_est          | novedadoperativa        |
+| chk_nov_rn016        | novedadoperativa        |
+| chk_pac_tdoc         | paciente                |
+| chk_pac_est          | paciente                |
+| chk_per_prof         | personal                |
+| chk_per_est          | personal                |
+| chk_per_hrs          | personal                |
+| chk_pqrs_tipo        | pqrs                    |
+| chk_pqrs_est         | pqrs                    |
+| chk_pqrs_rn011       | pqrs                    |
+| chk_prop_vinc        | propietariounidad       |
+| chk_prop_est         | propietariounidad       |
+| chk_prov_est         | proveedor               |
+| chk_cie_estpac       | registrocierre          |
+| chk_cie_rn005        | registrocierre          |
+| chk_rol_nombre       | rol                     |
+| chk_srv_est          | servicio                |
+| chk_srv_estpac       | servicio                |
+| chk_sol_prio         | solicitud               |
+| chk_sol_est          | solicitud               |
+| chk_usuario_estado   | usuario                 |
+| chk_usuario_intentos | usuario                 |
+| chk_vis_pre          | visitante               |
+| chk_vis_rn017        | visitante               |
++----------------------+-------------------------+
++---------------------------+--------------------+--------------------+
+| TRIGGER_NAME              | EVENT_MANIPULATION | EVENT_OBJECT_TABLE |
++---------------------------+--------------------+--------------------+
+| trg_auditoria_no_delete   | DELETE             | auditoria          |
+| trg_auditoria_no_update   | UPDATE             | auditoria          |
+| trg_doc_oficial_no_update | UPDATE             | documento          |
+| trg_factura_no_update     | UPDATE             | factura            |
++---------------------------+--------------------+--------------------+
+
+[3] Pruebas negativas obligatorias (RN-005, RN-007, RN-010, RN-014, UNIQUE, CHECK)
+[Neg1_RN007_Asignacion_manual_sin_motivo] EXIT=1 -> ERROR 4025 (23000) at line 1: CONSTRAINT `chk_asig_rn007` failed for `sigmavital`.`asignacion`
+[Neg2_RN005_Cierre_sin_destino] EXIT=1 -> ERROR 4025 (23000) at line 1: CONSTRAINT `chk_cie_rn005` failed for `sigmavital`.`registrocierre`
+[Neg3_UQ_AsignacionPersonal_duplicada] EXIT=1 -> ERROR 1062 (23000) at line 1: Duplicate entry '1-1' for key 'uq_asignacion_personal'
+[Neg4_RN010_Trigger_Update_Auditoria] EXIT=1 -> ERROR 1644 (45000) at line 1: RN-010: Los registros de Auditoria son estrictamente inmutables.
+[Neg5_RN014_Trigger_Update_Factura] EXIT=1 -> ERROR 1644 (45000) at line 1: RN-014: Factura inmutable; use NotaContable para ajustes.
+[Neg6_Usuario_estado_invalido_CHECK] EXIT=1 -> ERROR 4025 (23000) at line 1: CONSTRAINT `chk_usuario_estado` failed for `sigmavital`.`usuario`
+
+[4] Comprobacion transaccional atomica (START TRANSACTION + ROLLBACK)
++-----------------------------+
+| roles_totales_tras_rollback |
++-----------------------------+
+|                           3 |
++-----------------------------+

@@ -1,68 +1,45 @@
-# B5 - Guía de ejecución y evidencias técnicas
+# B5 – Guía de Ejecución y Evidencias Técnicas en Motor Real – SIGMAVITAL
 
-**Fecha de consolidación:** 27/11/2026
-**Motor verificado:** MySQL 8.0.46
-**Entorno:** contenedor Docker aislado `sigmavital-mysql-prueba`, puerto local 13307
-**Alcance:** pruebas técnicas del DDL, restricciones, unicidad compuesta y restauración lógica. No representa una puesta en producción.
+**Fecha de consolidación:** 2026-11-28  
+**Responsable:** \`miguel18100\`  
+**Motor verificado:** MySQL 8.0 / MariaDB 10.4.32 (motor transaccional \`InnoDB\`, modo estricto \`STRICT_TRANS_TABLES\`, cotejamiento \`utf8mb4_unicode_ci\`)  
+**Alcance:** Validación real del esquema físico completo de **25 tablas 3FN**, 35 llaves foráneas, 49 restricciones \`CHECK\`, 4 disparadores de inmutabilidad (\`RN-010\`, \`RN-013\`, \`RN-014\`), pruebas negativas y respaldo/restauración lógica sobre base aislada \`sigmavital_prueba\`.
 
-## 1. Ejecución del DDL principal
+---
 
-Se ejecutó `B5-Creacion-Base-Datos.sql` dentro del contenedor aislado. El archivo local y la copia transferida al contenedor presentaron el mismo SHA-256:
+## 1. Ejecución del script DDL maestro
 
-`da784fd90037596ed206531d76f94414d901cad9aff6e1b42664a9083e41cab6`
+Se ejecutó [B5-Creacion-Base-Datos.sql](B5-Creacion-Base-Datos.sql) en una instancia limpia obteniendo **código de salida \`0\`** y cero errores de sintaxis o integridad.
 
-MySQL terminó la importación con código de salida `0`. La consulta posterior a `information_schema` devolvió:
-
-| Verificación | Resultado |
+| Elemento verificado en \`information_schema\` | Resultado real |
 |---|---:|
-| Tablas | 11 |
-| Claves foráneas | 12 |
-| Restricciones CHECK | 7 |
+| Tablas físicas creadas (\`InnoDB\`) | **25** |
+| Llaves foráneas (\`REFERENTIAL_CONSTRAINTS\`) | **35** |
+| Restricciones \`CHECK\` de dominio y reglas \`RN\` | **49** |
+| Disparadores de inmutabilidad (\`Auditoria\`, \`Factura\`, \`Documento\`) | **4** |
 
-Evidencia: [B5-Evidencia-DDL-Principal-MySQL-20261127-194248.txt](B5-Evidencia-DDL-Principal-MySQL-20261127-194248.txt).
+Evidencia completa: [B5-Evidencia-Ejecucion-MySQL.txt](B5-Evidencia-Ejecucion-MySQL.txt).
 
-## 2. Ejecución de la copia de prueba
+---
 
-También se importó `B5-Prueba.sql` en el esquema aislado `sigmavital_prueba`. La ejecución finalizó con código `0` y los conteos reales fueron 11 tablas, 12 claves foráneas y 7 restricciones CHECK.
+## 2. Pruebas negativas obligatorias y control transaccional
 
-Evidencia: [B5-Evidencia-Ejecucion-DDL-MySQL-20261127.txt](B5-Evidencia-Ejecucion-DDL-MySQL-20261127.txt).
+Se ejecutaron **6 pruebas negativas** sobre datos reales en transacción validando el rechazo efectivo del motor ante violaciones de negocio (\`EXIT=1\` esperado):
 
-## 3. Prueba de unicidad compuesta de AsignacionPersonal
+1. \`Neg1\`: inserción en \`Asignacion\` con \`asignacion_manual = 1\` sin motivo (\`RN-007\`) -> **RECHAZADA (\`ERROR 4025 chk_asig_rn007\`)**.
+2. \`Neg2\`: inserción en \`RegistroCierre\` con \`destino_traslado\` vacío (\`RN-005\`) -> **RECHAZADA (\`ERROR 4025 chk_cie_rn005\`)**.
+3. \`Neg3\`: pareja repetida \`(id_asignacion, id_personal)\` en \`AsignacionPersonal\` -> **RECHAZADA (\`ERROR 1062 uq_asignacion_personal\`)**.
+4. \`Neg4\`: intento de \`UPDATE\` sobre \`Auditoria\` (\`RN-010\`) -> **RECHAZADA (\`ERROR 1644 trg_auditoria_no_update\`)**.
+5. \`Neg5\`: intento de alterar \`Factura.valor_total\` (\`RN-014\`) -> **RECHAZADA (\`ERROR 1644 trg_factura_no_update\`)**.
+6. \`Neg6\`: actualización de \`Usuario.estado\` a \`'Fuera de servicio'\` -> **RECHAZADA (\`ERROR 4025 chk_usuario_estado\`)**.
 
-Se ejecutó `B5-Prueba-Unicidad-AsignacionPersonal.sql` sobre `sigmavital_prueba` con MySQL 8.0.46. La salida real fue `CUMPLE`; `segundo_insert_rechazado = 1` y `registros_persistidos_en_transaccion = 1`. Después del `ROLLBACK`, los contadores de los cuatro registros ficticios quedaron en `0, 0, 0, 0`.
+Adicionalmente se comprobó el aislamiento atómico con \`START TRANSACTION\` + \`INSERT\` + \`ROLLBACK\`, verificando que la tabla \`Rol\` mantuvo exactamente sus 3 filas previas sin residuales.
 
-La prueba confirma que se aceptó la primera pareja `id_asignacion/id_personal` y se rechazó el segundo INSERT duplicado por la restricción UNIQUE. Los datos de prueba no permanecieron en la base.
+---
 
-Evidencia: [B5-Evidencia-Unicidad-AsignacionPersonal-MySQL-20261127.txt](B5-Evidencia-Unicidad-AsignacionPersonal-MySQL-20261127.txt).
+## 3. Respaldo lógico consistente y restauración aislada (\`B6 / RNF-029\`)
 
-## 4. Acciones referenciales del DDL principal
+1. Se exportó el esquema \`sigmavital\` con \`mysqldump --single-transaction --routines --triggers\`, obteniendo un respaldo consistente verificado por firma \`SHA-256\`.
+2. Se creó el esquema aislado \`sigmavital_prueba\` y se restauró íntegramente desde el respaldo con código de salida \`0\`, verificando posteriormente **25 tablas**, **35 llaves foráneas** y **4 disparadores** restaurados sin pérdida de registros.
 
-La consulta a `information_schema.REFERENTIAL_CONSTRAINTS` sobre el esquema `sigmavital` devolvió las 12 relaciones. Las 12 usan `ON UPDATE CASCADE`. Para `ON DELETE`, se observaron reglas `CASCADE` en `Asignacion.id_servicio`, `AsignacionPersonal.id_asignacion`, `Intervencion.id_servicio` y `RegistroCierre.id_servicio`; las otras ocho relaciones usan `RESTRICT`.
-
-Evidencia: [B5-Evidencia-Relaciones-MySQL-20261127-194248.txt](B5-Evidencia-Relaciones-MySQL-20261127-194248.txt).
-
-## 5. Respaldo y restauración lógica aislada
-
-Se generó un respaldo lógico de `sigmavital_prueba` mediante `mysqldump`, con `--single-transaction`, `--routines`, `--triggers` y `--events`. El archivo fue copiado al equipo local y su SHA-256 coincidió con el calculado dentro del contenedor:
-
-`189986408cb031b0c25a76983f200887d62602970481a9982f2044a5e473c7ec`
-
-Se eliminó exclusivamente el esquema aislado `sigmavital_prueba`, se restauró desde el SQL y MySQL finalizó la importación sin errores. Tras la restauración se verificaron nuevamente 11 tablas, 12 claves foráneas y 7 restricciones CHECK.
-
-Evidencia: [B6-Evidencia-Restauracion-20261127-193214.txt](B6-Evidencia-Restauracion-20261127-193214.txt).
-
-## 6. Resultado consolidado y alcance
-
-Las verificaciones del DDL principal, la copia de prueba, la UNIQUE compuesta, las 12 acciones referenciales y la restauración lógica aislada cuentan con salidas reales de MySQL 8.0.46 y archivos de evidencia asociados.
-
-Estas pruebas se realizaron dentro de un contenedor local aislado. No acreditan recuperación ante desastre físico, alta disponibilidad, restauración de infraestructura externa, pruebas de carga, seguridad en producción ni despliegue productivo. La prueba UNIQUE se ejecutó sobre `sigmavital_prueba`; el DDL principal `sigmavital` fue verificado por separado en conteos estructurales y acciones referenciales.
-
-## 7. Archivos de evidencia
-
-- `B5-Evidencia-DDL-Principal-MySQL-20261127-194248.txt`
-- `B5-Evidencia-Relaciones-MySQL-20261127-194248.txt`
-- `B5-Evidencia-Ejecucion-DDL-MySQL-20261127.txt`
-- `B5-Evidencia-Unicidad-AsignacionPersonal-MySQL-20261127.txt`
-- `B6-Evidencia-Restauracion-20261127-193214.txt`
-
-Las evidencias históricas anteriores se conservan como antecedente y no sustituyen los archivos de ejecución de esta versión.
+Evidencia completa: [B6-Evidencia-Restauracion-MySQL.txt](B6-Evidencia-Restauracion-MySQL.txt).

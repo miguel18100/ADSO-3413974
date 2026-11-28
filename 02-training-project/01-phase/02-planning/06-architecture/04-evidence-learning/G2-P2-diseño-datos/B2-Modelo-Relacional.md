@@ -1,134 +1,22 @@
-# B2 - Modelo Relacional de Datos SIGMAVITAL
+# B2 – Modelo Relacional Normalizado (3FN) y Reglas de Transformación – SIGMAVITAL
 
-## 1. Objetivo
+**Diagrama editable (.drawio):** [B2-Diagrama-Relacional.drawio](B2-Diagrama-Relacional.drawio)  
+**Vector SVG (.svg):** [B2-Diagrama-Relacional.svg](B2-Diagrama-Relacional.svg)
 
-Transformar el modelo conceptual de datos B1 en un modelo relacional,
-identificando las tablas, atributos, claves primarias y claves foráneas
-del sistema SIGMAVITAL.
+## 1. Cuadro de reglas de transformación Conceptual (B1) -> Relacional (B2)
 
-## 2. Tablas
+| Regla aplicada | Patrón en modelo conceptual B1 | Transformación al esquema relacional B2 | Ejemplos aplicados en SIGMAVITAL |
+|---|---|---|---|
+| **R1 · Entidad fuerte** | Entidad independiente con identificador único | Tabla homónima con `PK INT AUTO_INCREMENT` y `UNIQUE` en claves candidatas | `Rol`, `Usuario`, `Paciente`, `Servicio`, `Ambulancia`, `Proveedor`, `Documento` |
+| **R2 · Relación `1 : N`** | Un registro padre asociado a cero o muchos hijos | La clave primaria del lado `1` pasa como `FK` en la tabla del lado `N` | `Rol.id_rol -> Usuario`, `PropietarioUnidad.id_propietario -> Ambulancia`, `Factura.id_factura -> NotaContable` |
+| **R3 · Relación `1 : 0..1`** | Dependencia única opcional u obligatoria al cierre | Clave foránea `FK` con restricción `UNIQUE` en la tabla subordinada | `Servicio.id_solicitud (UK)`, `RegistroCierre.id_servicio (UK)`, `Factura.id_servicio (UK)` |
+| **R4 · Relación `N : M`** | Asociación muchos a muchos con atributos de vinculación | Creación de tabla intermedia con `FK` a ambos extremos y `UNIQUE` compuesto | `AsignacionPersonal` (`id_asignacion`, `id_personal`, `UNIQUE(id_asignacion, id_personal)`) |
+| **R5 · Entidad débil** | Existencia dependiente sin llave propia autónoma | Tabla con `PK compuesta` integrando la `FK` del padre + discriminador `secuencia` y `ON DELETE CASCADE` | `HistorialEstadoServicio (PK(id_servicio, secuencia))` |
+| **R6 · Atributo multivaluado (1FN)** | Conjunto múltiple de valores por fila (`{telefonos}`) | Extracción a tabla hija normalizada `1:N` | `PacienteTelefono (id_telefono, FK id_paciente, telefono)` |
+| **R7 · Generalización / Especialización** | Subtipos `TAB` y `TAM` sobre `Ambulancia` | Tabla única con discriminador `tipo CHECK (tipo IN ('TAB','TAM'))` evitando joins dispersos y duplicación de placa/REPS | `Ambulancia` con `dotacion_reps_valida` y validaciones `REPS` |
 
-### Rol
-- id_rol (PK)
-- nombre
-- descripcion
+## 2. Resumen de tablas normalizadas (25 tablas)
 
-### Usuario
-- id_usuario (PK)
-- id_rol (FK)
-- nombre
-- correo
-- estado
-- fecha_creacion
+Todas las tablas conservan nombres `PascalCase` y columnas `snake_case` en **MySQL 8.0 / InnoDB**, garantizando 100 % de paridad entre `B2`, `B4` y `B5`.
 
-### Solicitud
-- id_solicitud (PK)
-- id_usuario (FK)
-- fecha_recepcion
-- ubicacion_incidente
-- prioridad
-- descripcion
-- estado
-
-### Paciente
-- id_paciente (PK)
-- identificacion_referencia
-- nombre_referencia
-- informacion_basica
-
-### Servicio
-- id_servicio (PK)
-- id_solicitud (FK)
-- id_paciente (FK)
-- fecha_inicio
-- estado
-- fecha_finalizacion
-- destino
-
-### RegistroCierre
-- id_cierre (PK)
-- id_servicio (FK, UNIQUE)
-- id_usuario (FK)
-- fecha_cierre
-- resumen_condicion
-- destino
-- observaciones_finales
-
-### Ambulancia
-- id_ambulancia (PK)
-- placa
-- tipo
-- estado_operativo
-- ubicacion_referencia
-
-### Asignacion
-- id_asignacion (PK)
-- id_servicio (FK)
-- id_ambulancia (FK)
-- fecha_asignacion
-- estado
-- observaciones
-
-### Personal
-- id_personal (PK)
-- nombre
-- identificacion_referencia
-- perfil_operativo
-- estado
-- contacto
-
-### AsignacionPersonal
-- id_asignacion_personal (PK)
-- id_asignacion (FK)
-- id_personal (FK)
-- funcion
-- fecha_vinculacion
-- Restricción UNIQUE (`id_asignacion`, `id_personal`) para impedir duplicados de la misma persona en una asignación.
-
-### Intervencion
-- id_intervencion (PK)
-- id_servicio (FK)
-- id_personal (FK)
-- fecha_hora
-- descripcion
-- observaciones
-
-## 3. Relaciones
-
-- Rol 1:N Usuario
-- Usuario 1:N Solicitud
-- Solicitud 1:0..1 Servicio
-- Paciente 1:N Servicio
-- Servicio 1:0..1 RegistroCierre (un servicio puede tener cero o un registro de cierre)
-- Usuario 1:N RegistroCierre (cada cierre identifica al usuario responsable mediante id_usuario)
-- Servicio 1:N Asignacion
-- Ambulancia 1:N Asignacion
-- Asignacion 1:N AsignacionPersonal
-- Personal 1:N AsignacionPersonal
-- Servicio 1:N Intervencion
-- Personal 1:N Intervencion
-
-## 4. Consideraciones
-
-Las claves primarias identifican de manera única cada registro.
-Las claves foráneas permiten mantener la integridad referencial.
-Las relaciones deben conservar la coherencia con el modelo conceptual B1.
-
-Este documento representa la propuesta del modelo relacional B2.
-
-## 5. Tabla de reglas de transformación del modelo conceptual al relacional
-
-| Regla aplicada | Aplicación en SIGMAVITAL |
-|---|---|
-| Transformación de entidades en tablas | Cada entidad identificada en el modelo conceptual B1 se transforma en una tabla del modelo relacional B2. Se generan las tablas Rol, Usuario, Solicitud, Paciente, Servicio, RegistroCierre, Ambulancia, Asignacion, Personal, AsignacionPersonal e Intervencion. |
-| Identificación de claves primarias (PK) | Cada tabla cuenta con una clave primaria que permite identificar de manera única cada registro. |
-| Transformación de relaciones 1:N | Las relaciones uno a muchos se implementan mediante claves foráneas ubicadas en la tabla del lado N. Por ejemplo, id_rol en Usuario e id_usuario en Solicitud. |
-| Transformación de relaciones 1:0..1 | La relación entre Solicitud y Servicio se implementa mediante id_solicitud como clave foránea en Servicio. Para garantizar la cardinalidad 0..1, dicha FK debe tener una restricción UNIQUE. |
-| Transformación de relaciones entre entidades | Las relaciones entre Servicio, Paciente, Usuario, Asignacion, Ambulancia, RegistroCierre e Intervencion se representan mediante claves foráneas que mantienen la integridad referencial. RegistroCierre conserva id_usuario como FK del responsable del cierre. |
-| Transformación de relaciones N:M | La relación entre Asignacion y Personal se resuelve mediante la tabla intermedia AsignacionPersonal, que contiene las claves foráneas id_asignacion e id_personal. |
-| Incorporación de atributos | Los atributos identificados en cada entidad del modelo conceptual se incorporan a sus respectivas tablas relacionales. |
-| Integridad referencial | Las claves foráneas permiten mantener la consistencia entre los registros relacionados y evitar referencias a registros inexistentes. |
-
-## 6. Alcance de roles del MVP frente al diseño de clases
-
-La tabla `Usuario` mantiene `id_rol` como FK para un solo rol principal por cuenta. El diagrama de clases A2 de G2-P1 modela una asociación Usuario–Rol más flexible, pensada como extensión del diseño de aplicación. Esta versión de persistencia no permite guardar múltiples roles por usuario. Para habilitarlo, deberá añadirse la tabla `UsuarioRol` con claves foráneas a Usuario y Rol y restricción UNIQUE sobre la pareja, además de actualizar B1, B4 y B5.
+![B2 Diagrama Relacional](B2-Diagrama-Relacional.svg)

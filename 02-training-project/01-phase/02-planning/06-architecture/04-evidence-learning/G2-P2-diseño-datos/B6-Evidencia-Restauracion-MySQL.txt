@@ -1,0 +1,21 @@
+==========================================================================
+SIGMAVITAL (SGA) - EVIDENCIA REAL DE RESPALDO Y RESTAURACION (B6 / RNF-029)
+Fecha de ejecucion: 2026-11-28 | Responsable: miguel18100
+==========================================================================
+
+[1] Generacion de respaldo logico consistente
+Comando logico: mysqldump --single-transaction --routines --triggers sigmavital > sigmavital_backup.sql
+ExitCode mysqldump: 0
+Tamano respaldo: 87950 bytes
+Hash SHA-256: DE8E1AD4CC96C21CD8814E82FC213801AAB2FC7C092B74CBB59CA777118FBBDB
+
+[2] Creacion de base aislada y restauracion integral (sigmavital_prueba)
+Comando logico: mysql sigmavital_prueba < sigmavital_backup.sql
+ExitCode restauracion: 0 (0 errores)
+
+[3] Verificacion estructural y de registros restaurados
++--------------------+-----------------+----------------------+--------------+------------------+-----------------+
+| tablas_restauradas | fks_restauradas | triggers_restaurados | roles_prueba | servicios_prueba | facturas_prueba |
++--------------------+-----------------+----------------------+--------------+------------------+-----------------+
+|                 25 |              35 |                    4 |            3 |                2 |               1 |
++--------------------+-----------------+----------------------+--------------+------------------+-----------------+
