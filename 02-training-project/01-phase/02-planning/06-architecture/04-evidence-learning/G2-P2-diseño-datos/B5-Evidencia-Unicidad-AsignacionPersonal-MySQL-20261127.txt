@@ -1,0 +1,24 @@
+EVIDENCIA DE UNICIDAD COMPUESTA - SIGMAVITAL
+=============================================
+
+Fecha de ejecución: 2026-11-27 19:33:12
+Motor: MySQL 8.0.46
+Base de datos: sigmavital_prueba
+Script: B5-Prueba-Unicidad-AsignacionPersonal.sql
+
+Salida real:
+resultado	segundo_insert_rechazado	registros_persistidos_en_transaccion	resultado_esperado
+CUMPLE	1	1	Se espera 1 registro y rechazo del segundo por UNIQUE
+
+Código de salida: 0
+
+Verificación posterior del rollback:
+0	0	0	0
+
+Los cuatro contadores son cero:
+Rol, Usuario, Ambulancia y Personal.
+
+Resultado: CUMPLE.
+El segundo INSERT para la misma pareja id_asignacion/id_personal
+fue rechazado por la restricción UNIQUE compuesta.
+La transacción fue revertida y no dejó registros ficticios.

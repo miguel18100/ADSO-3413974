@@ -1,85 +1,68 @@
-# B5-Guía de ejecución y evidencias técnicas pendientes
+# B5 - Guía de ejecución y evidencias técnicas
 
-**Estado al 27/11/2026:** preparación documental completa; reejecución integral del DDL vigente, prueba UNIQUE compuesta y simulacro de restauración requieren ejecución real en MariaDB/MySQL y captura/log del aprendiz. No se deben marcar como ejecutados antes de obtener esos resultados.
+**Fecha de consolidación:** 27/11/2026
+**Motor verificado:** MySQL 8.0.46
+**Entorno:** contenedor Docker aislado `sigmavital-mysql-prueba`, puerto local 13307
+**Alcance:** pruebas técnicas del DDL, restricciones, unicidad compuesta y restauración lógica. No representa una puesta en producción.
 
-## 1. Crear la base aislada con el DDL actual
+## 1. Ejecución del DDL principal
 
-Usar `B5-Prueba.sql`, que es la copia de prueba del DDL actual y crea `sigmavital_prueba` (no usar la base productiva `sigmavital`). En consola MariaDB/MySQL, desde la carpeta del producto:
+Se ejecutó `B5-Creacion-Base-Datos.sql` dentro del contenedor aislado. El archivo local y la copia transferida al contenedor presentaron el mismo SHA-256:
 
-```powershell
-mariadb -u root -p < .\B5-Prueba.sql
-```
+`da784fd90037596ed206531d76f94414d901cad9aff6e1b42664a9083e41cab6`
 
-En Windows/XAMPP, si el ejecutable se llama `mysql.exe`, sustituir `mariadb` por `mysql`. También se puede importar el archivo desde phpMyAdmin seleccionando la base de pruebas creada.
+MySQL terminó la importación con código de salida `0`. La consulta posterior a `information_schema` devolvió:
 
-## 2. Verificar tablas, FK y CHECK del DDL vigente
+| Verificación | Resultado |
+|---|---:|
+| Tablas | 11 |
+| Claves foráneas | 12 |
+| Restricciones CHECK | 7 |
 
-```sql
-SELECT COUNT(*) AS tablas
-FROM information_schema.TABLES
-WHERE TABLE_SCHEMA = 'sigmavital_prueba' AND TABLE_TYPE = 'BASE TABLE';
+Evidencia: [B5-Evidencia-DDL-Principal-MySQL-20261127-194248.txt](B5-Evidencia-DDL-Principal-MySQL-20261127-194248.txt).
 
-SELECT COUNT(*) AS claves_foraneas
-FROM information_schema.TABLE_CONSTRAINTS
-WHERE CONSTRAINT_SCHEMA = 'sigmavital_prueba' AND CONSTRAINT_TYPE = 'FOREIGN KEY';
+## 2. Ejecución de la copia de prueba
 
-SELECT COUNT(*) AS restricciones_check
-FROM information_schema.TABLE_CONSTRAINTS
-WHERE CONSTRAINT_SCHEMA = 'sigmavital_prueba' AND CONSTRAINT_TYPE = 'CHECK';
-```
+También se importó `B5-Prueba.sql` en el esquema aislado `sigmavital_prueba`. La ejecución finalizó con código `0` y los conteos reales fueron 11 tablas, 12 claves foráneas y 7 restricciones CHECK.
 
-Resultados esperados según el DDL de entrega: **11 tablas, 12 claves foráneas y 7 restricciones CHECK**. Guardar la salida textual o captura.
+Evidencia: [B5-Evidencia-Ejecucion-DDL-MySQL-20261127.txt](B5-Evidencia-Ejecucion-DDL-MySQL-20261127.txt).
 
-## 3. Probar la unicidad de AsignacionPersonal
+## 3. Prueba de unicidad compuesta de AsignacionPersonal
 
-Ejecutar `B5-Prueba-Unicidad-AsignacionPersonal.sql` después de importar `B5-Prueba.sql`:
+Se ejecutó `B5-Prueba-Unicidad-AsignacionPersonal.sql` sobre `sigmavital_prueba` con MySQL 8.0.46. La salida real fue `CUMPLE`; `segundo_insert_rechazado = 1` y `registros_persistidos_en_transaccion = 1`. Después del `ROLLBACK`, los contadores de los cuatro registros ficticios quedaron en `0, 0, 0, 0`.
 
-```powershell
-mariadb -u root -p sigmavital_prueba < .\B5-Prueba-Unicidad-AsignacionPersonal.sql
-```
+La prueba confirma que se aceptó la primera pareja `id_asignacion/id_personal` y se rechazó el segundo INSERT duplicado por la restricción UNIQUE. Los datos de prueba no permanecieron en la base.
 
-Resultado esperado del procedimiento: `CUMPLE`, `segundo_insert_rechazado = 1`, `registros_persistidos_en_transaccion = 1`. La prueba genera registros ficticios y hace `ROLLBACK`; no utiliza IDs del sistema ni datos reales. Guardar la salida real.
+Evidencia: [B5-Evidencia-Unicidad-AsignacionPersonal-MySQL-20261127.txt](B5-Evidencia-Unicidad-AsignacionPersonal-MySQL-20261127.txt).
 
-## 4. Simulacro de restauración aislada
+## 4. Acciones referenciales del DDL principal
 
-Después de crear la base de prueba y comprobar que contiene las 11 tablas:
+La consulta a `information_schema.REFERENTIAL_CONSTRAINTS` sobre el esquema `sigmavital` devolvió las 12 relaciones. Las 12 usan `ON UPDATE CASCADE`. Para `ON DELETE`, se observaron reglas `CASCADE` en `Asignacion.id_servicio`, `AsignacionPersonal.id_asignacion`, `Intervencion.id_servicio` y `RegistroCierre.id_servicio`; las otras ocho relaciones usan `RESTRICT`.
 
-```powershell
-mariadb-dump -u root -p --single-transaction --routines --triggers --events sigmavital_prueba > .\sigmavital_restore_test.sql
-mariadb -u root -p -e "CREATE DATABASE sigmavital_restore_test CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
-mariadb -u root -p sigmavital_restore_test < .\sigmavital_restore_test.sql
-```
+Evidencia: [B5-Evidencia-Relaciones-MySQL-20261127-194248.txt](B5-Evidencia-Relaciones-MySQL-20261127-194248.txt).
 
-Luego comprobar que la base restaurada contiene 11 tablas y las mismas restricciones:
+## 5. Respaldo y restauración lógica aislada
 
-```sql
-SELECT COUNT(*) AS tablas_restauradas
-FROM information_schema.TABLES
-WHERE TABLE_SCHEMA = 'sigmavital_restore_test' AND TABLE_TYPE = 'BASE TABLE';
+Se generó un respaldo lógico de `sigmavital_prueba` mediante `mysqldump`, con `--single-transaction`, `--routines`, `--triggers` y `--events`. El archivo fue copiado al equipo local y su SHA-256 coincidió con el calculado dentro del contenedor:
 
-SELECT COUNT(*) AS fk_restauradas
-FROM information_schema.TABLE_CONSTRAINTS
-WHERE CONSTRAINT_SCHEMA = 'sigmavital_restore_test' AND CONSTRAINT_TYPE = 'FOREIGN KEY';
+`189986408cb031b0c25a76983f200887d62602970481a9982f2044a5e473c7ec`
 
-SELECT COUNT(*) AS check_restauradas
-FROM information_schema.TABLE_CONSTRAINTS
-WHERE CONSTRAINT_SCHEMA = 'sigmavital_restore_test' AND CONSTRAINT_TYPE = 'CHECK';
-```
+Se eliminó exclusivamente el esquema aislado `sigmavital_prueba`, se restauró desde el SQL y MySQL finalizó la importación sin errores. Tras la restauración se verificaron nuevamente 11 tablas, 12 claves foráneas y 7 restricciones CHECK.
 
-No ejecutar la restauración sobre una base productiva. Registrar fecha, hora, versión del motor, hash SHA-256 del respaldo, duración, tablas/FK/CHECK encontradas y resultado. Añadir el log real al producto antes de cambiar el checklist de `Pendiente` a `Cumple`.
+Evidencia: [B6-Evidencia-Restauracion-20261127-193214.txt](B6-Evidencia-Restauracion-20261127-193214.txt).
 
-## 5. Plantilla de registro (completar con evidencia real)
+## 6. Resultado consolidado y alcance
 
-| Campo | Resultado real |
-|---|---|
-| Fecha/hora | Pendiente |
-| Responsable | Pendiente |
-| Motor/versión | Pendiente |
-| Base de prueba | `sigmavital_prueba` |
-| Tablas | Esperadas 11 / pendiente |
-| FK | Esperadas 12 / pendiente |
-| CHECK | Esperadas 7 / pendiente |
-| Prueba UNIQUE compuesta | Espera CUMPLE / pendiente |
-| Restauración aislada | Espera 11 tablas y restricciones / pendiente |
-| Archivos log/captura | Pendiente |
+Las verificaciones del DDL principal, la copia de prueba, la UNIQUE compuesta, las 12 acciones referenciales y la restauración lógica aislada cuentan con salidas reales de MySQL 8.0.46 y archivos de evidencia asociados.
 
+Estas pruebas se realizaron dentro de un contenedor local aislado. No acreditan recuperación ante desastre físico, alta disponibilidad, restauración de infraestructura externa, pruebas de carga, seguridad en producción ni despliegue productivo. La prueba UNIQUE se ejecutó sobre `sigmavital_prueba`; el DDL principal `sigmavital` fue verificado por separado en conteos estructurales y acciones referenciales.
+
+## 7. Archivos de evidencia
+
+- `B5-Evidencia-DDL-Principal-MySQL-20261127-194248.txt`
+- `B5-Evidencia-Relaciones-MySQL-20261127-194248.txt`
+- `B5-Evidencia-Ejecucion-DDL-MySQL-20261127.txt`
+- `B5-Evidencia-Unicidad-AsignacionPersonal-MySQL-20261127.txt`
+- `B6-Evidencia-Restauracion-20261127-193214.txt`
+
+Las evidencias históricas anteriores se conservan como antecedente y no sustituyen los archivos de ejecución de esta versión.

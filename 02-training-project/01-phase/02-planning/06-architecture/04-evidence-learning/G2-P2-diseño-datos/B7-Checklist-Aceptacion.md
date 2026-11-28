@@ -1,6 +1,6 @@
 # B7 – Checklist de aceptación de Productos 1 y 2 – SIGMAVITAL
 
-**Proyecto:** SIGMAVITAL · **Ficha:** 3413974 – ADSO · **Evidencia:** G2-P2  
+**Proyecto:** SIGMAVITAL · **Ficha:** 3413974 – ADSO · **Evidencia:** G2-P2
 **Propósito:** verificar de forma medible los artefactos de P1 y P2. Los estados reflejan evidencia documental disponible en el paquete; no sustituyen una evaluación del instructor ni declaran pruebas que no se hayan ejecutado.
 
 ## 1. Estados y severidad
@@ -38,20 +38,20 @@
 | P2-02 | Cada relación B1 tiene verbo y cardinalidades mínimas/máximas por extremo. | Mayor | Cumple | B1, sección 4; corroborar con Draw.io. |
 | P2-03 | B1 resuelve la relación N:M mediante entidad asociativa con atributos propios. | Crítica | Cumple | B1, sección 5; `AsignacionPersonal`. |
 | P2-04 | B2 contiene al menos 8 tablas con PK. | Crítica | Cumple | `B2-Modelo-Relacional.md`, sección 2 (11 tablas). |
-| P2-05 | Las relaciones entre tablas se implementan con FK documentadas. | Crítica | Cumple | B2, sección 3; B5 SQL y `B5-Evidencia-Relaciones.txt`. |
-| P2-06 | La tabla asociativa impide duplicar una pareja asignación-personal. | Crítica | Pendiente de ejecución | B2; B5 DDL `uq_asignacionpersonal_asignacion_personal`; ejecutar `B5-Prueba-Unicidad-AsignacionPersonal.sql`. |
+| P2-05 | Las relaciones entre tablas se implementan con FK documentadas. | Crítica | Cumple | B2, sección 3; DDL principal y `B5-Evidencia-Relaciones-MySQL-20261127-194248.txt` (12 relaciones consultadas). |
+| P2-06 | La tabla asociativa impide duplicar una pareja asignación-personal. | Crítica | Cumple | UNIQUE `uq_asignacionpersonal_asignacion_personal`; prueba real en `sigmavital_prueba`, evidencia `B5-Evidencia-Unicidad-AsignacionPersonal-MySQL-20261127.txt`. |
 | P2-07 | B3 demuestra 0FN, 1FN, 2FN y 3FN para una relación con clave candidata compuesta. | Mayor | Cumple documental | `B3-Normalizacion.md`, sección 2; revisar FDs y descomposición. |
 | P2-08 | B3 identifica una dependencia transitiva y su descomposición a 3FN. | Mayor | Cumple documental | B3, sección 3; Usuario/Rol. |
 | P2-09 | B4 documenta todas las tablas y columnas, con tipos y restricciones. | Crítica | Cumple documental | `B4-Diccionario-Datos.md`; comparar contra B2/B5 antes de implementar. |
 | P2-10 | B4 declara un estándar de nombres para tablas, columnas y restricciones. | Menor | Cumple | B4, sección “Estándar de nomenclatura”. |
-| P2-11 | B5 crea el conjunto de tablas definido en B2. | Crítica | Pendiente de reejecución | `B5-Creacion-Base-Datos.sql`; la evidencia previa corresponde a una versión anterior del esquema; volver a ejecutar tras la FK nueva y UNIQUE compuesta. |
-| P2-12 | B5 incluye PK, FK, NOT NULL, UNIQUE y al menos 3 CHECK. | Crítica | Pendiente de reejecución | `B5-Creacion-Base-Datos.sql`; DDL actualizado con UNIQUE compuesta y FK de responsable del cierre; adjuntar nueva ejecución. |
-| P2-13 | B5 define acciones referenciales para las relaciones documentadas. | Mayor | Pendiente de reejecución | `B5-Evidencia-Relaciones.txt` es evidencia de la versión anterior; repetir conteo de las 12 FK actuales tras recrear el esquema. |
-| P2-14 | Existe evidencia de prueba de unicidad para la pareja Asignacion/Personal. | Crítica | Pendiente | Guion `B5-Prueba-Unicidad-AsignacionPersonal.sql`; adjuntar log/captura después de ejecutarlo en MariaDB/MySQL. |
+| P2-11 | B5 crea el conjunto de tablas definido en B2. | Crítica | Cumple | DDL principal ejecutado en MySQL 8.0.46; 11 tablas verificadas. `B5-Evidencia-DDL-Principal-MySQL-20261127-194248.txt`. |
+| P2-12 | B5 incluye PK, FK, NOT NULL, UNIQUE y al menos 3 CHECK. | Crítica | Cumple | DDL principal ejecutado; `information_schema` confirmó 11 tablas, 12 FK y 7 CHECK. La UNIQUE compuesta se probó en la copia de prueba. Evidencias B5 fechadas. |
+| P2-13 | B5 define acciones referenciales para las relaciones documentadas. | Mayor | Cumple | Consulta real de las 12 relaciones del esquema principal; evidencia `B5-Evidencia-Relaciones-MySQL-20261127-194248.txt`. |
+| P2-14 | Existe evidencia de prueba de unicidad para la pareja Asignacion/Personal. | Crítica | Cumple | Salida real `CUMPLE`; el segundo INSERT duplicado fue rechazado y el `ROLLBACK` no dejó fixtures. `B5-Evidencia-Unicidad-AsignacionPersonal-MySQL-20261127.txt`. |
 | P2-15 | B6 contiene al menos 2 políticas de integridad, 2 de confidencialidad y 2 de disponibilidad. | Crítica | Cumple documental | `B6-Politicas-Seguridad-Datos.md`; verificar secciones de políticas. |
 | P2-16 | B6 define una matriz de acceso con al menos 3 roles y el uso de hash/salt y TLS. | Crítica | Cumple documental | B6; matriz de roles y controles de seguridad. |
 | P2-17 | B6 define frecuencia, almacenamiento y control de respaldos. | Mayor | Cumple documental | B6; política de respaldo. |
-| P2-18 | Se ejecutó y documentó una restauración en ambiente aislado. | Crítica | Pendiente | B6, procedimiento; falta completar registro y adjuntar log/capturas. |
+| P2-18 | Se ejecutó y documentó una restauración en ambiente aislado. | Crítica | Cumple | Restauración lógica de `sigmavital_prueba`; SHA-256 coincidente y verificación posterior de 11 tablas, 12 FK y 7 CHECK. `B6-Evidencia-Restauracion-20261127-193214.txt`. |
 | P2-19 | B7 verifica al menos 20 criterios medibles de P1 y P2. | Mayor | Cumple | Este checklist contiene 35 criterios enumerados P1/P2. |
 | P2-20 | B7 relaciona los criterios con archivos o verificaciones concretas. | Mayor | Cumple | Columna Evidencia / verificación de cada fila. |
 
@@ -59,17 +59,19 @@
 
 | ID | Hallazgo | Corrección incorporada | Verificación posterior | Estado |
 |---|---|---|---|---|
-| H-01 | La tabla asociativa no impedía de forma explícita repetir una pareja asignación-personal. | Se añadió UNIQUE compuesta a B2 y a los dos scripts SQL. | Revisar DDL y ejecutar el guion B5 de unicidad. | Corrección documental/DDL; prueba real pendiente. |
+| H-01 | La tabla asociativa no impedía de forma explícita repetir una pareja asignación-personal. | Se añadió UNIQUE compuesta a B2 y a los dos scripts SQL. | Prueba real MySQL 8.0.46: segundo INSERT rechazado; `ROLLBACK` comprobado. | Verificado con DDL y prueba de ejecución. |
 | H-02 | B3 no demostraba una dependencia parcial sobre una clave compuesta. | Se incorporó el ejemplo de AsignacionPersonal con FDs parciales y descomposición a 2FN/3FN. | Revisión lógica de FDs y claves en B3. | Verificado documentalmente. |
 | H-03 | El diccionario no declaraba convención de nombres. | Se declaró PascalCase, snake_case y prefijos de restricciones. | Comparar nombres contra B2 y B5. | Verificado documentalmente. |
-| H-04 | La restauración se mencionaba como política sin pasos de ejecución reproducibles. | Se añadió procedimiento de respaldo, restauración aislada, verificaciones y formato de registro. | No marcar como ejecutada hasta adjuntar evidencia del entorno. | Procedimiento listo; ejecución pendiente. |
+| H-04 | La restauración se mencionaba como política sin pasos de ejecución reproducibles. | Se añadió procedimiento de respaldo, restauración aislada, verificaciones y formato de registro. | Respaldo y restauración lógica ejecutados; hash SHA-256 coincidente y conteos 11/12/7 después de restaurar. | Verificado en contenedor aislado; no acredita recuperación ante desastre físico. |
 | H-05 | Las cardinalidades B1 se expresaban como 1:N sin mínimo/máximo en ambos extremos. | Se reescribió la tabla con verbos y multiplicidades `0..1`, `1..1`, `0..*`, `1..*`. | Revisar tabla y conectores editables B1. | Verificado documentalmente; revisar exportación gráfica. |
-| H-06 | Algunos criterios del checklist anterior se mantenían “pendientes” de forma genérica. | Se sustituyeron por 33 criterios medibles con evidencia y estado por criterio. | Confirmar cada ruta y ejecutar los criterios pendientes. | Verificado documentalmente. |
+| H-06 | Algunos criterios del checklist anterior se mantenían “pendientes” de forma genérica. | Se sustituyeron por 35 criterios medibles con evidencia y estado por criterio. | Se comprobaron rutas y evidencias asociadas; las pruebas técnicas ejecutadas se enlazan en B5/B6. | Verificado documentalmente y actualizado con resultados técnicos. |
 
 ## 5. Resultado de aceptación
 
-El diseño documental de P1 y P2 tiene evidencias identificadas para los criterios declarados como cumplidos. **No se declara aceptación integral todavía**: la prueba de unicidad de AsignacionPersonal y el ejercicio de restauración deben ejecutarse en un motor MariaDB/MySQL y adjuntarse como evidencia. La implementación de puertos, TLS, autorización y rendimiento corresponde a la fase técnica posterior.
+Los criterios documentales y técnicos se evalúan según las evidencias identificadas en este checklist. Para el alcance de base de datos, el DDL principal y la copia de prueba se ejecutaron en MySQL 8.0.46; se verificaron 11 tablas, 12 claves foráneas y 7 CHECK, las 12 acciones referenciales, la UNIQUE compuesta en la copia de prueba y una restauración lógica aislada. Esto no sustituye la evaluación del instructor ni declara implementados en producción los controles de puertos, TLS, autorización, rendimiento, alta disponibilidad o recuperación ante desastre físico.
 
 ## 6. Control de los cambios de última versión
 
-El guion `B5-Prueba-Unicidad-AsignacionPersonal.sql` crea fixtures ficticios dentro de una transacción y revierte la operación; la ejecución continúa **Pendiente** hasta adjuntar el log de MariaDB/MySQL. La reejecución del DDL vigente y el simulacro de restauración también permanecen **Pendientes** hasta que se aporten salidas reales. No se cambian a `Cumple` por la sola existencia de los scripts.
+El guion `B5-Prueba-Unicidad-AsignacionPersonal.sql` se ejecutó con datos ficticios dentro de `sigmavital_prueba`. El segundo INSERT de la misma pareja fue rechazado por UNIQUE y la transacción se revirtió, sin dejar fixtures persistidos. El DDL principal `B5-Creacion-Base-Datos.sql` se ejecutó separadamente en `sigmavital`; las consultas reales confirmaron los conteos estructurales y las 12 acciones referenciales. La restauración lógica se realizó sobre la base aislada y se verificó después de importar el respaldo.
+
+Las evidencias fechadas están enlazadas en las filas P2-06 y P2-11 a P2-14, y P2-18. El alcance de la restauración es lógico y local; no representa una prueba de recuperación ante desastre físico ni de alta disponibilidad.

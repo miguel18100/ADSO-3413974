@@ -1,0 +1,37 @@
+EVIDENCIA DE RESPALDO Y RESTAURACIÓN - SIGMAVITAL
+=================================================
+
+Fecha de ejecución: 2026-11-27 19:32:17
+Motor: MySQL
+Versión: 8.0.46
+Base de datos: sigmavital_prueba
+Contenedor aislado: sigmavital-mysql-prueba
+Puerto local: 13307
+
+1. RESPALDO
+Se generó un respaldo lógico mediante mysqldump.
+Opciones: single-transaction, routines, triggers, events.
+Archivo local: C:\Users\Miguel\Downloads\Respaldo-SIGMAVITAL-prueba-20261127-193214.sql
+SHA256: 189986408cb031b0c25a76983f200887d62602970481a9982f2044a5e473c7ec
+
+2. INTEGRIDAD DEL ARCHIVO
+El SHA256 calculado dentro del contenedor coincide con el calculado
+sobre el archivo copiado al equipo local.
+
+3. SIMULACRO
+Se eliminó exclusivamente la base aislada sigmavital_prueba.
+Se restauró desde el archivo SQL generado.
+El comando de restauración terminó sin errores.
+
+4. VERIFICACIÓN POSTERIOR
+TABLAS	11 CLAVES_FORANEAS	12 CHECKS	7
+
+Se verificaron las 11 tablas mediante SHOW TABLES.
+La estructura restaurada conserva las cantidades esperadas:
+11 tablas, 12 claves foráneas y 7 restricciones CHECK.
+
+5. RESULTADO
+CUMPLE - respaldo y restauración lógica verificados en entorno aislado.
+
+Alcance: esta prueba no acredita recuperación ante desastre físico,
+restauración de infraestructura externa ni alta disponibilidad.

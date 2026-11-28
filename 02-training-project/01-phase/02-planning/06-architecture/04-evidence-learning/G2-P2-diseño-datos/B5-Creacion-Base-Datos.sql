@@ -75,8 +75,11 @@ CREATE TABLE Servicio (
     id_paciente INT NOT NULL,
     fecha_inicio DATETIME NOT NULL,
     estado VARCHAR(30) NOT NULL CHECK (estado IN ('Pendiente','En proceso','Asignado','Activo','Finalizado','Cancelado','Disponible','En servicio','Fuera de servicio')),
-    fecha_finalizacion DATETIME CHECK (fecha_finalizacion IS NULL OR fecha_finalizacion >= fecha_inicio),
+    fecha_finalizacion DATETIME,
     destino VARCHAR(255),
+
+    CONSTRAINT chk_servicio_fecha_finalizacion
+        CHECK (fecha_finalizacion IS NULL OR fecha_finalizacion >= fecha_inicio),
 
     CONSTRAINT fk_servicio_solicitud
         FOREIGN KEY (id_solicitud)

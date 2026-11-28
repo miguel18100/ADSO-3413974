@@ -1,0 +1,24 @@
+EVIDENCIA DE EJECUCIÓN DEL DDL - SIGMAVITAL
+============================================
+
+Fecha de consolidación: 2026-11-27 19:33:12
+Motor: MySQL
+Versión: 8.0.46
+Contenedor: sigmavital-mysql-prueba
+Base de datos: sigmavital_prueba
+Script ejecutado: B5-Prueba.sql
+
+Resultado de ejecución:
+El comando de ejecución del DDL finalizó con código de salida 0,
+sin errores SQL.
+
+Verificación real en information_schema:
+TABLAS	11
+CLAVES_FORANEAS	12
+CHECKS	7
+
+Resultado: CUMPLE.
+Se comprobaron 11 tablas, 12 claves foráneas y 7 restricciones CHECK.
+
+Nota: la corrección de chk_servicio_fecha_finalizacion se realizó
+declarando el CHECK a nivel de tabla, porque compara dos columnas.

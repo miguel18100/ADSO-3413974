@@ -1,11 +1,11 @@
 # G2-P2 - Diseño de Datos | SIGMAVITAL
 
-**Aprendiz:** Juan Miguel Muñoz Castañeda  
-**Programa:** Análisis y Desarrollo de Software (ADSO)  
-**Ficha:** 3413974  
-**Proyecto:** SIGMAVITAL  
-**Fase:** Planeación - Arquitectura y diseño de datos  
-**Evidencia:** G2-P2 - Diseño de datos  
+**Aprendiz:** Juan Miguel Muñoz Castañeda
+**Programa:** Análisis y Desarrollo de Software (ADSO)
+**Ficha:** 3413974
+**Proyecto:** SIGMAVITAL
+**Fase:** Planeación - Arquitectura y diseño de datos
+**Evidencia:** G2-P2 - Diseño de datos
 
 ---
 
@@ -66,26 +66,24 @@ Define las tablas y sus atributos, tipos de datos, convenciones, restricciones y
 
 ### B5. Creación de la base de datos
 
-- [B5-Creacion-Base-Datos.sql](B5-Creacion-Base-Datos.sql) — DDL de entrega.
-- [B5-Prueba.sql](B5-Prueba.sql) — copia del DDL vigente que crea la base aislada `sigmavital_prueba`.
-- [B5-Evidencia-Checks.txt](B5-Evidencia-Checks.txt)
-- [B5-Evidencia-Relaciones.txt](B5-Evidencia-Relaciones.txt)
-- [B5-Evidencia-Tablas.txt](B5-Evidencia-Tablas.txt)
-- [B5-Evidencia-Ejecucion-Tablas.png](B5-Evidencia-Ejecucion-Tablas.png)
-- [B5-Evidencia-Relaciones.png](B5-Evidencia-Relaciones.png)
-- [B5-Evidencia-Unicidad-Cierre.txt](B5-Evidencia-Unicidad-Cierre.txt) — evidencia histórica de VT-07 sobre una versión anterior del esquema.
-- [B5-Prueba-Unicidad-AsignacionPersonal.sql](B5-Prueba-Unicidad-AsignacionPersonal.sql) — guion automático con datos ficticios transaccionales; pendiente de ejecutar y capturar.
-- [B5-Guia-Ejecucion-Evidencias.md](B5-Guia-Ejecucion-Evidencias.md) — instrucciones para verificar DDL, UNIQUE compuesta y restauración aislada.
+- [B5-Creacion-Base-Datos.sql](B5-Creacion-Base-Datos.sql) — DDL principal de entrega; ejecutado en MySQL 8.0.46 dentro de un contenedor aislado.
+- [B5-Prueba.sql](B5-Prueba.sql) — copia de prueba que crea `sigmavital_prueba`; ejecutada y verificada.
+- [B5-Prueba-Unicidad-AsignacionPersonal.sql](B5-Prueba-Unicidad-AsignacionPersonal.sql) — guion transaccional para probar la UNIQUE compuesta.
+- [B5-Evidencia-DDL-Principal-MySQL-20261127-194248.txt](B5-Evidencia-DDL-Principal-MySQL-20261127-194248.txt) — ejecución real del DDL principal: 11 tablas, 12 FK y 7 CHECK.
+- [B5-Evidencia-Relaciones-MySQL-20261127-194248.txt](B5-Evidencia-Relaciones-MySQL-20261127-194248.txt) — consulta de las 12 acciones referenciales del DDL principal.
+- [B5-Evidencia-Ejecucion-DDL-MySQL-20261127.txt](B5-Evidencia-Ejecucion-DDL-MySQL-20261127.txt) — ejecución de la copia de prueba y conteos 11/12/7.
+- [B5-Evidencia-Unicidad-AsignacionPersonal-MySQL-20261127.txt](B5-Evidencia-Unicidad-AsignacionPersonal-MySQL-20261127.txt) — prueba real de la UNIQUE compuesta y comprobación del `ROLLBACK`.
+- [B5-Guia-Ejecucion-Evidencias.md](B5-Guia-Ejecucion-Evidencias.md) — registro consolidado de procedimientos, resultados y límites de las pruebas.
+- `B5-Evidencia-Checks.txt`, `B5-Evidencia-Relaciones.txt`, `B5-Evidencia-Tablas.txt`, `B5-Evidencia-Ejecucion-Tablas.png`, `B5-Evidencia-Relaciones.png` y `B5-Evidencia-Unicidad-Cierre.txt` — evidencias anteriores conservadas como antecedentes; consultar las evidencias fechadas de MySQL para la versión actual.
 
-Se incluye el script de creación de tablas, restricciones y relaciones. Las evidencias de ejecución adjuntas documentan una versión anterior del DDL. La versión actual agrega la FK `RegistroCierre.id_usuario` y la restricción UNIQUE compuesta de `AsignacionPersonal`; por ello, las evidencias históricas no certifican por sí solas la ejecución del esquema actualizado.
-
-**Pendiente antes de declarar validada esta versión:** ejecutar `B5-Prueba.sql` (copia de prueba del DDL vigente) sobre MariaDB/MySQL, repetir las verificaciones de 11 tablas, 12 claves foráneas y 7 restricciones CHECK, y ejecutar `B5-Prueba-Unicidad-AsignacionPersonal.sql`. Adjuntar el resultado real de consola y fecha del entorno. La guía reproducible está en `B5-Guia-Ejecucion-Evidencias.md`.
+El DDL principal se ejecutó sin errores en MySQL 8.0.46 y se verificaron 11 tablas, 12 claves foráneas y 7 restricciones CHECK. La copia de prueba también se ejecutó; la prueba de unicidad compuesta rechazó el segundo INSERT duplicado y revirtió los datos ficticios.
 
 ### B6. Políticas de seguridad de datos
 
-- [B6-Politicas-Seguridad-Datos.md](B6-Politicas-Seguridad-Datos.md) — incluye procedimiento de simulacro de restauración y plantilla de registro.
+- [B6-Politicas-Seguridad-Datos.md](B6-Politicas-Seguridad-Datos.md) — políticas de integridad, confidencialidad, disponibilidad, matriz de permisos y estrategia de respaldo.
+- [B6-Evidencia-Restauracion-20261127-193214.txt](B6-Evidencia-Restauracion-20261127-193214.txt) — evidencia de respaldo y restauración lógica aislada con SHA-256 verificado y conteos 11/12/7.
 
-Documenta políticas de integridad, confidencialidad y disponibilidad, matriz de permisos, tratamiento de datos personales, protección de credenciales, comunicaciones seguras y estrategia de respaldo. El simulacro de restauración está especificado, pero aún no ejecutado; debe registrarse el resultado real antes de marcar ese criterio como cumplido.
+El simulacro de restauración lógica fue ejecutado sobre `sigmavital_prueba` en un contenedor MySQL 8.0.46 aislado. Se comprobó la integridad del archivo de respaldo mediante SHA-256 y se verificaron nuevamente las tablas, FK y CHECK después de restaurar. Esta evidencia no equivale a una prueba de recuperación ante desastre físico ni acredita alta disponibilidad.
 
 ### B7. Checklist de aceptación
 
@@ -116,9 +114,17 @@ Las modificaciones y verificaciones se documentan en los archivos correspondient
 
 ## 6. Verificaciones técnicas efectuadas
 
-Existen evidencias históricas de ejecución en MariaDB para una versión anterior del esquema: 11 tablas, 11 claves foráneas, 7 restricciones CHECK y una prueba real de unicidad de `RegistroCierre.id_servicio`. El DDL de entrega se actualizó después con la FK `RegistroCierre.id_usuario` y la UNIQUE compuesta de `AsignacionPersonal`; por eso, la evidencia histórica **no acredita la ejecución integral del DDL actual**.
+Las pruebas fechadas de esta versión se ejecutaron en MySQL 8.0.46 dentro del contenedor aislado `sigmavital-mysql-prueba`:
 
-Para cerrar la versión vigente se prepararon `B5-Prueba.sql`, `B5-Prueba-Unicidad-AsignacionPersonal.sql` y `B5-Guia-Ejecucion-Evidencias.md`. Se deben ejecutar en una base aislada y conservar los logs reales antes de actualizar los estados pendientes. La prueba de restauración sigue igualmente pendiente.
+- **DDL principal (`sigmavital`):** importación con código de salida 0; SHA-256 local/remoto coincidente (`da784fd90037596ed206531d76f94414d901cad9aff6e1b42664a9083e41cab6`); 11 tablas, 12 FK y 7 CHECK.
+- **Acciones referenciales:** consulta sobre `sigmavital` con 12 relaciones. Las 12 usan `ON UPDATE CASCADE`; en `ON DELETE`, cuatro usan `CASCADE` y ocho `RESTRICT`.
+- **Copia de prueba (`sigmavital_prueba`):** 11 tablas, 12 FK y 7 CHECK.
+- **UNIQUE compuesta:** salida `CUMPLE`; el segundo INSERT duplicado fue rechazado. El `ROLLBACK` dejó en cero los cuatro contadores de datos ficticios.
+- **Restauración:** respaldo lógico con hash SHA-256 coincidente; restauración sin errores y verificación posterior de 11 tablas, 12 FK y 7 CHECK.
+
+Los resultados están respaldados por los archivos `B5-Evidencia-DDL-Principal-MySQL-20261127-194248.txt`, `B5-Evidencia-Relaciones-MySQL-20261127-194248.txt`, `B5-Evidencia-Ejecucion-DDL-MySQL-20261127.txt`, `B5-Evidencia-Unicidad-AsignacionPersonal-MySQL-20261127.txt` y `B6-Evidencia-Restauracion-20261127-193214.txt`. La prueba UNIQUE se ejecutó en la copia `sigmavital_prueba`; el esquema principal fue verificado separadamente en su estructura y acciones referenciales.
+
+El alcance es de pruebas locales aisladas. No se afirma despliegue productivo, alta disponibilidad, recuperación ante desastre físico, pruebas de carga ni validación integral de seguridad en producción.
 
 ## 7. Autoevaluación
 
@@ -140,26 +146,26 @@ Declaro que revisé los artefactos que conforman esta evidencia, comprendí su c
 
 ---
 
-**Proyecto:** SIGMAVITAL  
-**Evidencia:** G2-P2 - Diseño de Datos  
+**Proyecto:** SIGMAVITAL
+**Evidencia:** G2-P2 - Diseño de Datos
 **Ficha:** 3413974 - ADSO
 
 
 ## Ajustes de revisión
 
-- B1 documenta verbos y cardinalidades mínimas/máximas por extremo. El diagrama Draw.io que ya existía se conserva sin cambios en este paquete.
+- B1 documenta verbos y cardinalidades mínimas/máximas por extremo. Los diagramas existentes se conservaron sin cambios.
 - B2 y los scripts B5 incluyen la restricción UNIQUE compuesta de `AsignacionPersonal`.
 - B3 presenta una clave candidata compuesta y dependencia parcial, además de una dependencia transitiva.
 - B4 declara el estándar de nomenclatura.
-- B6 incorpora un procedimiento para prueba de restauración y un registro de ejecución.
-- B7 verifica criterios medibles de P1/P2 y señala como pendientes las pruebas que todavía deben ejecutarse.
-
-**Importante:** la prueba de unicidad de la pareja Asignacion/Personal y el simulacro de restauración están preparados, pero deben ejecutarse en MariaDB/MySQL y registrarse antes de declararlos como pruebas superadas.
-
-- B2 ahora incluye `id_usuario` como FK de `RegistroCierre`, consistente con la relación de responsable definida en B1. La evidencia de ejecución anterior debe repetirse porque el esquema cambió.
-- B1/B2 conservan sus fuentes Draw.io, fuentes Graphviz `.dot` y exportaciones disponibles. Ningún diagrama se redibujó ni se regeneró durante esta corrección.
-
+- B5 cuenta con ejecución real del DDL principal y de la copia de prueba en MySQL 8.0.46; los conteos verificados son 11 tablas, 12 FK y 7 CHECK.
+- La prueba UNIQUE compuesta fue ejecutada en `sigmavital_prueba`: el segundo INSERT duplicado fue rechazado y el `ROLLBACK` dejó cero registros de prueba persistidos.
+- B6 cuenta con evidencia de respaldo y restauración lógica aislada, con hash SHA-256 coincidente y verificación posterior 11/12/7.
+- B7 registra los resultados técnicos y mantiene separados los controles documentales de las pruebas de ejecución.
+- B2 incluye `RegistroCierre.id_usuario` como FK, consistente con la relación de responsable definida en B1.
+- B1/B2 conservan sus fuentes Draw.io, fuentes Graphviz `.dot` y exportaciones disponibles. Ningún diagrama se redibujó ni se regeneró durante esta actualización.
 
 ## Estado de ejecución del DDL actual
 
-La evidencia anterior corresponde a una versión previa del script. La ejecución de la copia vigente, la prueba de la UNIQUE compuesta y la restauración aislada están preparadas, pero no se marcan como superadas hasta disponer de los resultados reales de MariaDB/MySQL.
+El DDL principal `B5-Creacion-Base-Datos.sql` y la copia `B5-Prueba.sql` se ejecutaron correctamente en MySQL 8.0.46 dentro de un contenedor aislado. Se comprobaron 11 tablas, 12 claves foráneas y 7 restricciones CHECK. También se consultaron las 12 acciones referenciales del esquema principal, se ejecutó la prueba de unicidad sobre la copia de prueba y se completó una restauración lógica aislada. Los resultados se encuentran en los archivos de evidencia enlazados en este README.
+
+Estas verificaciones no equivalen a una implementación productiva ni a pruebas de recuperación ante desastre físico, alta disponibilidad, carga o seguridad de producción.
