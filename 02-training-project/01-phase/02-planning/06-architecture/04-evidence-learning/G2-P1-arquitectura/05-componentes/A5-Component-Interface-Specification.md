@@ -41,7 +41,7 @@ The proposed component view is organized into four logical areas:
 - Delegate workflow coordination to the application facade.
 - Manage the application-level interaction flow.
 
-**Dependency:** `IServiceWorkflow`.
+**Provided interface:** `IServiceWorkflow`, consumed by Web UI.
 
 ### 3.3 GestionServicioFacade
 
@@ -147,14 +147,18 @@ This component is associated with the Strategy design pattern documented in A3.
 
 ## 4. Interface Specification
 
-| Interface | Purpose | Consumer / Dependency |
-|---|---|---|
-| IServiceWorkflow | Provides the application workflow contract for service-related operations. | Web UI and Application Controller |
-| IAssignment | Represents the contract associated with assignment operations. | Assignment Management |
-| IPatientManagement | Represents the contract for patient-related operations. | Service Management |
-| IUserManagement | Represents the contract for user and role-related operations. | GestionServicioFacade |
-| IServiceClosure | Represents the contract for service closure functionality. | Service Management |
-| IDataPersistence | Represents the persistence contract used by domain components. | Service Management, Assignment Management, Patient Management, User and Role Management, and Service Closure Management |
+The table distinguishes the component that provides each contract from the component(s) that consume it. The direction column indicates the dependency direction at the interface boundary.
+
+| Interface | Purpose | Provided by (provider) | Consumed by (consumer) | Dependency direction |
+|---|---|---|---|---|
+| `IServiceWorkflow` | Provides the application workflow contract for service-related operations. | Application Controller | Web UI | Web UI → Application Controller |
+| `IAssignment` | Represents the contract associated with ambulance and personnel assignment operations. | Assignment Management | GestionServicioFacade | GestionServicioFacade → Assignment Management |
+| `IPatientManagement` | Represents the contract for patient-related operations. | Patient Management | Service Management | Service Management → Patient Management |
+| `IUserManagement` | Represents the contract for user and role-related operations. | User and Role Management | GestionServicioFacade | GestionServicioFacade → User and Role Management |
+| `IServiceClosure` | Represents the contract for service closure functionality. | Service Closure Management | GestionServicioFacade | GestionServicioFacade → Service Closure Management |
+| `IDataPersistence` | Represents the persistence contract used by domain components. | Repository / Persistence | Service Management, Assignment Management, Patient Management, User and Role Management, and Service Closure Management | Domain components → Repository / Persistence |
+
+`IDataPersistence` is an abstraction provided by the Repository / Persistence component. The Database is the persistence target behind that component, not a direct consumer of the application or domain interfaces.
 
 ## 5. Component Dependencies
 
@@ -206,18 +210,18 @@ The following mapping connects each component to the A2 classes it groups and th
 | Web UI | `Usuario`, `Solicitud`, `Servicio`, `Ambulancia`, `Asignacion`, `RegistroCierre` (presentation representations) | RF-01, RF-03, RF-04, RF-05, RF-12, RF-16, RF-17, RF-20, RF-29, RF-30, RF-31 | Screens and interaction entry points for authorized operational users. |
 | Application Controller | `Usuario`, `Rol`, `Solicitud`, `Servicio` (request coordination) | RF-01, RF-03, RF-04, RF-12, RF-17, RF-20, RF-31 | Receives requests, applies application-level coordination and delegates to the facade. |
 | GestionServicioFacade | `Servicio`, `Solicitud`, `Asignacion`, `AsignacionPersonal`, `RegistroCierre` | RF-03, RF-04, RF-12, RF-17, RF-20, RF-31 | Coordinates multi-step service workflows without moving domain rules into the UI. |
-| Service Management | `Solicitud`, `Servicio`, `Paciente`, `Intervencion` | RF-04, RF-05, RF-12, RF-20, RF-29, RF-30, RF-31 | Manages service lifecycle and coordinates patient/intervention functions. |
-| Assignment Management | `Ambulancia`, `Personal`, `Asignacion`, `AsignacionPersonal` | RF-04, RF-09, RF-16, RF-17, RF-18, RF-20 | Coordinates resource availability and assignment records. |
+| Service Management | `Solicitud`, `Servicio`, `Paciente`, `Intervencion` | RF-04, RF-12, RF-20, RF-29, RF-30, RF-31 | Manages service lifecycle and coordinates patient/intervention functions; ambulance and personnel master-data registration belong to Assignment Management. |
+| Assignment Management | `Ambulancia`, `Personal`, `Asignacion`, `AsignacionPersonal` | RF-04, RF-05, RF-09, RF-16, RF-17, RF-20 | Manages ambulance and personnel records, resource availability, and assignment records. |
 | Assignment Strategy | `EstrategiaAsignacion`, `EstrategiaAsignacionUrgente`, `EstrategiaAsignacionGeneral` | RF-16, RF-17 | Encapsulates variable assignment criteria as documented in A3. |
 | Patient Management | `Paciente`, `Servicio` | RF-29, RF-30, RF-31 | Organizes basic patient information related to a prehospital service. |
 | User and Role Management | `Usuario`, `Rol` | RF-01, RF-03, RF-04 | Supports authentication-related account and role responsibilities. |
 | Service Closure Management | `Servicio`, `Intervencion`, `RegistroCierre`, `Paciente` | RF-20, RF-31 | Validates and coordinates the closure record and service state change. |
-| Repository / Persistence | All persistent A2 entities: `Usuario`, `Rol`, `Solicitud`, `Servicio`, `Paciente`, `Ambulancia`, `Personal`, `Asignacion`, `AsignacionPersonal`, `Intervencion`, `RegistroCierre` | RF-01, RF-03, RF-05, RF-09, RF-12, RF-16, RF-17, RF-18, RF-20, RF-29, RF-30, RF-31 | Abstracts persistence for the business components and enforces data contracts. |
+| Repository / Persistence | All persistent A2 entities: `Usuario`, `Rol`, `Solicitud`, `Servicio`, `Paciente`, `Ambulancia`, `Personal`, `Asignacion`, `AsignacionPersonal`, `Intervencion`, `RegistroCierre` | RF-01, RF-03, RF-05, RF-09, RF-12, RF-16, RF-17, RF-20, RF-29, RF-30, RF-31 | Abstracts persistence for the business components and enforces data contracts. |
 | Database | Persistent entities and relations represented in B1/B2 | Data persistence for the requirements above | Implements relational persistence and database constraints when deployed. |
 
 ### Mapping and interface consistency
 
-- `IServiceWorkflow` is consumed by Web UI / Application Controller and implemented by the application workflow boundary.
-- `IAssignment`, `IPatientManagement`, `IUserManagement` and `IServiceClosure` describe domain contracts used by the facade and specialized components.
-- `IDataPersistence` is the boundary between domain/application operations and Repository / Persistence.
+- `IServiceWorkflow` is provided by Application Controller and consumed by Web UI.
+- `IAssignment` is provided by Assignment Management and consumed by GestionServicioFacade; `IPatientManagement` is provided by Patient Management and consumed by Service Management; `IUserManagement` and `IServiceClosure` are provided by their respective domain components and consumed by GestionServicioFacade.
+- `IDataPersistence` is provided by Repository / Persistence and consumed by the domain components; the Database is accessed behind this persistence boundary.
 - Component boundaries align with A4 layers and A2 class responsibilities. Class groupings are conceptual and may be adjusted during implementation while preserving the requirement traceability.

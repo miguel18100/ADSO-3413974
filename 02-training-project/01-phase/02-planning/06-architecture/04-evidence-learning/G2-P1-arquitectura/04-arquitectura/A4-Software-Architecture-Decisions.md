@@ -77,6 +77,18 @@ The proposed interaction flow is:
 7. The Repository communicates with the Relational Database.
 8. The resulting information is returned through the application and presentation layers.
 
+### 4.1 Communication Style and Dependency Rules
+
+The proposed system uses different communication mechanisms at the boundaries of the layered modular monolith:
+
+- **Browser to application:** synchronous request-response through an API REST using JSON over HTTPS (TCP port 443). The browser communicates with the application endpoint; it must never connect directly to the database.
+- **Within the application:** components in the application and domain layers collaborate through in-process method calls and the contracts represented in A5. `GestionServicioFacade` coordinates the workflow; it does not replace the domain rules owned by specialized components.
+- **Domain to persistence:** domain/application operations request storage through the `IDataPersistence` abstraction. The Repository / Persistence adapter provides the implementation and communicates with MySQL over TCP port 3306 on a private server-to-server segment.
+- **Dependency direction:** the Web UI depends on the application workflow boundary; application workflows coordinate domain services; domain operations depend on persistence abstractions. The infrastructure adapter implements those abstractions and encapsulates database-specific access.
+- **Layer restrictions:** no direct UI-to-database access, no bypass from presentation to infrastructure, and no business rules placed in the UI. Calls that cross layers must use the defined application or persistence contracts.
+
+HTTPS/TCP 443 and MySQL/TCP 3306 are proposed configuration values consistent with A6, not evidence of an active deployment. TLS, firewall rules, authentication and the private database segment must be configured and verified in the target environment.
+
 ## 5. Architectural Decisions
 
 | ID | Architectural Decision | Justification |
@@ -125,14 +137,6 @@ Implementation should subsequently validate:
 - The achievement of defined non-functional requirements.
 - The security and integrity of application data.
 
-## 9. Conclusion
-
-The proposed SIGMAVITAL architecture establishes a structured organization based on presentation, application, domain, and infrastructure responsibilities.
-
-The layered design, domain modularization, Strategy pattern, Facade coordination, and Repository abstraction provide a foundation for maintainability, modularity, testability, extensibility, and data integrity.
-
-This architectural proposal supports the subsequent development, integration, and validation activities of the SIGMAVITAL software solution.
-
 ## 9. Rejected Architectural Alternative
 
 ### AD-07 – Microservices architecture rejected for the current scope
@@ -148,3 +152,12 @@ A microservices architecture was considered as an alternative to the selected la
 **Decision:** retain the layered architecture for the current scope. Revisit microservices only if independently scalable modules, separate release cadences or measured load justify the added operational complexity.
 
 This is an architectural decision, not a claim that performance or scalability has already been measured.
+
+
+## 10. Conclusion
+
+The proposed SIGMAVITAL architecture establishes a structured organization based on presentation, application, domain, and infrastructure responsibilities.
+
+The layered design, domain modularization, Strategy pattern, Facade coordination, and Repository abstraction provide a foundation for maintainability, modularity, testability, extensibility, and data integrity.
+
+This architectural proposal supports the subsequent development, integration, and validation activities of the SIGMAVITAL software solution.

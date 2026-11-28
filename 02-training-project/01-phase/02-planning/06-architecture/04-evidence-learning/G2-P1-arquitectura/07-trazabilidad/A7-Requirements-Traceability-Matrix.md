@@ -1,4 +1,4 @@
-﻿# A7 – Requirements Traceability Matrix
+# A7 – Requirements Traceability Matrix
 
 ## 1. Purpose
 
@@ -8,15 +8,16 @@ The matrix supports architectural traceability by identifying the proposed class
 
 This traceability matrix represents a design-level mapping. It does not constitute evidence of implemented or tested functionality.
 
+> **Scope clarification:** The G1-P1 baseline contains 31 functional requirements. A1 deliberately selects 12 requirements for this P1 architecture design; therefore, this matrix documents 12/12 selected requirements, not 31/31 requirements for the complete system. The additional scope must be reconciled in the requirements baseline before claiming total system coverage.
 ## 2. Traceability Matrix
 
 | Requirement ID | Requirement | Related Classes (A2) | Related Components (A5) | Architectural Evidence |
 |---|---|---|---|---|
-| RF-01 | User login through defined authentication mechanisms. | Usuario, Rol | User and Role Management, Application Controller | A2 Class Diagram; A5 Component View |
+| RF-01 | User login through defined authentication mechanisms. | Usuario, Rol | User and Role Management, Application Controller, Repository / Persistence | A2 Class Diagram; A5 Component View |
 | RF-03 | User management including consultation, creation, update and deletion according to permissions. | Usuario, Rol | User and Role Management, GestionServicioFacade | A2 Class Diagram; A5 Component View |
 | RF-04 | Operational dashboard displaying the current status of requests, services and resources according to authorized roles. | Usuario, Rol, Solicitud, Servicio, Ambulancia, Asignacion | Web UI, Application Controller, GestionServicioFacade, Service Management, Assignment Management, User and Role Management | A2 Class Diagram; A4 Architecture; A5 Component View |
-| RF-05 | Ambulance registration and management. | Ambulancia | Service Management, Repository / Persistence | A2 Class Diagram; A5 Component View |
-| RF-09 | Registration of operational personnel. | Personal, AsignacionPersonal | Service Management, Assignment Management, Repository / Persistence | A2 Class Diagram; A5 Component View |
+| RF-05 | Ambulance registration and management. | Ambulancia | Assignment Management, Repository / Persistence | A2 Class Diagram; A5 Component View |
+| RF-09 | Registration of operational personnel. | Personal, AsignacionPersonal | Assignment Management, Repository / Persistence | A2 Class Diagram; A5 Component View |
 | RF-12 | Registration of service transportation requests. | Solicitud, Servicio | Application Controller, GestionServicioFacade, Service Management | A2 Class Diagram; A5 Component View |
 | RF-16 | Consultation of available operational resources. | Ambulancia, Personal, Asignacion, AsignacionPersonal | Assignment Management, Assignment Strategy, Repository / Persistence | A2 Class Diagram; A3 Design Patterns; A5 Component View |
 | RF-17 | Assignment of an ambulance to a service request according to operational criteria. | Solicitud, Servicio, Ambulancia, Personal, Asignacion, AsignacionPersonal, EstrategiaAsignacion, EstrategiaAsignacionUrgente, EstrategiaAsignacionGeneral | Assignment Management, Assignment Strategy, GestionServicioFacade | A2 Class Diagram; A3 Design Patterns; A5 Component View |
@@ -54,13 +55,13 @@ The proposed class design provides the following conceptual coverage:
 | Web UI | RF-04 |
 | Application Controller | RF-01, RF-04, RF-12 |
 | GestionServicioFacade | RF-03, RF-04, RF-12, RF-17, RF-20, RF-31 |
-| Service Management | RF-04, RF-05, RF-09, RF-12, RF-20, RF-29, RF-30, RF-31 |
-| Assignment Management | RF-04, RF-09, RF-16, RF-17, RF-20 |
+| Service Management | RF-04, RF-12, RF-20, RF-29, RF-30, RF-31 |
+| Assignment Management | RF-04, RF-05, RF-09, RF-16, RF-17, RF-20 |
 | Assignment Strategy | RF-16, RF-17 |
 | Patient Management | RF-29, RF-30, RF-31 |
 | User and Role Management | RF-01, RF-03, RF-04, RF-30 |
 | Service Closure Management | RF-20, RF-31 |
-| Repository / Persistence | RF-03, RF-05, RF-09, RF-12, RF-16, RF-17, RF-20, RF-29, RF-30, RF-31 |
+| Repository / Persistence | RF-01, RF-03, RF-05, RF-09, RF-12, RF-16, RF-17, RF-20, RF-29, RF-30, RF-31 |
 | Database | Data persistence for the requirements supported by repository and persistence operations |
 
 ## 5. Traceability with Non-Functional Requirements

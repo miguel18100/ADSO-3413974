@@ -1,4 +1,4 @@
-﻿# A1 - Requisitos seleccionados y decisión tecnológica
+# A1 - Requisitos seleccionados y decisión tecnológica
 
 **Proyecto:** Sistema Gestor de Ambulancias (SGA) - SIGMAVITAL  
 **Evidencia:** G2-P1 Arquitectura  
@@ -9,7 +9,29 @@
 
 Este documento identifica requisitos funcionales y no funcionales relevantes para el diseño arquitectónico del Sistema Gestor de Ambulancias (SGA), conservando sus identificadores originales de la línea base de análisis G1-P1. También presenta una propuesta tecnológica preliminar para orientar la arquitectura del sistema.
 
-## 2. Requisitos funcionales seleccionados
+## 2. Actores, alcance y restricciones del diseño
+
+La línea base de análisis G1-P1 identifica cinco perfiles concretos de usuario. Se conservan sus nombres para que las decisiones de autorización y las responsabilidades funcionales puedan rastrearse hasta el análisis:
+
+| Actor | Participación considerada en el diseño |
+|---|---|
+| Administrador | Ejecuta las operaciones administrativas que le habiliten sus permisos. |
+| Coordinador operativo | Participa en la coordinación de solicitudes, recursos, asignaciones y seguimiento operativo. |
+| Paramédico TAB | Participa en la operación del servicio prehospitalario de acuerdo con las funciones autorizadas. |
+| Paramédico TAM | Participa en la operación del servicio y registra las intervenciones prehospitalarias previstas en RF-30. |
+| Analista/directivo | Consulta información operativa para seguimiento y análisis, conforme a sus permisos. |
+
+Los perfiles describen actores del análisis, no una matriz final de permisos implementada. La autorización detallada deberá validarse con las reglas de acceso del sistema.
+
+**Alcance seleccionado:** A1 contiene 12 requisitos funcionales y 10 requisitos no funcionales seleccionados para orientar el diseño de P1. Los 12 RF representan un subconjunto de los 31 RF de la línea base G1-P1; por tanto, la trazabilidad 12/12 de A7 se refiere exclusivamente al alcance seleccionado de esta evidencia y no demuestra cobertura del 100 % de todos los requisitos del sistema.
+
+**Restricciones y límites:**
+- RF-29 se limita a datos básicos del paciente asociados a un servicio prehospitalario.
+- RF-30 contempla el registro de intervenciones prehospitalarias del Paramédico TAM; no representa una historia clínica electrónica completa.
+- La arquitectura y las tecnologías descritas son propuestas de diseño. No se afirma que estén desplegadas, implementadas o validadas en producción.
+- Los controles de acceso, privacidad, auditoría, rendimiento, respaldo y recuperación deben verificarse durante la implementación y las pruebas.
+
+## 3. Requisitos funcionales seleccionados
 
 | ID | Requisito | Justificación arquitectónica |
 |---|---|---|
@@ -26,7 +48,7 @@ Este documento identifica requisitos funcionales y no funcionales relevantes par
 | RF-30 | El sistema debe permitir al Paramédico TAM registrar las intervenciones prehospitalarias realizadas durante un servicio, sin constituir una historia clínica electrónica completa. | Define un módulo de registro de intervenciones sujeto a permisos. |
 | RF-31 | El sistema debe permitir cerrar un servicio finalizado registrando el resumen de atención, condición de salida, destino asistencial, tiempos y observaciones autorizadas. | Define el proceso de cierre y consolidación del servicio. |
 
-## 3. Requisitos no funcionales seleccionados
+## 4. Requisitos no funcionales seleccionados
 
 | ID | Requisito | Categoría | Implicación arquitectónica |
 |---|---|---|---|
@@ -41,7 +63,7 @@ Este documento identifica requisitos funcionales y no funcionales relevantes par
 | RNF-13 | El sistema debería facilitar la trazabilidad de las operaciones relevantes realizadas por usuarios autorizados. | Auditoría | Registro de eventos y seguimiento de operaciones. |
 | RNF-14 | El sistema debería utilizar mecanismos seguros de comunicación y configuración cuando sea desplegado en un entorno de producción. | Seguridad | Comunicación cifrada y configuración segura. |
 
-## 4. Propuesta tecnológica
+## 5. Propuesta tecnológica
 
 Las siguientes tecnologías constituyen una propuesta para el diseño de SIGMAVITAL. Su selección se justifica por la naturaleza web del sistema, las necesidades de modularidad, persistencia de datos y control de acceso.
 
@@ -55,25 +77,34 @@ Las siguientes tecnologías constituyen una propuesta para el diseño de SIGMAVI
 | Control de versiones | Git y GitHub | Facilita seguimiento de cambios, revisión de artefactos y trazabilidad del desarrollo. |
 | Modelado | UML y diagrams.net | Permite representar y mantener los artefactos de diseño. |
 
-## 5. Justificación de la selección
+## 6. Justificación de la selección
 
-### 5.1 PHP y Laravel
+### 6.1 Condiciones concretas del caso que justifican la plataforma
+
+La selección tecnológica responde a condiciones identificables en los requisitos y actores de SIGMAVITAL:
+
+1. **Cinco perfiles de usuario con responsabilidades diferentes:** Administrador, Coordinador operativo, Paramédico TAB, Paramédico TAM y Analista/directivo. Esto requiere autenticación centralizada y autorización en el backend; la interfaz puede presentar vistas por rol, pero no debe ser la única barrera de seguridad.
+2. **Flujo operativo con entidades relacionadas:** solicitudes, servicios, ambulancias, personal, asignaciones y cierres deben mantener estados y relaciones consistentes. Laravel y una base relacional permiten organizar reglas de negocio y aplicar transacciones, claves foráneas y restricciones.
+3. **Datos personales y de atención prehospitalaria:** RF-29 y RF-30 requieren acceso restringido, minimización de datos y protección de la comunicación y del almacenamiento; estas medidas deben implementarse y probarse, no se consideran satisfechas solo por elegir una tecnología.
+4. **Acceso desde distintos equipos de operación:** una plataforma web permite utilizar navegadores compatibles sin instalar un cliente de escritorio en cada puesto; React separa vistas y Laravel expone operaciones mediante una API.
+
+### 6.2 PHP y Laravel
 
 Laravel se propone como framework backend porque permite organizar el sistema en componentes con responsabilidades diferenciadas, manejar validaciones, rutas, autenticación y acceso a datos. Esta organización favorece el RNF-09 de mantenibilidad y permite centralizar las reglas operativas.
 
-### 5.2 React
+### 6.3 React
 
 React se propone para construir una interfaz web modular, facilitando la separación de vistas como tablero operativo, solicitudes, ambulancias, personal, asignaciones y seguimiento de servicios.
 
-### 5.3 MySQL
+### 6.4 MySQL
 
 MySQL se propone como motor relacional porque permite definir claves primarias, claves foráneas, restricciones y transacciones, necesarias para preservar la integridad y consistencia de las relaciones entre solicitudes, servicios, ambulancias, personal y asignaciones.
 
-### 5.4 API REST y HTTPS
+### 6.5 API REST y HTTPS
 
 La comunicación mediante API REST permite desacoplar la interfaz de usuario de la lógica de negocio. HTTPS se plantea como mecanismo de protección de la comunicación en el entorno de producción, en concordancia con RNF-14.
 
-## 6. Relación entre requisitos y tecnología
+## 7. Relación entre requisitos y tecnología
 
 | Requisito | Decisión tecnológica o arquitectónica |
 |---|---|
@@ -90,7 +121,7 @@ La comunicación mediante API REST permite desacoplar la interfaz de usuario de 
 | RNF-13 | Registro de auditoría de operaciones relevantes. |
 | RNF-14 | HTTPS y configuración segura en producción. |
 
-## 7. Limitaciones y validación
+## 8. Limitaciones y validación
 
 Los requisitos utilizados provienen de la línea base preliminar de G1-P1. No se afirma que hayan sido validados mediante pruebas con usuarios reales.
 
@@ -98,9 +129,11 @@ La tecnología descrita corresponde a una propuesta de diseño arquitectónico y
 
 La selección tecnológica no representa una implementación funcional comprobada.
 
-## 8. Fuente
+## 9. Fuente
 
 Matriz de requisitos y casos de uso - G1-P1 Plan de análisis, SIGMAVITAL/SGA. Se reutilizan los identificadores originales RF y RNF, sin alterar sus definiciones.
+
+**Ruta exacta en el repositorio:** 02-training-project/01-phase/01-analysis/03-conceptual-model/04-evidence-learning/G1-P1-Plan-Analisis/05-matriz-requisitos-casos-uso/Matriz-Requisitos-Casos-Uso.md.
 
 ---
 
