@@ -1,94 +1,70 @@
-﻿# G1-P1 – Plan de Análisis
+# Guía 1 – Producto 1: Plan de Análisis y Trazabilidad de Requisitos – SIGMAVITAL
 
-**Programa:** Análisis y Desarrollo de Software (ADSO)  
-**Ficha:** 3413974  
-**Proyecto formativo:** Sistema Gestor de Ambulancias (SGA)  
-**Fase:** Análisis  
-**Actividad:** Plan de Análisis
+## 1. Datos de la entrega
 
-## Objetivo
-
-Documentar la planificación inicial del análisis del proyecto Sistema Gestor de Ambulancias (SGA), estableciendo la caracterización de la solución, la comparación y selección de metodología de desarrollo, la planificación de actividades, la identificación de requisitos y la representación de los casos de uso.
-
-Esta documentación constituye una propuesta de análisis y planificación del proyecto formativo, desarrollada progresivamente de acuerdo con las guías y actividades del SENA.
-
-## Contenido de la evidencia
-
-| N.º | Entregable | Ubicación |
-|---|---|---|
-| 1 | Caracterización de la solución | [01 – Caracterización](./01-caracterizacion-solucion/) |
-| 2 | Comparación de metodologías | [02 – Comparación de metodologías](./02-comparacion-metodologias/) |
-| 3 | Selección y justificación de metodología | [03 – Selección de metodología](./03-seleccion-metodologia/) |
-| 4 | Plan de actividades | [04 – Plan de actividades](./04-plan-actividades/) |
-| 5 | Matriz de requisitos y casos de uso | [05 – Matriz de requisitos y casos de uso](./05-matriz-requisitos-casos-uso/) |
-| 6 | Diagrama de casos de uso | [06 – Diagrama de casos de uso](./06-diagrama-casos-uso/) |
-
-## Evidencias y documentación complementaria
-
-- [07 – Evidencias](./07-evidencias/)
-- [08 – Informe](./08-informe/)
-
-## Descripción general del SGA
-
-El Sistema Gestor de Ambulancias (SGA) es el proyecto formativo sobre el cual se desarrolla la documentación de análisis.
-
-La propuesta contempla, entre otros aspectos:
-
-- Gestión de ambulancias.
-- Gestión del personal operativo.
-- Registro y gestión de solicitudes de atención y transporte.
-- Asignación de recursos operativos.
-- Seguimiento de servicios.
-- Generación de reportes e información de gestión.
-
-## Organización documental
-
-Los entregables se organizan en directorios independientes para facilitar su consulta, revisión, actualización y trazabilidad.
-
-Se conservan documentos en Markdown y archivos fuente de diagramas cuando corresponde, con el propósito de permitir la revisión y edición de los artefactos.
-
-## Declaración de uso de inteligencia artificial
-
-Se utilizaron herramientas de inteligencia artificial generativa como apoyo en tareas de organización documental, estructuración, revisión de redacción y asistencia en la elaboración y mejora de algunos artefactos.
-
-Los contenidos generados o sugeridos fueron objeto de revisión y ajuste, y su utilización no sustituye la comprensión, validación ni responsabilidad del aprendiz sobre los entregables y decisiones del proyecto.
+| Campo | Valor |
+|---|---|
+| **Ficha** | 3413974 |
+| **Proyecto** | SIGMAVITAL – Sistema Gestor de Ambulancias (SGA) |
+| **Aprendiz (usuario GitHub)** | `miguel18100` |
+| **Fecha de entrega / actualización** | 2026-11-28 |
+| **Versión / commit de referencia** | Línea base consolidada posterior a `ca43b76` |
 
 ---
 
-**Servicio Nacional de Aprendizaje – SENA**  
-**ADSO – Ficha 3413974**
+## 2. Qué se corrigió o completó
 
-## Diagrama de casos de uso
+Partiendo de los avances iniciales del repositorio y del documento SRS oficial del sistema SIGMAVITAL, en esta entrega se completó el levantamiento de análisis con los **65 requisitos funcionales (`RF-001` a `RF-065`)**, **29 requisitos no funcionales (`RNF-001` a `RNF-029`)** y **18 reglas de negocio (`RN-001` a `RN-018`)** distribuidos en los 15 módulos del proyecto. Adicionalmente, se sincronizó al 100 % la matriz de requisitos con los **20 casos de uso UML** del diagrama, manteniendo la convención verbo + objeto sin jerga tecnológica, e incorporando las justificaciones explícitas de las relaciones `«include»` y `«extend»` junto con la limpieza de enlaces y archivos de respaldo previos.
 
-El diagrama de casos de uso del Sistema Gestor de Ambulancias (SGA) representa la interacción de los actores identificados con las funcionalidades principales del sistema.
+---
 
-El artefacto contempla 18 casos de uso, organizados en cinco paquetes funcionales:
+## 3. Reutilización de material previo
 
-- Administración y acceso.
-- Gestión de recursos.
-- Gestión de solicitudes.
-- Seguimiento operativo.
-- Informes y gestión.
+| Artefacto previo en este repositorio | Ruta de origen | Qué se tomó de él | Qué se ajustó para SIGMAVITAL |
+|---|---|---|---|
+| Instrumentos completos del SGA | `../../../../../03-execute/08-week/02-optional-activity/Complete-SGA-Instruments/Instrumentos_SGA_Completos (1) (1).docx` | Roles iniciales, flujo base de solicitudes, ambulancias y reglas de habilitación | Se amplió y formalizó al estándar completo de 65 RF, 29 RNF y 18 RN del SRS unificado |
+| Normativa y mockups base del proyecto SGA | `../../../../../03-execute/14-week/02-optional-activity/Normativa_Proyecto_SGA_Completa.docx` | Contexto normativo de Resolución 3100/2017 y operación prehospitalaria | Se estructuraron los módulos de facturación, propietarios, proveedores, visitantes, PQRS, documental y auditoría |
+| Primera versión del análisis de metodologías y planificación | `9eb23e5` y `1c89366` (historial Git en `G1-P1-Plan-Analisis`) | Selección de metodología híbrida y estructura base de carpetas `01` a `06` | Se actualizaron los estados del plan a completado y se alineó la caracterización al alcance total del SRS |
 
-Se identifican cuatro actores principales:
+---
 
-- Administrador.
-- Coordinador Operativo.
-- Personal Operativo (TES/Paramédico).
-- Director / Gerencia.
+## 4. Evidencias incluidas (links)
 
-El diagrama contempla relaciones UML de inclusión (`<<include>>`) y extensión (`<<extend>>`) para representar dependencias funcionales entre casos de uso.
+- [Caracterización de la solución](01-caracterizacion-solucion/Caracterizacion-Solucion.md) — problemática prehospitalaria, alcance en los 15 módulos (65 RF) y perfilamiento de los 6 actores del sistema.
+- [Comparación de metodologías](02-comparacion-metodologias/Comparacion-Metodologias.md) — análisis multicriterio entre metodologías tradicionales y ágiles.
+- [Selección y justificación metodológica](03-seleccion-metodologia/Seleccion-y-Justificacion-Metodologia.md) — justificación del enfoque híbrido iterativo aplicado a SIGMAVITAL.
+- [Plan de actividades](04-plan-actividades/Plan-de-Actividades.md) — cronograma actualizado de actividades de análisis y entregables completados.
+- [Matriz de requisitos y casos de uso](05-matriz-requisitos-casos-uso/Matriz-Requisitos-Casos-Uso.md) — trazabilidad completa **65/65 RF**, **29/29 RNF**, **18/18 RN**, catálogo `CU-01` a `CU-20` y justificación de relaciones `«include»`/`«extend»`.
+- [Diagrama de casos de uso editable (.drawio)](06-diagrama-casos-uso/Diagrama-Casos-Uso.drawio) — fuente editable con 5 paquetes, 20 casos de uso, 6 actores externos y líneas ortogonales sin cruces.
+- [Diagrama de casos de uso exportado (.svg)](06-diagrama-casos-uso/Diagrama-Casos-Uso.svg) — exportación vectorial fiel 1:1 del archivo `.drawio`.
+- [Vista previa del diagrama (.png)](06-diagrama-casos-uso/Diagrama-Casos-Uso.drawio.png) — captura visual de respaldo sincronizada con el `.drawio`.
 
-### Archivos del diagrama
+### Vista rápida del diagrama de casos de uso
 
-Dentro de `06-diagrama-casos-uso` se conservan los siguientes artefactos:
+![Diagrama de Casos de Uso SIGMAVITAL](06-diagrama-casos-uso/Diagrama-Casos-Uso.svg)
 
-- `Diagrama-Casos-Uso.drawio`: archivo fuente editable del diagrama.
-- `Diagrama-Casos-Uso.drawio.png`: representación gráfica exportada.
-- `Diagrama-Casos-Uso.puml`: representación textual mediante PlantUML.
+---
 
-Los archivos fuente permiten revisar y modificar la representación del modelo.
+## 5. Cómo verificar que funciona
 
-### Observación de trazabilidad
+1. **Verificación de cobertura SRS (65/65 RF):** abrir [Matriz-Requisitos-Casos-Uso.md](05-matriz-requisitos-casos-uso/Matriz-Requisitos-Casos-Uso.md) y comprobar que cada código de `RF-001` a `RF-065` tiene un caso de uso asignado dentro del rango `CU-01` a `CU-20`.
+2. **Verificación de sincronización matriz ↔ diagrama:** comparar los 20 casos de uso listados en la sección 4 de la matriz contra los óvalos contenidos en [Diagrama-Casos-Uso.drawio](06-diagrama-casos-uso/Diagrama-Casos-Uso.drawio) y [Diagrama-Casos-Uso.svg](06-diagrama-casos-uso/Diagrama-Casos-Uso.svg).
+3. **Verificación de calidad UML:** comprobar que todos los actores se ubican fuera de la frontera del sistema, que todos los nombres siguen verbo + objeto sin términos tecnológicos y que cada `«include»`/`«extend»` posee justificación explícita en la sección 5 de la matriz.
+4. **Continuidad hacia el Producto 2:** validar que los casos críticos `CU-08`, `CU-11` y `CU-14` enlazan directamente con [G1-P2-Modelado-SIGMAVITAL](../G1-P2-Modelado-SIGMAVITAL/README.md).
 
-El diagrama contiene 18 casos de uso. La matriz de requisitos y casos de uso debe revisarse de manera independiente para verificar la correspondencia, numeración y trazabilidad entre ambos artefactos. La cantidad de casos representada en el diagrama no se considera automáticamente equivalente a la matriz hasta completar dicha validación.
+---
+
+## 6. Ajustes realizados tras verificación
+
+| # | Qué estaba mal o incompleto | Qué se corrigió | Commit / fecha |
+|---|---|---|---|
+| 1 | La matriz inicial cubría 28 requisitos resumidos y 18 casos de uso desactualizados | Se integraron los **65 RF, 29 RNF y 18 RN** completos del SRS mapeados a **20 casos de uso** sin inflación CRUD | `8149f92` / 2026-11-28 |
+| 2 | El README anterior presentaba dos enlaces rotos (`./07-evidencias/` y `./08-informe/`) y una línea base sin formato completo | Se reestructuró `README.md` conforme a la plantilla oficial con enlaces locales 100 % válidos y tabla real de reutilización | 2026-11-28 |
+| 3 | Persistían archivos temporales (`precorreccion.drawio`, `respaldo.puml`) y faltaba exportación `.svg` directa y justificación de `«include»`/`«extend»` | Se eliminaron los respaldos obsoletos, se regeneró el diagrama `.drawio` + `.svg` + `.png` ortogonal limpio y se documentaron todas las relaciones en la matriz | 2026-11-28 |
+
+---
+
+## 7. Autoría y uso de IA
+
+- **Autor principal y responsable técnico:** `miguel18100` (análisis de requisitos, validación de trazabilidad completa, organización documental y verificación visual de diagramas).
+- **Apoyo de IA:** se utilizó **ChatGPT** exclusivamente como asistente de redacción estructurada, revisión de formato Markdown y apoyo en validación de consistencia de tablas; toda decisión de alcance, regla de negocio y verificación final de entregables fue revisada y aprobada por el aprendiz.

@@ -1,470 +1,184 @@
-﻿# Matriz de requisitos y casos de uso – G1-P1 Plan de análisis
+# Matriz Completa de Requisitos y Casos de Uso – SIGMAVITAL (SGA)
 
-## 1. Introducción
-
-El presente documento consolida la identificación preliminar de requisitos funcionales, requisitos no funcionales, actores, reglas de negocio y casos de uso asociados al Sistema Gestor de Ambulancias (SGA), como parte de la evidencia G1-P1 del Plan de análisis de la Guía de Aprendizaje 1 del programa Análisis y Desarrollo de Software (ADSO).
-
-La identificación de los elementos se fundamenta en la caracterización de la solución propuesta, el análisis del contexto operativo relacionado con la gestión de ambulancias y servicios de transporte asistencial, y la delimitación inicial de las necesidades del sistema.
-
-Los elementos descritos constituyen una propuesta de análisis y especificación preliminar. No representan una validación formal con usuarios, una implementación funcional ni resultados de pruebas del sistema.
-
-## 2. Objetivo
-
-Identificar, documentar y relacionar los requisitos funcionales, requisitos no funcionales preliminares, actores, reglas de negocio y casos de uso del Sistema Gestor de Ambulancias (SGA), con el propósito de establecer una base de trazabilidad para el modelado conceptual y la elaboración del diagrama UML de casos de uso.
-
-## 3. Alcance
-
-La matriz contempla preliminarmente los siguientes procesos relacionados con la gestión de ambulancias y servicios de transporte asistencial:
-
-- Gestión de usuarios y control de acceso.
-- Gestión de ambulancias y vehículos de transporte asistencial.
-- Gestión del personal operativo.
-- Registro y consulta de solicitudes de servicio.
-- Clasificación preliminar de servicios de transporte asistencial.
-- Asignación de ambulancias y personal operativo.
-- Seguimiento de servicios asignados y en ejecución.
-- Consulta del estado operativo de ambulancias.
-- Consulta de información e historial de servicios.
-- Generación de reportes operativos.
-
-La matriz constituye un producto de análisis de la Guía de Aprendizaje 1. No implica que los procesos descritos estén implementados, integrados, desplegados o validados en una aplicación funcional.
-
-## 4. Fuentes de identificación
-
-La identificación preliminar se fundamenta en:
-
-| Fuente | Descripción |
-|---|---|
-| Caracterización de la solución | Contexto, propósito, alcance y necesidades identificadas para el SGA. |
-| Análisis del contexto operativo | Procesos relacionados con la solicitud, asignación y seguimiento de servicios de ambulancia. |
-| Normativa y contexto del transporte asistencial | Referentes aplicables a la prestación y organización del transporte asistencial, sujetos a revisión y validación. |
-| Plan de actividades | Actividades previstas para el análisis, modelado y documentación del sistema. |
-| Identificación de actores y procesos | Roles y actividades preliminares relacionados con la gestión operativa del sistema. |
-
-## 5. Actores del sistema
-
-### 5.1. A-01 Administrador
-
-Representa al usuario responsable de las actividades administrativas y de configuración general del sistema.
-
-Responsabilidades preliminares:
-
-- Gestionar usuarios.
-- Consultar información general del sistema.
-- Administrar información de referencia.
-- Gestionar permisos de acceso según el alcance definido.
-- Consultar reportes administrativos y operativos.
-
-### 5.2. A-02 Coordinador operativo
-
-Representa al usuario encargado de coordinar las solicitudes de transporte asistencial, organizar los recursos disponibles y gestionar las asignaciones operativas.
-
-Responsabilidades preliminares:
-
-- Registrar y consultar solicitudes de servicio.
-- Revisar las necesidades de transporte asistencial.
-- Consultar la disponibilidad de ambulancias.
-- Consultar la disponibilidad del personal operativo.
-- Asignar ambulancias y personal a los servicios.
-- Realizar seguimiento a los servicios.
-- Consultar reportes operativos.
-
-### 5.3. A-03 Personal operativo (TES / paramédico)
-
-Representa al personal operativo vinculado a la atención y ejecución de los servicios de transporte asistencial.
-
-Responsabilidades preliminares:
-
-- Consultar servicios asignados.
-- Consultar información del servicio.
-- Actualizar estados operativos según las funciones autorizadas.
-- Reportar novedades relacionadas con el servicio.
-- Registrar información operativa pertinente, según los permisos definidos.
-
-### 5.4. A-04 Director o responsable de gestión
-
-Representa al usuario que consulta información consolidada para apoyar la supervisión y toma de decisiones administrativas y operativas.
-
-Responsabilidades preliminares:
-
-- Consultar indicadores operativos.
-- Consultar reportes de servicios.
-- Consultar información sobre utilización de recursos.
-- Analizar información consolidada para apoyar la gestión.
-
-## 6. Requisitos funcionales
-
-Los requisitos funcionales se presentan como una propuesta preliminar para el SGA.
-
-| ID | Requisito funcional | Actor principal | Prioridad |
-|---|---|---|---|
-| RF-01 | El sistema debe permitir el inicio de sesión de los usuarios mediante mecanismos de autenticación definidos. | Administrador, Coordinador, Personal operativo, Director | Alta |
-| RF-02 | El sistema debe permitir cerrar la sesión del usuario autenticado. | Todos | Alta |
-| RF-03 | El sistema debe permitir gestionar usuarios, incluyendo consulta, creación, actualización y eliminación según permisos. | Administrador | Alta |
-| RF-04 | El sistema debe permitir consultar información general mediante un tablero de indicadores operativos. | Administrador, Coordinador, Director | Alta |
-| RF-05 | El sistema debe permitir registrar ambulancias con la información requerida para su identificación y gestión. | Administrador | Alta |
-| RF-06 | El sistema debe permitir actualizar la información de ambulancias registradas. | Administrador | Alta |
-| RF-07 | El sistema debe permitir consultar las ambulancias registradas y su información asociada. | Administrador, Coordinador | Alta |
-| RF-08 | El sistema debe permitir gestionar el estado operativo de las ambulancias según los estados definidos. | Administrador, Coordinador | Alta |
-| RF-09 | El sistema debe permitir registrar personal operativo relacionado con la prestación de servicios de transporte asistencial. | Administrador | Alta |
-| RF-10 | El sistema debe permitir actualizar la información del personal operativo registrado. | Administrador | Alta |
-| RF-11 | El sistema debe permitir consultar el personal operativo y la información disponible para su gestión. | Administrador, Coordinador | Alta |
-| RF-12 | El sistema debe permitir registrar solicitudes de servicios de transporte asistencial con la información requerida. | Coordinador | Alta |
-| RF-13 | El sistema debe permitir consultar las solicitudes de servicios registradas. | Coordinador, Director | Alta |
-| RF-14 | El sistema debe permitir actualizar la información de las solicitudes, según las funciones y permisos establecidos. | Coordinador | Alta |
-| RF-15 | El sistema debe permitir clasificar las solicitudes de acuerdo con los tipos de transporte asistencial definidos para el contexto del servicio. | Coordinador | Alta |
-| RF-16 | El sistema debe permitir consultar los recursos operativos disponibles para la asignación de servicios. | Coordinador | Alta |
-| RF-17 | El sistema debe permitir asignar una ambulancia a una solicitud de servicio, de acuerdo con los criterios operativos definidos. | Coordinador | Alta |
-| RF-18 | El sistema debe permitir asociar personal operativo a un servicio asignado. | Coordinador | Alta |
-| RF-19 | El sistema debe permitir consultar los detalles de las asignaciones realizadas. | Coordinador, Personal operativo | Alta |
-| RF-20 | El sistema debe permitir actualizar el estado de un servicio durante su ciclo operativo. | Coordinador, Personal operativo | Alta |
-| RF-21 | El sistema debe permitir registrar novedades asociadas a la ejecución de un servicio, según los permisos definidos. | Personal operativo, Coordinador | Media |
-| RF-22 | El sistema debe permitir consultar el historial de servicios registrados. | Coordinador, Director | Alta |
-| RF-23 | El sistema debe permitir consultar información relacionada con ambulancias y sus servicios asociados. | Coordinador, Director | Media |
-| RF-24 | El sistema debe permitir consultar información relacionada con el personal operativo y los servicios asociados, según permisos. | Coordinador, Director | Media |
-| RF-25 | El sistema debe permitir generar reportes operativos sobre los servicios registrados. | Coordinador, Director | Alta |
-| RF-26 | El sistema debe permitir filtrar reportes por criterios disponibles, como fechas, estado del servicio y recursos asociados. | Coordinador, Director | Media |
-| RF-27 | El sistema debe permitir consultar indicadores relacionados con la gestión y operación de los servicios. | Director, Coordinador | Media |
-| RF-28 | El sistema debe permitir consultar información consolidada para apoyar la toma de decisiones administrativas y operativas. | Director | Media |
-
-## 7. Requisitos no funcionales
-
-Los siguientes requisitos representan criterios preliminares propuestos para el sistema.
-
-| ID | Requisito no funcional | Categoría | Naturaleza |
-|---|---|---|---|
-| RNF-01 | El sistema debería proporcionar una interfaz clara y comprensible para los usuarios de los diferentes roles. | Usabilidad | Propuesta de análisis |
-| RNF-02 | El sistema debería presentar mensajes claros de confirmación, advertencia y error durante las operaciones. | Usabilidad | Propuesta de análisis |
-| RNF-03 | El sistema debería controlar el acceso a las funcionalidades de acuerdo con los roles y permisos definidos. | Seguridad | Propuesta de análisis |
-| RNF-04 | El sistema debería proteger la información almacenada frente a accesos no autorizados. | Seguridad y privacidad | Propuesta de análisis |
-| RNF-05 | El sistema debería preservar la integridad de la información relacionada con solicitudes, asignaciones, ambulancias y servicios. | Integridad | Propuesta de análisis |
-| RNF-06 | El sistema debería mantener consistencia entre las solicitudes, las asignaciones de recursos y los estados de los servicios. | Consistencia | Propuesta de análisis |
-| RNF-07 | El sistema debería facilitar la consulta de información operativa mediante filtros y criterios de búsqueda. | Usabilidad | Propuesta de análisis |
-| RNF-08 | El sistema debería contar con mecanismos que permitan respaldar y recuperar la información, de acuerdo con la estrategia de administración de datos definida. | Confiabilidad | Propuesta de análisis |
-| RNF-09 | El sistema debería facilitar el mantenimiento y la evolución de sus componentes mediante una organización modular. | Mantenibilidad | Propuesta de análisis |
-| RNF-10 | El sistema debería permitir la consulta y gestión de información desde navegadores web compatibles, según las condiciones de implementación. | Compatibilidad | Propuesta de análisis |
-| RNF-11 | El sistema debería procurar tiempos de respuesta adecuados para las operaciones habituales de consulta y gestión. | Rendimiento | Propuesta de análisis |
-| RNF-12 | El sistema debería manejar la información personal y los datos relacionados con la atención de acuerdo con las disposiciones legales aplicables. | Privacidad y cumplimiento | Propuesta de análisis |
-| RNF-13 | El sistema debería facilitar la trazabilidad de las operaciones relevantes realizadas por usuarios autorizados. | Auditoría | Propuesta de análisis |
-| RNF-14 | El sistema debería utilizar mecanismos seguros de comunicación y configuración cuando sea desplegado en un entorno de producción. | Seguridad | Propuesta de análisis |
-
-## 8. Casos de uso
-
-| ID | Caso de uso | Actor principal | Requisitos relacionados |
-|---|---|---|---|
-| CU-01 | Iniciar sesión | Todos | RF-01 |
-| CU-02 | Cerrar sesión | Todos | RF-02 |
-| CU-03 | Consultar tablero de indicadores | Administrador, Coordinador, Director | RF-04, RF-27, RF-28 |
-| CU-04 | Gestionar usuarios | Administrador | RF-03 |
-| CU-05 | Registrar ambulancia | Administrador | RF-05 |
-| CU-06 | Actualizar ambulancia | Administrador | RF-06, RF-08 |
-| CU-07 | Consultar ambulancias | Administrador, Coordinador | RF-07, RF-08 |
-| CU-08 | Gestionar personal operativo | Administrador | RF-09, RF-10 |
-| CU-09 | Consultar personal operativo | Administrador, Coordinador | RF-11 |
-| CU-10 | Registrar solicitud de servicio | Coordinador | RF-12, RF-15 |
-| CU-11 | Consultar solicitudes de servicio | Coordinador, Director | RF-13 |
-| CU-12 | Actualizar solicitud de servicio | Coordinador | RF-14 |
-| CU-13 | Consultar disponibilidad de recursos | Coordinador | RF-16 |
-| CU-14 | Asignar ambulancia | Coordinador | RF-17 |
-| CU-15 | Asignar personal operativo | Coordinador | RF-18 |
-| CU-16 | Consultar asignación | Coordinador, Personal operativo | RF-19 |
-| CU-17 | Actualizar estado de servicio | Coordinador, Personal operativo | RF-20 |
-| CU-18 | Registrar novedad del servicio | Personal operativo, Coordinador | RF-21 |
-| CU-19 | Consultar historial de servicios | Coordinador, Director | RF-22 |
-| CU-20 | Consultar información de ambulancias | Coordinador, Director | RF-23 |
-| CU-21 | Consultar información del personal | Coordinador, Director | RF-24 |
-| CU-22 | Generar reportes operativos | Coordinador, Director | RF-25, RF-26 |
-| CU-23 | Consultar indicadores de gestión | Coordinador, Director | RF-27 |
-| CU-24 | Consultar información consolidada | Director | RF-28 |
-
-## 9. Descripción preliminar de casos de uso
-
-### CU-01. Iniciar sesión
-
-**Actor:** Usuario autorizado.
-
-**Objetivo:** Acceder a las funcionalidades del sistema mediante un mecanismo de autenticación.
-
-**Descripción:** El usuario proporciona las credenciales requeridas. El sistema debe validar la información y permitir el acceso de acuerdo con los permisos definidos.
-
-### CU-02. Cerrar sesión
-
-**Actor:** Usuario autenticado.
-
-**Objetivo:** Finalizar la sesión de usuario.
-
-**Descripción:** El usuario ejecuta la acción de cierre de sesión y el sistema finaliza el acceso a la sesión autenticada.
-
-### CU-03. Consultar tablero de indicadores
-
-**Actor:** Administrador, Coordinador operativo, Director.
-
-**Objetivo:** Consultar información consolidada relacionada con la operación del sistema.
-
-**Descripción:** El usuario accede al tablero de indicadores y consulta la información disponible según su perfil y permisos.
-
-### CU-04. Gestionar usuarios
-
-**Actor:** Administrador.
-
-**Objetivo:** Administrar los usuarios que tienen acceso al sistema.
-
-**Descripción:** El administrador consulta, registra, actualiza o elimina usuarios de acuerdo con las funciones autorizadas y los criterios de gestión establecidos.
-
-### CU-05. Registrar ambulancia
-
-**Actor:** Administrador.
-
-**Objetivo:** Incorporar una ambulancia a la información administrada por el sistema.
-
-**Descripción:** El administrador diligencia la información requerida para identificar la ambulancia y realiza el registro correspondiente.
-
-### CU-06. Actualizar ambulancia
-
-**Actor:** Administrador.
-
-**Objetivo:** Actualizar la información asociada a una ambulancia registrada.
-
-**Descripción:** El administrador consulta la ambulancia, modifica la información autorizada y solicita guardar los cambios.
-
-### CU-07. Consultar ambulancias
-
-**Actor:** Administrador, Coordinador operativo.
-
-**Objetivo:** Consultar las ambulancias registradas y la información disponible sobre ellas.
-
-**Descripción:** El usuario consulta el listado de ambulancias y revisa la información y los estados operativos registrados.
-
-### CU-08. Gestionar personal operativo
-
-**Actor:** Administrador.
-
-**Objetivo:** Administrar la información del personal operativo.
-
-**Descripción:** El administrador registra o actualiza la información correspondiente al personal operativo vinculado a las actividades del sistema.
-
-### CU-09. Consultar personal operativo
-
-**Actor:** Administrador, Coordinador operativo.
-
-**Objetivo:** Consultar la información del personal operativo.
-
-**Descripción:** El usuario consulta los registros disponibles del personal operativo para apoyar la gestión de recursos humanos y la coordinación de servicios.
-
-### CU-10. Registrar solicitud de servicio
-
-**Actor:** Coordinador operativo.
-
-**Objetivo:** Registrar una solicitud de transporte asistencial.
-
-**Descripción:** El coordinador diligencia los datos requeridos de la solicitud, incluyendo la información relacionada con el servicio, su clasificación y los datos necesarios para gestionar la operación.
-
-### CU-11. Consultar solicitudes de servicio
-
-**Actor:** Coordinador operativo, Director.
-
-**Objetivo:** Consultar las solicitudes registradas.
-
-**Descripción:** El usuario accede a las solicitudes de servicio y consulta su información, estado y detalles disponibles.
-
-### CU-12. Actualizar solicitud de servicio
-
-**Actor:** Coordinador operativo.
-
-**Objetivo:** Modificar información de una solicitud registrada cuando corresponda.
-
-**Descripción:** El coordinador selecciona una solicitud, revisa los datos disponibles y realiza las actualizaciones permitidas.
-
-### CU-13. Consultar disponibilidad de recursos
-
-**Actor:** Coordinador operativo.
-
-**Objetivo:** Consultar la disponibilidad de ambulancias y personal operativo para apoyar la asignación de servicios.
-
-**Descripción:** El coordinador consulta los recursos registrados y la información de disponibilidad que el sistema tenga definida.
-
-### CU-14. Asignar ambulancia
-
-**Actor:** Coordinador operativo.
-
-**Objetivo:** Asociar una ambulancia a una solicitud de servicio.
-
-**Descripción:** El coordinador selecciona la solicitud y consulta los recursos disponibles para realizar la asignación de una ambulancia, de acuerdo con los criterios operativos definidos.
-
-### CU-15. Asignar personal operativo
-
-**Actor:** Coordinador operativo.
-
-**Objetivo:** Asociar personal operativo a un servicio.
-
-**Descripción:** El coordinador selecciona los integrantes del personal operativo que serán vinculados al servicio, de acuerdo con los criterios de asignación establecidos.
-
-### CU-16. Consultar asignación
-
-**Actor:** Coordinador operativo, Personal operativo.
-
-**Objetivo:** Consultar la información de una asignación de servicio.
-
-**Descripción:** El usuario consulta los datos de la asignación, incluyendo la solicitud, los recursos asociados y la información disponible del servicio.
-
-### CU-17. Actualizar estado de servicio
-
-**Actor:** Coordinador operativo, Personal operativo.
-
-**Objetivo:** Actualizar el estado operativo de un servicio.
-
-**Descripción:** El usuario autorizado registra o actualiza el estado del servicio de acuerdo con el flujo operativo definido.
-
-### CU-18. Registrar novedad del servicio
-
-**Actor:** Personal operativo, Coordinador operativo.
-
-**Objetivo:** Registrar una novedad relacionada con la ejecución de un servicio.
-
-**Descripción:** El usuario autorizado registra la información pertinente de una novedad ocurrida durante el desarrollo del servicio.
-
-### CU-19. Consultar historial de servicios
-
-**Actor:** Coordinador operativo, Director.
-
-**Objetivo:** Consultar los servicios registrados y su información histórica.
-
-**Descripción:** El usuario consulta los servicios disponibles y revisa la información relacionada con su registro, asignación y estado.
-
-### CU-20. Consultar información de ambulancias
-
-**Actor:** Coordinador operativo, Director.
-
-**Objetivo:** Consultar información de las ambulancias y su relación con los servicios.
-
-**Descripción:** El usuario revisa la información disponible sobre las ambulancias, sus estados y los servicios relacionados.
-
-### CU-21. Consultar información del personal
-
-**Actor:** Coordinador operativo, Director.
-
-**Objetivo:** Consultar información del personal operativo y los servicios relacionados.
-
-**Descripción:** El usuario consulta los registros disponibles del personal operativo y la información asociada a su participación en servicios.
-
-### CU-22. Generar reportes operativos
-
-**Actor:** Coordinador operativo, Director.
-
-**Objetivo:** Obtener información consolidada de los servicios registrados.
-
-**Descripción:** El usuario selecciona los criterios disponibles y consulta los resultados del reporte de acuerdo con la información almacenada.
-
-### CU-23. Consultar indicadores de gestión
-
-**Actor:** Coordinador operativo, Director.
-
-**Objetivo:** Consultar indicadores relacionados con la operación y gestión de los servicios.
-
-**Descripción:** El usuario consulta indicadores que permitan analizar la información operativa disponible.
-
-### CU-24. Consultar información consolidada
-
-**Actor:** Director.
-
-**Objetivo:** Consultar información general de la operación del SGA para apoyar la toma de decisiones.
-
-**Descripción:** El director consulta información consolidada relacionada con los servicios, recursos y demás datos operativos disponibles.
-
-## 10. Reglas de negocio preliminares
-
-| ID | Regla de negocio | Descripción |
-|---|---|---|
-| RN-01 | Identificación de solicitudes | Cada solicitud de servicio debe contar con información que permita identificarla y consultarla. |
-| RN-02 | Clasificación del servicio | Las solicitudes deben clasificarse según los criterios de transporte asistencial definidos para el sistema. |
-| RN-03 | Disponibilidad de ambulancias | La asignación de una ambulancia debe considerar la información de disponibilidad y estado operativo registrada. |
-| RN-04 | Disponibilidad de personal | La asignación de personal debe considerar la información de disponibilidad y los criterios operativos establecidos. |
-| RN-05 | Relación solicitud-asignación | Toda asignación debe estar relacionada con una solicitud de servicio identificable. |
-| RN-06 | Relación asignación-ambulancia | Las asignaciones deben identificar la ambulancia asociada al servicio. |
-| RN-07 | Relación asignación-personal | Las asignaciones deben identificar el personal operativo vinculado al servicio, de acuerdo con los criterios establecidos. |
-| RN-08 | Control de estados | Los servicios deben manejar estados definidos que permitan identificar su situación operativa. |
-| RN-09 | Consistencia operativa | Los cambios de estado y las asignaciones deben mantener consistencia con la información del servicio y sus recursos asociados. |
-| RN-10 | Acceso autorizado | Las funciones del sistema deben estar restringidas de acuerdo con los roles y permisos definidos. |
-| RN-11 | Trazabilidad | La información relevante de los servicios y sus operaciones debe permitir su consulta y seguimiento, según el alcance definido. |
-| RN-12 | Gestión de novedades | Las novedades registradas deben estar asociadas al servicio correspondiente. |
-
-## 11. Matriz de trazabilidad: requisitos funcionales y casos de uso
-
-| Requisito | Caso de uso relacionado |
-|---|---|
-| RF-01 | CU-01 Iniciar sesión |
-| RF-02 | CU-02 Cerrar sesión |
-| RF-03 | CU-04 Gestionar usuarios |
-| RF-04 | CU-03 Consultar tablero de indicadores |
-| RF-05 | CU-05 Registrar ambulancia |
-| RF-06 | CU-06 Actualizar ambulancia |
-| RF-07 | CU-07 Consultar ambulancias |
-| RF-08 | CU-06 Actualizar ambulancia, CU-07 Consultar ambulancias |
-| RF-09 | CU-08 Gestionar personal operativo |
-| RF-10 | CU-08 Gestionar personal operativo |
-| RF-11 | CU-09 Consultar personal operativo |
-| RF-12 | CU-10 Registrar solicitud de servicio |
-| RF-13 | CU-11 Consultar solicitudes de servicio |
-| RF-14 | CU-12 Actualizar solicitud de servicio |
-| RF-15 | CU-10 Registrar solicitud de servicio |
-| RF-16 | CU-13 Consultar disponibilidad de recursos |
-| RF-17 | CU-14 Asignar ambulancia |
-| RF-18 | CU-15 Asignar personal operativo |
-| RF-19 | CU-16 Consultar asignación |
-| RF-20 | CU-17 Actualizar estado de servicio |
-| RF-21 | CU-18 Registrar novedad del servicio |
-| RF-22 | CU-19 Consultar historial de servicios |
-| RF-23 | CU-20 Consultar información de ambulancias |
-| RF-24 | CU-21 Consultar información del personal |
-| RF-25 | CU-22 Generar reportes operativos |
-| RF-26 | CU-22 Generar reportes operativos |
-| RF-27 | CU-03 Consultar tablero de indicadores, CU-23 Consultar indicadores de gestión |
-| RF-28 | CU-24 Consultar información consolidada |
-
-## 12. Relaciones preliminares entre casos de uso
-
-Las relaciones se plantean como una referencia para el modelado UML. Su representación definitiva debe ajustarse al diagrama de casos de uso.
-
-| Caso de uso principal | Caso de uso relacionado | Relación conceptual |
-|---|---|---|
-| CU-14 Asignar ambulancia | CU-13 Consultar disponibilidad de recursos | Consulta previa necesaria para la asignación. |
-| CU-15 Asignar personal operativo | CU-13 Consultar disponibilidad de recursos | Consulta previa necesaria para la asignación. |
-| CU-14 Asignar ambulancia | CU-16 Consultar asignación | La asignación genera información susceptible de consulta. |
-| CU-15 Asignar personal operativo | CU-16 Consultar asignación | La asociación de personal forma parte de la información de asignación. |
-| CU-17 Actualizar estado de servicio | CU-16 Consultar asignación | La consulta de la asignación permite identificar el servicio sobre el cual se actualiza el estado. |
-| CU-18 Registrar novedad del servicio | CU-16 Consultar asignación | La novedad debe asociarse al servicio correspondiente. |
-| CU-22 Generar reportes operativos | CU-19 Consultar historial de servicios | Los reportes pueden utilizar información histórica de los servicios. |
-| CU-23 Consultar indicadores de gestión | CU-22 Generar reportes operativos | Los indicadores pueden derivarse de información consolidada de operación. |
-
-Estas relaciones no implican automáticamente el uso de relaciones UML <<include>> o <<extend>>. La decisión de representarlas de esa manera deberá sustentarse en el comportamiento y la dependencia real de cada caso de uso.
-
-## 13. Consideraciones y limitaciones del análisis
-
-- Los requisitos corresponden a una propuesta preliminar de análisis del SGA.
-- No se afirma que el sistema se encuentre implementado.
-- No se afirma que los requisitos hayan sido validados formalmente por usuarios del servicio.
-- No se reportan resultados de entrevistas, encuestas o pruebas que no hayan sido aplicadas.
-- Las reglas de negocio requieren revisión y validación con responsables del contexto operativo.
-- La clasificación de los servicios de transporte asistencial debe revisarse con base en los referentes normativos aplicables y las condiciones reales del servicio.
-- La asignación de recursos debe considerar criterios operativos, disponibilidad y restricciones que deberán definirse durante el análisis.
-- La información relacionada con pacientes y servicios asistenciales debe tratarse con criterios de privacidad, seguridad y cumplimiento normativo.
-- El documento constituye una base para el modelado conceptual, la identificación de actores y la elaboración del diagrama UML de casos de uso.
-
-## 14. Conclusiones
-
-La matriz de requisitos y casos de uso permite organizar preliminarmente las funcionalidades que se consideran necesarias para el Sistema Gestor de Ambulancias (SGA), a partir de la identificación de actores, procesos, requisitos funcionales, requisitos no funcionales y reglas de negocio.
-
-La identificación del administrador, coordinador operativo, personal operativo y director permite establecer una estructura inicial de responsabilidades y relaciones con las funcionalidades del sistema.
-
-La trazabilidad entre requisitos funcionales y casos de uso proporciona una referencia para continuar con el modelado conceptual y la elaboración del diagrama UML de casos de uso.
-
-Los requisitos y reglas de negocio aquí documentados deberán ser revisados y validados en etapas posteriores del proyecto, con el propósito de verificar su correspondencia con las necesidades reales del contexto operativo.
+**Cobertura verificada:** **65 / 65 Requisitos Funcionales (100 %)** · **29 / 29 Requisitos No Funcionales (100 %)** · **18 / 18 Reglas de Negocio (100 %)** · **20 Casos de Uso UML sincronizados 1:1 con el diagrama.**
 
 ---
 
-**Documento:** Matriz de requisitos y casos de uso – G1-P1 Plan de análisis  
-**Proyecto:** Sistema Gestor de Ambulancias (SGA)  
-**Programa:** Análisis y Desarrollo de Software (ADSO)  
-**Fase:** Análisis  
-**Evidencia:** G1-P1 – Plan de análisis  
-**Estado:** Documento de análisis preliminar.
+## 1. Catálogo de Requisitos Funcionales y Trazabilidad a Casos de Uso (RF-001 a RF-065)
+
+| Código | Módulo | Prioridad | Actor / Rol SRS | Descripción del requisito | Caso(s) de uso |
+|---|---|---|---|---|---|
+| RF-001 | Autenticación | Alta | Administrador | El sistema debe permitir al administrador registrar usuarios mediante un formulario que valide nombre completo, correo electrónico único, contraseña con políticas de complejidad y rol asignado; así como crear, editar, activar, desactivar y eliminar lógicamente usuarios, con trazabilidad completa de cada operación en el módulo de auditoría. | CU-03 |
+| RF-002 | Autenticación | Alta | Todos los usuarios | El sistema debe autenticar usuarios mediante correo y contraseña, generando un token JWT con tiempo de expiración configurable (máximo 8 horas) que controle el acceso a los módulos autorizados según el rol asignado. | CU-01 |
+| RF-003 | Autenticación | Alta | Sistema | El sistema debe cerrar automáticamente la sesión tras 15 minutos de inactividad y, cuando el token JWT expire durante una sesión activa, redirigir al inicio de sesión mostrando una advertencia previa para preservar información no guardada. | CU-01 |
+| RF-004 | Autenticación | Alta | Usuario | El sistema debe permitir la recuperación de contraseña mediante un enlace seguro enviado al correo electrónico registrado, con vigencia máxima de 30 minutos. | CU-02 |
+| RF-005 | Autenticación | Alta | Sistema | El sistema debe implementar control de acceso basado en roles (RBAC), restringiendo módulos, formularios, reportes y acciones según el perfil: Administrador, Coordinador, Paramédico, Conductor o Vigilante. | CU-03 |
+| RF-006 | Autenticación | Alta | Administrador | El sistema debe permitir al administrador asignar y modificar roles de usuario, registrando automáticamente cada cambio de privilegios en el módulo de auditoría. | CU-03 |
+| RF-007 | Autenticación | Alta | Sistema | El sistema debe registrar todos los intentos de autenticación fallidos y bloquear automáticamente la cuenta durante 30 minutos al superar 5 intentos consecutivos, generando alerta inmediata al administrador con posibilidad de desbloqueo manual. | CU-01 |
+| RF-008 | Ambulancias | Alta | Administrador | El sistema debe permitir el registro completo de ambulancias, incluyendo número de unidad, placa, tipo (TAB o TAM), marca, modelo, año, número de habilitación REPS y documentación asociada. | CU-04 |
+| RF-009 | Ambulancias | Alta | Coordinador / Sistema | El sistema debe permitir actualizar el estado operativo de cada ambulancia (Disponible, En servicio, En mantenimiento, Fuera de servicio), reflejando el cambio en tiempo real en el panel de monitoreo mediante WebSockets. | CU-10 |
+| RF-010 | Ambulancias | Alta | Coordinador / Administrador | El sistema debe permitir consultar el inventario de ambulancias con filtros por tipo, estado, sede y disponibilidad, mostrando información detallada de cada unidad. | CU-04, CU-06 |
+| RF-011 | Ambulancias | Alta | Administrador / Sistema | El sistema debe registrar y controlar la documentación obligatoria de cada ambulancia (SOAT, revisión técnico-mecánica, habilitación REPS), generando alertas automáticas ante vencimientos próximos o ya ocurridos, e impidiendo la asignación de unidades con documentación vencida. | CU-04, CU-06 |
+| RF-012 | Ambulancias | Alta | Administrador | El sistema debe registrar el historial de mantenimientos preventivos y correctivos de cada unidad, incluyendo fecha, tipo, proveedor, costo y estado operativo de la unidad durante el proceso. | CU-04 |
+| RF-013 | Ambulancias | Alta | Administrador | El sistema debe registrar y gestionar el inventario de equipos y dotación médica de cada ambulancia, diferenciando los requerimientos mínimos según tipo TAB o TAM conforme a la Resolución 3100 de 2017. | CU-04 |
+| RF-014 | Personal | Alta | Administrador | El sistema debe registrar el personal médico y operativo (paramédicos, conductores, auxiliares) con datos personales, tipo de formación, tarjeta profesional, certificaciones vigentes y unidad asignada. | CU-05 |
+| RF-015 | Personal | Alta | Coordinador | El sistema debe controlar la disponibilidad del personal en tiempo real, reflejando su estado (Disponible, En servicio, En descanso, Incapacitado) en el panel de asignación. | CU-05, CU-06 |
+| RF-016 | Personal | Alta | Sistema | El sistema debe registrar vencimientos de certificaciones y habilitaciones del personal, alertar con anticipación suficiente e impedir la asignación a servicios activos cuando la documentación crítica haya expirado. | CU-05, CU-06 |
+| RF-017 | Personal | Media | Administrador / Coordinador | El sistema debe permitir consultar el historial de servicios de emergencia atendidos por cada miembro del personal, y controlar jornadas laborales registrando horas trabajadas, turnos asignados y generando alertas al superar límites de horas continuas permitidas. | CU-05 |
+| RF-018 | Pacientes | Alta | Paramédico / Coordinador | El sistema debe registrar pacientes atendidos con datos de identificación, fecha de nacimiento, tipo de documento, contacto de familiar responsable y antecedentes médicos relevantes, garantizando la confidencialidad mediante RBAC y acceso exclusivo al personal autorizado. | CU-09 |
+| RF-019 | Pacientes | Alta | Paramédico | El sistema debe registrar el estado clínico inicial del paciente al momento de la atención prehospitalaria (estable, crítico, fallecido), vinculando el dato al servicio de emergencia correspondiente. | CU-09 |
+| RF-020 | Pacientes | Alta | Paramédico / Administrador | El sistema debe permitir consultar el historial de servicios asociados a un paciente específico, con filtros por fecha, tipo de servicio y unidad que lo atendió. | CU-09 |
+| RF-021 | Emergencias | Alta | Coordinador / Operador | El sistema debe permitir registrar solicitudes de servicio capturando: hora de solicitud, dirección o coordenadas del evento, tipo de emergencia, nivel de prioridad clínica (verde, amarillo, naranja, rojo) y datos del solicitante. | CU-08 |
+| RF-022 | Emergencias | Alta | Sistema | El sistema debe ejecutar asignación automática de ambulancias considerando disponibilidad, tipo requerido (TAB/TAM), prioridad clínica y proximidad geográfica cuando esté disponible, en un tiempo máximo de 2 segundos desde la recepción de la solicitud. | CU-11 |
+| RF-023 | Emergencias | Alta | Coordinador | El sistema debe permitir la asignación manual de ambulancias por el coordinador, superando la sugerencia automática cuando las condiciones operativas lo requieran, con registro obligatorio del motivo de la decisión. | CU-11 |
+| RF-024 | Emergencias | Alta | Coordinador / Sistema | El sistema debe gestionar el ciclo completo del servicio mediante los estados: Solicitado, Asignado, En ruta, En atención, Traslado, Finalizado y Cancelado, registrando fecha y hora en cada transición. | CU-12 |
+| RF-025 | Emergencias | Alta | Paramédico / Coordinador | El sistema debe permitir el cierre formal del servicio únicamente cuando se hayan completado todos los campos obligatorios: resultado de la atención, estado del paciente, destino de traslado y responsable de la atención. | CU-14 |
+| RF-026 | Emergencias | Media | Coordinador | El sistema debe permitir la cancelación de un servicio con justificación obligatoria registrada en el historial y en el módulo de auditoría, únicamente cuando su estado sea Solicitado o Asignado. | CU-12 |
+| RF-027 | Emergencias | Alta | Administrador / Coordinador | El sistema debe permitir consultar el historial completo de servicios con filtros por fecha, tipo, unidad, personal, estado y urgencia, con exportación en PDF y Excel. | CU-12 |
+| RF-028 | Monitoreo | Alta | Coordinador / Administrador | El sistema debe proporcionar un panel de control centralizado con actualización automática vía WebSockets que muestre en tiempo real el estado operativo de todas las ambulancias, diferenciando visualmente TAB y TAM mediante indicadores gráficos o códigos de color. | CU-10 |
+| RF-029 | Monitoreo | Alta | Coordinador / Administrador | El sistema debe mostrar en el panel principal indicadores clave: número de servicios activos, unidades disponibles por tipo, servicios finalizados en el día, y alertas críticas como unidades sin tripulación, vencimientos documentales, solicitudes sin asignación e incidentes sin gestionar. | CU-10 |
+| RF-030 | Financiero | Alta | Administrador | El sistema debe permitir registrar ingresos con detalle de fecha, valor, tipo de pago, entidad pagadora y servicio vinculado; y egresos con proveedor, concepto, monto, fecha y soporte documental adjunto, validando que el proveedor esté registrado previamente. | CU-15 |
+| RF-031 | Financiero | Alta | Sistema | El sistema debe generar facturas automáticamente al cierre de un servicio de emergencia, vinculando datos del paciente, la unidad, el personal interviniente y los valores tarifarios configurados, siendo estas inmutables una vez emitidas; cualquier corrección se realizará mediante nota crédito o débito con registro del motivo. | CU-15 |
+| RF-032 | Financiero | Alta | Administrador | El sistema debe gestionar cartera de usuarios o entidades con deudas activas, calculando automáticamente mora a partir del día 1 vencido, incluyendo a partir del día 30 en el listado de morosos y bloqueando nuevos servicios hasta regularización. | CU-15 |
+| RF-033 | Financiero | Alta | Administrador | El sistema debe generar reportes financieros periódicos (diario, mensual, anual) con indicadores de ingresos, egresos, cartera, facturación y mora; y enviar notificaciones automáticas ante pagos próximos a vencer o en mora con al menos 3 días de anticipación. | CU-15 |
+| RF-034 | Financiero | Media | Sistema | El sistema debe generar recibos de pago en PDF al registrar un pago, identificando el servicio cancelado, valor, fecha y responsable de la operación; y mantener historial financiero completo e inalterable con registro de usuario, fecha y valores de cada transacción. | CU-15 |
+| RF-035 | Financiero | Media | Usuario / Administrador | El sistema debe permitir la consulta del estado de cuenta por usuarios o entidades autorizadas, mostrando movimientos, saldos, facturas pendientes y pagos registrados. | CU-15 |
+| RF-036 | Visitantes | Alta | Vigilante | El sistema debe registrar el ingreso y salida de visitantes capturando: nombre completo, tipo y número de documento, persona o área visitada, y hora de ingreso y egreso; controlando que el visitante cuente con pre-autorización vigente o que el vigilante registre manualmente el acceso con justificación. | CU-16 |
+| RF-037 | Visitantes | Alta | Vigilante / Sistema | El sistema debe verificar la identidad del visitante, registrar opcionalmente fotografía, generar alertas si el documento está bloqueado o si el visitante permanece más tiempo del autorizado, y registrar el vehículo cuando aplique (placa, tipo, color). | CU-16 |
+| RF-038 | Visitantes | Media | Usuario Interno | El sistema debe permitir a usuarios internos registrar pre-autorizaciones de acceso para visitantes esperados, con fecha, hora, motivo y validez definida por el autorizante. | CU-16 |
+| RF-039 | Visitantes | Alta | Administrador / Vigilante | El sistema debe mantener historial completo de visitas con filtros por fecha, nombre, documento o área, y generar reportes con estadísticas de visitantes por periodo, áreas más visitadas y alertas por accesos no autorizados. | CU-16 |
+| RF-040 | PQRS | Alta | Usuario | El sistema debe permitir registrar PQRS mediante formulario estructurado, clasificarlas automáticamente por tipo (Petición, Queja, Reclamo, Sugerencia, Denuncia), asignar código único de radicado y definir plazo máximo de respuesta según normatividad. | CU-17 |
+| RF-041 | PQRS | Alta | Administrador / Sistema | El sistema debe asignar automáticamente o manualmente cada PQRS al funcionario o área responsable dentro de las primeras 24 horas; si supera este tiempo sin asignación, se asignará al coordinador por defecto con alerta al administrador. | CU-17 |
+| RF-042 | PQRS | Media | Usuario | El sistema debe permitir consultar el estado de una PQRS mediante el código de radicado sin necesidad de iniciar sesión, y enviar notificaciones automáticas al usuario cuando cambie de estado o se emita respuesta formal. | CU-17 |
+| RF-043 | PQRS | Alta | Administrador / Responsable | El sistema debe permitir registrar y enviar la respuesta formal a cada PQRS con soporte documental adjunto y confirmación de lectura; alertar al administrador con al menos 2 días de anticipación al vencimiento del plazo; y cerrar automáticamente la PQRS cuando haya sido respondida y confirmada o cuando el plazo haya expirado. | CU-17 |
+| RF-044 | PQRS | Alta | Sistema | El sistema debe mantener historial completo e inalterable de cada PQRS con todas las acciones, responsables y fechas desde creación hasta cierre, y generar reportes por tipo, estado, periodo y nivel de satisfacción con exportación en PDF o Excel. | CU-17 |
+| RF-045 | Unidades | Alta | Administrador | El sistema debe permitir registrar propietarios de unidades de ambulancia con datos de identificación y tipo de vinculación contractual, asociar cada unidad a un propietario activo validando que no tenga vinculación previa, y clasificar las unidades por tipo (TAB/TAM), categoría de habilitación y estado contractual (activa, suspendida, retirada). | CU-04 |
+| RF-046 | Unidades | Alta | Sistema | El sistema debe controlar el estado operativo y contractual de cada unidad, impidiendo la asignación de unidades en estados no operativos, y mantener historial completo de cambios con preservación de datos anteriores y actuales de cada modificación. | CU-04 |
+| RF-047 | Proveedores | Alta | Administrador | El sistema debe registrar proveedores (razón social, NIT, representante legal, contacto, tipo de servicio, estado) y contratos asociados (objeto, fechas, valor, responsable, documentación adjunta), controlando vigencia contractual y generando alertas a los 30, 15 y 5 días previos al vencimiento. | CU-07 |
+| RF-048 | Proveedores | Alta | Sistema | El sistema debe impedir la vinculación de contratos vencidos a nuevas órdenes de servicio, mantener historial de relaciones contractuales con evaluaciones y novedades, y enviar notificaciones automáticas ante vencimientos, incumplimientos y evaluaciones pendientes. | CU-07 |
+| RF-049 | Proveedores | Media | Administrador | El sistema debe permitir registrar evaluaciones de desempeño de proveedores al finalizar un servicio contratado usando criterios de calidad, cumplimiento y satisfacción, y generar reportes de proveedores activos, contratos vigentes y evaluaciones con exportación PDF o Excel. | CU-07 |
+| RF-050 | Documental | Alta | Administrador | El sistema debe permitir la carga de documentos en formatos PDF, DOCX, XLSX e imágenes, validando tipo MIME y tamaño máximo configurable; clasificarlos por categorías, subcategorías, etiquetas y niveles de confidencialidad (público, interno, restringido); y registrar automáticamente metadatos de cada documento. | CU-18 |
+| RF-051 | Documental | Alta | Administrador | El sistema debe implementar versionamiento automático al actualizar un documento sin eliminar versiones anteriores, bloquear la edición de documentos marcados como oficial o finalizado, y controlar duplicados mediante validación de hash antes de la carga. | CU-18 |
+| RF-052 | Documental | Alta | Usuarios autorizados | El sistema debe permitir búsqueda avanzada por nombre, tipo, fecha, categoría, etiquetas, autor, estado y confidencialidad; visualización integrada de PDF e imágenes sin descarga obligatoria; y controlar la descarga según permisos del rol con registro en auditoría. | CU-18 |
+| RF-053 | Documental | Alta | Sistema | El sistema debe implementar RBAC sobre todas las acciones documentales (visualización, creación, edición, eliminación, descarga), registrar en auditoría cada operación con usuario y fecha, y notificar a usuarios con acceso cuando un documento relevante a su rol sea cargado o actualizado. | CU-18 |
+| RF-054 | Documental | Media | Administrador | El sistema debe permitir organizar documentos en estructuras jerárquicas de carpetas, asociarlos a otros módulos (servicios, contratos, unidades, normativas), y generar estadísticas básicas del repositorio con exportación de listados en PDF y Excel para auditorías. | CU-18 |
+| RF-055 | Auditoría | Alta | Sistema | El sistema debe registrar automáticamente todos los eventos relevantes: operaciones CRUD sobre cualquier entidad, eventos de autenticación (inicios, cierres, intentos fallidos, bloqueos), asignaciones de ambulancias, cambios de estado en servicios de emergencia y modificaciones de roles, con identificación de usuario, módulo, fecha y hora. | CU-19 |
+| RF-056 | Auditoría | Alta | Sistema | Los registros de auditoría deben ser técnicamente inmutables, sin posibilidad de modificación o eliminación por ningún usuario incluido el administrador, con almacenamiento garantizado por un mínimo de 5 años. | CU-19 |
+| RF-057 | Auditoría | Alta | Administrador | El sistema debe permitir consultar registros de auditoría con filtros por usuario, tipo de acción, módulo, entidad y rango de fechas; visualizar el detalle completo de cada evento con valores anteriores y posteriores; y exportar registros en PDF y Excel para auditorías externas o procesos disciplinarios. | CU-19 |
+| RF-058 | Auditoría | Alta | Sistema | El sistema debe identificar y resaltar eventos críticos de seguridad (accesos no autorizados, modificaciones masivas, eliminaciones irreversibles, patrones anómalos como accesos en horarios inusuales) generando alertas inmediatas con clasificación por nivel de criticidad. | CU-19 |
+| RF-059 | Novedades | Alta | Usuarios autorizados | El sistema debe permitir registrar novedades operativas mediante formulario con campos obligatorios (tipo, descripción, fecha, hora, ubicación, reportante), clasificarlas por tipo (falla técnica, retraso, incidente con paciente, novedad de personal, accidente vehicular, evento crítico u otro configurable), asignarles prioridad (Baja, Media, Alta, Crítica) y asociarlas a una unidad, servicio o miembro del personal según corresponda. | CU-13 |
+| RF-060 | Novedades | Alta | Coordinador / Administrador | El sistema debe permitir asignar uno o varios responsables para la gestión de cada incidente con notificación automática al asignado, gestionar el ciclo de vida mediante estados (Pendiente, En proceso, Resuelto, Cerrado) con registro de cada transición en auditoría, y bloquear la edición de novedades cerradas. | CU-13 |
+| RF-061 | Novedades | Alta | Sistema | El sistema debe resaltar automáticamente incidentes críticos en el panel, establecer tiempos estimados de resolución, generar alertas cuando sean superados, enviar notificaciones ante nuevos registros, cambios de estado, comentarios o incumplimientos de tiempo, y permitir reasignación de responsables con registro del motivo. | CU-13 |
+| RF-062 | Novedades | Media | Usuarios autorizados | El sistema debe permitir adjuntar evidencia multimedia (imágenes, documentos, videos) con validación de formato y tamaño; agregar comentarios y observaciones de seguimiento manteniendo hilo cronológico; y consultar novedades con filtros combinados por tipo, fecha, estado, prioridad, unidad y servicio vinculado. | CU-13 |
+| RF-063 | Novedades | Media | Administrador / Analista | El sistema debe generar reportes de novedades con filtros por tipo, frecuencia, prioridad, estado y periodo con exportación PDF o Excel; mostrar indicadores de desempeño (total de incidentes, tiempos promedio de resolución, tipos más frecuentes); e integrarse con los módulos de reportes, auditoría y monitoreo para correlación de incidentes con servicios y personal. | CU-13 |
+| RF-064 | Reportes | Alta | Administrador / Analista | El sistema debe permitir generar reportes operativos personalizados con filtros por módulo, tipo de servicio, unidad, personal, periodo y estado, con exportación en PDF y Excel; y programar su generación automática periódica (diaria, semanal, mensual) distribuyéndolos por correo a destinatarios configurados por el administrador. | CU-20 |
+| RF-065 | Reportes | Alta | Administrador / Analista | El sistema debe generar indicadores clave de desempeño (KPI): tiempo promedio de respuesta, número de servicios por tipo (TAB/TAM), tasa de cancelación, incidentes por unidad y satisfacción de PQRS; y visualizarlos en el panel mediante gráficos interactivos (barras, líneas, tortas) que representen tendencias y comparativos. | CU-20 |
+
+---
+
+## 2. Catálogo de Requisitos No Funcionales (RNF-001 a RNF-029)
+
+| Código | Prioridad | Referencia / Atributo | Especificación verificable |
+|---|---|---|---|
+| RNF-001 | Alta | ISO/IEC 27001 — Res. 3100/2017 | El sistema debe almacenar contraseñas mediante hash seguro (bcrypt o Argon2 preferiblemente, mínimo SHA-256) con salt único por usuario. Queda prohibido el almacenamiento en texto plano o con cifrado simétrico reversible. |
+| RNF-002 | Alta | Seguridad en tránsito | Toda comunicación entre cliente y servidor debe realizarse exclusivamente mediante HTTPS con certificado SSL/TLS vigente; las solicitudes HTTP serán redirigidas automáticamente. |
+| RNF-003 | Alta | ISO/IEC 27001 — RBAC | El sistema debe implementar RBAC garantizando que cada usuario acceda únicamente a los módulos y acciones autorizados según su rol. |
+| RNF-004 | Alta | Ley 1581/2012 — Habeas Data | El sistema debe proteger datos sensibles de pacientes (identificación, estado clínico, historial) mediante cifrado en reposo en la base de datos, en cumplimiento de la Ley 1581/2012. |
+| RNF-005 | Alta | ISO/IEC 27001 | El sistema debe implementar políticas de complejidad de contraseñas: mínimo 8 caracteres, combinación de mayúsculas, minúsculas, dígitos y caracteres especiales, con renovación obligatoria cada 90 días. |
+| RNF-006 | Alta | OWASP Top 10 | El sistema debe validar y sanitizar todas las entradas de usuario para prevenir ataques SQL Injection, XSS y CSRF. |
+| RNF-007 | Alta | Integridad en sistemas de salud | Las acciones críticas (eliminación de registros, cambio de roles, anulación de facturas, cierre de servicios) deben requerir confirmación explícita del usuario autenticado, con registro obligatorio en auditoría. |
+| RNF-008 | Alta | Res. 3100/2017 | El sistema debe responder a consultas operativas críticas (solicitudes activas, estado de ambulancias, asignaciones) en un máximo de 3 segundos bajo carga estándar de operación. |
+| RNF-009 | Alta | Oportunidad de atención prehospitalaria | El proceso de asignación automática de ambulancias debe ejecutarse en un máximo de 2 segundos desde la recepción de la solicitud de emergencia. |
+| RNF-010 | Media | Capacidad operativa | El sistema debe soportar al menos 20 usuarios concurrentes sin degradación perceptible de rendimiento ni inestabilidad en el servidor. |
+| RNF-011 | Media | ISO/IEC 25010 | Las interfaces deben cargar completamente en máximo 5 segundos bajo condiciones normales de conexión, con optimización mediante caché de consultas frecuentes, paginación y compresión HTTP. |
+| RNF-012 | Alta | Continuidad operativa | El sistema debe priorizar operaciones críticas (asignación de ambulancias, actualización de estados en tiempo real) por encima de procesos de menor urgencia bajo condiciones de carga elevada. |
+| RNF-013 | Alta | Sistemas de misión crítica | El sistema debe garantizar disponibilidad mínima del 97% en operación continua 24/7, dado que soporta procesos críticos de atención prehospitalaria. |
+| RNF-014 | Alta | Res. 3100/2017 | Las actividades de mantenimiento deben planificarse en horarios de baja demanda operativa o con mecanismos que garanticen la continuidad de los servicios activos durante el proceso. |
+| RNF-015 | Alta | Gestión de incidentes críticos | El sistema debe contar con mecanismos de recuperación ante fallos (respaldo de base de datos, recuperación de sesiones, reinicio controlado de servicios) y monitoreo continuo que detecte caídas o degradación, generando alertas automáticas al equipo técnico. |
+| RNF-016 | Alta | Eficiencia operativa | El sistema debe permitir completar el registro y asignación de un servicio de emergencia en un máximo de 4 pasos desde la recepción de la solicitud. |
+| RNF-017 | Media | ISO/IEC 25010 | El sistema debe ser completamente responsivo y funcional en Chrome (v100+), Firefox (v100+), Edge (v100+) y Safari (v15+) en escritorio y tabletas, sin instalación de software adicional. |
+| RNF-018 | Media | ISO/IEC 25010 | El sistema debe proporcionar mensajes de error claros y orientados a la acción correctiva, indicando el campo específico con inconsistencias y, cuando aplique, la normatividad relacionada. |
+| RNF-019 | Media | ISO/IEC 25010 | La navegación debe ser intuitiva y consistente con menú estructurado por roles, sin requerir conocimientos técnicos avanzados ni capacitación extensa; manteniendo uniformidad visual (formularios, colores, tipografía, iconografía) en todas las interfaces. |
+| RNF-020 | Media | Usabilidad en sistemas críticos | El panel principal debe priorizar la visualización de datos críticos (emergencias activas, unidades disponibles, alertas) sobre información secundaria, minimizando la carga cognitiva del usuario. |
+| RNF-021 | Media | REPS — Conservación de registros | La base de datos debe estar diseñada para soportar el crecimiento progresivo del volumen de información sin modificaciones estructurales significativas, garantizando almacenamiento durante un mínimo de 5 años de operación. |
+| RNF-022 | Media | Capacidad operativa | El sistema debe soportar incremento en usuarios concurrentes, solicitudes de emergencia y registros almacenados mediante arquitectura escalable horizontal o verticalmente, con soporte de despliegue en contenedores Docker. |
+| RNF-023 | Media | Accesibilidad multiplataforma | El sistema debe ser compatible con sistemas operativos Windows 10/11, macOS 12+ y distribuciones Linux modernas en equipos cliente, sin instalación de software adicional más allá del navegador web. |
+| RNF-024 | Media | Interoperabilidad | Los reportes exportados en PDF y Excel deben ser compatibles con Microsoft Office 2016+ y LibreOffice 7+, garantizando legibilidad y estructura de los documentos generados. |
+| RNF-025 | Alta | Sostenibilidad tecnológica | El sistema debe desarrollarse bajo arquitectura modular y desacoplada que permita actualizar, modificar o reemplazar módulos específicos sin afectar el funcionamiento general. |
+| RNF-026 | Media | Mantenibilidad de software | El código fuente debe contar con documentación técnica completa (arquitectura, modelo de datos, APIs, flujos de proceso) e implementar estándares de codificación según la tecnología usada (PEP 8, PSR, ESLint). |
+| RNF-027 | Media | Evolución de software | El sistema debe permitir la incorporación futura de módulos adicionales (integración GPS, historia clínica electrónica, sistemas hospitalarios) sin comprometer la estabilidad de los módulos existentes. |
+| RNF-028 | Alta | Res. 3100/2017 | El sistema debe garantizar trazabilidad completa de todos los servicios de emergencia (desde solicitud hasta cierre) y de los cambios sobre entidades críticas (ambulancias, personal, pacientes, contratos), conservando estado anterior y posterior de cada modificación. |
+| RNF-029 | Alta | REPS — Preservación de información | El sistema debe implementar respaldo automático diario de la base de datos en ubicación segura diferente al servidor principal, con retención de al menos 30 copias consecutivas y capacidad de restauración con RTO máximo de 4 horas y RPO máximo de 24 horas. |
+
+---
+
+## 3. Reglas de Negocio (RN-001 a RN-018)
+
+| Código | Regla | Enunciado normativo / operativo |
+|---|---|---|
+| RN-001 | Asignación de Ambulancias | Una unidad solo puede asignarse cuando su estado sea Disponible. El sistema bloqueará la selección de unidades En servicio, En mantenimiento o Fuera de servicio. |
+| RN-002 | Tipo de Unidad vs Prioridad Clínica | El tipo de unidad (TAB/TAM) debe corresponder a la complejidad clínica del paciente. El sistema advertirá al coordinador cuando se seleccione un tipo que no corresponda a la prioridad clínica definida. |
+| RN-003 | Documentación Vencida de Unidad | Una ambulancia con SOAT, revisión técnico-mecánica o habilitación REPS vencidos no puede asignarse a ningún servicio. El sistema bloqueará la selección y emitirá advertencia al coordinador. |
+| RN-004 | Disponibilidad y Habilitación del Personal | Un miembro del personal no puede asignarse a un servicio si su estado no es Disponible o si alguna certificación u habilitación obligatoria ha expirado. |
+| RN-005 | Cierre de Servicio de Emergencia | Un servicio de emergencia no puede cerrarse si no se han completado todos los campos obligatorios: resultado de la atención, estado del paciente, destino de traslado y responsable de la atención. |
+| RN-006 | Cancelación de Servicio de Emergencia | La cancelación solo está permitida cuando el estado sea Solicitado o Asignado. Servicios en estados En ruta, En atención o Traslado no pueden cancelarse; el coordinador debe registrar una novedad para documentar la interrupción. |
+| RN-007 | Asignación Manual de Ambulancias | Toda asignación manual que difiera de la sugerencia automática del sistema debe registrar obligatoriamente el motivo de la decisión, vinculado al historial del servicio de emergencia. |
+| RN-008 | Renovación de Contraseñas | Las contraseñas deben renovarse cada 90 días. El sistema notificará al usuario con 10 días de anticipación y restringirá el acceso si supera la fecha límite sin renovarla. |
+| RN-009 | Bloqueo por Intentos Fallidos | Acumulados 5 intentos consecutivos de autenticación fallidos, la cuenta quedará bloqueada automáticamente por 30 minutos. El administrador recibirá alerta y podrá desbloquear manualmente si es necesario. |
+| RN-010 | Inmutabilidad de Registros de Auditoría | Los registros de auditoría son inalterables. Ningún usuario, incluido el administrador, puede modificar, eliminar o sobreescribir eventos de auditoría. Su conservación mínima es de 5 años. |
+| RN-011 | Gestión de PQRS – Asignación y Plazo | Una PQRS debe tener responsable asignado dentro de las primeras 24 horas. Si se supera este plazo, el sistema asigna al coordinador por defecto y alerta al administrador. El cierre solo procede cuando exista respuesta formal registrada con estado Respondida. |
+| RN-012 | Contratos con Proveedores | Un contrato vencido no puede vincularse a nuevas órdenes de servicio. El sistema alertará a los 30, 15 y 5 días previos al vencimiento. |
+| RN-013 | Documentos Oficiales | Los documentos marcados como oficial o finalizado no pueden editarse ni eliminarse. Solo el administrador puede modificar su estado mediante un proceso de reclasificación con justificación obligatoria. |
+| RN-014 | Inmutabilidad de Facturas | Las facturas son inmutables una vez emitidas. Cualquier corrección debe realizarse mediante nota de crédito o débito con registro del motivo y usuario responsable. |
+| RN-015 | Gestión de Mora y Cartera | La mora se calcula automáticamente desde el día 1 vencido. A partir del día 30, el usuario o entidad se incluye en el listado de morosos y el sistema bloquea la generación de nuevos servicios a su nombre hasta regularizar la obligación. |
+| RN-016 | Cierre de Novedades | El cierre de una novedad requiere que el incidente haya sido gestionado, su resolución documentada y validada por el responsable asignado o el coordinador. No se permite cerrar novedades sin resolución documentada. |
+| RN-017 | Control de Visitantes | Un visitante solo puede acceder si tiene pre-autorización vigente emitida por usuario interno, o si el vigilante registra manualmente el ingreso con justificación. En ambos casos se registran datos completos de identidad y vehículo cuando aplica. |
+| RN-018 | Reportes Exportados | Los reportes financieros y operativos son de solo lectura una vez exportados. Cualquier modificación requiere la generación de un nuevo reporte con parámetros actualizados. |
+
+---
+
+## 4. Casos de Uso Consolidados (CU-01 a CU-20)
+
+> Todos los casos de uso siguen la convención **verbo en infinitivo + objeto** (sin nombres de tecnologías como SQL, JWT, REST o WebSockets ni inflación de CRUDs separados) y se reflejan exactamente con los mismos códigos en [Diagrama-Casos-Uso.drawio](../06-diagrama-casos-uso/Diagrama-Casos-Uso.drawio) y [Diagrama-Casos-Uso.svg](../06-diagrama-casos-uso/Diagrama-Casos-Uso.svg).
+
+| ID | Nombre del caso de uso | Actores vinculados | Requisitos trazados | Prioridad | Relación estructural |
+|---|---|---|---|---|---|
+| **CU-01** | Autenticar usuario y gestionar sesión | Todos los usuarios, Sistema SGA | RF-002, RF-003, RF-007 | Alta | Caso base |
+| **CU-02** | Recuperar contraseña de acceso | Usuario | RF-004 | Alta | Asociación directa |
+| **CU-03** | Gestionar usuarios, roles y permisos | Administrador | RF-001, RF-005, RF-006 | Alta | Asociación directa |
+| **CU-04** | Gestionar ambulancias, propietarios y dotación REPS | Administrador, Sistema SGA | RF-008, RF-010, RF-011, RF-012, RF-013, RF-045, RF-046 | Alta | Asociación directa |
+| **CU-05** | Gestionar personal operativo y jornadas | Administrador, Coordinador Operativo | RF-014, RF-015, RF-016, RF-017 | Alta | Asociación directa |
+| **CU-06** | Consultar disponibilidad y vigencia de recursos | Coordinador Operativo, Administrador | RF-010, RF-011, RF-015, RF-016 | Alta | Incluido por CU-11 («include») |
+| **CU-07** | Gestionar proveedores, contratos y evaluaciones | Administrador, Sistema SGA | RF-047, RF-048, RF-049 | Alta | Asociación directa |
+| **CU-08** | Registrar solicitud de servicio y clasificar prioridad | Coordinador Operativo | RF-021 | Alta | Extendido por CU-09 («extend») |
+| **CU-09** | Registrar y consultar datos del paciente | Paramédico / Tripulación, Coordinador Operativo | RF-018, RF-019, RF-020 | Alta | Extiende CU-08 («extend») |
+| **CU-10** | Monitorear flota y alertas operativas | Coordinador Operativo, Administrador | RF-009, RF-028, RF-029 | Alta | Asociación directa |
+| **CU-11** | Asignar ambulancia y personal al servicio | Coordinador Operativo, Sistema SGA | RF-022, RF-023 | Alta | Incluye CU-06 («include») |
+| **CU-12** | Gestionar ciclo de vida y cancelación del servicio | Coordinador Operativo, Paramédico / Tripulación | RF-024, RF-026, RF-027 | Alta | Extendido por CU-13 («extend») |
+| **CU-13** | Registrar y resolver novedades operativas | Paramédico / Tripulación, Coordinador Operativo | RF-059, RF-060, RF-061, RF-062, RF-063 | Alta | Extiende CU-12 («extend») |
+| **CU-14** | Realizar cierre formal del servicio | Paramédico / Tripulación, Coordinador Operativo | RF-025 | Alta | Incluye CU-15 («include») |
+| **CU-15** | Gestionar facturación, cartera y movimientos financieros | Administrador, Sistema SGA | RF-030, RF-031, RF-032, RF-033, RF-034, RF-035 | Alta | Incluido por CU-14 («include») |
+| **CU-16** | Controlar ingreso y preautorización de visitantes | Vigilante, Usuario / Ciudadano | RF-036, RF-037, RF-038, RF-039 | Alta | Asociación directa |
+| **CU-17** | Radicar, asignar y responder PQRS | Usuario / Ciudadano, Administrador | RF-040, RF-041, RF-042, RF-043, RF-044 | Alta | Asociación directa |
+| **CU-18** | Gestionar repositorio documental y versiones | Administrador, Usuarios autorizados | RF-050, RF-051, RF-052, RF-053, RF-054 | Alta | Asociación directa |
+| **CU-19** | Consultar registros de auditoría y alertas | Administrador, Sistema SGA | RF-055, RF-056, RF-057, RF-058 | Alta | Asociación directa |
+| **CU-20** | Generar reportes operativos e indicadores KPI | Administrador, Analista / Directivo | RF-064, RF-065 | Alta | Asociación directa |
+
+---
+
+## 5. Justificación de Relaciones `<<include>>` y `<<extend>>` (1 línea por relación)
+
+| Relación | Tipo | Caso base | Caso incluido / extensor | Justificación funcional concreta |
+|---|---|---|---|---|
+| `CU-11 ..> CU-06` | `«include»` | CU-11 Asignar ambulancia y personal al servicio | CU-06 Consultar disponibilidad y vigencia de recursos | Toda asignación de despacho exige validar previamente que la ambulancia y el personal estén disponibles y con documentación REPS/SOAT/certificaciones vigentes (RN-001, RN-003, RN-004). |
+| `CU-14 ..> CU-15` | `«include»` | CU-14 Realizar cierre formal del servicio | CU-15 Gestionar facturación, cartera y movimientos financieros | Al aprobar el cierre obligatorio del servicio con los campos REPS completos (RN-005), el sistema emite automáticamente la factura inmutable vinculada al servicio (RF-031, RN-014). |
+| `CU-09 ..> CU-08` | `«extend»` | CU-08 Registrar solicitud de servicio y clasificar prioridad | CU-09 Registrar y consultar datos del paciente | Durante o después de registrar la solicitud inicial se amplía el flujo para asociar datos clínicos e identificación del paciente atendido cuando se dispone de ellos en escena (RF-018, RF-019). |
+| `CU-13 ..> CU-12` | `«extend»` | CU-12 Gestionar ciclo de vida y cancelación del servicio | CU-13 Registrar y resolver novedades operativas | Si durante la ruta, atención o traslado surge una falla mecánica, retraso o evento crítico (incluyendo interrupción cuando RN-006 prohíbe cancelar), se extiende el seguimiento para documentar y cerrar la novedad. |
+
+---
+
+## 6. Resumen de Cobertura y Verificación de Calidad
+
+- **Requisitos Funcionales cubiertos:** `65 / 65` (**100,0 %**), cero requisitos huérfanos.
+- **Actores externos modelados:** 5 roles humanos (`Administrador`, `Coordinador Operativo`, `Paramédico / Tripulación`, `Vigilante`, `Usuario / Ciudadano`) + 1 actor de sistema reactivo (`Sistema Automático SGA`), ubicados todos fuera de la frontera del sistema.
+- **Continuidad hacia G1-P2:** `CU-08`, `CU-11` y `CU-14` se seleccionan como los tres procesos críticos para especificación extendida, diagramación de actividades (DA-01, DA-02, DA-03) y prototipado UI (`P-01`, `P-02`, `P-03`).
